@@ -11,3 +11,13 @@ Internet es una red de computadoras que inter conecta billones de dispositivos e
 
 Es importante que todo el mundo este de acuerdo en lo que cada protocolo hace para que la gente pueda crear sistemas y productos que interoperan. Aquí es donde entran los standards. Internet Standards son desarrollados por Internet Engineering Task Force (IETF). Los documentos del IETF son llamados requests for comments (RFCs). Definen protocolos tales como TCP, IP, HTTP y SMTP.
 
+#### ¿Qué es un protocolo?
+
+Un protocolo define el formato y el orden de los mensajes intercambiados entre dos o más entidades de comunicación y también las acciones tomadas en la transmisión y/o recepción de un mensaje o evento.
+
+#### ¿Por qué dos máquinas con distintos sistemas operativos pueden formar parte de una misma red?
+
+Dos máquinas con distintos SO pueden formar parte de una misma red porque la comunicación en internet no depende del SO interno, sino del uso de protocolos de red estandarizados.
+
+#### ¿Cuáles son las 2 categorías en las que pueden clasificarse a los sistemas finales o End Systems? Dé un ejemplo del rol de cada uno en alguna aplicación distribuida que corra sobre Internet
+
