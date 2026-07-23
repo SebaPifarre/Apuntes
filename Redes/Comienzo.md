@@ -1,4 +1,3 @@
 Nuevo archivo
 
-# Que pasa si no cierro
-
+### Y si borro algo, que?
