@@ -5,5 +5,9 @@ Una red es un sistema que permite compartir información. Es un conjunto de equi
 
 #### ¿Qué es Internet? Describa los principales componentes que permiten su funcionamiento.
 
-Internet es una red de computadoras que inter conecta billones de dispositivos en el mundo. Todos los dispositivos son hosts o end systems. Los end systems están conectados por una red de communication links y packet switches. Diferentes links pueden transmitir datos a diferentes transmission rate. Cuando un end system tiene datos para mandar a otro end system, el end system que envía segmenta los datos y agrega los header bytes a cada segmento. Los resultantes "paquetes"  
+Internet es una red de computadoras que inter conecta billones de dispositivos en el mundo. Todos los dispositivos son hosts o end systems. Los end systems están conectados por una red de communication links y packet switches. Diferentes links pueden transmitir datos a diferentes transmission rate. Cuando un end system tiene datos para mandar a otro end system, el end system que envía segmenta los datos y agrega los header bytes a cada segmento. Los resultantes "paquetes" de información son enviados a través de la red al end system destino, donde son re ensamblados en los datos originales.
+
+#### ¿Qué son las RFCs?
+
+Es importante que todo el mundo este de acuerdo en lo que cada protocolo hace para que la gente pueda crear sistemas y productos que interoperan. Aquí es donde entran los standards. Internet Standards son desarrollados por Internet Engineering Task Force (IETF). Los documentos del IETF son llamados requests for comments (RFCs). Definen protocolos tales como TCP, IP, HTTP y SMTP.
 
