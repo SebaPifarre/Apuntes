@@ -10,5 +10,14 @@ La capa de aplicación es donde residen las aplicaciones de red y sus protocolos
 
 ### Explique brevemente cómo es el modelo Cliente/Servidor. Dé un ejemplo de un sistema Cliente/Servidor en la “vida cotidiana” y un ejemplo de un sistema informático que siga el modelo Cliente/Servidor. ¿Conoce algún otro modelo de comunicación
 
-En la arquitectura 
+En la arquitectura cliente-servidor existe un host siempre encendido llamado servidor que atiende solicitudes de muchos otros hosts llamados clientes. Un ejemplo clásico es una aplicación web donde un servidor web atiende solicitudes de navegadores corriendo en hosts de clientes. En la arquitectura cliente-servidor, los clientes no se comunican directamente entre ellos. Otra característica es que el servidor tiene un dirección fija llamada IP, como el servidor siempre está encendido y la dirección IP es fija, el cliente siempre puede enviar paquetes al servidor.
+Existe también la arquitectura P2P, la cuál usa comunicación directa entre un par de hosts conectados intermitente mente llamados peers.
 
+### Describa la funcionalidad de la entidad genérica “Agente de usuario” o “User agent”.
+
+Un agente de usuario (user agent) es la entidad o programa informático que actúa como interfaz entre el usuario y una aplicación de red, permitiendo al usuario interactuar con los protocolos subyacentes. Esta entidad reside y se ejecuta exclusivamente en los hosts.
+
+### ¿Qué son y en qué se diferencian HTML y HTTP?
+
+* HTML es un estándar para el formato de documentos utilizado para crear páginas web. El navegador interpreta el archivo HTML para mostrar la página al usuario en su pantalla. 
+* HTTP es el protocolo de la capa de aplicación de la web (Hyper Text Transfer Protocol). Define la estructura de los mensajes y cómo 
