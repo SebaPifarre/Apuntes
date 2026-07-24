@@ -48,3 +48,10 @@ La cabecera Date indica la fecha y hora cuando la respuesta HTTP fue creada y en
 
 ### Investigue los distintos tipos de códigos de retorno de un servidor web y su significado. Considere que los mismos se clasifican en categorías (2XX, 3XX, 4XX, 5XX).
 
+Los códigos de estado de respuesta HTTP indican si se ha completado satisfactoriamente una solicitud HTTP específica. Las respuestas se agrupan en cinco clases:
+1) Respuestas informativas (100-199)
+2) Respuestas satisfactorias (200-299)
+3) Re-direcciones (300-399)
+4) Errores del sistema (400-499)
+5) Errores de los servidores (500-599)
+
