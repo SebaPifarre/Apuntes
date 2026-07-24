@@ -20,4 +20,13 @@ Un agente de usuario (user agent) es la entidad o programa informático que act�
 ### ¿Qué son y en qué se diferencian HTML y HTTP?
 
 * HTML es un estándar para el formato de documentos utilizado para crear páginas web. El navegador interpreta el archivo HTML para mostrar la página al usuario en su pantalla. 
-* HTTP es el protocolo de la capa de aplicación de la web (Hyper Text Transfer Protocol). Define la estructura de los mensajes y cómo 
+* HTTP es el protocolo de la capa de aplicación de la web (Hyper Text Transfer Protocol). Define la estructura de los mensajes y cómo el cliente (navegador) y el servidor intercambian dichos mensajes para solicitar y transferir páginas web.
+
+### HTTP tiene definido un formato de mensaje para los requerimientos y las respuestas
+
+Lo que determina si un mensaje es de requerimiento o de respuesta es su primera línea.
+La primera línea de un mensaje de requerimiento HTTP se llama request line (línea de solicitud), compuesta por tres campos: el método, el URL y la versión de HTTP.
+En un mensaje de respuesta, la primera línea se denomina línea de status. Compuesta también por tres campos: la versión del protocolo, un código de estado y el correspondiente mensaje de estado.
+Ambos mensajes están escritos en texto ASCII ordinario, para que cualquier humano ordinario con conocimientos de informática pueda leerlos.
+Las líneas de cabecera sirven para proporcionar información adicional sobre el mensaje, el remitente o el manejo de conexión.
+
