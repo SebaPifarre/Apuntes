@@ -36,3 +36,15 @@ Las líneas de cabecera sirven para proporcionar información adicional sobre el
 ![[Respuesta HTTP.jpg]]
 
 
+### ¿Qué indica la cabecera Date?
+
+La cabecera Date indica la fecha y hora cuando la respuesta HTTP fue creada y enviada por el servidor. Notar que no es la fecha y hora cuando el objeto fue creado o modificado, es la cual el servidor obtiene el objeto en su filesystem, inserta el objeto en el mensaje de respuesta y envía el mensaje de respuesta.
+
+### En HTTP/1.0, ¿cómo sabe el cliente que ya recibió todo el objeto solicitado de manera completa? ¿Y en HTTP/1.1?
+
+* En HTTP 1.0 cada conexión TCP transporta exactamente un mensaje de solicitud y uno de respuesta. El cliente solicita el recurso base y cuando lo recibe, lo analiza para saber cuantas peticiones necesita para obtener el objeto solicitado de manera completa.
+* En HTTP 1.1 la conexión es persistente por default, lo cual permite envíar una página web completa con una sola conexión TCP persistente. En general, el servidor HTTP cierra la conexión cuando no es usada por un cierto tiempo (intervalo configurable).
+	* El servidor incluye la línea de encabezado Content-length en su mensaje de respuesta. Esta cabecera indica explicitamente el número de bytes que contiene el objeto enviado en el cuerpo de la entidad. El cliente cuenta los bytes recibidos y, una vez alcanzadas esa cifra indicada en Content-length, sabe que el objeto está completo y que la conexión sigue disponible para enviar nuevas peticiones.
+
+### Investigue los distintos tipos de códigos de retorno de un servidor web y su significado. Considere que los mismos se clasifican en categorías (2XX, 3XX, 4XX, 5XX).
+
