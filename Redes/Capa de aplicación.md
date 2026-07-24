@@ -30,3 +30,9 @@ En un mensaje de respuesta, la primera línea se denomina línea de status. Comp
 Ambos mensajes están escritos en texto ASCII ordinario, para que cualquier humano ordinario con conocimientos de informática pueda leerlos.
 Las líneas de cabecera sirven para proporcionar información adicional sobre el mensaje, el remitente o el manejo de conexión.
 
+
+![[Solicitud HTTP.jpg]]
+
+![[Respuesta HTTP.jpg]]
+
+
