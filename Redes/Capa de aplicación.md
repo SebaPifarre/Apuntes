@@ -55,3 +55,12 @@ Los códigos de estado de respuesta HTTP indican si se ha completado satisfactor
 4) Errores del sistema (400-499)
 5) Errores de los servidores (500-599)
 
+### Investigue cuál es el principal uso que se le da a las cabeceras Set-Cookie y Cookie en HTTP y qué relación tienen con el funcionamiento del protocolo HTTP.
+
+Cuando un cliente se conecta a un servidor por primera vez, el servidor puede incluir en la respuesta HTTP el encabezado set-cookie que contiene un número de identificación. 
+Cuando el browser del cliente recibe la respuesta, ve el set-cookie header. El browser añade una línea al archivo especial de cookies que maneja, esta línea contiene el número de identificación de la cookie y el hostname del servidor.
+Cada petición subsecuente a ese mismo servidor el browser extrae el identificador del archivo y lo agrega en un encabezado cookie. De esta manera el servidor puede hacer un seguimiento de las actividades del cliente en la página web sin necesariamente saber la información del cliente.
+
+### ¿Cuál es la diferencia entre un protocolo binario y uno basado en texto? ¿De qué tipo de protocolo se trata HTTP/1.0, HTTP/1.1 y HTTP/2?
+
+La diferencia fundamental entre un protocolo basado en texto y uno binario radica en la forma en que se estructuran y transmiten los mensajes.
