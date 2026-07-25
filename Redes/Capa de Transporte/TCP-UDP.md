@@ -118,5 +118,15 @@ A diferencia del control de flujo (que protege al receptor), el control de conge
 
 <mark style="background: #ABF7F7A6;">Diferencia entre slow start con congestion-avoidance</mark>
 
+La principal diferencia radica en la rapidez con la que aumenta el tamaño de la ventana de congestión (cwnd) en respuesta a los ACKs recibidos
+* <u>Slow start</u>: 
+	* Se utiliza al inicio de la conexión o después de un timeout.
+	* La ventana cwnd comienza típicamente en 1 MSS y aumenta en 1 MSS por cada ACK recibido.
+	* Esto resulta en un crecimiento exponencial de la tasa de envío, duplicándose efectivamente en cada RTT.
+* <u>Congestion avoidance</u>:
+	* Se activa cuando la cwnd alcanza o supera un umbral determinado llamado ss-thresh (slow start threshold).
+	* En esta fase, TCP adopta un enfoque más conservador y aumenta la cwnd en solo un MSS por cada RTT completo.
+	* Esto resulta en un crecimiento lineal de la ventana de congestión, diseñado para "sondear" el ancho de banda disponible con mayor cautela al estar cerca de los niveles de congestión previos.
+
 
 
