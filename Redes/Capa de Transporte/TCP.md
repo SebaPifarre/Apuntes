@@ -44,3 +44,27 @@ El proceso de aplicación del cliente primero le informa al cliente TCP que quie
 3) Al recibir el SYN-ACK, el cliente asigna sus propios buffers y variables para la conexión. El cliente envía el último segmento del 3WH, con el campo ACK = server-isn +1. El flag SYN seteado a cero. Este último segmento ya puede enviar datos del cliente al servidor.
 
 UDP solo envía información sin preliminales formales. De esta manera UDP no introduce ningún delay para establecer la conexión.
+
+### Investigue qué es el MSS. ¿Cuándo y cómo se negocia?
+
+El MSS (Maximum Segment Size) es la cantidad máxima de datos que TCP puede tomar del buffet de envío para insertar en un segmento. (Sin tener en cuenta los headers)
+El MSS se fija basandose en la MTU (Maximum Transmission Unit), que es la longitud de la trama más grande que puede enviar el host local en su capa de enlace.
+El MSS se negocia exclusivamente en el 3WH utilizando el campo de opciones de la cabecera del segmento TCP, el cuál tiene una longitud variable.
+
+### ¿Cuál es el puerto por defecto que se utiliza en los siguientes servicios?
+
+* Web: HTTP puerto por defecto 80
+* DNS: Puerto 53 (Generalmente sobre UDP)
+* Web Seguro: HTTPS puerto 443
+* POP3: Puerto 110
+* SMTP: Puerto 25
+
+Linux = /etc/services
+Windows = C:\Windows\System32\drivers\etc\services
+
+### Multicast
+
+El multicast es un servicio de red que permite que un único nodo de origen envíe una copa de un paquete a un subconjunto específico de los demás nodos de red. Funciona habitualmente sobre UDP, dado que es un protocolo sin conexión, ideal para enviar datos a múltiples destinos de forma simultánea sin la necesidad de establecer un acuerdo previo con cada uno.
+No funciona sobre TCP ya que esta es siempre punto a punto, necesita el mantenimiento de variables de estado especificas para ese par de hosts.
+
+### Proto
