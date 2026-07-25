@@ -72,4 +72,15 @@ La razón principal por la que un dominio cuenta con una estructura de servidore
 
 La transferencia de zona es el proceso por el cuál un servidor secundario solicita y recibe la copia completa de los registros (la zona) desde el servidor primario para asegurar que ambos tengan la misma información.
 
-### 
+### Imagine que usted es el administrador del dominio de DNS de la UNLP (unlp.edu.ar). A su vez, cada facultad de la UNLP cuenta con un administrador que gestiona su propio dominio (por ejemplo, en el caso de la Facultad de Informática se trata de info.unlp.edu.ar). Suponga que se crea una nueva facultad, Facultad de Redes, cuyo dominio será redes.unlp.edu.ar, y el administrador le indica que quiere poder manejar su propio dominio. ¿Qué debe hacer usted para que el administrador de la Facultad de Redes pueda gestionar el dominio de forma independiente? (Pista: investigue en qué consiste la delegación de dominios). Indicar qué registros de DNS se deberían agregar.
+
+Primero, el administrador de la Facultad de Redes debe proporcionarle el nombre de host y la dirección de host y la dirección IP de sus propios servidores DNS autoritativos (normalmente un primario y al menos uno secundario por confiabilidad).
+Para establecer la cadena de delegación, se debe insertar dos tipos de registros de recursos (RR) en su base de datos para el nuevo dominio.
+* Registro tipo NS: Este registro indica cuál es el servidor responsable del nuevo sub-dominio.
+* Registro tipo A: Este registro asocia el nombre del servidor DNS de la Facultad con su dirección IP.
+Cada vez que un host en Internet intente acceder a un recurso como www.redes.unlp.edu.ar, la consulta llegará a sus servidores de unlp.edu.ar, los cuales responderán con los registros NS y A de la facultad.
+El cliente entonces contactará directamente al servidor de la Facultad de Redes para obtener la respuesta final.
+A partir de este momento, el administrador de la facultad tiene total autonomía administrativa para crear, modificar o eliminar cualquier registro dentro de su zona redes.unlp.edu.ar sin tener que contactar al administrador.
+
+
+
