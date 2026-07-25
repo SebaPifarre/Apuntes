@@ -16,3 +16,11 @@ No ejecutan protocolos de las capas superiores, centrándose exclusivamente en l
 
 La capa de red de Internet ofrece un único servicio denominado best-effort-service el cuál no garantiza la entrega de los paquetes, ni que lleguen en orden, ni que se mantenga el tiempo entre ellos.
 
+
+### ¿Cuántas redes clase A, B y C hay? ¿Cuántos hosts como máximo pueden tener cada una?
+
+![[Clases de Direcciones IP.png]]
+
+### ¿Qué son las subredes? ¿Por qué es importante siempre especificar la máscara de subred asociada?
+
+Una subred es una red aislada que interconecta interfaces de hosts y de routers.
