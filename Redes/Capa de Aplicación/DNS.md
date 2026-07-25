@@ -56,7 +56,20 @@ También se le llama al servidor DNS local resolver.
 
 ### En Internet, un dominio suele tener más de un servidor DNS, ¿por qué cree que esto es así?
 
+La utilización de múltiples servidores DNS para un mismo dominio es una decisión de diseño fundamental basada en la necesidad de garantizar la escalabilidad y la confiabilidad de la infraestructura de internet.
+* Evitar un punto único de falla:
+	* Si un dominio dependiera de un solo servidor y este fallara o se desconectara, el dominio se volvería completamente inaccesible para el resto del mundo. Por este motivo, la mayoría de las universidades y grandes empresas implementan y mantienen sus propios servidores autoritativos primarios y secundarios.
+* Distribución del volumen de tráfico:
+	* Un solo servidor DNS no podría procesar la enorme cantidad de consultas generadas por los cientos de millones de hosts que intentan acceder a servicios simultáneamente.
+* Reducción del retraso:
+	* Un servidor centralizado no puede estar "cerca" de todos los usuarios; si el servidor estuviera en un continente distinto al del usuario, las consultas tendrían que viajar largas distancias por enlaces potencialmente lentos, aumentando significativamente los tiempos de respuesta.
+
+### Cuando un dominio cuenta con más de un servidor, uno de ellos es el primario (o maestro) y todos los demás son secundarios (o esclavos). ¿Cuál es la razón de que sea así?
+
 La razón principal por la que un dominio cuenta con una estructura de servidores primario y secundarios es para garantizar la confiabilidad y seguridad de la infraestructura del sistema de nombres de dominio DNS.
 
-### Cuando un dominio cuenta con más de un servidor, uno de ellos es el primario (o maestro) y todos los demás son secundarios (o esclavos). ¿Cuál es la razón de que sea
-así?
+### Explique brevemente en qué consiste el mecanismo de transferencia de zona y cuál es su finalidad.
+
+La transferencia de zona es el proceso por el cuál un servidor secundario solicita y recibe la copia completa de los registros (la zona) desde el servidor primario para asegurar que ambos tengan la misma información.
+
+### 
