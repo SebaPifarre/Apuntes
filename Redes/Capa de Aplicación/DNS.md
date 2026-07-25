@@ -26,6 +26,20 @@ También se le llama al servidor DNS local resolver.
 
 * <mark style="background: #FF5582A6;">Registros A (Address)</mark>
 	* Son registros que mapean de un nombre de dominio a una dirección IP. Son los más comunes. Pueden existir varios registros A con el mismo nombre, por ejemplo para realizar balance de carga de un servidor muy accedido.
+	
 * <mark style="background: #FFB8EBA6;">Registros MX (Mail Exchanger)</mark>
 	* Son registros que indican, para un nombre de dominio, cuáles son los servidores de mail SMTP encargados de recibir los mensajes para ese dominio. De esta forma, no es necesario especificar el servidor completo de mail donde se encuentra la casilla destino, alcanza con indicar solamente el dominio. El servidor de mail SMTP que envía el mensaje deberá consultar, vía el servicio DNS, cuáles son los servidores y asignarles prioridades. Los valores más bajos son mejores prioridades. Así, al momento de hacerse el envío del mensaje, si el servidor primario no está activo, se podría recurrir a otro de menor prioridad para enviar el email.
-* Registros PTR (Pointer)
+	
+* <mark style="background: #FFB86CA6;">Registros PTR (Pointer)</mark>
+	* Estos son registros que mapean direcciones IP a nombres de dominio. Son el inverso de los registros A. Estos registros deben estar en un sub-árbol (dominio) separado que se llama in-addr.arpa.
+	* Esto se debe a que la búsqueda se realiza usando la dirección IP y no el nombre. Aunque la información existe en los registros directos A, no se puede generar un mecanismo de búsqueda organizado, ya que dad una dirección IP no hay forma de saber en donde está asignada. Para este propósito está el sub-árbol in-addr.arpa que organiza las direcciones por octeto de las direcciones IP, generando un árbol. De esta manera se provee un mecanismo a nodo de índice de búsqueda. 
+
+* <mark style="background: #BBFABBA6;">Registros AAAA</mark>
+	* El registro AAAA es el equivalente para IPv6. Se llama cuádruple A porque una dirección IPv6 (128 bits) es cuatro veces más larga que una dirección IPv4 (32 bits). Su función es devolver la dirección IPv6 de 128 bits asociada a un nombre de dominio cuando un cliente realiza una consulta DNS.
+
+* <mark style="background: #ABF7F7A6;">Registro SRV (Service)</mark>
+	* Los registros SRV se usan para localizar servicios (host y puerto) ofrecidos por un dominio.
+
+* <mark style="background: #D2B3FFA6;">Registro NS (Name Server)</mark>
+	* Los registros NS indican los servidores de nombre autoritativos para una zona o sub-dominio. A partir de esto, se puede lograr una delegación de sub-dominios. A diferencia de los registros MX, estos no llevan asociados una prioridad. Todos los servidores tienen la misma precedencia.
+	* Para lograr un mejor balance, al ir respondiendo se debería ir rotando el orden oc el que se entregan los servidores autoritativos para una zona. Al tener varios servidores para un 
