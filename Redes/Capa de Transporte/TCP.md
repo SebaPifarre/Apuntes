@@ -81,4 +81,13 @@ El tamaño de ventana debe ser menor o igual a la mitad del tamaño del espacio 
 
 ### ¿Qué es el RTT y cómo se calcula? Investigue la opción TCP timestamp y los campos TSval y TSecr
 
-El RTT (Round-Trip Time)
+El RTT (Round-Trip Time) es el tiempo que transcurre desde que un host envía un paquete pequeño hasta que recibe el ACK.
+
+* <u>Tsval (Timestamp value)</u>: Es un campo de 32 bits donde el emisor del segmento coloca el valor actual de su reloj en el momento de envío.
+* <u>Tsecr (Timestamp echo replay)</u>: Es un campo donde el receptor del segmento "refleja" el valor Tsval que recibió en el último segmento del emisor.
+
+Estos campos permiten que el emisor original, al recibir el ACK, calcule el RTT simplemente restando el valor de Tsecr de su reloj actual. Esto permite realizar mediciones de RTT para cada segmento enviado, lo que proporciona una estimación mucho más dinámica y precisa que el método tradicional de una medición por ventana.
+
+### Control de flujo
+
+El mecanismo es controlado y "activado" por el receptor de los datos de una conexión TCP. El receptor mantiene una variable denominada ventana de recepción (rwnd), que repre
