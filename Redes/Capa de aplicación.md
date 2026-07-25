@@ -64,3 +64,6 @@ Cada petición subsecuente a ese mismo servidor el browser extrae el identificad
 ### ¿Cuál es la diferencia entre un protocolo binario y uno basado en texto? ¿De qué tipo de protocolo se trata HTTP/1.0, HTTP/1.1 y HTTP/2?
 
 La diferencia fundamental entre un protocolo basado en texto y uno binario radica en la forma en que se estructuran y transmiten los mensajes.
+* <u>Basado en texto</u>: Utiliza caracteres ASCII legibles por humanos para sus comandos, encabezados y respuestas. Facilita depuración y permite que una persona pueda leer el mensaje directamente. (HTTP 1.0/1.1)
+* <u>Basado en binario</u>: Transmiten la información en formatos de bits y bytes optimizados para ser procesados por máquinas, lo que los hace más eficientes y compactos, pero no legibles directamente por humanos sin herramientas especiales. (HTTP 2)
+
