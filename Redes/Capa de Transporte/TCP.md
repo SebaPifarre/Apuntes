@@ -58,6 +58,7 @@ El MSS se negocia exclusivamente en el 3WH utilizando el campo de opciones de la
 * Web Seguro: HTTPS puerto 443
 * POP3: Puerto 110
 * SMTP: Puerto 25
+* FTP: Puerto 21
 
 Linux = /etc/services
 Windows = C:\Windows\System32\drivers\etc\services
@@ -67,4 +68,17 @@ Windows = C:\Windows\System32\drivers\etc\services
 El multicast es un servicio de red que permite que un único nodo de origen envíe una copa de un paquete a un subconjunto específico de los demás nodos de red. Funciona habitualmente sobre UDP, dado que es un protocolo sin conexión, ideal para enviar datos a múltiples destinos de forma simultánea sin la necesidad de establecer un acuerdo previo con cada uno.
 No funciona sobre TCP ya que esta es siempre punto a punto, necesita el mantenimiento de variables de estado especificas para ese par de hosts.
 
-### Proto
+### Protocolo de aplicación FTP
+
+El protocolo FTP (File Transfer Protocol) funciona de una manera particular utilizando dos conexiones TCP paralelas entre el cliente y el servidor.
+El usuario interactúa con FTP a través de un agente de usuario. Primero el cliente establece una conexión de control con el servidor en el puerto 21. A través de esta conexión se envían la identificación de usuario, la contraseña y comandos para cambiar directorios o solicitar la transferencia de archivos.
+Cuando el servidor recibe un comando para transferir un archivo, abre una conexión de datos independiente para el envío de dicho archivo. FTP crea una nueva conexión de datos para cada archivo transferido, mientras que la conexión de control permanece abierta durante toda la sesión del usuario.
+<u>Modo Activo</u>: Tras recibir el comando de transferencia por la conexión de control, es el lado del servidor el que inicia la conexión de datos TCP hacia el lado del cliente.
+
+### ¿Qué restricción existe sobre el tamaño de ventanas en el protocolo Selective Repeat?
+
+El tamaño de ventana debe ser menor o igual a la mitad del tamaño del espacio de números de secuencia. Esta limitación es necesaria para evitar una situación en la que el receptor no puede distinguir entre la retransmisión de un paquete antiguo y la primera transmisión de un paquete nuevo.
+
+### ¿Qué es el RTT y cómo se calcula? Investigue la opción TCP timestamp y los campos TSval y TSecr
+
+El RTT (Round-Trip Time)
