@@ -90,4 +90,13 @@ Estos campos permiten que el emisor original, al recibir el ACK, calcule el RTT 
 
 ### Control de flujo
 
-El mecanismo es controlado y "activado" por el receptor de los datos de una conexión TCP. El receptor mantiene una variable denominada ventana de recepción (rwnd), que repre
+<mark style="background: #CACFD9A6;">¿Quién lo activa? ¿De que forma lo hace?</mark>
+El mecanismo es controlado y "activado" por el receptor de los datos de una conexión TCP. El receptor mantiene una variable denominada ventana de recepción (rwnd), que representa la cantidad de espacio libre disponible en su búfer de recepción en un momento dado. Para comunicar este límite al emisor, el receptor coloca el valor actual de rwnd en el campo ventana de recepción de la cabecera de cada segmento TCP que envía de vuelta al emisor. De este modo el emisor sabe cuántos datos puede enviar sin saturar al receptor
+
+<mark style="background: #CACFD9A6;">¿Que problema resuelve?</mark>
+Resuelve el problema del desbordamiento del búfer del receptor. Ocurre cuando un emisor envía datos demasiado rápido en comparación con la velocidad a la que la aplicación receptora procesa o lee esos datos de su búfer. Funciona como un servicio de ajuste de velocidades, equilibrando la tasa de envío del emisor con la tasa de lectura de la aplicación en el destino.
+
+<mark style="background: #CACFD9A6;">¿Cuanto tiempo dura activo y que situación lo desactiva?</mark>
+Es un mecanismo dinámico que se mantiene activo durante toda la vida de la conexión TCP. Si el búfer receptor se llena por completo, este envía un valor de rwnd=0, lo que obliga al emisor a detenerse. 
+El emisor permanece a la espera hasta que la aplicación receptora libere espacio en el búfer.
+Para evitar quedar bloqueado indefinidamente si el mensaje
