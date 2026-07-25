@@ -99,4 +99,24 @@ Resuelve el problema del desbordamiento del búfer del receptor. Ocurre cuando u
 <mark style="background: #CACFD9A6;">¿Cuanto tiempo dura activo y que situación lo desactiva?</mark>
 Es un mecanismo dinámico que se mantiene activo durante toda la vida de la conexión TCP. Si el búfer receptor se llena por completo, este envía un valor de rwnd=0, lo que obliga al emisor a detenerse. 
 El emisor permanece a la espera hasta que la aplicación receptora libere espacio en el búfer.
-Para evitar quedar bloqueado indefinidamente si el mensaje
+Para evitar quedar bloqueado indefinidamente si el mensaje de actualización de ventana se pierde, el emisor continúa enviando segmentos de 1 byte de datos cuando la ventana es cero; el receptor responderá a estos con un ACK que eventualmente contendrá un valor de rwnd mayor a cero, permitiendo que el flujo de datos se reanude.
+
+### Mecanismo de control de congestión
+
+<mark style="background: #ABF7F7A6;">¿Quién activa el mecanismo de control de congestión? ¿Cuáles son los posibles disparadores?</mark>
+
+El mecanismo es operado y mantenido por el emisor de la conexión TCP. Cada emisor limita la tasa de envío de tráfico en función de la congestión que percibe en la red de forma independiente.
+El principal disparador es un evento de pérdida (loss event), que el emisor interpreta como una señal de congestión. Existen dos tipos específicos:
+1) <u>Timeout</u>: Cuando un segmento no es confirmado dentro del intervalo de tiempo esperado.
+2) <u>Recepción de tres ACKs duplicados</u>: Cuando el emisor recibe cuatro ACKs idénticos para el mimo segmento, lo que indica que el segmento siguiente se ha perdido.
+
+<mark style="background: #ABF7F7A6;">¿Que problema resuelve?</mark>
+
+El control de congestión resuelve el problema de tener demasiadas fuentes enviando datos a una tasa demasiado alta para que la red pueda manejarlos.
+Su finalidad es evitar que la red entre en un estado de congestión, donde los búfers de los routers se desbordan y se pierden paquetes, lo que podría llevar a un colapso por congestión en el que se realiza muy poco trabajo útil en la red.
+A diferencia del control de flujo (que protege al receptor), el control de congestión es un servicio para el bienestar general de Internet, asegurando que cada conexión reciba una parte justa del ancho de banda disponible.
+
+<mark style="background: #ABF7F7A6;">Diferencia entre slow start con congestion-avoidance</mark>
+
+
+
