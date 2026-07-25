@@ -25,4 +25,18 @@ El puerto es el identificador numérico de 16 bits que se utiliza para diferenci
 * <mark style="background: #BBFABBA6;">Orientado a la conexión:</mark>
 	* TCP - Antes de enviar datos, realiza un acuerdo de tres vías (TWH) para establecer los parámetros de conexión
 	* UPD - No realiza un salido inicial, lo que permite empezar a transmitir datos inmediatamente sin retardos de configuración.
-* Controles d
+* <mark style="background: #BBFABBA6;">Controles de congestión:</mark>
+	* TCP puede adaptarse al estado actual de la red, enviando los segmentos más rápido si la red lo permite y enviandolos con más retraso si está congestionado.
+	* UDP no tiene mecanismos de control de gestión, lo que permite a las aplicaciones enviar datos a la velocidad que deseen, ideal para aplicaciones tolerantes a la perdida.
+* <mark style="background: #BBFABBA6;">Utilización de puertos:</mark>
+	* TODO
+	* TODO
+
+### La PDU de la capa de transporte es el segmento. Sin embargo, en algunos contextos suele utilizarse el término datagrama. Indique cuando.
+
+En el contexto de Internet, nos referimos al paquete de capa de transporte como segmento. Sin embargo, la literatura de internet también se refiere al paquete de UDP (User Datagram Protocol) como un datagrama. Pero esta misma literatura de Internet también usa el término datagrama para el paquete de la capa de red. Como libro introductorio es menos confuso referirse tanto a los paquetes de TCP como de UDP como segmentos.
+
+### Describa el saludo de tres vías de TCP. UDP tiene está característica?
+
+El proceso de aplicación del cliente primero le informa al cliente TCP que quiere establecer conexión con un proceso en el servidor.
+1) El cliente TCP envía un segmento especial al servidor TCP. Este segmento no contiene datos de capa de aplicación. El fla
