@@ -39,4 +39,8 @@ En el contexto de Internet, nos referimos al paquete de capa de transporte como 
 ### Describa el saludo de tres vías de TCP. UDP tiene está característica?
 
 El proceso de aplicación del cliente primero le informa al cliente TCP que quiere establecer conexión con un proceso en el servidor.
-1) El cliente TCP envía un segmento especial al servidor TCP. Este segmento no contiene datos de capa de aplicación. El fla
+1) El cliente TCP envía un segmento especial al servidor TCP. Este segmento no contiene datos de capa de aplicación. El flag SYN en la cabecera se setea a 1, además el cliente toma un número aleatorio como número de secuencia (ISN).
+2) Al recibir el SYN, el servidor asigna buffers y variables, y responde con un segmento donde el bit SYN es 1, el campo ACK se setea en cliente-isn + 1 y finalmente el servidor elige su propio isn (server-isn) y pone el valor en el campo de número de secuencia.
+3) Al recibir el SYN-ACK, el cliente asigna sus propios buffers y variables para la conexión. El cliente envía el último segmento del 3WH, con el campo ACK = server-isn +1. El flag SYN seteado a cero. Este último segmento ya puede enviar datos del cliente al servidor.
+
+UDP solo envía información sin preliminales formales. De esta manera UDP no introduce ningún delay para establecer la conexión.
