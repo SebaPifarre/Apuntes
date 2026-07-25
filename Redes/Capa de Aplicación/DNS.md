@@ -42,4 +42,21 @@ También se le llama al servidor DNS local resolver.
 
 * <mark style="background: #D2B3FFA6;">Registro NS (Name Server)</mark>
 	* Los registros NS indican los servidores de nombre autoritativos para una zona o sub-dominio. A partir de esto, se puede lograr una delegación de sub-dominios. A diferencia de los registros MX, estos no llevan asociados una prioridad. Todos los servidores tienen la misma precedencia.
-	* Para lograr un mejor balance, al ir respondiendo se debería ir rotando el orden oc el que se entregan los servidores autoritativos para una zona. Al tener varios servidores para un 
+	* Para lograr un mejor balance, al ir respondiendo se debería ir rotando el orden oc el que se entregan los servidores autoritativos para una zona. Al tener varios servidores para un mismo dominio no es necesario configurar a todos con los mismos datos. El software de DNS permite asignar roles de Servidor Primario y Servidor(es) Secundario(s). De esta forma solo se requiere configurar el primario y luego el secundario obtendra una copia de la base de datos del primario.
+
+* <mark style="background: #CACFD9A6;">Registro CNAME</mark>
+	* Si el registro es de tipo=CNAME, el campo Value es el nombre de host canónico para el nombre de alias indicado en el campo Name. Se utiliza para proporcionar a los hosts que realizan consultas el nombre verdadero (canónico) de un servidor que utiliza uno o varios alias mnemónicos. (foo.com, relay1.bar.foo.com, CNAME)
+
+* <mark style="background: #FFF3A3A6;">Registro SOA</mark>
+	* Component crítico en las configuraciones reales de DNS. Se utiliza para indicar que un servidor DNS es la fuente de información original (la autoridad) para una zona específica. Contiene datos como el servidor maestro, el correo del responsable y parámetros de tiempo que son vitales para la sincronización entre servidores DNS primarios y secundarios.
+
+* <mark style="background: #BBFABBA6;">Registros TXT</mark>
+	* Permiten a los administradores de un dominio insertar texto arbitrario en los registros DNS.
+
+
+### En Internet, un dominio suele tener más de un servidor DNS, ¿por qué cree que esto es así?
+
+La razón principal por la que un dominio cuenta con una estructura de servidores primario y secundarios es para garantizar la confiabilidad y seguridad de la infraestructura del sistema de nombres de dominio DNS.
+
+### Cuando un dominio cuenta con más de un servidor, uno de ellos es el primario (o maestro) y todos los demás son secundarios (o esclavos). ¿Cuál es la razón de que sea
+así?
