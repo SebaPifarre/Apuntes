@@ -67,3 +67,9 @@ La diferencia fundamental entre un protocolo basado en texto y uno binario radic
 * <u>Basado en texto</u>: Utiliza caracteres ASCII legibles por humanos para sus comandos, encabezados y respuestas. Facilita depuración y permite que una persona pueda leer el mensaje directamente. (HTTP 1.0/1.1)
 * <u>Basado en binario</u>: Transmiten la información en formatos de bits y bytes optimizados para ser procesados por máquinas, lo que los hace más eficientes y compactos, pero no legibles directamente por humanos sin herramientas especiales. (HTTP 2)
 
+### ¿Qué función cumple la cabecera Host en HTTP 1.1? ¿Existía en HTTP 1.0?
+
+La cabecera host en HTTP 1.1 tiene la función principal de especificar el nombre del host donde reside el objeto solicitado. Esta cabecera es obligatoria porque la requieren los caches proxy web para funcionar correctamente. Esto permite que un mismo servidor (con una sola dirección IP) pueda alojar múltiples sitios web distintos, ayudando al proxy a saber a cuál de ellos se dirige la petición.
+En HTTP 1.0 no era una cabecera estándar. En esta versión los servidores solo tenían un sitio web.
+
+
