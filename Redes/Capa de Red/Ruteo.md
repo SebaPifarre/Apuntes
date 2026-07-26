@@ -38,3 +38,6 @@ Para un nuevo host, el protocolo DHCP es un proceso de cuatro pasos:
 3) <u>DHCP request</u>: El nuevo cliente deberá elegir y responder a la oferta elegida con un mensaje DHCP request, enviando nuevamente los parámetros de configuración.
 4) <u>DHCP ACK</u>: El servidor responde al mensaje request con un mensaje DHCP ACK, confirmando los parámetros solicitados.
 
+## NAT
+
+Network Address Translation 
