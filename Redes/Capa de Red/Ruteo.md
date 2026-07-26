@@ -15,5 +15,16 @@ Ventajas:
 Desventajas:
 * Requiere que un operador edite manualmente las tablas de re envío de los routers
 * Propenso a errores
-* Lento al responder a cambios
+* Lento al responder a cambios en la topología de la red.
+
+<mark style="background: #BBFABBA6;">Dinámico</mark>
+Ventajas:
+* Utilizan protocolos especiales para configurar automáticamente las tablas de re envío de cada router.
+* Rápidos para adaptarse a cambios en la red.
+Desventajas:
+* Susceptibles a problemas de ruteo. (routing loops)
+* Pueden sufrir de oscilaciones en las rutas.
+* A medida que la red crece, el intercambio de información de ruteo puede generar un gasto excesivo de memoria y ancho de banda si no se gestiona de forma jerárquica.
+
+
 
