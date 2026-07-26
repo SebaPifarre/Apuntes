@@ -24,3 +24,10 @@ La capa de red de Internet ofrece un único servicio denominado best-effort-serv
 ### ¿Qué son las subredes? ¿Por qué es importante siempre especificar la máscara de subred asociada?
 
 Una subred es una red aislada que interconecta interfaces de hosts y de routers.
+
+<u>Interconexión</U>: Es una subred, las interfaces están conectadas entre si mediante un medio que no contiene routers (como un switch de Ethernet o un punto de acceso inalámbrico).
+<u>Direccionamiento</u>: Todos los dispositivos conectados a una misma sub red comparten la misma porción inicial de su dirección IP.
+
+La máscara de sub red es fundamental porque define la jerarquía de la dirección IP y permite el funcionamiento del enrutamiento en Internet.
+1) Define el prefijo de red -> La máscara indica cuántos de los 32 bits de una dirección IP corresponden a la porción de red.
+2) Permite el forwarding -> Los routers utilizan la máscara para procesar los paquetes. Cuando llega un datagrama, el router examina s
