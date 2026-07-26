@@ -60,3 +60,38 @@ Los mensajes ICMP tiene campos de tipo y de código, también contienen el heade
 
 ![[Formato Mensaje ICMP.png]]
 
+### ICMP PING (Echo)
+
+* Pensado para probar conectividad IP entre dos hosts.
+* Sirve para medir RTT min/avg/max/dev y loss, de esta forma poder diagnosticar problemas.
+* Packet INternet Gopher, el nombre basado en el sonido de un sonar de un submarino al escanear.
+* Si un nodo recibe un ICMP Echo Request, debe responder copiando el contenido con un Echo Replay (PONG) 
+* Actualmente, muy desprestigiado. Se filtra.
+
+![[ICMP PING.png]]
+
+### ICMP Destino Inalcanzable
+
+Para indicar que una red, un host, un puerto es inalcanzable, diferentes causas:
+* Host Inalcanzable (Host Unreachable)
+	* No está encendido el host, no responde ARP, etc
+* Red Inalcanzable (Network Unreachable)
+	* No tiene el router una ruta en la tabla de ruteo a esta red.
+* Puerto Inalcanzable (Port Unreachable)
+	* No hay un proceso UDP en el puerto
+* Los mensajes requieren fragmentación
+* El mensaje fue filtrado (admin)
+* Otros.
+![[ICMP Destino Inalcanzable.png]]
+
+### ICMP TTL Expirado
+
+El tiempo de vida ha expirado. En realidad es el hop count con el cual salió el mensaje ha expirado.
+Time exceeded:
+* Tiempo excedido en viaje
+* Tiempo excedido en re-ensamblado
+TTL en IP, no solo ICMP
+Valor máximo de TTL=255
+Puede salir con otro valor
+Si TTL == 0, pero ya llegó a la red destino debería enviarse
+Utilizando 
