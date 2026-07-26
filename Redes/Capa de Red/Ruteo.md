@@ -40,4 +40,6 @@ Para un nuevo host, el protocolo DHCP es un proceso de cuatro pasos:
 
 ## NAT
 
-Network Address Translation 
+Network Address Translation, traslación de direcciones de un espacio privado (no "enrutable" en internet) a un espacio público.
+Como las IP privadas no son únicas generan problemas.
+* Las rutas pueden ser confundidas
