@@ -38,3 +38,24 @@ La máscara de sub red es fundamental porque define la jerarquía de la direcci�
 
 El campo Protocol se utiliza exclusivamente cuando un datagrama IP alcanza su destino final. Su función principal es identificar el protocolo específico de la capa de transporte al que debe entregarse la parte de datos (carga útil) del datagrama. Funciona como un mecanismo de demultiplexación en el host receptor, permitiendo que la capa de red sepa si debe pasar el segmento contenido en el datagrama a TCP (valor 6), a UDP (valor 17) o a otro protocolo compatible.
 El campo Protocol se asemeja directamente a los campos de número de puerto de la capa de transporte. Mientras que el número de puerto identifica el proceso o socket específico dentro de un host, el número de protocolo identifica el protocolo de transporte correcto dentro del sistema operativo del host receptor.
+
+## CIDR
+
+### ¿Qué es CIDR? ¿Por qué resulta útil?
+
+CIDR (Class Interdomain Routing) es un método para asignar direcciones IP de forma más flexible, reemplazando el sistema antiguo de clases fijas (A,B,C).
+* Ahorra direcciones IP -> das exactamente lo que necesitas
+* Permite sumarización -> varios bloques se pueden anunciar como uno solo (supernetting)
+* Reduce el tamaño de las tablas de enrutamiento -> los routers trabajan más eficientemente.
+
+## VLSM
+
+### ¿Qué es y para qué se usa VLSM?
+
+Variable Length Subnet Mask es una técnica que permite dividir una red en subredes de distinto tamaño, asignando a cada una exactamente los hosts que necesita, sin desperdiciar direcciones.
+Pasos:
+1) Listar todas las subredes ordenadas de mayor a menor.
+2) Asignar la primera subred: Tomás el bloque original y le asignás la máscara mínima ncesaria para cubrir los hosts requeridos.
+3) Asignar la siguiente subred empezando justo donde termino la anterior (después del broadcast) y se le asigna su propia máscara según sus hosts necesarios.
+4) Repetir hasta cubrir todas.
+
