@@ -60,6 +60,8 @@ Los mensajes ICMP tiene campos de tipo y de código, también contienen el heade
 
 ![[Formato Mensaje ICMP.png]]
 
+![[Tipos de mensaje ICMP.jpg]]
+
 ### ICMP PING (Echo)
 
 * Pensado para probar conectividad IP entre dos hosts.
@@ -94,4 +96,7 @@ TTL en IP, no solo ICMP
 Valor máximo de TTL=255
 Puede salir con otro valor
 Si TTL == 0, pero ya llegó a la red destino debería enviarse
-Utilizando 
+Utilizado por traceroute(8) con UDP o ICMP
+
+![[ICMP TTL Expirado.png]]
+
