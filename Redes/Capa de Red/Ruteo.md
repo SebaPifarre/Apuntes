@@ -26,5 +26,11 @@ Desventajas:
 * Pueden sufrir de oscilaciones en las rutas.
 * A medida que la red crece, el intercambio de información de ruteo puede generar un gasto excesivo de memoria y ancho de banda si no se gestiona de forma jerárquica.
 
+## DHCP
 
+Dynamic Host Configuration Protocol permite a un host obtener (ser alocado) un dirección IP automáticamente. Se puede configurar DHCP para que a un host dado se le asigne la misma IP cada vez que se conecta a la red o se le puede asignar una dirección IP temporal que será distinta cada vez.
+Por su capacidad de automatizar la conexión de un host a la red, se le suele referir como un plug-and-play-protocol.
+DHCP es un protocolo cliente-servidor. Un cliente es normalmente un nuevo host esperando para obtener información de configuración de red. Cada sub red suele tener un servidor DHCP, si no hay servidor DHCP presente en la sub red, un DHCP relay agent (generalmente un router) que conoce  la dirección de un servidor DHCP es necesario.
+Para un nuevo host, el protocolo DHCP es un proceso de cuatro pasos:
+1) <u>DHCP server <b>discovery</b></u>: La primera tarea del host es encontrar un servidor DHCP para interactuar. Esto se logra usando un mensaje DHCP discover, enviado por el cliente en un paquete UDP por el puerto 67, 
 
