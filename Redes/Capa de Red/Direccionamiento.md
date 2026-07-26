@@ -30,4 +30,11 @@ Una subred es una red aislada que interconecta interfaces de hosts y de routers.
 
 La máscara de sub red es fundamental porque define la jerarquía de la dirección IP y permite el funcionamiento del enrutamiento en Internet.
 1) Define el prefijo de red -> La máscara indica cuántos de los 32 bits de una dirección IP corresponden a la porción de red.
-2) Permite el forwarding -> Los routers utilizan la máscara para procesar los paquetes. Cuando llega un datagrama, el router examina s
+2) Permite el forwarding -> Los routers utilizan la máscara para procesar los paquetes. Cuando llega un datagrama, el router examina solo los bits de prefijo indicados por la máscara para buscar un coincidencia en si tabla de re envío y determinar la interfaz de salida correcta
+3) Habilita la agregación de rutas -> Gracias a la máscara, un ISP puede anunciar un bloque completo de direcciones. Esto reduce considerablemente el tamaño de las tablas de re envío en los routers de la red troncal de Internet, ya que una sola entrada sirve para dirigir paquetes a cualquier destino dentro de esa organización.
+4) Configuración de DHCP -> Protocolos como DHCP proporcionan automáticamente la máscara de subred a los hosts. Es vital que un host conozca su propia máscara para determinar si una dirección de destino está dentro de su misma subred o si el paquete debe ser enviado al router predeterminado para salir a otra red.
+
+### ¿Cuál es la finalidad del campo Protocol en la cabecera IP? ¿A qué campos de la capa de transporte se asemeja en su funcionalidad?
+
+El campo Protocol se utiliza exclusivamente cuando un datagrama IP alcanza su destino final. Su función principal es identificar el protocolo específico de la capa de transporte al que debe entregarse la parte de datos (carga útil) del datagrama. Funciona como un mecanismo de demultiplexación en el host receptor, permitiendo que la capa de red sepa si debe pasar el segmento contenido en el datagrama a TCP (valor 6), a UDP (valor 17) o a otro protocolo compatible.
+El campo Protocol se asemeja directamente a los campos de número de puerto de la capa de transporte. Mientras que el número de puerto identifica el proceso o socket específico dentro de un host, el número de protocolo identifica el protocolo de transporte correcto dentro del sistema operativo del host receptor.
