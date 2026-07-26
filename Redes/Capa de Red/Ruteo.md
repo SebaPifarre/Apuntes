@@ -42,4 +42,10 @@ Para un nuevo host, el protocolo DHCP es un proceso de cuatro pasos:
 
 Network Address Translation, traslación de direcciones de un espacio privado (no "enrutable" en internet) a un espacio público.
 Como las IP privadas no son únicas generan problemas.
-* Las rutas pueden ser confundidas
+* Las rutas pueden ser confundidas.
+* Habitualmente son filtradas por routers de borde.
+* Algunos protocolos no funcionan adecuadamente, FTP, VolP, etc.
+
+El router con NAT habilitado no se "ve" como un router al resto del mundo, se comporta como un único dispositivo con una única dirección. 
+El router obtiene su dirección IP del servidor DHCP de su ISP y el router tiene su propio servidor DHCP para proveer las direcciones a los hots dentro de la red.
+Como todos los datagramas que llegan al router NAT tienen la misma IP de destino, se utiliza la tabla NAT de traslación que contiene tanto direcciones IP como números de puertos. 
