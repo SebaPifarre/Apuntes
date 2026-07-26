@@ -49,3 +49,14 @@ Como las IP privadas no son únicas generan problemas.
 El router con NAT habilitado no se "ve" como un router al resto del mundo, se comporta como un único dispositivo con una única dirección. 
 El router obtiene su dirección IP del servidor DHCP de su ISP y el router tiene su propio servidor DHCP para proveer las direcciones a los hots dentro de la red.
 Como todos los datagramas que llegan al router NAT tienen la misma IP de destino, se utiliza la tabla NAT de traslación que contiene tanto direcciones IP como números de puertos. 
+
+## ICMP
+
+Internet Control Message Protocol es usado por hots y routers para comunicar información de capa de red entre ellos. 
+El uso típico de ICMP es para reporte de errores.
+Suele ser considerado parte de IP pero en la arquitectura yace justo arriba de IP, dado que los mensajes ICMP son llevados dentro de los datagramas IP.
+No es un protocolo de transporte ya que no fue concebido para llevar datos de usuario.
+Los mensajes ICMP tiene campos de tipo y de código, también contienen el header y los primeros 8 bytes del datagrama IP que causó la generación del mensaje en un principio.
+
+![[Formato Mensaje ICMP.png]]
+
