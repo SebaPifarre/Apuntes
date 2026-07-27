@@ -23,5 +23,24 @@ Un datagrama puede ser llevado por distintos protocolos de capa de enlace en el 
 * Entrega confiable:
 	* Entre nodos adyacentes
 	* Rara vez utilizado en enlaces de pocos errores (fibra óptica, coax)
-	* 
+	* Usado normalmente en enlaces inálambricos con alta tasa de error, con el objetivo de corregir el error de manera local, en vez de usar retrasmiciones
+
+* Control de flujo:
+	* Acuerdo entre los nodos emisor y receptor
+	* Frame buffers
+
+* Detección de errores:
+	* Errores causados por atenuación de la señal, por ruido
+	* El receptor detecta presencia de errores
+		* Señaliza al emisor para una retransmisión o descarta la trama
+	* Similar al de capa de transporte y red pero más sofisticado ya que está implementado en hardware
+
+* Corrección de errores:
+	* El receptor identifica y corrige el/los error/es en bit/s sin necesidad de retransmisión
+
+* Half-duplex and full-duplex:
+	* Con full-duplex los nodos de ambos lados del link pueden transmitir paquetes al mismo tiempo
+	* Con half-duplex, un nodo no puede transmitir y recibir al mismo tiempo
+
+
 
