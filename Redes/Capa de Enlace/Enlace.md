@@ -42,5 +42,7 @@ Un datagrama puede ser llevado por distintos protocolos de capa de enlace en el 
 	* Con full-duplex los nodos de ambos lados del link pueden transmitir paquetes al mismo tiempo
 	* Con half-duplex, un nodo no puede transmitir y recibir al mismo tiempo
 
+### Compare los servicios de la capa de enlace con los de la capa de transporte.
 
+Ambas capas proveen entrega confiable, control de flujo y detección de errores. La diferencia es que la capa de transporte lo provee entre dos procesos end-to-end y la capa de enlace lo provee entre dos nodos conectados por un único link.
 
