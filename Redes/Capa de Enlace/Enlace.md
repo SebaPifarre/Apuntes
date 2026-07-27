@@ -5,6 +5,23 @@
 * Los canales de comunicación que conectan nodos adyacentes a través de caminos de comunicación son <i>links</i>
 	* Enlaces cableados
 	* Enlaces inalámbricos
-	* 
+	* LANs
+* La PDU de capa 2 es el <i>frame</i>, que encapsula un datagrama.
+
 La capa de enlace de datos tiene la responsabilidad de transferir datagramas desde un nodo a otro nodo adyacente, a través de un link.
+Mientras que la capa de red tiene el trabajo end-to-end de mover segmentos de la capa de transporte de un host origen a un host destino, un protocolo de capa de enlace tiene el trabajo node-to-node de mover datagramas de la capa de red por un único link en el camino.
+Un datagrama puede ser llevado por distintos protocolos de capa de enlace en el mismo camino. 
+
+#### Servicios
+* Entramado (framing): 
+	* Encapsulado del datagrama en la trama, agregando encabezado (header) y cola (trailer). Distintos protocolos pueden tener distintas estructuras de frames. 
+
+* Acceso al enlace:
+	* Acceso al canal si es un medio compartido (Medium Access Control)
+	* Direcciones "MAC" utilizadas en los encabezados de las tramas para identificar el origen y destino 
+
+* Entrega confiable:
+	* Entre nodos adyacentes
+	* Rara vez utilizado en enlaces de pocos errores (fibra óptica, coax)
+	* 
 
