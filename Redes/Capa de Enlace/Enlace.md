@@ -46,3 +46,7 @@ Un datagrama puede ser llevado por distintos protocolos de capa de enlace en el 
 
 Ambas capas proveen entrega confiable, control de flujo y detección de errores. La diferencia es que la capa de transporte lo provee entre dos procesos end-to-end y la capa de enlace lo provee entre dos nodos conectados por un único link.
 
+### ¿Cómo se identifican dos máquinas en una red Ethernet?
+
+Una dirección de capa de enlace suele llamarse dirección LAN, dirección física o dirección MAC; siendo la última la más popular (Media Access Control).
+Las direcciones MAC tienen un longitus de 
