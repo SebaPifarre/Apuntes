@@ -93,3 +93,15 @@ Dos o más transmisiones simultáneas: interferencia
 <mark style="background: #FF5582A6;">¿Qué dispositivos dividen dominios de broadcast?
 ¿Qué dispositivos dividen dominios de colisión?</mark>
 
+### Protocolos de acceso múltiple
+
+* Único canal broadcast compartido
+* Algoritmo distribuido que determina cómo los nodos comparten el canal, y determinan cuándo el nodo puede transmitir
+* La comunicación acerca de compartir el canal debe utilizar el mismo canal
+
+#### Protocolo de acceso múltiple ideal
+* Cuando un solo nodo tiene datos para enviar , ese nodo lo hará a una velocidad R
+* Cuando M nodos quieren transmitir, cada uno enviará a una velocidad promedio de R/M
+* El protocolo es descentralizado, sin nodos maestro que puedan fallar y tirar todo el sistema abajo
+* El protocolo es simple para no ser costoso de implementar
+
