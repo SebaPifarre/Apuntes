@@ -86,4 +86,10 @@ La dirección de broadcast de la capa de enlace es FF-FF-FF-FF-FF-FF, la cuál e
 
 ### ¿Qué es una colisión?
 
-Dos o más transmisiones simultáneas
+Dos o más transmisiones simultáneas: interferencia
+* Si un nodo recibe dos o más señales al mismo tiempo
+* Simultaneidad en el tiempo y en la frecuencia de dos o más tramas en el mismo medio físico
+
+<mark style="background: #FF5582A6;">¿Qué dispositivos dividen dominios de broadcast?
+¿Qué dispositivos dividen dominios de colisión?</mark>
+
