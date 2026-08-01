@@ -49,4 +49,6 @@ Ambas capas proveen entrega confiable, control de flujo y detección de errores.
 ### ¿Cómo se identifican dos máquinas en una red Ethernet?
 
 Una dirección de capa de enlace suele llamarse dirección LAN, dirección física o dirección MAC; siendo la última la más popular (Media Access Control).
-Las direcciones MAC tienen un longitus de 
+Las direcciones MAC tienen un longitud de 6 bytes, normalmente expresada en notación hexadecimal. A pesar de ser diseñadas para ser permanentes, es posible cambiar la dirección MAC de un adaptador via software.
+La dirección de broadcast de la capa de enlace es FF-FF-FF-FF-FF-FF, la cuál es necesaria cuando se quiere que todos los adaptadores de la LAN reciban y procesen el frame (ARP).
+
