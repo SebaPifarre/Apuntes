@@ -52,3 +52,17 @@ Una dirección de capa de enlace suele llamarse dirección LAN, dirección físi
 Las direcciones MAC tienen un longitud de 6 bytes, normalmente expresada en notación hexadecimal. A pesar de ser diseñadas para ser permanentes, es posible cambiar la dirección MAC de un adaptador via software.
 La dirección de broadcast de la capa de enlace es FF-FF-FF-FF-FF-FF, la cuál es necesaria cuando se quiere que todos los adaptadores de la LAN reciban y procesen el frame (ARP).
 
+### Dispositivos de la capa de enlaces
+
+#### Hubs
+* Repetidores de la capa física ("tonto")
+* los bits que llegan en un link salen por todos los otros links a la misma velocidad
+* todos los nodos conectados al hub pueden colisionar con los otros
+* no existe buffering the tramas
+* no hay CSMA/CD en el hub: la NIC del host detecta las colisiones
+
+#### Switch
+* Dispositivo de interconexión que opera exclusivamente en la capa 2
+* Más "inteligente" que los hubs, tienen un rol activo
+* Recibe tramas, las almacena y las reenvía hacia el enlace de salida correspondiente basándose en la dirección MAC de destino
+* Elimina las colisiones al usar buffers 
