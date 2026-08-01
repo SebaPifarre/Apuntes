@@ -65,4 +65,25 @@ La dirección de broadcast de la capa de enlace es FF-FF-FF-FF-FF-FF, la cuál e
 * Dispositivo de interconexión que opera exclusivamente en la capa 2
 * Más "inteligente" que los hubs, tienen un rol activo
 * Recibe tramas, las almacena y las reenvía hacia el enlace de salida correspondiente basándose en la dirección MAC de destino
-* Elimina las colisiones al usar buffers 
+* Elimina las colisiones al usar buffers para almacenar tramas y no transmitir más de una trama a la vez en un mismo segmento
+* Es transparente para los hosts, quienes no saben que un switch está mediando su comunicación.
+* Construye su tabla de conmutación de forma automática y dinámica (plug-and-play) sin intervención del administrador.
+
+#### Adaptador de red NIC (Network Interface Card)
+* Es el componente de hardware donde se implementa la mayor parte de la capa de enlace dentro de un host
+* Encapsula datagramas de la capa de red en tramas de la capa de enlace, añade bits de detección de errores y gestiona el acceso al medio físico.
+* Mientras que el switch interconecta múltiples dispositivos, el adaptador es el punto terminal de un nodo que le permite comunicarse físicamente con el canal.
+
+#### Punto de acceso inálambrico
+* Es la estación base de una red inálambrica de infraestructura (como el wifi)
+* Actúa como un relé de capa de enlace ente los hosts inálambricos y el resto de la red cableada
+* El AP debe realizar una conversión de formato entre los protocolos de cpaa de enlace para mover los datos hacia un router
+
+#### Router 
+* Aunque es un dispositivo de capa 3, el router también funciona como un nodo de capa de enlace
+* Un conmutador reenvía tramas usando direcciones MAC, mientras que un router reenvía datagramas usando direcciones IP
+* Los routers no están restringidos a una topología de árbol de expansión y pueden encontrar caminos óptimos entre origen y destino a través de protocolos de enrutamiento.
+
+### ¿Qué es una colisión?
+
+Dos o más transmisiones simultáneas
