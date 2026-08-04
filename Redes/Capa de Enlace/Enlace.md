@@ -110,3 +110,13 @@ Dos o más transmisiones simultáneas: interferencia
 
 Como hay tanto direcciones de capa de red (IP) y direcciones de capa de enlace (MAC) hay una necesidad de traducirlas entre ellas. Para internet, este es el trabajo de  Address Resolution Protocol (ARP)
 Para enviar un datagrama, el nodo fuente debe proporcionarle al adaptador no solo sel datagrama IP sino también la dirección MAC del nodo destino. Dado el datagrama y la dirección MAC, el adaptador del nodo transmisor construirá un frame de capa de enlace conteniendo la dirección MAC del nodo destino y lo enviará a la LAN.
+
+#### ¿Como determina el nodo transmisor la dirección MAC del nodo destino con la IP?
+
+Usando ARP. Un módulo ARP en el nodo transmisor toma cualquier dirección IP de la misma LAN como input y retorna la correspondiente dirección MAC.
+Vemos que ARP resuelve una dirección IP a una dirección MAC, similar a como DNS resuelve un hostname en una dirección IP. Sin embargo, la importante diferencia entre los dos resolvers es que DNS resuelve hostnames para hosts en cualquier lugar de internet, mientras que ARP resuelve direcciones IP solo para los nodos de la misma sub red.
+
+#### Funcionamiento ARP
+
+Cada nodo tiene en su RAM una tabla ARP, que contiene los mapeados de direcciones IP a direcciones MAC. La tabla ARP también contiene un valor de tiempo de vida (TTL), el cual indica cuando cada mapeado será eliminado de la tabla. 
+Cuando un nodo quiere enviar un datagrama a un nodo destino del cual aún 
