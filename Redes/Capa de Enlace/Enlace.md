@@ -105,3 +105,8 @@ Dos o más transmisiones simultáneas: interferencia
 * El protocolo es descentralizado, sin nodos maestro que puedan fallar y tirar todo el sistema abajo
 * El protocolo es simple para no ser costoso de implementar
 
+
+### ARP
+
+Como hay tanto direcciones de capa de red (IP) y direcciones de capa de enlace (MAC) hay una necesidad de traducirlas entre ellas. Para internet, este es el trabajo de  Address Resolution Protocol (ARP)
+Para enviar un datagrama, el nodo fuente debe proporcionarle al adaptador no solo sel datagrama IP sino también la dirección MAC del nodo destino. Dado el datagrama y la dirección MAC, el adaptador del nodo transmisor construirá un frame de capa de enlace conteniendo la dirección MAC del nodo destino y lo enviará a la LAN.
