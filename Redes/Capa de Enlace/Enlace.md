@@ -119,4 +119,6 @@ Vemos que ARP resuelve una dirección IP a una dirección MAC, similar a como DN
 #### Funcionamiento ARP
 
 Cada nodo tiene en su RAM una tabla ARP, que contiene los mapeados de direcciones IP a direcciones MAC. La tabla ARP también contiene un valor de tiempo de vida (TTL), el cual indica cuando cada mapeado será eliminado de la tabla. 
-Cuando un nodo quiere enviar un datagrama a un nodo destino del cual aún 
+Cuando un nodo quiere enviar un datagrama a un nodo destino del cual aún no tiene su correspondiente entrada en la tabla, primero deberá construir un paquete especial llamado paquete ARP. Este paquete contiene las direcciones IP y MAC de origen y destino. Tanto el ARP query como el response tienen el mismo formato. El propósito del ARP query es consultar a todos los nodos de la red para determinar que dirección MAC corresponde a la dirección IP que está siendo resuelta.
+El nodo le pasa el ARP query al adaptador junto con la indicación que lo envíe con dirección MAC destino de broadcast. El adaptador encapsula el paquete en un frame y transmite el frame en la sub red. 
+El frame que contiene el ARP query es recibido por todos los adaptadores de la sub red 
