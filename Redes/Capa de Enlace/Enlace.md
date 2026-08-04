@@ -125,3 +125,9 @@ El frame que contiene el ARP query es recibido por todos los adaptadores de la s
 Notas:
 * El paquete ARP query es enviado dentro de un frame de broadcast mientras que el paquete ARP response es enviado dentro de un frame standard
 * ARP es plug-and-play, la tabla ARP del nodo se arma automáticamente. Si un nodo se desconecta de la sub red, su entrada se borrará eventualmente de las tablas.
+
+#### Enviando un datagrama a un nodo fuera de la sub red
+
+Existen dos tipos de nodos: hosts y routers. Cada host tiene exactamente una dirección IP y un adaptador. Pero un router tiene una dirección IP por cada una de sus interfaces. Por cada interfaz también hay un módulo ARP y un adaptador.
+Si un host quiere enviar un paquete a una IP fuera de la sub red, lo encapsulará en un frame con MAC destino correspondiente a la del router. Si no la conoce, utiliza ARP para averiguarla.
+El router determina que adaptador debe resolver gracias a su tabla de ruteo, al pasarselo, el adaptador creara un nuevo frame con la MAC de destino correspondiente. Nuevamente, si el adaptador no conoce la dirección MAC de la IP destino, utilizará ARP para resolverlo.
