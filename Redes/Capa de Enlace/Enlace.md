@@ -131,3 +131,7 @@ Notas:
 Existen dos tipos de nodos: hosts y routers. Cada host tiene exactamente una dirección IP y un adaptador. Pero un router tiene una dirección IP por cada una de sus interfaces. Por cada interfaz también hay un módulo ARP y un adaptador.
 Si un host quiere enviar un paquete a una IP fuera de la sub red, lo encapsulará en un frame con MAC destino correspondiente a la del router. Si no la conoce, utiliza ARP para averiguarla.
 El router determina que adaptador debe resolver gracias a su tabla de ruteo, al pasarselo, el adaptador creara un nuevo frame con la MAC de destino correspondiente. Nuevamente, si el adaptador no conoce la dirección MAC de la IP destino, utilizará ARP para resolverlo.
+
+### Switches de Capa de Enlace
+
+El rol del switch es recibir frames hacer forward en los links de salida. El switch en si mismo es transparente para los nodos, un nodo envía un frame a la LAN para que le llegue a otro nodo sin saber que un switch lo va a recibir y re enviar hacia el nodo destino. La tasa 
