@@ -143,4 +143,6 @@ El rol del switch es recibir frames hacer forward en los links de salida. El swi
 Ambos se realizan con una tabla de switch que contiene entradas para algunos, no necesariamente todos, nodos de una LAN. Una entrada contiene la MAC del nodo, la interfaz del switch que lleva al nodo y el tiempo en el cual la entrada fue agregada a la tabla.
 
 Cuando un switch recibe un frame hay tres casos posibles:
-* No hay entrada en la tabla correspondiente a la MAC destino. En este caso el switch <i>forwards</i> copias del frame a los o
+* No hay entrada en la tabla correspondiente a la MAC destino. En este caso el switch <i>forwards</i> copias del frame a los output buffers procedentes de todos las interfaces excepto por la que llego el frame (broadcast).
+* Hay una entrada en la tabla asociando la MAC destino con la interfaz por la que llegó el frame. En este caso, el frame proviene de un segmento de LAN que contiene al adaptador destino. Al no hacer falta forwarding, se filtra descartando el frame.
+* Hay una entrada en la tabla asociando la MAC destino con una interfaz distinta a por donde llegó. En este caso el frame necesita ser forwardeado al segmento de LAN de la interfaz asociado a la MAC destino. El switch realiza su función de forward colocando el frame en el output buffer correspondiente.
