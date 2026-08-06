@@ -141,3 +141,6 @@ El rol del switch es recibir frames hacer forward en los links de salida. El swi
 <i>Filtering</i> es la función del switch que determina si un frame debería ser forwarded a alguna interfaz o si debe descartarse.
 <i>Forwarding</i> es la función del switch que determina la interfaz a la cual el frame debe ser dirigido y después mueve el frame a esa interfaz. 
 Ambos se realizan con una tabla de switch que contiene entradas para algunos, no necesariamente todos, nodos de una LAN. Una entrada contiene la MAC del nodo, la interfaz del switch que lleva al nodo y el tiempo en el cual la entrada fue agregada a la tabla.
+
+Cuando un switch recibe un frame hay tres casos posibles:
+* No hay entrada en la tabla correspondiente a la MAC destino. En este caso el switch <i>forwards</i> copias del frame a los o
