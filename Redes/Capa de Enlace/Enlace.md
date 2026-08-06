@@ -134,4 +134,10 @@ El router determina que adaptador debe resolver gracias a su tabla de ruteo, al 
 
 ### Switches de Capa de Enlace
 
-El rol del switch es recibir frames hacer forward en los links de salida. El switch en si mismo es transparente para los nodos, un nodo envía un frame a la LAN para que le llegue a otro nodo sin saber que un switch lo va a recibir y re enviar hacia el nodo destino. La tasa 
+El rol del switch es recibir frames hacer forward en los links de salida. El switch en si mismo es transparente para los nodos, un nodo envía un frame a la LAN para que le llegue a otro nodo sin saber que un switch lo va a recibir y re enviar hacia el nodo destino. La tasa a la que los frames llegan a cualquiera de las interfaces outputs del switch pueden temporalmente exceder la capacidad del link para esa interface. Para acomodar este problema, las interfaces output del switch tienen buffers, de la misma manera que un router tiene buffers para datagramas.
+
+#### Forwarding y Filtering
+
+<i>Filtering</i> es la función del switch que determina si un frame debería ser forwarded a alguna interfaz o si debe descartarse.
+<i>Forwarding</i> es la función del switch que determina la interfaz a la cual el frame debe ser dirigido y después mueve el frame a esa interfaz. 
+Ambos se realizan con una tabla de switch que contiene entradas para algunos, no necesariamente todos, nodos de una LAN. Una entrada contiene la MAC del nodo, la interfaz del switch que lleva al nodo y el tiempo en el cual la entrada fue agregada a la tabla.
