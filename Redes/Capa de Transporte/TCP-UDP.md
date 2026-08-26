@@ -1,4 +1,4 @@
-
+	
 ### ¿Cuál es la función de la capa de transporte?
 
 Un protocolo de capa de transporte provee comunicación lógica entre procesos de aplicación corriendo en diferentes hosts. Comunicación lógica se refiere a que desde la perspectiva de la aplicación, es como que los hosts corriendo los procesos estuvieron conectados directamente; en realidad los hosts pueden estar en puntas distintas del planeta, conectados vía varios routers y un amplio rango de link types. Los procesos de aplicación usan la comunicación lógica que provee la capa de transporte para enviar mensajes entre ellos, liberandose de los detalles de la infraestructura física usada para transportar los mensajes.
