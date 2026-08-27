@@ -12,3 +12,11 @@ Propiedades que debe cumplir la solución
 * <u>Ausencia de Deadlock(livelock)</u>: Si 2 o más procesos tratan de entrar a sus SC, al menos uno tendrá exito
 * <u>Ausencia de Demora Innecesaria</u>: Si un proceso trata de entrar a su SC y los otros están en sus SNC o terminaron, el primero no está impedido de entrar a su SC
 * <u>Eventual Entrada</u>: Un proceso que intenta entrar a su SC tiene posibilidades de hacerlo (eventualmente lo hará).
+	* Muchas veces eventual entrada depende de la política de scheduling.
+
+### Implementación de sentencias await
+
+![[ImplementacionAwait.png]]
+
+Al entrar a la SC se pregunta si la condición no se cumple. En ese caso, para no bloquear a otros procesos de entrar a la SC, se sale de la SC (Exit) y se vuelve a ingresar (Enter)
+Esto es 
