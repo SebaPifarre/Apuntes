@@ -19,4 +19,6 @@ Propiedades que debe cumplir la solución
 ![[ImplementacionAwait.png]]
 
 Al entrar a la SC se pregunta si la condición no se cumple. En ese caso, para no bloquear a otros procesos de entrar a la SC, se sale de la SC (Exit) y se vuelve a ingresar (Enter)
-Esto es 
+Esto es ineficiente, ya que muchas veces el mismo proceso sale ingresa nuevamente. Se solventa un poco ingresando un delay entre la salida y la entrada.
+
+Sección crítica -> trozo de código finito.
