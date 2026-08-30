@@ -32,11 +32,26 @@ c) 1 7 8 2 3 4 5 6 9 10
 k -> cantidad de procesos
 M -> longitud del arreglo
 
+pre-condición -> M es divisible por k
+
 ```
 int Total := 0
+vec Array[];
 
-Process Contar [id: 1..k]
-
+Process Contar [id: 0..k-1]
+{
+	int Parcial:=0;
+	int cant := M DIV k;
+	
+	for i:= id*cant to (id+1)*cant-1 do
+		if vec[i] = N then
+			Parcial:=Parcial + 1
+			
+	<Total := Total + Parcial>;
+	
+}
 ```
 
 
+## Ejercicio 3
+![[ej3.png]]
