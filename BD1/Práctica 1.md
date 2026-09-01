@@ -18,3 +18,14 @@ B. En una agregación, la cardinalidad mínima debe ser mayor a 0
 C. Una entidad puede no tener un atributo identificador en el modelo ER 
 D. No es correcto modelar atributos en las relaciones en un modelo ER
 
+A) Falsa. Una especialización es el resultado de tomar u subconjunto de entidades de un nivel para formar un conjunto de entidades de nivel más bajo.
+Una generalización es el resultado de tomar uno o más conjuntos de entidades (de nivel más bajo) y producir un conjunto de entidades de un nivel más alto.
+
+B) Falso. La cardinalidad máxima para cada entidad de la relación siempre es mayor a 1.
+
+C) Falso. Toda entidad posee al menos una posible clave o identificador. Sirven para identificar de manera única a una entidad.
+
+D) Falsa. Las relaciones pueden tener atributos. Creo que solamente si tiene cardinalidad muchos a muchos o opcional a muchos (cuando la relación se vuelve tabla al pasar al modelo física).
+
+
+
