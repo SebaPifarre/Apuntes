@@ -11,7 +11,7 @@ gLTD (generic Top Level Domain) contiene los dominios con propósitos particular
 
 ### ¿Qué es una respuesta del tipo autoritativa?
 
-Una respuesta autoritativa es una respuesta que viene directamente desde el servidor DNS autoritativo que alberga oficialmente el registro DNS para un hostname. En el protocolo DNS, la sección header del mensaje contiene una flag autoritativa de un bit. Este bit está seteado en 1 cuando el servidor DNS que provee la respuesta es la fuente autoritativa del nombre buscado.
+Una respuesta autoritativa es una respuesta que viene directamente desde el servidor DNS autoritativo que alberga oficialmente el registro DNS para un hostname. En el protocolo DNS, la sección header del mensaje contiene una flag autoritativa de un bit. Este bit está seteado en 1 cuando el servidor DNS que provee la respuesta es la fuente autoritativa del nombre buscado
 
 ### ¿Qué diferencia una consulta DNS recursiva de una iterativa?
 
