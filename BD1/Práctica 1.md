@@ -28,4 +28,38 @@ C) Falso. Toda entidad posee al menos una posible clave o identificador. Sirven 
 D) Falsa. Las relaciones pueden tener atributos. Creo que solamente si tiene cardinalidad muchos a muchos o opcional a muchos (cuando la relación se vuelve tabla al pasar al modelo física).
 
 
+## Ejercicio 3
 
+![[prac1-ej3.png]]
+
+El estado nacional implementó distintos subsidios destinados a sectores productivos. Cada
+subsidio tiene un nombre y un monto asignado.
+Para cada subsidio se realiza una liquidación mensual, de la cual se registra a qué mes y año
+corresponde, el total gastado y la fecha de realización. En esta liquidación, a cada beneficiario
+del subsidio se le liquida un monto, el cual dependerá de la situación del beneficiario. Un
+beneficiario puede ser una persona Jurídica o Física, y en el caso de la persona física, debe
+estar inscripta en el monotributo. De cada beneficiario se conoce la actividad económica en la
+cual se encuentra inscripto y su cuil o cuit que lo identifica. De las personas jurídicas se conoce
+la razón social, provincia, departamento, localidad y cantidad de empleados. De las personas
+físicas se conoce nombre y apellido, provincia, departamento, localidad y categoría del
+monotributo.
+
+Para el diagrama de Entidades y Relaciones propuesto responda si las siguientes afirmaciones
+son verdaderas (V) o falsas (F). Justificar:
+A.​ La relación tiene está mal definida, ya que debería ser entre persona y
+categoría_monotributo.
+B.​ La relación realiza está bien definida, ya que todas las personas realizan actividades.
+C.​ La jerarquía de Persona representa correctamente la problemática.
+D.​ La relación pertenece está mal definida, ya que no puede haber atributos en las
+relaciones.
+E.​ La agregación de la relación posee está correctamente definida ya que con una relación
+uno a muchos se puede agregar.
+F.​ Con este diseño es posible conocer el saldo disponible del subsidio para futuras
+liquidaciones.
+G.​ El modelo no tiene redundancia de datos.
+
+A) Falso. Solo las personas físicas están asociadas con el monotributo. Si se hiciera la relación con persona se estaría diciendo que las personas jurídicas tienen monotributo.
+B) Verdadero. 
+C) Falso. Al ser una especialización se describe que puede haber otro tipo de persona cuando solamente pueden existir los dos tipos descritos.
+D) Falso. Las relaciones pueden tener atributos.
+E) 
