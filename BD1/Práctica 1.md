@@ -62,4 +62,5 @@ A) Falso. Solo las personas físicas están asociadas con el monotributo. Si se 
 B) Verdadero. 
 C) Falso. Al ser una especialización se describe que puede haber otro tipo de persona cuando solamente pueden existir los dos tipos descritos.
 D) Falso. Las relaciones pueden tener atributos.
-E) 
+E) Falso. No se puede hacer una agregación porque las cardinalidades superiores de la relación deben ser mayor a 1. <mark style="background: #FF5582A6;">Entonces que pasa? Desaparece la agregación?</mark> 
+F) Verdadero. Con el monto de la entidad Subsidio menos 
