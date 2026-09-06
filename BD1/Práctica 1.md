@@ -93,3 +93,17 @@ C) Dependiendo como se agrega la cardinalidad a la entidad horario se modelaran 
 * Si la cardinalidad (1,1) se encuentra del lado del horario se indica que un vendedor puede trabajar en un único horario para un local.
 
 ## Ejercicio 5
+
+Dada la transformación 1 a 1 el modelo de entidades y relaciones al modelo relacional,
+responda si las siguientes afirmaciones son V o F:
+A.​ La relación brinda tiene los atributos correspondientes y su clave está bien definida
+B.​ La relación tiene tiene los atributos correspondientes y su clave está bien definida
+C.​ La relación dicta tiene los atributos correspondientes y su clave está bien definida
+D.​ La relación tiene no debería existir y los identificadores de la agregación deberían estar
+en InfoCurso.
+E.​ La relación dicta no debería existir y los atributos de Profesor deberían estar en
+InfoCurso.
+
+![[1-5.png]]
+
+A) Verdadero. 
