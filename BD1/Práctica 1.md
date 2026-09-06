@@ -67,3 +67,24 @@ F) Verdadero. Con el monto de la entidad Subsidio menos el monto o el total gast
 G) Falso. Hay redundancia de datos entre los dos tipos de personas.
 
 
+## Ejercicio 4
+
+Dados los siguientes modelos E/R sobre vendedores que trabajan en locales, responda:
+A.​ En qué casos modelaría un atributo fecha_de_ingreso en la relación se_emplea –entre
+Vendedor y Local - como se muestra en la variante “A”?
+
+![[1-4-a.png]]
+
+B.​ ¿En qué casos haría falta modelar una entidad Fecha de Ingreso relacionada con la
+agregación Vendedor Local como se muestra en la parte llamada B en el modelo?
+
+![[1-4-b.png]]
+
+C.​ ¿Qué se está modelando con Horario cuando está la agregación? Indíquelo agregando
+la cardinalidad correspondiente
+
+A) En la variante A, al guardar la fecha de ingreso en la relación *se emplea* solo se podrá guardar una fecha de ingreso para un vendedor en cierto local. No permite guardar un historial de los ingresos de un vendedor en un mismo local.
+
+B) Al modelar la fecha de ingreso en una entidad aparte como muestra la variante B, se puede mantener un historial de los ingresos de un vendedor en un local.
+
+C) Dependiend
