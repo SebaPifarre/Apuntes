@@ -106,4 +106,15 @@ InfoCurso.
 
 ![[1-5.png]]
 
-A) Verdadero. 
+A) Verdadero. La transformación 1 a 1 de una relación (1,n) - (1,n) usa ambos identificadores en la relación.
+B) False. La transformación de la relación (1,1) - (1,1) usa como clave alguna de las claves primarias de las entidades, no ambas.
+C) Falso. La transformación de la relación (1,n) - (1,1) usa como clave primaria la clave de la entidad del lado (1,n)
+D) Falso.
+E) Falso. Si se agregan los atributos del profesor a InfoCurso, dado que un profesor dicta uno o varios cursos, vamos a tener información repetida.
+
+<mark style="background: #FF5582A6;">Consulta</mark>
+
+![[consulta.png]]
+
+Me hace ruido que para dos grupos de cardinalidades distintos lleven a la misma conversión 1 a 1
+Mirando solo el modelo físico no puedo interpretar cual de lo
