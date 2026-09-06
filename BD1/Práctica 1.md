@@ -87,4 +87,9 @@ A) En la variante A, al guardar la fecha de ingreso en la relación *se emplea* 
 
 B) Al modelar la fecha de ingreso en una entidad aparte como muestra la variante B, se puede mantener un historial de los ingresos de un vendedor en un local.
 
-C) Dependiend
+C) Dependiendo como se agrega la cardinalidad a la entidad horario se modelaran distintos casos.
+* Si ambas cardinalidades son (1,n) se está indicando que un vendedor puede trabajar en un local en distintos horarios y que en un horario pueden haber varios vendedores en un local.
+* Si existe una cardinalidad (1,1) del lado de la agregación, estamos indicando que para un horario hay asignado un único vendedor en el local
+* Si la cardinalidad (1,1) se encuentra del lado del horario se indica que un vendedor puede trabajar en un único horario para un local.
+
+## Ejercicio 5
