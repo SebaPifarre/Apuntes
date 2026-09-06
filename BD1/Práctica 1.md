@@ -117,4 +117,4 @@ E) Falso. Si se agregan los atributos del profesor a InfoCurso, dado que un prof
 ![[consulta.png]]
 
 Me hace ruido que para dos grupos de cardinalidades distintos lleven a la misma conversión 1 a 1
-Mirando solo el modelo físico no puedo interpretar cual de lo
+Mirando solo el modelo físico no puedo interpretar cual de las dos opciones estoy representando
