@@ -102,5 +102,15 @@ Process Consumidor
 
 ## Ejercicio 4
 
-Resolver con SENTENCIAS AWAIT (<> y ). Un sistema operativo mantiene 5 instancias de un recurso almacenadas en una cola, cuando un proceso necesita usar una instancia del recurso la saca de la cola, la usa y cuando termina de usarla la vuelve a depositar.
+Resolver con SENTENCIAS AWAIT (<> y <await B; S>). Un sistema operativo mantiene 5 instancias de un recurso almacenadas en una cola, cuando un proceso necesita usar una instancia del recurso la saca de la cola, la usa y cuando termina de usarla la vuelve a depositar.
+
+```
+cola recursos[5];
+Process Proceso
+{
+	<await (not cola.isEmpty) desencolo>
+	//utilizo recurso
+	encolo
+}
+```
 
