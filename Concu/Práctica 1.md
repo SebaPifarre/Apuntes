@@ -135,12 +135,18 @@ Process Persona[1..N]
 
 b) 
 ```
-bool ocupada=false
+bool siguiente=-1;
+cola C;
 Process Persona[1..N]
 {
-	if()
-	<await (not ocupada); ocupada = true;>
+	< if(siguiente == -1) siguiente=id; else Agregar(C, id) >
+	<await (siguiente==id);>
 	imprimir;
-	ocupada = false;
+	< if (C.isEmpty) siguiente = -1; else siguiente = Sacar(C); >
 }
+```
+
+c)
+```
+
 ```
