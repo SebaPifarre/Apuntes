@@ -136,7 +136,7 @@ Process Persona[1..N]
 b) 
 ```
 bool siguiente=-1;
-cola C;
+cola C; // Cola sin prioridad
 Process Persona[1..N]
 {
 	< if(siguiente == -1) siguiente=id; else Agregar(C, id) >
@@ -148,5 +148,36 @@ Process Persona[1..N]
 
 c)
 ```
+bool siguiente=-1;
+colaEspecial C; //cola con prioridad de id
+Process Persona[1..N]
+{
+	< if(siguiente == -1) siguiente=id; else Agregar(C, id) >
+	<await (siguiente==id);>
+	imprimir;
+	< if (C.isEmpty) siguiente = -1; else siguiente = Sacar(C); >
+}
+```
+
+d)
+```
+cola C;
+bool ocupada = false;
+Process Coordinador
+{
+	while(true)
+	{
+		<await (not cola.isEmpty); siguiente = Sacar(C); ocupada=true;>
+		<await (not ocupada)>
+	}
+}
+
+Process Persona[1..N]
+{
+	Agregar(C,id);
+	<await (siguiente==id);>
+	//imprimiendo
+	<ocupada = false;>
+}
 
 ```
