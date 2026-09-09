@@ -177,7 +177,7 @@ Process Persona[1..N]
 	Agregar(C,id);
 	<await (siguiente==id);>
 	//imprimiendo
-	<ocupada = false;>
+	ocupada = false;
 }
 
 ```
