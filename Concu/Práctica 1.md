@@ -56,3 +56,8 @@ Process Contar [id: 0..k-1]
 ## Ejercicio 3
 ![[ej3.png]]
 
+a) 
+```Pascal
+int cant = 0; int pri_ocupada=0; int pri_vacia=0; int buffer[N];
+Process Productor
+```
