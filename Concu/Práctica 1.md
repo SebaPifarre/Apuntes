@@ -57,7 +57,50 @@ Process Contar [id: 0..k-1]
 ![[ej3.png]]
 
 a) 
-```Pascal
+```
 int cant = 0; int pri_ocupada=0; int pri_vacia=0; int buffer[N];
 Process Productor
+{while(true)
+	{produce elemento
+	<await (cant < N); cant++;
+	buffer[pri_vacia]=elemento;>
+	pri_vacia=(pri_vacia + 1) mod N;
+	}
+}
+
+Process Consumidor
+{while(true)
+	{<await (cant>0); cant--;
+	elemento=buffer[pri_ocupada];>
+	pri_ocupada=(pri_ocupada+1) mod N;
+	consume elemento	
+	}
+}
 ```
+
+b)
+```
+int cant = 0; int pri_ocupada=0; int pri_vacia=0; int buffer[N];
+Process Productor
+{while(true)
+	{produce elemento
+	<await (cant < N); cant++;
+	buffer[pri_vacia]=elemento;
+	pri_vacia=(pri_vacia + 1) mod N;>
+	}
+}
+
+Process Consumidor
+{while(true)
+	{<await (cant>0); cant--;
+	elemento=buffer[pri_ocupada];
+	pri_ocupada=(pri_ocupada+1) mod N;>
+	consume elemento	
+	}
+}
+```
+
+## Ejercicio 4
+
+Resolver con SENTENCIAS AWAIT (<> y ). Un sistema operativo mantiene 5 instancias de un recurso almacenadas en una cola, cuando un proceso necesita usar una instancia del recurso la saca de la cola, la usa y cuando termina de usarla la vuelve a depositar.
+
