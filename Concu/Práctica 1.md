@@ -181,3 +181,10 @@ Process Persona[1..N]
 }
 
 ```
+
+## Ejercicio 6
+
+![[6-1.png]]
+
+![[Cuatro condiciones.png]]
+
