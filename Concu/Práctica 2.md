@@ -7,13 +7,19 @@ b. Implemente una solución que modele el acceso de las personas a un detector (
 c. Modifique su solución para el caso que haya tres detectores. 
 d. Modifique la solución anterior para el caso en que cada persona pueda pasar más de una vez, siendo aleatoria esa cantidad de veces.
 
-a)
+a) - b)
 ```
 sem detector = 1
 
-Process Persona
+Process Persona[id: 0..N-1]
 {
 	P(detector)
-	//s
+	//se examina
+	V(detector)
 }
+```
+
+c)
+```
+
 ```
