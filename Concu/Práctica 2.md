@@ -56,15 +56,34 @@ c) Ídem b) pero cada proceso debe ocuparse de contar los fallos de un nivel de 
 a)
 
 ```
-sem mutex = 1
 datos[0..N-1]
 
 Process Proceso[id:0..3]
 {
-	P(mutex)
-	if(index<N)
+	i = id * N/4
+	fin = i + N/4
+	for i to fin
 	{
-		aux
-	}
+		 if (critico) write(datos[i])
+	} 
 }
 ```
+
+No uso semáforos??
+
+b)
+```
+datos[0..N-1]
+conteo[0..3]=0
+
+Process Proceso[id:0..3]
+{
+	i = id * N/4
+	fin = i + N/4
+	for i to fin
+	{
+		 if (critico) write(datos[i])
+	} 
+}
+```
+
