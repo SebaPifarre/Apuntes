@@ -53,3 +53,18 @@ a) Se debe imprimir en pantalla los ID de todos los errores críticos (no import
 b) Se debe calcular la cantidad de fallos por nivel de gravedad, debiendo quedar los resultados en un vector global. 
 c) Ídem b) pero cada proceso debe ocuparse de contar los fallos de un nivel de gravedad determinado.
 
+a)
+
+```
+sem mutex = 1
+datos[0..N-1]
+
+Process Proceso[id:0..3]
+{
+	P(mutex)
+	if(index<N)
+	{
+		aux
+	}
+}
+```
