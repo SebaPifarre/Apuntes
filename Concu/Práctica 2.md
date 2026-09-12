@@ -64,7 +64,7 @@ Process Proceso[id:0..3]
 	fin = i + N/4
 	for i to fin
 	{
-		 if (critico) write(datos[i])
+		 if (datos[i].gravedad == critico) write(datos[i])
 	} 
 }
 ```
@@ -75,6 +75,30 @@ b)
 ```
 datos[0..N-1]
 conteo[0..3]=0
+sem mutex[0..3]=1
+
+Process Proceso[id:0..3]
+{
+	conteo_local[0..3]=0
+	i = id * N/4
+	fin = i + N/4
+	for i to fin
+	{
+		 conteo_local[datos[i].gravedad]++
+	} 
+	for i=0 to 3
+	{
+	     P(mutex[i])
+		 conteo[i] = conteo[i] + conteo_local[i]
+		 V(mutex[i])
+	}
+}
+```
+
+c)
+```
+datos[0..N-1]
+conteo[0..3]=0
 
 Process Proceso[id:0..3]
 {
@@ -82,8 +106,9 @@ Process Proceso[id:0..3]
 	fin = i + N/4
 	for i to fin
 	{
-		 if (critico) write(datos[i])
+		 if (datos[i].gravedad == id) conteo[id]++
 	} 
 }
 ```
+
 
