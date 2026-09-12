@@ -21,5 +21,18 @@ Process Persona[id: 0..N-1]
 
 c)
 ```
+sem detector = 3
+
+Process Persona[id: 0..N-1]
+{
+	P(detector)
+	//Se examina
+	V(detector)
+}
+```
+
+d)
+```
+sem detector = 3
 
 ```
