@@ -35,4 +35,21 @@ d)
 ```
 sem detector = 3
 
+Process Persona[id: 0..N-1]
+{
+	for i=1 to num_random
+	{
+		P(detector)
+		//Seexamina
+		V(detector)
+	}
+}
 ```
+
+## Ejercicio 2
+
+Un sistema de control cuenta con 4 procesos que realizan chequeos en forma colaborativa. Para ello, reciben el historial de fallos del día anterior (por simplicidad, de tamaño N). De cada fallo, se conoce su número de identificación (ID) y su nivel de gravedad (0=bajo, 1=intermedio, 2=alto, 3=crítico). Resuelva considerando las siguientes situaciones:
+a) Se debe imprimir en pantalla los ID de todos los errores críticos (no importa el orden).
+b) Se debe calcular la cantidad de fallos por nivel de gravedad, debiendo quedar los resultados en un vector global. 
+c) Ídem b) pero cada proceso debe ocuparse de contar los fallos de un nivel de gravedad determinado.
+
