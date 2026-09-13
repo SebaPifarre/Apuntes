@@ -168,22 +168,23 @@ d) Modifique la solución a) para el caso en que haya P empleados Preparadores y
 
 a)
 ```
-sem lleno = 0
-sem vacio = N
-typeT buf =
+sem full = 0
+sem empty = N
+typeT buf[N]
+int rear, front = 0
 
-Process Productor
+Process Productor[id: 0..N-1]::
 {
 	//Genera paquete
-	P(vacio)
-	//deposita paquete
-	V(lleno)
+	P(empty)
+	buf[rear] = paquete
+	rear = rear + 1 mod N
+	V()
+	
 }
 
 Process Consumidor
 {
-	P(lleno)
-	//procesa paquete
-	V(vacio)
+	
 }
 ```
