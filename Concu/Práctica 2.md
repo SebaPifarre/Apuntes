@@ -182,6 +182,7 @@ Process Productor
 Process Consumidor
 {
 	P(lleno)
-	//
+	//procesa paquete
+	V(vacio)
 }
 ```
