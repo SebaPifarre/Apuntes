@@ -166,3 +166,7 @@ b) Modifique la solución a) para el caso en que haya P empleados Preparadores.
 c) Modifique la solución a) para el caso en que haya E empleados Entregadores. 
 d) Modifique la solución a) para el caso en que haya P empleados Preparadores y E empleados Entregadores.
 
+a)
+```
+
+```
