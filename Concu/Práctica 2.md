@@ -134,3 +134,26 @@ Suponga que existe una BD que puede ser accedida por 6 usuarios como máximo al 
 
 ![[2-4.png]]
 
+```
+sem total = 6
+sem alta = 4
+sem baja = 5
+
+Process Usuario-Alta[id:1..L]::
+{
+	P(alta)
+	P(total)
+	//usa la BD
+	V(total)
+	V(alta)
+}
+
+Process Usuario-Baja[id:1..k]::
+{
+	P(baja)
+	P(total)
+	//usa la BD
+	V(total)
+	V(baja)
+}
+```
