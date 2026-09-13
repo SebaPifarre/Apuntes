@@ -168,5 +168,20 @@ d) Modifique la solución a) para el caso en que haya P empleados Preparadores y
 
 a)
 ```
+sem lleno =
+sem vacio = 
 
+Process Productor
+{
+	//Genera paquete
+	P(vacio)
+	//deposita paquete
+	V(lleno)
+}
+
+Process Consumidor
+{
+	P(lleno)
+	//
+}
 ```
