@@ -168,8 +168,9 @@ d) Modifique la solución a) para el caso en que haya P empleados Preparadores y
 
 a)
 ```
-sem lleno =
-sem vacio = 
+sem lleno = 0
+sem vacio = N
+typeT buf =
 
 Process Productor
 {
