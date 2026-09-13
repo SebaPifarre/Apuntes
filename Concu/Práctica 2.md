@@ -157,3 +157,12 @@ Process Usuario-Baja[id:1..k]::
 	V(baja)
 }
 ```
+
+## Ejercicio 5
+
+En una empresa de logística de paquetes existe una sala de contenedores donde se preparan las entregas. Cada contenedor puede almacenar un paquete y la sala cuenta con capacidad para N contenedores. Resuelva considerando las siguientes situaciones: 
+a) La empresa cuenta con 2 empleados: un empleado Preparador que se ocupa de preparar los paquetes y dejarlos en los contenedores; un empleado Entregador que se ocupa de tomar los paquetes de los contenedores y realizar las entregas. Tanto el Preparador como el Entregador trabajan de a un paquete por vez. 
+b) Modifique la solución a) para el caso en que haya P empleados Preparadores.
+c) Modifique la solución a) para el caso en que haya E empleados Entregadores. 
+d) Modifique la solución a) para el caso en que haya P empleados Preparadores y E empleados Entregadores.
+
