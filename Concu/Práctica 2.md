@@ -111,4 +111,26 @@ Process Proceso[id:0..3]
 }
 ```
 
+## Ejercicio 3
+
+Un sistema operativo mantiene 5 instancias de un recurso almacenadas en una cola. Además, existen P procesos que necesitan usar una instancia del recurso. Para eso, deben sacar la instancia de la cola antes de usarla. Una vez usada, la instancia debe ser encolada nuevamente para su reúso.
+
+```
+sem mutex = 5
+c cola
+
+Process Proceso[id:0..4]
+{
+	P(mutex)
+	//desencola
+	//usa recurso
+	V(mutex)
+}
+```
+
+## Ejercicio 4
+
+Suponga que existe una BD que puede ser accedida por 6 usuarios como máximo al mismo tiempo. Además, los usuarios se clasifican como usuarios de prioridad alta y usuarios de prioridad baja. Por último, la BD tiene la siguiente restricción: • no puede haber más de 4 usuarios con prioridad alta al mismo tiempo usando la BD. • no puede haber más de 5 usuarios con prioridad baja al mismo tiempo usando la BD. Indique si la solución presentada es la más adecuada. Justifique la respuesta.
+
+![[2-4.png]]
 
