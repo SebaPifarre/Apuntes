@@ -173,18 +173,26 @@ sem empty = N
 typeT buf[N]
 int rear, front = 0
 
-Process Productor[id: 0..N-1]::
+Process Productor
 {
-	//Genera paquete
-	P(empty)
-	buf[rear] = paquete
-	rear = rear + 1 mod N
-	V()
+	while(true)
+		//Genera paquete
+		P(empty)
+		buf[rear] = paquete
+		rear = (rear + 1) mod N
+		V(full)
 	
 }
 
 Process Consumidor
+typeT paquete
+Process Consumidor
 {
-	
+	while(true)
+		P(full)
+		paquete = buf[front]
+		front = (front + 1) mod N
+		V(empty)
+		//Consume paquete
 }
 ```
