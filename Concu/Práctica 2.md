@@ -348,15 +348,14 @@ Process Persona[id:0..N-1]
 
 c)
 ```
-sem espera[N] = ([N] 0)
+sem espera[N] = ([N] 1,0...)
 sem mutex = 1
 int siguiente = 0
 
 Process Persona[id:0..N-1]
 {
-	if(siguiente <> id) {P(espera[id])}
+	P(espera[id])
 	imprimir(documento)
-	siguiente++
-	V(espera[siguiente])
+	V(espera[id+1])
 }
 ```
