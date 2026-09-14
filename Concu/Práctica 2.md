@@ -359,3 +359,25 @@ Process Persona[id:0..N-1]
 	V(espera[id+1])
 }
 ```
+
+d)
+```
+sem espera[N] = ([N] 0)
+sem ocupado = 1
+
+Process Coordinador
+{
+	while(true)
+	{
+		
+	}
+}
+
+Process Persona[id:0..N-1]
+{
+	P(espera[id])
+	P(ocupado)
+	imprimir(documento)
+	V(ocupado)
+}
+```
