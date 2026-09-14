@@ -330,13 +330,18 @@ boolean libre = true
 
 Process Persona[id:0..N-1]
 {
-	if(libre) libre = false
+	P(mutex)
+	if(libre) {libre = false; V(mutex)}
 	else
 	{
 		push(C,id)
+		V(mutex)
 		P(espera[id])
 	}
 	imprimir(documento)
-	V(espera[id])
+	P(mutex)
+	if(empty(C)) libre=true
+	else {pop(C,aux); V(espera[id])}
+	V(mutex)
 }
 ```
