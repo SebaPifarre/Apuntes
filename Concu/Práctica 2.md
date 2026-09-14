@@ -310,3 +310,11 @@ c) Modifique la solución de (a) para el caso en que se deba respetar estrictame
 d) Modifique la solución de (b) para el caso en que además hay un proceso Coordinador que le indica a cada persona que es su turno de usar la impresora.
 e) Modificar la solución (d) para el caso en que sean 5 impresoras. El coordinador le indica a la persona cuándo puede usar una impresora, y cual debe usar.
 
+a)
+```
+sem 
+Process Persona
+{
+	
+}
+```
