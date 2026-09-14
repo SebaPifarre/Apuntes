@@ -345,3 +345,8 @@ Process Persona[id:0..N-1]
 	V(mutex)
 }
 ```
+
+c)
+```
+
+```
