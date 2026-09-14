@@ -366,6 +366,7 @@ sem espera[N] = ([N] 0)
 sem mutex = 1
 sem termino = 0
 cola C
+int id;
 
 Process Coordinador
 {
@@ -391,4 +392,41 @@ Process Persona[id:0..N-1]
 	imprimir(documento)
 	V(termino)
 }
+```
+
+e)
+
+```
+sem espera[N] = ([N] 0)
+sem terminoImprimir = 0
+sem mutex = 1
+sem impresoras = 5
+cola C,I
+
+Process Coordinador
+{
+	while(true)
+	{
+		if(C not empty)
+		{
+			P(mutex)
+			pop(C, id)
+			V(mutex)
+			P(impresoras)
+			V(espera[id])
+			P(termino)
+		}
+	}
+}
+
+Process Persona[id:0..N-1]
+{
+	P(mutex)
+	push(C, id)
+	V(mutex)
+	P(espera[id])
+	imprimir(documento)
+	V(impresoras)
+}
+
 ```
