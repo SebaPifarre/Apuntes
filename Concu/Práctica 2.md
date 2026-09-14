@@ -352,4 +352,13 @@ sem espera[N] = ([N] 0)
 sem mutex = 1
 int siguiente = 0
 
+Process Persona[id:0..N-1]
+{
+	P(mutex)
+	if(siguiente <> id) {V(mutex); P(espera[id])}
+	imprimir(documento)
+	P(mutex)
+	siguiente++
+	V(mutex)
+}
 ```
