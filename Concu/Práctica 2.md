@@ -348,5 +348,8 @@ Process Persona[id:0..N-1]
 
 c)
 ```
+sem espera[N] = ([N] 0)
+sem mutex = 1
+int siguiente = 0
 
 ```
