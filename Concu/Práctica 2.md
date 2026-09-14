@@ -398,10 +398,11 @@ e)
 
 ```
 sem espera[N] = ([N] 0)
-sem terminoImprimir = 0
 sem mutex = 1
 sem impresoras = 5
-cola C,I
+cola C
+int IDimpre
+cola I = (1,2,3,4,5)
 
 Process Coordinador
 {
@@ -413,8 +414,8 @@ Process Coordinador
 			pop(C, id)
 			V(mutex)
 			P(impresoras)
+			pop(I, IDimpre)
 			V(espera[id])
-			P(termino)
 		}
 	}
 }
