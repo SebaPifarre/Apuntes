@@ -323,5 +323,11 @@ Process Persona[id:0..N-1]
 
 b)
 ```
+sem libre = 1
+cola c
 
+Process Persona[id:0..N-1]
+{
+	
+}
 ```
