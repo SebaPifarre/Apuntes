@@ -363,21 +363,32 @@ Process Persona[id:0..N-1]
 d)
 ```
 sem espera[N] = ([N] 0)
-sem ocupado = 1
+sem mutex = 1
+sem termino = 0
+cola C
 
 Process Coordinador
 {
 	while(true)
 	{
-		
+		if(C not empty)
+		{
+			P(mutex)
+			pop(C, id)
+			V(mutex)
+			V(espera[id])
+			P(termino)
+		}
 	}
 }
 
 Process Persona[id:0..N-1]
 {
-	P(espera[id])
-	P(ocupado)
+	P(mutex)
+	push(C,id);
+	V(Mutex); 
+	P(espera[id]);
 	imprimir(documento)
-	V(ocupado)
+	V(termino)
 }
 ```
