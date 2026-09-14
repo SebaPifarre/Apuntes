@@ -323,11 +323,20 @@ Process Persona[id:0..N-1]
 
 b)
 ```
-sem libre = 1
+sem espera[N] = ([N] 0)
+sem mutex = 1
 cola c
+boolean libre = true
 
 Process Persona[id:0..N-1]
 {
-	
+	if(libre) libre = false
+	else
+	{
+		push(C,id)
+		P(espera[id])
+	}
+	imprimir(documento)
+	V(espera[id])
 }
 ```
