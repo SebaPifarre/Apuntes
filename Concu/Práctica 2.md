@@ -312,9 +312,16 @@ e) Modificar la solución (d) para el caso en que sean 5 impresoras. El coordina
 
 a)
 ```
-sem 
-Process Persona
+sem libre = 1
+Process Persona[id:0..N-1]
 {
-	
+	P(libre)
+	imprimir(documento)
+	V(libre)
 }
+```
+
+b)
+```
+
 ```
