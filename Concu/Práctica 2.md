@@ -394,7 +394,7 @@ Process Persona[id:0..N-1]
 }
 ```
 
-e)
+e) TERMINAR
 
 ```
 sem espera[N] = ([N] 0)
@@ -430,4 +430,24 @@ Process Persona[id:0..N-1]
 	V(impresoras)
 }
 
+```
+
+## Ejercicio 7
+
+Suponga que se tiene un curso con 50 alumnos. Cada alumno debe realizar una tarea y existen 10 enunciados posibles. Una vez que todos los alumnos eligieron su tarea, comienzan a realizarla. Cada vez que un alumno termina su tarea, le avisa al profesor y se queda esperando el puntaje del grupo (depende de todos aquellos que comparten el mismo enunciado). Cuando un grupo termina, el profesor les otorga un puntaje que representa el orden en que se terminó esa tarea de las 10 posibles.
+Nota: Para elegir la tarea, suponga que existe una función elegir que le asigna una tarea a un alumno (esta función asignará 10 tareas diferentes entre 50 alumnos, es decir, que 5 alumnos tendrán la tarea 1, otros 5 la tarea 2 y así sucesivamente para las 10 tareas).
+
+```
+Process Alumno[id: 0..50]
+{
+	//elegir
+	P() // espera que lo habiliten para comenzar
+	// avisa que finalizo
+	// espera que le devuelvan la nota
+}
+
+Process Profesor
+{
+	
+}
 ```
