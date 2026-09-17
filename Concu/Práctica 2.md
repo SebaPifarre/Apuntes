@@ -495,6 +495,7 @@ sem mutex = 1, barrera = 0,
 int cantidades[N]
 Process Empleado[id:1..E]
 {
+	bool seguir = true
 	P(mutex)
 	empleados_presentes+=1
 	if (empleados_presentes == N) 
@@ -503,14 +504,17 @@ Process Empleado[id:1..E]
 		}
 	V(mutex)
 	P(Barrera)
-	P(corte)
-	while (total < T)
+	while (seguir)
 	{
-		total+=1
-		V(corte)
-		// produce pieza
-		cantidades[id]+=1
-		
+		P(corte)
+		if(total==T) -> {seguir = false; V(corte)}
+		else
+		{
+			total+=1
+			V(corte)
+			// produce pieza
+			cantidades[id]+=1
+		}		
 	}
 }
 ```
