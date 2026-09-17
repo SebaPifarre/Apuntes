@@ -438,16 +438,31 @@ Suponga que se tiene un curso con 50 alumnos. Cada alumno debe realizar una tare
 Nota: Para elegir la tarea, suponga que existe una función elegir que le asigna una tarea a un alumno (esta función asignará 10 tareas diferentes entre 50 alumnos, es decir, que 5 alumnos tendrán la tarea 1, otros 5 la tarea 2 y así sucesivamente para las 10 tareas).
 
 ```
-Process Alumno[id: 0..50]
+presentes = 0
+sem mutex = 1, barrera = 0, espera_profesor = 0, 
+
+Process Alumno[id: 1..N]
 {
-	//elegir
+	int i
+	nro_enunciado
 	P(mutex) 
-	// avisa que finalizo
-	// espera que le devuelvan la nota
+	nro_enunciado = elegir()
+	presentes = presentes + 1
+	if (presentes == N) 
+		{
+		for i = 1..N -> { V(Barrera); V(espera_profesor) }
+		}
+	V(mutex)
+	P(Barrera)
+	// empieza examen
+	P(entrega)
+	
+	V(entrega)
 }
 
 Process Profesor
 {
+	P(espera_profesor)
 	
 }
 ```
