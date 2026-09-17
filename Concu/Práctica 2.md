@@ -476,9 +476,23 @@ Process Profesor
 		puntajes[enunciado_actual]+=calcularPuntaje()
 		if(entregas[enunciado_actual]==10)
 		{
-			// deberia informar a c
+			// deberia informar a cada alumno pero no se como
 		}
 		V(entrega)
 	}
+}
+```
+
+## Ejercicio 8
+
+Una fábrica de piezas metálicas debe producir T piezas por día. Para eso, cuenta con E empleados que se ocupan de producir las piezas de a una por vez. La fábrica empieza a producir una vez que todos los empleados llegan. Mientras haya piezas por fabricar, los empleados tomarán una y la realizarán. Cada empleado puede tardar distinto tiempo en fabricar una pieza. Al finalizar el día, se debe conocer cuál es el empleado que más piezas fabricó.
+a) Implemente una solución asumiendo que T > E.
+b) Implemente una solución que contemple cualquier valor de T y E.
+
+```
+
+Process Empleado[id:1..E]
+{
+	
 }
 ```
