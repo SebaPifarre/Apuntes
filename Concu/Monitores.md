@@ -9,3 +9,6 @@ Tercera solución
 * Implementa lo que propone la segunda solución pero usando herramientas que se pueden usar en la práctica.
 * Esta manera de implementar la solución me sirve cuando quiero mantener un orden que no es el de llegada.
 
+## Rendezvous
+
+* Notar que hay muchos puntos de sincronización en el mismo problema.
