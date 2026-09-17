@@ -442,8 +442,8 @@ int presentes = 0, enunciado_actual
 sem mutex = 1, barrera = 0, espera_profesor = 0, entrega = 0, espera_resultado = 0
 
 int puntajes[5]
-int entregas[5]
 int terminados[5]
+cola C
 
 Process Alumno[id: 1..N]
 {
@@ -460,7 +460,7 @@ Process Alumno[id: 1..N]
 	P(Barrera)
 	// empieza examen
 	Pmutexentregas
-	entregas[enunciado_actual]+=1
+	C(push, nro_enunciado)
 	Vmutexentregas
 	V(avisa_profesor)
 	P(terminados[nro_enunciado])
@@ -470,20 +470,24 @@ Process Alumno[id: 1..N]
 Process Profesor
 {
 	int i
+	int entregas[5]
+	int id_grupo
 
 	for i = 1..N
 	{
 		P(avisa_profesor)
-	Pmutexentregas
-		if(entregas[enunciado_actual]==5)
-		{
-	Vmutexentregas
+		P(mutexentregas)
+		id_grupo = pop(C)
+		V(mutexentregas)
+		puntajes[id_grupo]+=calcularPuntaje()
+		entregas[id_grupo]++
+		if(entregas[id_grupo]==5)
+		{		
+			puntajes_finales[id_grupo]=puntajes[id_grupo]
+			for i=1 to 5
+				V(terminados[enunciado_actual])
+		}  
 		
-			puntajes[enunciado_actual]+=calcularPuntaje()
-			puntajes_finales[enunciado_actual]=puntajes[enunciado_actual]
-			V(terminados[enunciado_actual])
-		} else 
-		Vmutexentregas
 	}
 }
 ```
