@@ -438,7 +438,7 @@ Suponga que se tiene un curso con 50 alumnos. Cada alumno debe realizar una tare
 Nota: Para elegir la tarea, suponga que existe una función elegir que le asigna una tarea a un alumno (esta función asignará 10 tareas diferentes entre 50 alumnos, es decir, que 5 alumnos tendrán la tarea 1, otros 5 la tarea 2 y así sucesivamente para las 10 tareas).
 
 ```
-presentes = 0
+int presentes = 0, enunciado_actual
 sem mutex = 1, barrera = 0, espera_profesor = 0, entrega = 0, espera_resultado = 0
 
 int puntajes[10]
@@ -459,9 +459,8 @@ Process Alumno[id: 1..N]
 	P(Barrera)
 	// empieza examen
 	P(entrega)
-	entregas[nro_enunciado]+=1
+	enunciado_actual = nro_enunciado
 	V(avisa_profesor)
-	V(entrega)
 	P(espera_resultado)
 }
 
@@ -473,7 +472,13 @@ Process Profesor
 	for i = 1..N
 	{
 		P(avisa_profesor)
-		
+		entregas[enunciado_actual]+=1
+		puntajes[enunciado_actual]+=calcularPuntaje()
+		if(entregas[enunciado_actual]==10)
+		{
+			// deberia informar a c
+		}
+		V(entrega)
 	}
 }
 ```
