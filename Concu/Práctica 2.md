@@ -448,8 +448,8 @@ Process Alumno[id: 1..N]
 {
 	int i, nro_enunciado
 	
-	P(mutex) 
 	nro_enunciado = elegir()
+	P(mutex) 
 	presentes = presentes + 1
 	if (presentes == N) 
 		{
