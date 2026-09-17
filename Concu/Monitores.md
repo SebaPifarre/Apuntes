@@ -11,7 +11,7 @@ Tercera solución
 
 ## Rendezvous
 
-* Notar que hay muchos puntos de sincronización en el mismo problema.
+* Notar que hay muchas etapas de sincronización en el mismo problema.
 * Dentro de corte de pelo, la idea del wait despues del signal es porque si no libero el monitor, el peluquero no va a poder hacer uso del monitor. Por eso no debo preguntar si tengo que hacer el wait porque se que el peluquero lo va a necesitar.
 
 
