@@ -439,12 +439,15 @@ Nota: Para elegir la tarea, suponga que existe una función elegir que le asigna
 
 ```
 presentes = 0
-sem mutex = 1, barrera = 0, espera_profesor = 0, 
+sem mutex = 1, barrera = 0, espera_profesor = 0, entrega = 0, espera_resultado = 0
+
+int puntajes[10]
+int entregas[10]
 
 Process Alumno[id: 1..N]
 {
-	int i
-	nro_enunciado
+	int i, nro_enunciado
+	
 	P(mutex) 
 	nro_enunciado = elegir()
 	presentes = presentes + 1
@@ -456,13 +459,21 @@ Process Alumno[id: 1..N]
 	P(Barrera)
 	// empieza examen
 	P(entrega)
-	
+	entregas[nro_enunciado]+=1
+	V(avisa_profesor)
 	V(entrega)
+	P(espera_resultado)
 }
 
 Process Profesor
 {
+	int i
+
 	P(espera_profesor)
-	
+	for i = 1..N
+	{
+		P(avisa_profesor)
+		
+	}
 }
 ```
