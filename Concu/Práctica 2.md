@@ -454,16 +454,14 @@ Process Alumno[id: 1..N]
 	presentes = presentes + 1
 	if (presentes == N) 
 		{
-		for i = 1..N -> { V(Barrera); V(espera_profesor) }
+		for i = 1..N -> { V(Barrera); }
 		}
 	V(mutex)
 	P(Barrera)
 	// empieza examen
-	v
-	
-	P(entrega)
+	Pmutexentregas
 	entregas[enunciado_actual]+=1
-	enunciado_actual=nro_enunciado
+	Vmutexentregas
 	V(avisa_profesor)
 	P(terminados[nro_enunciado])
 	nota=puntajes_finales[nro_enunciado]
@@ -473,17 +471,19 @@ Process Profesor
 {
 	int i
 
-	P(espera_profesor)
 	for i = 1..N
 	{
 		P(avisa_profesor)
-		puntajes[enunciado_actual]+=calcularPuntaje()
+	Pmutexentregas
 		if(entregas[enunciado_actual]==5)
 		{
+	Vmutexentregas
+		
+			puntajes[enunciado_actual]+=calcularPuntaje()
 			puntajes_finales[enunciado_actual]=puntajes[enunciado_actual]
 			V(terminados[enunciado_actual])
-		}
-		V(entrega)
+		} else 
+		Vmutexentregas
 	}
 }
 ```
