@@ -490,9 +490,27 @@ a) Implemente una solución asumiendo que T > E.
 b) Implemente una solución que contemple cualquier valor de T y E.
 
 ```
-
+int empleados_presentes = 0, total = 0, 
+sem mutex = 1, barrera = 0, 
+int cantidades[N]
 Process Empleado[id:1..E]
 {
-	
+	P(mutex)
+	empleados_presentes+=1
+	if (empleados_presentes == N) 
+		{
+		for i = 1..N ->  V(Barrera) 
+		}
+	V(mutex)
+	P(Barrera)
+	P(corte)
+	while (total < T)
+	{
+		total+=1
+		V(corte)
+		// produce pieza
+		cantidades[id]+=1
+		
+	}
 }
 ```
