@@ -447,7 +447,7 @@ int terminados[5]
 
 Process Alumno[id: 1..N]
 {
-	int i, nro_enunciado
+	int i, nro_enunciado, nota
 	
 	nro_enunciado = elegir()
 	P(mutex) 
@@ -461,9 +461,10 @@ Process Alumno[id: 1..N]
 	// empieza examen
 	P(entrega)
 	entregas[enunciado_actual]+=1
-	enunciado_actual+
+	enunciado_actual=nro_enunciado
 	V(avisa_profesor)
 	P(terminados[nro_enunciado])
+	nota=puntajes_finales[nro_enunciado]
 }
 
 Process Profesor
@@ -477,6 +478,7 @@ Process Profesor
 		puntajes[enunciado_actual]+=calcularPuntaje()
 		if(entregas[enunciado_actual]==5)
 		{
+			puntajes_finales[enunciado_actual]=puntajes[enunciado_actual]
 			V(terminados[enunciado_actual])
 		}
 		V(entrega)
