@@ -459,6 +459,8 @@ Process Alumno[id: 1..N]
 	V(mutex)
 	P(Barrera)
 	// empieza examen
+	v
+	
 	P(entrega)
 	entregas[enunciado_actual]+=1
 	enunciado_actual=nro_enunciado
