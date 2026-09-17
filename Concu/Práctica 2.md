@@ -441,7 +441,7 @@ Nota: Para elegir la tarea, suponga que existe una función elegir que le asigna
 Process Alumno[id: 0..50]
 {
 	//elegir
-	P() // espera que lo habiliten para comenzar
+	P(mutex) 
 	// avisa que finalizo
 	// espera que le devuelvan la nota
 }
