@@ -441,8 +441,9 @@ Nota: Para elegir la tarea, suponga que existe una función elegir que le asigna
 int presentes = 0, enunciado_actual
 sem mutex = 1, barrera = 0, espera_profesor = 0, entrega = 0, espera_resultado = 0
 
-int puntajes[10]
-int entregas[10]
+int puntajes[5]
+int entregas[5]
+int terminados[5]
 
 Process Alumno[id: 1..N]
 {
@@ -459,9 +460,10 @@ Process Alumno[id: 1..N]
 	P(Barrera)
 	// empieza examen
 	P(entrega)
-	enunciado_actual = nro_enunciado
+	entregas[enunciado_actual]+=1
+	enunciado_actual+
 	V(avisa_profesor)
-	P(espera_resultado)
+	P(terminados[nro_enunciado])
 }
 
 Process Profesor
@@ -472,11 +474,10 @@ Process Profesor
 	for i = 1..N
 	{
 		P(avisa_profesor)
-		entregas[enunciado_actual]+=1
 		puntajes[enunciado_actual]+=calcularPuntaje()
 		if(entregas[enunciado_actual]==5)
 		{
-			// deberia informar a cada alumno pero no se como
+			V(terminados[enunciado_actual])
 		}
 		V(entrega)
 	}
