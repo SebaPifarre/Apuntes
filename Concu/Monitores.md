@@ -20,3 +20,6 @@ Tercera solución
 * En monitores, si lo trato como objetos (getter, setter), estoy rompiendo con la exclusión mutua porque estría modificando valores de las variables permanentes fuera del monitor.
 * Hay que tener cuidado de no meter toda la información dentro de un solo monitor. Solo tener en cada monitor la información que necesite para hacer el mayor uso de la concurrencia.
 
+* Ejercicio 6 -> Cliente - Servidor con orden de llegada
+
+* 
