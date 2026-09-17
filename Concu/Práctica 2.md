@@ -474,7 +474,7 @@ Process Profesor
 		P(avisa_profesor)
 		entregas[enunciado_actual]+=1
 		puntajes[enunciado_actual]+=calcularPuntaje()
-		if(entregas[enunciado_actual]==10)
+		if(entregas[enunciado_actual]==5)
 		{
 			// deberia informar a cada alumno pero no se como
 		}
