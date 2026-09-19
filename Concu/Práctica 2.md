@@ -513,17 +513,14 @@ Process Empleado[id:1..E]
 		}
 	V(mutex)
 	P(Barrera)
-	while (seguir)
+	P(mutex)
+	while (total<T)
 	{
-		P(corte)
-		if(total==T) -> {seguir = false; V(corte)}
-		else
-		{
-			total+=1
-			V(corte)
-			// produce pieza
-			cantidades[id]+=1
-		}		
+		total++
+		V(mutex)
+		//produce pieza
+		P(mutex)		
 	}
+	V(mutex)
 }
 ```
