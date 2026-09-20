@@ -535,7 +535,7 @@ Resolver el funcionamiento en una fábrica de ventanas con 7 empleados (4 carpin
 ```
 Marco buf[N]; int ocupadoM = 0, libreM = 0, libreV = 0, ocupadoV = 0;
 Vidrio bufV[M];
-sem vacioM = N, llenoM = 0, mutexD = 1, vacioV = M, llenoV = 0;
+sem vacioM = N, llenoM = 0, mutexD = 1, mutexR = 1, vacioV = M, llenoV = 0;
 Process Carpintero[id:1..4]
 {
 	while(true)
@@ -564,9 +564,26 @@ Process Vidriero
 
 Process Armador[id: 1..2]
 {
+	Marco unMarco;
+	Vidrio unVidrio;
+	
 	while(true)
 	{
-		
+		P(llenoM)
+		P(mutexR)
+		unMarco = buf[ocupadoM]
+		ocupadoM++
+		V(mutexR)
+		V(vacioM)
+		P(llenoV)
+		P(mutexR)
+		unVidrio = buf[ocupadoV]
+		ocupadoV++
+		V(mutexR)
+		V(vacioV)
+		// producir cuadro
 	}
 }
 ```
+
+Preguntar si está bien solicitar/lib
