@@ -528,22 +528,29 @@ Process Empleado[id:1..E]
 ## Ejercicio 9
 
 Resolver el funcionamiento en una fábrica de ventanas con 7 empleados (4 carpinteros, 1 vidriero y 2 armadores) que trabajan de la siguiente manera: 
-• Los carpinteros continuamente hacen marcos (cada marco es armado por un único carpintero) y los dejan en un depósito con capacidad de almacenar 30 marcos. 
-• El vidriero continuamente hace vidrios y los deja en otro depósito con capacidad para 50 vidrios. 
+• Los carpinteros continuamente hacen marcos (cada marco es armado por un único carpintero) y los dejan en un depósito con capacidad de almacenar 30 marcos (N). 
+• El vidriero continuamente hace vidrios y los deja en otro depósito con capacidad para 50 (M) vidrios. 
 • Los armadores continuamente toman un marco y un vidrio (en ese orden) de los depósitos correspondientes y arman la ventana (cada ventana es armada por un único armador).
 
 ```
-Marco buf[30]; int ocupado = 0, libre = 0;
-sem vacio = 30, lleno = 0, mutex = 1;
+Marco buf[N]; int ocupado = 0, libre = 0;
+sem vacio = N, lleno = 0, mutexD = 1;
 Process Carpintero[id:1..4]
 {
 	while(true)
 	{
 		// producir marco
 		P(vacio)
-		P(mutex)
-		buf[libre]=marco
-		ocupado++
+		P(mutexD)
+			buf[libre]=marco
+			libre=(libre+1) mod N
+		V(mutexD)
+		V(lleno)
 	}
+}
+
+Process Vidriero
+{
+	while(true)
 }
 ```
