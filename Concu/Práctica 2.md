@@ -586,4 +586,4 @@ Process Armador[id: 1..2]
 }
 ```
 
-Preguntar si está bien solicitar/lib
+Preguntar si está bien solicitar/liberar el semáforo mutexR dos veces.
