@@ -533,24 +533,40 @@ Resolver el funcionamiento en una fábrica de ventanas con 7 empleados (4 carpin
 • Los armadores continuamente toman un marco y un vidrio (en ese orden) de los depósitos correspondientes y arman la ventana (cada ventana es armada por un único armador).
 
 ```
-Marco buf[N]; int ocupado = 0, libre = 0;
-sem vacio = N, lleno = 0, mutexD = 1;
+Marco buf[N]; int ocupadoM = 0, libreM = 0, libreV = 0, ocupadoV = 0;
+Vidrio bufV[M];
+sem vacioM = N, llenoM = 0, mutexD = 1, vacioV = M, llenoV = 0;
 Process Carpintero[id:1..4]
 {
 	while(true)
 	{
 		// producir marco
-		P(vacio)
+		P(vacioM)
 		P(mutexD)
 			buf[libre]=marco
 			libre=(libre+1) mod N
 		V(mutexD)
-		V(lleno)
+		V(llenoM)
 	}
 }
 
 Process Vidriero
 {
 	while(true)
+	{
+		//producir vidrio
+		P(vacioV)
+		buf[libreV]=vidrio
+		libreV = (libreV + 1) mod M
+		V(llenoV)
+	}
+}
+
+Process Armador[id: 1..2]
+{
+	while(true)
+	{
+		
+	}
 }
 ```
