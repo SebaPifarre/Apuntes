@@ -556,7 +556,7 @@ Process Vidriero
 	{
 		//producir vidrio
 		P(vacioV)
-		buf[libreV]=vidrio
+		bufV[libreV]=vidrio
 		libreV = (libreV + 1) mod M
 		V(llenoV)
 	}
@@ -572,14 +572,14 @@ Process Armador[id: 1..2]
 		P(llenoM)
 		P(mutexR)
 		unMarco = buf[ocupadoM]
-		ocupadoM++
+		ocupadoM = ocupadoM + 1) mod N
 		V(mutexR)
 		V(vacioM)
 		P(llenoV)
-		P(mutexR)
-		unVidrio = buf[ocupadoV]
-		ocupadoV++
-		V(mutexR)
+		P(mutexRV)
+		unVidrio = bufV[ocupadoV]
+		ocupadoV = (ocupadoV + 1) mod M
+		V(mutexRV)
 		V(vacioV)
 		// producir cuadro
 	}
