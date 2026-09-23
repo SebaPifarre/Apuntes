@@ -7,4 +7,6 @@
 	* Agrega una clase TestingConfig
 	* Agrega un diccionario
 * Desde el main.py (o el init?) importa el config para cambiar el env del create_app (min 39)
-* 
+* Crea una carpeta para controllers (min 1:08)
+	* Hace un ejemplo de autos, por ahi esto no lo agrego
+* A la altura de web (/core), aqui
