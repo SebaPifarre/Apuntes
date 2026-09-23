@@ -588,3 +588,9 @@ Process Armador[id: 1..2]
 
 Preguntar si está bien solicitar/liberar el semáforo mutexR <mark style="background: #FFB86CA6;">dos veces</mark>.
 
+## Ejercicio 10
+
+A una cerealera van T camiones a descargarse trigo y M camiones a descargar maíz. Sólo hay lugar para que 7 camiones a la vez descarguen, pero no pueden ser más de 5 del mismo tipo de cereal. 
+
+a) Implemente una solución que use un proceso extra que actúe como coordinador entre los camiones. El coordinador debe atender a los camiones según el orden de llegada. Además, debe retirarse cuando todos los camiones han descargado. 
+b) Implemente una solución que no use procesos adicionales (sólo camiones). No importa el orden de llegada para descargar. Nota: maximice la concurrencia.
