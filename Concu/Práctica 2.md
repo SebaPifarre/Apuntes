@@ -594,3 +594,7 @@ A una cerealera van T camiones a descargarse trigo y M camiones a descargar maí
 
 a) Implemente una solución que use un proceso extra que actúe como coordinador entre los camiones. El coordinador debe atender a los camiones según el orden de llegada. Además, debe retirarse cuando todos los camiones han descargado. 
 b) Implemente una solución que no use procesos adicionales (sólo camiones). No importa el orden de llegada para descargar. Nota: maximice la concurrencia.
+
+```
+
+```
