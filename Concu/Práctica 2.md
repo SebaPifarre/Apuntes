@@ -586,5 +586,5 @@ Process Armador[id: 1..2]
 }
 ```
 
-Preguntar si está bien solicitar/liberar el semáforo mutexR dos veces.
+Preguntar si está bien solicitar/liberar el semáforo mutexR <mark style="background: #FFB86CA6;">dos veces</mark>.
 
