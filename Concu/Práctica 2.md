@@ -535,7 +535,7 @@ Resolver el funcionamiento en una fábrica de ventanas con 7 empleados (4 carpin
 ```
 Marco buf[N]; int ocupadoM = 0, libreM = 0, libreV = 0, ocupadoV = 0;
 Vidrio bufV[M];
-sem vacioM = N, llenoM = 0, mutexD = 1, mutexR = 1, vacioV = M, llenoV = 0;
+sem vacioM = N, llenoM = 0, mutexD = 1, mutexR = 1, vacioV = M, llenoV = 0, mutexRV = 1;
 Process Carpintero[id:1..4]
 {
 	while(true)
@@ -543,8 +543,8 @@ Process Carpintero[id:1..4]
 		// producir marco
 		P(vacioM)
 		P(mutexD)
-			buf[libre]=marco
-			libre=(libre+1) mod N
+			buf[libreM]=marco
+			libre=(libreM+1) mod N
 		V(mutexD)
 		V(llenoM)
 	}
@@ -572,7 +572,7 @@ Process Armador[id: 1..2]
 		P(llenoM)
 		P(mutexR)
 		unMarco = buf[ocupadoM]
-		ocupadoM = ocupadoM + 1) mod N
+		ocupadoM = (ocupadoM + 1) mod N
 		V(mutexR)
 		V(vacioM)
 		P(llenoV)
@@ -587,3 +587,4 @@ Process Armador[id: 1..2]
 ```
 
 Preguntar si está bien solicitar/liberar el semáforo mutexR dos veces.
+
