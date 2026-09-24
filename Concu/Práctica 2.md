@@ -686,9 +686,36 @@ Nota: todos los procesos deben terminar su ejecución; suponga que el empleado t
 ```
 int P=50
 sem espera=([P],0)
+sem liberado = ([P],0)
+cola C=(int)
+int esperando = 0
 
 Process Persona[id:1..P]
 {
-	
+	P(mutex)
+	push(C,id)
+	esperando++
+	if(esperando=5){V(despertar_empleado)}
+	V(mutex)
+	P(espera[id])
+	P(liberado[id])
+}
+Process Empleado
+{
+	int id, i, j
+	for i=1 to 10
+	{
+		P(despertar_empleado)
+		for j=1 to 5
+		{
+			pop(C,id)
+			V(espera[id])
+		}
+		P(mutex)
+		esperando = esperando - 5
+		V(mutex)
+		
+		
+	}
 }
 ```
