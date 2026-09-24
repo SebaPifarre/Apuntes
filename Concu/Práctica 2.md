@@ -627,6 +627,7 @@ Process Trigo[id:1..T]
 		nt++
 		V(mutexT)
 	}
+	
 	nt++ // si lo hago así, acá se podrían colar
 	// realiza descarga
 	P(mutexTotal)
