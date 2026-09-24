@@ -595,31 +595,33 @@ A una cerealera van T camiones a descargarse trigo y M camiones a descargar maí
 a) Implemente una solución que use un proceso extra que actúe como coordinador entre los camiones. El coordinador debe atender a los camiones según el orden de llegada. Además, debe retirarse cuando todos los camiones han descargado. 
 b) Implemente una solución que no use procesos adicionales (sólo camiones). No importa el orden de llegada para descargar. Nota: maximice la concurrencia.
 
+inciso a
 ```
-int nt,nm,dt,dm = 0
-sem mutexT, mutexM = 1
+
+```
+
+
+inciso b
+```
+sem total = 7, trigo = 5, maiz=5
 
 Process Trigo[id:1..T]
 {
-	P(mutexT)
-	if(nt = 5 || nt+nm = 7)
-	{
-		dt++
-		V(mutexT)
-		P(T)
-	}
-	else
-	{
-		V(mutexT)
-	}
-	P(mutexT)
-	nt++
-	V(mutexT)
-	// descargar
-	P(mutexT)
-	nt--
-	V(mutexT)
+	P(trigo)
+	P(total)
+	// realiza descarga
+	V(total)
+	V(trigo)
 	
+}
+
+Process Maiz[id:1..M]
+{
+	P(maiz)
+	P(total)
+	// realiza descarga
+	V(total)
+	V(maiz)
 }
 
 
