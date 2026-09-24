@@ -734,3 +734,14 @@ Simular la atención en una Terminal de Micros que posee 3 puestos para hisopar 
 a) Implemente una solución considerando los procesos Pasajeros, Enfermera y Recepcionista.
 b) Modifique la solución anterior para que sólo haya procesos Pasajeros y Enfermera, siendo los pasajeros quienes determinan por su cuenta qué puesto tiene menos personas esperando. Nota: suponga que existe una función Hisopar() que simula la atención del pasajero por parte de la enfermera correspondiente.
 
+inciso a
+
+```
+cola c1,c2,c3
+int cant1,cant2,cant3 = 0
+
+Process Recepcionista
+{
+	
+}
+```
