@@ -677,3 +677,18 @@ Process Maiz[id:1..M]
 
 
 ```
+
+## Ejercicio 11
+
+En un vacunatorio hay un empleado de salud para vacunar a 50 personas. El empleado de salud atiende a las personas de acuerdo con el orden de llegada y de a 5 personas a la vez. Es decir, que cuando está libre debe esperar a que haya al menos 5 personas esperando, luego vacuna a las 5 primeras personas, y al terminar las deja ir para esperar por otras 5. Cuando ha atendido a las 50 personas el empleado de salud se retira. 
+Nota: todos los procesos deben terminar su ejecución; suponga que el empleado tiene una función VacunarPersona() que simula que el empleado está vacunando a UNA persona.
+
+```
+int P=50
+sem espera=([P],0)
+
+Process Persona[id:1..P]
+{
+	
+}
+```
