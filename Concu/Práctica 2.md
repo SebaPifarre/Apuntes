@@ -761,6 +761,7 @@ Process Recepcionista
 		// cx va a ser la cola que le corresponde
 		P(semaforo_cx)
 		push(cx, id)
+		cantx++
 		V(semaforo_cx)
 		V(hayPersonaCola[cx])
 		
@@ -790,6 +791,10 @@ Process Enfermera[id:1..3]
 
 Process Persona[id:1..150]
 {
+	P(mutex)
+		push(cR,id)
+	V(mutex)
+	
 	V(hayPersonaRecepcion)
 	P(esperaAsignacion[id])
 	P(esperaEnCola[id])
