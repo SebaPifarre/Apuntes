@@ -738,9 +738,13 @@ inciso a
 
 ```
 cola c1,c2,c3,cR
-int cant1,cant2,cant3 = 0
-sem hayPersonaRecepcion = 0, hayPersonaCola1 = 0, hayPersonaCola2 = 0, hayPeronsaCola3=0
+int cant1,cant2,cant3 = 0, total=0
+sem hayPersonaRecepcion = 0
+sem hayPersonaCola[3] = ([3],0)
+
 sem esperaAsignacion[150] = ([150], 0)
+sem esperaEnCola[150] = ([150], 0)
+
 sem semaforo_c1=1, semaforo_c2=1, semaforo_c3=1
 
 Process Recepcionista
@@ -758,7 +762,7 @@ Process Recepcionista
 		P(semaforo_cx)
 		push(cx, id)
 		V(semaforo_cx)
-		
+		V(hayPersonaCola[cx])
 		
 		V(esperaAsignacion[id])
 	}
@@ -766,6 +770,28 @@ Process Recepcionista
 
 Process Enfermera[id:1..3]
 {
+	int id_persona
 	
+	while(total < 150)
+	{
+		P(hayPersonaCola[id])
+		P(semaforo_c1)
+		pop(c3, id_persona)
+		V(semaforo_c1)
+		V(esperaEnCola[id_persona])
+		P(mutexD)
+		total++
+		V(mutexD)
+		Hisopar()
+	}
+	
+	
+}
+
+Process Persona[id:1..150]
+{
+	V(hayPersonaRecepcion)
+	P(esperaAsignacion[id])
+	P(esperaEnCola[id])
 }
 ```
