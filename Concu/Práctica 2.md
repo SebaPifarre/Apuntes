@@ -597,7 +597,27 @@ b) Implemente una solución que no use procesos adicionales (sólo camiones). No
 
 inciso a
 ```
+int totalT = T, totalM = M
+sem esperaT[T]([T], 0)
 
+Process Coordinador
+{
+	while(totalT > 0 && totalM > 0)
+	{
+		P()
+	}
+}
+
+Process Trigo[id:1..T]
+{
+	P(mutexT)
+	if(nt = 5 || nt+nm = 7)
+	{
+		push(colaT,id)
+		V(mutexT)
+		P(esperaT[id])
+	}
+}
 ```
 
 
