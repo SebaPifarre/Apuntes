@@ -596,5 +596,8 @@ a) Implemente una solución que use un proceso extra que actúe como coordinador
 b) Implemente una solución que no use procesos adicionales (sólo camiones). No importa el orden de llegada para descargar. Nota: maximice la concurrencia.
 
 ```
+int nt,nm = 0
+sem bufT [T] = ([T],0)
+sem bufM [M] = ([M],0)
 
 ```
