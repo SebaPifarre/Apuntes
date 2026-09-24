@@ -784,7 +784,7 @@ Process Enfermera[id:1..3]
 		P(mutexD)
 		total++
 		V(mutexD)
-		Hisopar()
+		Hisopar() 
 	}
 	
 	
