@@ -610,5 +610,28 @@ Process Coordinador
 	}
 }
 
+Process Trigo[id:1..T]
+{
+	P(mutexT)
+	if(nt = 5 || nt+nm = 7)
+	{
+		push(T,id)
+		V(mutexT)
+		P(bufT[id])
+	}
+	else
+	{
+		V(mutexT)
+	}
+	P(mutexT)
+	nt++
+	V(mutexT)
+	// descargar
+	P(mutexT)
+	nt--
+	V(mutexT)
+	
+}
+
 
 ```
