@@ -737,11 +737,23 @@ b) Modifique la solución anterior para que sólo haya procesos Pasajeros y Enfe
 inciso a
 
 ```
-cola c1,c2,c3
+cola c1,c2,c3,cR
 int cant1,cant2,cant3 = 0
+sem hayPersona = 0
+sem esperaAsignacion[150] = ([150], 0)
 
 Process Recepcionista
 {
-	
+	int id
+	for i = 1 to 150
+	{
+		P(hayPersona)
+		P(mutex)
+		pop(cR,id)
+		V(mutex)
+		// obtener cantMenor
+		push(cMenor, id)
+		
+	}
 }
 ```
