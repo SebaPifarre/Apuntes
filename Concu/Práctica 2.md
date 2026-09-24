@@ -599,5 +599,16 @@ b) Implemente una solución que no use procesos adicionales (sólo camiones). No
 int nt,nm = 0
 sem bufT [T] = ([T],0)
 sem bufM [M] = ([M],0)
+cola T,M
+sem llego
+Process Coordinador
+{
+	for i=1 to M+T
+	{
+		P(llego)
+		
+	}
+}
+
 
 ```
