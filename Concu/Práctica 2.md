@@ -627,7 +627,12 @@ Process Trigo[id:1..T]
 		nt++
 		V(mutexT)
 	}
-	
+	nt++ // si lo hago así, acá se podrían colar
+	// realiza descarga
+	P(mutexTotal)
+	totalT++
+	V(mutexTotal)
+	V(evento)
 }
 
 Process Coordinador
@@ -635,8 +640,13 @@ Process Coordinador
 	while (totalT > 0 && totalM > 0)
 	{
 		P(evento)
-		if (nt<5){pop(colaT, id); V(espera[id])}
-		else if(nm<5) {pop(colaM, id)}
+		P(mutexT)
+		P(mutexM)
+		if (nt<5){pop(colaT, id); V(esperaT[id])}
+		else if(nm<5) {pop(colaM, id); V(esperaM[id])}
+		V(mutexM)
+		V(mutexT)
+		P(mutexTotal)
 	}
 }
 ```
