@@ -739,21 +739,33 @@ inciso a
 ```
 cola c1,c2,c3,cR
 int cant1,cant2,cant3 = 0
-sem hayPersona = 0
+sem hayPersonaRecepcion = 0, hayPersonaCola1 = 0, hayPersonaCola2 = 0, hayPeronsaCola3=0
 sem esperaAsignacion[150] = ([150], 0)
+sem semaforo_c1=1, semaforo_c2=1, semaforo_c3=1
 
 Process Recepcionista
 {
 	int id
 	for i = 1 to 150
 	{
-		P(hayPersona)
+		P(hayPersonaRecepcion)
 		P(mutex)
 		pop(cR,id)
 		V(mutex)
 		// obtener cantMenor
-		push(cMenor, id)
 		
+		// cx va a ser la cola que le corresponde
+		P(semaforo_cx)
+		push(cx, id)
+		V(semaforo_cx)
+		
+		
+		V(esperaAsignacion[id])
 	}
+}
+
+Process Enfermera[id:1..3]
+{
+	
 }
 ```
