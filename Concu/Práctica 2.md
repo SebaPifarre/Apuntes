@@ -596,27 +596,17 @@ a) Implemente una solución que use un proceso extra que actúe como coordinador
 b) Implemente una solución que no use procesos adicionales (sólo camiones). No importa el orden de llegada para descargar. Nota: maximice la concurrencia.
 
 ```
-int nt,nm,dt, = 0
-sem bufT [T] = ([T],0)
-sem bufM [M] = ([M],0)
-sem llego
-Process Coordinador
-{
-	for i=1 to M+T
-	{
-		P(llego)
-		
-	}
-}
+int nt,nm,dt,dm = 0
+sem mutexT, mutexM = 1
 
 Process Trigo[id:1..T]
 {
 	P(mutexT)
 	if(nt = 5 || nt+nm = 7)
 	{
-		push(T,id)
+		dt++
 		V(mutexT)
-		P(bufT[id])
+		P(T)
 	}
 	else
 	{
