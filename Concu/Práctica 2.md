@@ -596,9 +596,14 @@ a) Implemente una solución que use un proceso extra que actúe como coordinador
 b) Implemente una solución que no use procesos adicionales (sólo camiones). No importa el orden de llegada para descargar. Nota: maximice la concurrencia.
 
 inciso a
+<mark style="background: #FFB86CA6;">Preguntar</mark> por enunciado, si tengo que atender a un trigo pero hay 5 trigos ocupados y llega un maiz. No deberia dejarlo pasar?
+También preguntar si está mal encolar cuando hay espacio disponible
+
 ```
 int totalT = T, totalM = M
 sem esperaT[T]([T], 0)
+sem esperaM[M]([M], 0)
+sem mutexT = 0, mutexM = 0,
 
 Process Coordinador
 {
@@ -617,6 +622,12 @@ Process Trigo[id:1..T]
 		V(mutexT)
 		P(esperaT[id])
 	}
+	else
+	{
+		nt++
+		V(mutexT)
+	}
+	
 }
 ```
 
