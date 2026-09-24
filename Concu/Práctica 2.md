@@ -695,7 +695,7 @@ Process Persona[id:1..P]
 	P(mutex)
 	push(C,id)
 	esperando++
-	if(esperando=5){V(despertar_empleado)}
+	if(esperando=5){esperando=0; V(despertar_empleado)}
 	V(mutex)
 	P(espera[id])
 	P(liberado[id])
@@ -704,18 +704,32 @@ Process Empleado
 {
 	int id, i, j
 	for i=1 to 10
+	int actuales[5]
 	{
 		P(despertar_empleado)
 		for j=1 to 5
 		{
+			P(mutex)
 			pop(C,id)
+			V(mutex)
 			V(espera[id])
+			actuales[j]=id
 		}
-		P(mutex)
-		esperando = esperando - 5
-		V(mutex)
 		
+		for j=1 to 5
+		{
+			// aplica vacuna
+			V(liberado[actuales[j]])
+		}
 		
 	}
 }
 ```
+
+<mark style="background: #FFB86CA6;">Consulta</mark>
+
+## Ejercicio 12
+
+.Simular la atención en una Terminal de Micros que posee 3 puestos para hisopar a 150 pasajeros. En cada puesto hay una Enfermera que atiende a los pasajeros de acuerdo con el orden de llegada al mismo. Cuando llega un pasajero, se dirige al Recepcionista, quien le indica qué puesto es el que tiene menos gente esperando. Luego se dirige al puesto y espera a que la enfermera correspondiente lo llame para hisoparlo. Finalmente, se retira. 
+a) Implemente una solución considerando los procesos Pasajeros, Enfermera y Recepcionista.
+b) Modifique la solución anterior para que sólo haya procesos Pasajeros y Enfermera, siendo los pasajeros quienes determinan por su cuenta qué puesto tiene menos personas esperando. Nota: suponga que existe una función Hisopar() que simula la atención del pasajero por parte de la enfermera correspondiente.
