@@ -7,7 +7,10 @@
 	* Menú 
 3) Administración de pacientes
 4) Cirugías
-	* Mostrar calendario
+	1) Cirujano
+		* Mostrar calendario
+		* Reservar quirofano
+	2) 
 5) Reserva de quirófano
 6) Sistemas de consultas
 7) EPICRISIS
