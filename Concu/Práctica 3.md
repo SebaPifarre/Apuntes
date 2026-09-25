@@ -10,12 +10,37 @@ b)
 Monitor Puente
 {
 	cond cola
-	int cant=0
+	int esperando=0
 	bool ocupado = false
 	
 	Procedure entrarPuente()
 	{
-		if (not ocupado){}
+		if (ocupado){cant++; wait(cola)}
+		else {ocupado = true}
+	}
+	
+	Procedure salirPuente()
+	{
+		if(cant>0) {cant--; signal(cola)}
+		else {ocupado=false}
 	}
 }
+
+Process Auto[id:1..N]
+{
+	Puente.entrarPuente()
+	cruzando()
+	Puente.salirPuente()
+}
 ```
+
+¿Sin monitor?
+	Entiendo que no, porque un auto no podría comunicarle a otro auto que ya terminó de cruzar. Si o si se necesita un monitor para el envío de mensajes.
+¿Menos Procedimientos?
+	No se me ocurre, medio que necesitas los dos del monitor. Uno para que un auto avise que llegó y otro para que avise que terminó.
+¿Sin variable condición?
+	No porque la necesitas para mantener el orden de llegada.
+
+c)
+La primera solución directamente no funciona.
+La que implemente en el punto b mantiene el orden de llegada al hacer uso de la variable condición.
