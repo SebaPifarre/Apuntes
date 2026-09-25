@@ -10,6 +10,7 @@
 		* Mostrar calendario
 		* Reservar quirofano
 		* Ver historial clínico
+		* Seguimiento (tanto cirujano como residentes)
 	2) Admin
 		* Menú de opciones
 			* Asignar especialidad quirofano
@@ -18,5 +19,5 @@
 			* Ver el calendario
 5) Reserva de quirófano
 6) Sistemas de consultas
-7) EPICRISIS
+7) EPICRISIS (una pantalla)
 8) Bot de Telegram
