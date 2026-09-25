@@ -1,6 +1,5 @@
 
 1) Registración de usuarios
-	* Registrarse
 	* Log in
 	* Recuperar contraseña
 2) Administración de entidades básicas
@@ -10,7 +9,13 @@
 	1) Cirujano
 		* Mostrar calendario
 		* Reservar quirofano
-	2) 
+		* Ver historial clínico
+	2) Admin
+		* Menú de opciones
+			* Asignar especialidad quirofano
+			* Dar de alta
+			* Asignar roles
+			* Ver el calendario
 5) Reserva de quirófano
 6) Sistemas de consultas
 7) EPICRISIS
