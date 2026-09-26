@@ -15,13 +15,13 @@ Monitor Puente
 	
 	Procedure entrarPuente()
 	{
-		if (ocupado){cant++; wait(cola)}
+		if (ocupado){esperando++; wait(cola)}
 		else {ocupado = true}
 	}
 	
 	Procedure salirPuente()
 	{
-		if(cant>0) {cant--; signal(cola)}
+		if(cant>0) {esperando--; signal(cola)}
 		else {ocupado=false}
 	}
 }
