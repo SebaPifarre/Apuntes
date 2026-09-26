@@ -1,9 +1,9 @@
+## Ejercicio 1
 
 ![[concu 3-1.png]]
 
 a)
-Solo funciona si no hay nunca ningún auto esperando
-Si hay gente en la cola, como cada vez que se despierta a un auto se vuelve a checkear la cantidad, como esa cantidad siempre va a ser mayor que 0 se vuelve a dormir y se traba el programa.
+Funciona pero no respeta el orden de llegada. Cuando se ejecuta el signal se sigue el protocolo signal and continue, por lo que un nuevo auto puede llega, confirmar que cant no es mayor que 0 y hacer uso del puente, dejando al auto anterior esperando.
 
 b)
 ```
@@ -35,12 +35,33 @@ Process Auto[id:1..N]
 ```
 
 ¿Sin monitor?
-	Entiendo que no, porque un auto no podría comunicarle a otro auto que ya terminó de cruzar. Si o si se necesita un monitor para el envío de mensajes.
+	Entiendo que no, porque un auto no podría comunicarle a otro auto que ya terminó de cruzar. Si o si se necesita un monitor para el envío de mensajes. (Con semáforos se puede pero la idea es no usarlos en esta práctica)
 ¿Menos Procedimientos?
 	No se me ocurre, medio que necesitas los dos del monitor. Uno para que un auto avise que llegó y otro para que avise que terminó.
 ¿Sin variable condición?
 	No porque la necesitas para mantener el orden de llegada.
 
 c)
-La primera solución directamente no funciona.
+La primera solución no respeta el orden.
 La que implemente en el punto b mantiene el orden de llegada al hacer uso de la variable condición.
+
+## Ejercicio 2
+
+Existen N procesos que deben leer información de una base de datos administrada por un
+motor que admite un número limitado de consultas simultáneas.
+a) Analice el problema y defina qué procesos, recursos y monitores/sincronizaciones
+serán necesarios/convenientes para resolverlo.
+b) Implemente el acceso a la base de datos por parte de los procesos, sabiendo que el
+motor de la base de datos puede atender a lo sumo 5 consultas de lectura simultáneas.
+
+```
+Monitor DB
+{
+
+}
+
+Process Proceso[id:1..5]
+{
+	
+}
+```
