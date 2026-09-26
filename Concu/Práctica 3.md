@@ -57,11 +57,47 @@ motor de la base de datos puede atender a lo sumo 5 consultas de lectura simult�
 ```
 Monitor DB
 {
+	int cant = 5
+	cond cola
 
+	Procedure pedirAcceso()
+	{
+		while(cant==0){wait(cola)}
+		cant--
+	}
+	
+	Procedure salir()
+	{
+		cant++
+		signal(cola)
+	}
 }
 
-Process Proceso[id:1..5]
+Process Proceso[id:1..N]
 {
-	
+	DB.pedirAcceso()
+	hacerConsulta()
+	DB.salir()
 }
 ```
+
+## Ejercicio 3
+
+Existen N personas que deben fotocopiar un documento. La fotocopiadora sólo puede ser
+usada por una persona a la vez. Analice el problema y defina qué procesos, recursos y
+monitores serán necesarios/convenientes, además de las posibles sincronizaciones requeridas
+para resolver el problema. Luego, resuelva considerando las siguientes situaciones:
+a) Implemente una solución suponiendo que no importa el orden de uso. Existe una función
+Fotocopiar() que simula el uso de la fotocopiadora.
+b) Modifique la solución de (a) para el caso en que se deba respetar el orden de llegada.
+c) Modifique la solución de (b) para el caso en que se deba dar prioridad de acuerdo con la
+edad de cada persona (cuando la fotocopiadora está libre, la debe usar la persona de mayor
+edad entre las que estén esperando para usarla).
+d) Modifique la solución de (a) para el caso en que se deba respetar estrictamente el orden
+dado por el identificador del proceso (la persona X no puede usar la fotocopiadora hasta
+que no haya terminado de usarla la persona X-1).
+e) Modifique la solución de (b) para el caso en que además haya un Empleado que le indica
+a cada persona cuándo debe usar la fotocopiadora.
+f) Modificar la solución (e) para el caso en que sean 10 fotocopiadoras. El empleado le indica
+a la persona qué fotocopiadora usar y cuándo hacerlo.
+
