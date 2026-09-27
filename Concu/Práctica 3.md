@@ -220,13 +220,25 @@ Process Persona[id:1..N]
 	Fotocopiadora.finalizar()
 }
 
-Process Empleado
+Monitor Empleado
 {
-	int id
+	cond esperando
+	bool libre
 	
+	Procedure sig()
+	{
+		if(not libre)
+	}
+}
+
+Process Fotocopiadora
+{
+	text res
 	while(true)
 	{
-		Fotocopiadora.sig(id)
+		Empleado.sig()
+		Fotocopiar()
 	}
 }
 ```
+
