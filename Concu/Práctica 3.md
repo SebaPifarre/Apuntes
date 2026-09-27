@@ -213,50 +213,37 @@ Process Persona[id:1..N]
 e)
 
 ```
-Process Persona[id:1..N]
+Process Persona
 {
 	Fotocopiadora.iniciar()
 	Fotocopiar()
 	Fotocopiadora.finalizar()
 }
 
-Monitor Empleado
+Process Empleado
 {
-	cola C
-	cond esperan
-	cond hayPersona
-	text res
-	
-	Procedure sig(int out:id)
+	for int i=1 to N do
+		Fotocopiadora.siguiente()
+}
+
+Monitor Fotocopiadora
+{
+	int esperando = 0
+	cond cola, hayPersona, termino
+
+	Procedure iniciar()
 	{
-		if(empty(C)){wait(hayPersona)}
-		pop(C,id)
-	}
-	
-	Procedure pedido(int in:id,text out:copia)
-	{
-		push(C,id)
+		esperando++
 		signal(hayPersona)
-		wait(espera)
-		copiar(res)
+		wait(cola)
 	}
 	
-	Procedure Entregar(text in:resultado)
+	Procedure siguiente()
 	{
+		if(esperando == 0){wait(hayPersona)}
 		
 	}
 }
-
-Process Fotocopiadora
-{
-	text res
-	int id
-	while(true)
-	{
-		Empleado.sig(id)
-		Fotocopiar()
-		Empleado.Entregar(res)
-	}
-}
 ```
+
 
