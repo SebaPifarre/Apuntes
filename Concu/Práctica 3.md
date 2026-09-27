@@ -188,12 +188,24 @@ d)
 Monitor Fotocopiadora
 {
 	int idActual = 1
-	int cant_esperando = 0
 	cond esperando[N]
 	
 	Procedure iniciar(in id)
 	{
-		if(id <> idActual){cant_esperando++; wait(esperando[id])}
+		if(id <> idActual){wait(esperando[id])}
 	}
+	
+	Procedure finalizar()
+	{
+		idActual++
+		signal(esperando[idActual])
+	}
+}
+
+Process Persona[id:1..N]
+{
+	Fotocopiadora.iniciar(id)
+	Fotocopiar()
+	Fotocopiadora.finalizar()
 }
 ```
