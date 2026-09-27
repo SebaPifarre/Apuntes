@@ -222,22 +222,40 @@ Process Persona[id:1..N]
 
 Monitor Empleado
 {
-	cond esperando
-	bool libre
+	cola C
+	cond esperan
+	cond hayPersona
+	text res
 	
-	Procedure sig()
+	Procedure sig(int out:id)
 	{
-		if(not libre)
+		if(empty(C)){wait(hayPersona)}
+		pop(C,id)
+	}
+	
+	Procedure pedido(int in:id,text out:copia)
+	{
+		push(C,id)
+		signal(hayPersona)
+		wait(espera)
+		copiar(res)
+	}
+	
+	Procedure Entregar(text in:resultado)
+	{
+		
 	}
 }
 
 Process Fotocopiadora
 {
 	text res
+	int id
 	while(true)
 	{
-		Empleado.sig()
+		Empleado.sig(id)
 		Fotocopiar()
+		Empleado.Entregar(res)
 	}
 }
 ```
