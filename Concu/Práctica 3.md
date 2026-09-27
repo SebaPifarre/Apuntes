@@ -283,7 +283,6 @@ Monitor Fotocopiadora
 {
 	cola C, F
 	cond esperaC, hayPersona, termino, liberada
-	int libres == 10
 	int[N] asignacion
 
 	Procedure iniciar(int in:id, int out:idF)
