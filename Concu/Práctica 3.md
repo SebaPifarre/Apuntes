@@ -223,14 +223,16 @@ Process Persona
 
 Process Empleado
 {
+	int id
 	for int i=1 to N do
-		Fotocopiadora.siguiente()
+		Fotocopiadora.siguiente(id)
 }
 
 Monitor Fotocopiadora
 {
 	int esperando = 0
 	int flibres = 10
+	int asignacion[N]
 	cola fotocopiadora
 	cond cola, hayPersona, termino
 
@@ -243,8 +245,12 @@ Monitor Fotocopiadora
 	
 	Procedure siguiente()
 	{
+		if(libres == 0){wait(disponible)}
 		if(esperando == 0){wait(hayPersona)}
 		esperando--
+		libres--
+		pop(C,id)
+		asignacion[]
 		signal(cola)
 		wait(termino)
 	}
