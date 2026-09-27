@@ -213,5 +213,20 @@ Process Persona[id:1..N]
 e)
 
 ```
+Process Persona[id:1..N]
+{
+	Fotocopiadora.iniciar()
+	Fotocopiar()
+	Fotocopiadora.finalizar()
+}
 
+Process Empleado
+{
+	int id
+	
+	while(true)
+	{
+		Fotocopiadora.sig(id)
+	}
+}
 ```
