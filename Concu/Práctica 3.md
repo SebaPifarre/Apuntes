@@ -215,6 +215,52 @@ e)
 ```
 Process Persona
 {
+	int id
+	Fotocopiadora.iniciar(id)
+	Fotocopiar()
+	Fotocopiadora.finalizar(id)
+}
+
+Process Empleado
+{
+	for int i=1 to N do
+		Fotocopiadora.siguiente()
+}
+
+Monitor Fotocopiadora
+{
+	int esperando = 0
+	int flibres = 10
+	cola fotocopiadora
+	cond cola, hayPersona, termino
+
+	Procedure iniciar(int out:id)
+	{
+		esperando++
+		signal(hayPersona)
+		wait(cola)
+	}
+	
+	Procedure siguiente()
+	{
+		if(esperando == 0){wait(hayPersona)}
+		esperando--
+		signal(cola)
+		wait(termino)
+	}
+	
+	Procedure finalizar()
+	{
+		signal(termino)
+	}
+}
+```
+
+f)
+
+```
+Process Persona
+{
 	Fotocopiadora.iniciar()
 	Fotocopiar()
 	Fotocopiadora.finalizar()
@@ -241,7 +287,14 @@ Monitor Fotocopiadora
 	Procedure siguiente()
 	{
 		if(esperando == 0){wait(hayPersona)}
-		
+		esperando--
+		signal(cola)
+		wait(termino)
+	}
+	
+	Procedure finalizar()
+	{
+		signal(termino)
 	}
 }
 ```
