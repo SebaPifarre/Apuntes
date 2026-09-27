@@ -156,18 +156,21 @@ c)
 Monitor Fotocopiadora
 {
 	colaCondicional cola;
+	int cant_esperando = 0;
 	cond[N] esperando;
 	bool libre = true;
 	
-	Procedure iniciar(in id)
+	Procedure iniciar(in id, edad)
 	{
-		if(not libre){push(cola, id), wait(cond[id])}
+		if(not libre){push(cola, id, edad), cant_esperando++; wait(cond[id])}
 		else {libre = false}
 	}
 	
 	Procedure finalizar()
 	{
-		
+		int id;
+		if(esperando>0){cant_esperando--; pop(cola, id); signal(esperando[id])}
+		else{libre=true}
 	}
 }
 
@@ -177,5 +180,20 @@ Process Persona[id:1..N]
 	Fotocopiadora.iniciar(id, edad)
 	Fotocopiar()
 	Fotocopiadora.finalizar()
+}
+```
+
+d)
+```
+Monitor Fotocopiadora
+{
+	int idActual = 1
+	int cant_esperando = 0
+	cond esperando[N]
+	
+	Procedure iniciar(in id)
+	{
+		if(id <> idActual){cant_esperando++; wait(esperando[id])}
+	}
 }
 ```
