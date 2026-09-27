@@ -281,7 +281,7 @@ Process Empleado
 
 Monitor Fotocopiadora
 {
-	cola C
+	cola C, F
 	cond esperaC, hayPersona, termino, liberada
 	int libres == 10
 	int[N] asignacion
@@ -296,15 +296,20 @@ Monitor Fotocopiadora
 	
 	Procedure siguiente()
 	{
-		if(libres==0){wait(liberada)}
+		int id,idF
+		
+		if(empty(F)){wait(liberada)}
 		if(empty(C)){wait(hayPersona)}
-		signal(cola)
-		wait(termino)
+		libres--
+		pop(C,id)
+		pop(F, idF)
+		asignacion[id]=idF
+		signal(esperaC)
 	}
 	
-	Procedure finalizar()
+	Procedure finalizar(int in:idF)
 	{
-		signal(termino)
+		push(F,idF)
 	}
 }
 ```
