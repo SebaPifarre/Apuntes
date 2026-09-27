@@ -265,11 +265,12 @@ Monitor Fotocopiadora
 f)
 
 ```
-Process Persona
+Process Persona[id:1..N]
 {
-	Fotocopiadora.iniciar()
-	Fotocopiar()
-	Fotocopiadora.finalizar()
+	int idF
+	Fotocopiadora.iniciar(id, idF)
+	Fotocopiar(idF)
+	Fotocopiadora.finalizar(idF)
 }
 
 Process Empleado
@@ -280,14 +281,15 @@ Process Empleado
 
 Monitor Fotocopiadora
 {
-	int esperando = 0
-	cond cola, hayPersona, termino
+	cola C
+	cond esperaC, hayPersona, termino
 
-	Procedure iniciar()
+	Procedure iniciar(int in:id, int out:idF)
 	{
-		esperando++
+		push(C, id)
 		signal(hayPersona)
-		wait(cola)
+		wait(esperaC)
+		idF = fotocopiadoras[id]
 	}
 	
 	Procedure siguiente()
