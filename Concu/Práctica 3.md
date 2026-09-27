@@ -127,7 +127,7 @@ Monitor Fotocopiadora
 	
 	Procedure iniciar()
 	{
-		if(not libre){esperando++;await(cola); esperando--}
+		if(not libre){esperando++;await(cola);}
 		else {libre = false}
 		
 	}
@@ -137,8 +137,9 @@ Monitor Fotocopiadora
 		if(esperando>0)
 		{
 			signal(cola);
-			
+			esperando--
 		}
+		else{libre=true}
 	}
 }
 
@@ -146,6 +147,35 @@ Process Persona[id:1..N]
 {
 	Fotocopiadora.iniciar()
 	// hace uso de la fotocopiadora
+	Fotocopiadora.finalizar()
+}
+```
+
+c)
+```
+Monitor Fotocopiadora
+{
+	colaCondicional cola;
+	cond[N] esperando;
+	bool libre = true;
+	
+	Procedure iniciar(in id)
+	{
+		if(not libre){push(cola, id), wait(cond[id])}
+		else {libre = false}
+	}
+	
+	Procedure finalizar()
+	{
+		
+	}
+}
+
+Process Persona[id:1..N]
+{
+	int edad
+	Fotocopiadora.iniciar(id, edad)
+	Fotocopiar()
 	Fotocopiadora.finalizar()
 }
 ```
