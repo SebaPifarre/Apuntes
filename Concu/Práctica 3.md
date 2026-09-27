@@ -128,7 +128,7 @@ Monitor Fotocopiadora
 	Procedure iniciar()
 	{
 		if(not libre){esperando++;await(cola); esperando--}
-		libre = false
+		else {libre = false}
 		
 	}
 	
@@ -137,6 +137,7 @@ Monitor Fotocopiadora
 		if(esperando>0)
 		{
 			signal(cola);
+			
 		}
 	}
 }
