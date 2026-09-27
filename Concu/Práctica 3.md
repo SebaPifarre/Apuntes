@@ -101,3 +101,50 @@ a cada persona cuándo debe usar la fotocopiadora.
 f) Modificar la solución (e) para el caso en que sean 10 fotocopiadoras. El empleado le indica
 a la persona qué fotocopiadora usar y cuándo hacerlo.
 
+a)
+```
+Monitor Fotocopiadora
+{
+	Procedure usar()
+	{
+		// hace uso de la fotocopiadora
+	}
+}
+
+Process Persona[id:1..N]
+{
+	Fotocopiadora.usar();
+}
+```
+
+b)
+```
+Monitor Fotocopiadora
+{
+	cond cola
+	int esperando=0
+	bool libre = true
+	
+	Procedure iniciar()
+	{
+		if(not libre){esperando++;await(cola); esperando--}
+		libre = false
+		
+	}
+	
+	Process finalizar()
+	{
+		if(esperando>0)
+		{
+			signal(cola);
+		}
+	}
+}
+
+Process Persona[id:1..N]
+{
+	Fotocopiadora.iniciar()
+	// hace uso de la fotocopiadora
+	Fotocopiadora.finalizar()
+}
+```
