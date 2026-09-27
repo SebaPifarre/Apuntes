@@ -300,7 +300,6 @@ Monitor Fotocopiadora
 		
 		if(empty(F)){wait(liberada)}
 		if(empty(C)){wait(hayPersona)}
-		libres--
 		pop(C,id)
 		pop(F, idF)
 		asignacion[id]=idF
@@ -310,6 +309,7 @@ Monitor Fotocopiadora
 	Procedure finalizar(int in:idF)
 	{
 		push(F,idF)
+		signal(liberada)
 	}
 }
 ```
