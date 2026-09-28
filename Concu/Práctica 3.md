@@ -438,10 +438,14 @@ Process Cliente[id:1..N]
 
 Process Empleado[idE:1..E]
 {
+	text lista,comprobante
 	
 	while(true)
 	{
 		Corralon.siguiente(idE)
+		Puesto[idE].esperarLista(lista)
+		comprobante = armarComprobante()
+		Puesto[idE].enviarComprobante(comprobante)
 	}
 }
 
@@ -461,8 +465,14 @@ Monitor Corralon
 	
 	Procedure siguiente(idE:in int)
 	{
-		if(e)
+		int id
+		
+		while(empty(C)){wait(hayCliente)}
+		pop(C,id)
+		puestos[id]=idE
 	}
 }
+
+Monitor Puesto[1..E]
 ```
 
