@@ -342,7 +342,7 @@ Monitor Puente
 		{
 			pop(id, peso)
 			if(pesoActual-peso < 0){top(C,id,peso); break}
-			else {pesoActual=pesoActual + peso; signal[id];}
+			else {pesoActual=pesoActual - peso; signal[id];}
 		}
 	}
 }
