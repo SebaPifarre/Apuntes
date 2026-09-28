@@ -644,12 +644,13 @@ Monitor Tarea[id:1..25]
 {
 	int cant = 0
 	cond espera
+	int P
 	
 	Process entregar(puntaje:out int)
 	{
-		if(cant==1){signal(espera)}
-		else(wait(espera))
-		Aula.finTarea(puntaje)
+		if(cant==1){Aula.finTarea(P); signal(espera)}
+		else(cant++; wait(espera))
+		puntaje=P
 	}
 }
 ```
