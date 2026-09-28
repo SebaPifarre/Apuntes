@@ -392,6 +392,7 @@ Monitor Corralon
 	{
 		if(empty(C)){wait(hayCliente)}
 		pop(C, id, lista)
+		
 	}
 	
 	Procedure pedido(int in:id; out text:R; in text:lista)
@@ -469,7 +470,100 @@ Monitor Corralon
 		
 		while(empty(C)){wait(hayCliente)}
 		pop(C,id)
+		signal(espera[id])
 		puestos[id]=idE
+	}
+}
+
+Monitor Puesto[id:1..E]
+{
+	cond vcEmpleado, vcCliente
+	text datos, resultado	
+	
+	Procedure pedido(lista:in text; comprobante:out text)
+	{
+		datos = lista
+		llego = true
+		signal(vcEmpleado)
+		wait(vcCliente)
+		comprobante = resultado
+		signal(vcEmleado)
+	}
+	Procedure esperarLista(lista:out text)
+	{
+		if(not llego){wait(vcEmpleado)}
+		lista = datos
+	}
+	Procedure enviarComprobante(com:in text)
+	{
+		resultado = com
+		signal(vcCliente)
+		wait(vcEmpleado)
+		llego = false
+	}
+}
+```
+
+c)
+
+```
+Process Cliente[id:1..N]
+{
+	text lista, comprobante
+	int idE
+	
+	Corralon.llegada(id,idE)
+	Puesto[idE].pedido(lista, comprobante)
+}
+
+Process Empleado[idE:1..E]
+{
+	text lista,comprobante
+	seguir = true
+	
+	while(seguir)
+	{
+		Corralon.siguiente(idE)
+		Puesto[idE].esperarLista(lista)
+		comprobante = armarComprobante()
+		Puesto[idE].enviarComprobante(comprobante)
+		Corralon.comprobar(seguir)
+	}
+}
+
+Monitor Corralon
+{
+	cola C
+	cond espera[N]
+	int puestos[N]
+	int total = 0
+
+	Procedure llegada(id:in int; idE:out int)
+	{
+		push(C, id)
+		signal(hayCliente)
+		wait(espera[id])
+		idE = puestos[id]
+	}
+	
+	Procedure siguiente(idE:in int;seguir:out boolean)
+	{
+		int id
+		
+		while(empty(C) && total<N){wait(hayCliente)}
+		if(total == N){seguir = false}
+		else
+		{
+			pop(C,id)
+			puestos[id]=idE
+			total++
+		}
+	}
+	
+	Procedure comprobar(seguir:out boolean)
+	{
+		if(total == N){seguir=false}
+		else{seguir=true}
 	}
 }
 
