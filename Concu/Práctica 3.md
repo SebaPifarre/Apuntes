@@ -615,8 +615,41 @@ Process Alumno[id:1..50]
 	int idT
 	
 	Aula.iniciar(idT)
-	Tarea[idT].comenzar()
+	resuleve()
+	Tarea[idT].entregar()
 }
 
 Monitor Aula
+{
+	int cant=0	
+	cond espera
+	int puntuaje_actual = 25
+	
+	Procedure iniciar(idT:out int)
+	{
+		cant++
+		if(cant == 50){signal_all(espera)}
+		else {wait(espera)}
+		idT = AsignarNroGrupo()
+	}
+	
+	Procedure finTarea(puntaje:out int)
+	{
+		puntaje = puntaje_actual
+		puntaje_actual--
+	}
+}
+
+Monitor Tarea[id:1..25]
+{
+	int cant = 0
+	cond espera
+	
+	Process entregar(puntaje:out int)
+	{
+		if(cant==1){signal(espera)}
+		else(wait(espera))
+		Aula.finTarea(puntaje)
+	}
+}
 ```
