@@ -612,47 +612,47 @@ Nota: el JTP no guarda el número de grupo que le asigna a cada alumno.
 ```
 Process Alumno[id:1..50]
 {
-	int idT
+	int idT, puntaje
 	
 	Aula.iniciar(idT, id)
 	resuleve()
-	Tarea[idT].entregar()
+	Tarea.entregar(idT, puntaje)
 }
 
 Process JTP
 {
 	Aula.comenzarTarea()
 	Aula.asignar()
+	for int i = 1 to 25
+		Tarea.siguiente()
 }
 
 Monitor Aula
 {
 	int cant=0	
-	cond espera
-	cond idGrupo[50]
+	cond espera,todos
+	int idGrupo[50]
 	
 	Procedure iniciar(idT:out int; id:in int)
 	{
 		cant++
 		if(cant == 50){signal(todos)}
 		wait(espera)
-		wait(idGrupo[id])
 		idT = idGrupo[id]
 	}
 	
 	Procedure comenzarTarea()
 	{
 		if(cant<50){wait(todos)}
-		signal_all(espera)
 	}
 	
 	Procedure asignar(idG:in int)
 	{
 		for i=1 to 50
 		{
-			idGrupo[i]=AsignarNroGrupo
-			singal(idgrupo[i])
+			idGrupo[i]=AsignarNroGrupo()
 		}
+		signal_all(espera)
 	}
 }
 
@@ -661,20 +661,30 @@ Monitor Tarea
 	int entregas[25]=([25], 0)
 	cond espera[25]	
 	cond entrega
+	int puntaje[25]
 	cola C
+	puntaje_actual = 25
 	
-	Process entregar(idG:in int)
+	Process entregar(idG:in int; R:out int)
 	{
 		entregas[idG]++
-		if(entregas[idG]==1){wait(espera[idG])}
-		else{push(C,idG); signal(espera[idG])}
+		if(entregas[idG]==2)
+		{
+			push(C,idG);
+			signal(entrega)
+		}
 		wait(espera[idG])
-		
+		R = puntaje[idG]
 	}
 	
 	Process siguiente()
 	{
+		int id
+		
 		if(empty(C)){wait(entrega)}
+		pop(C, id)
+		puntaje[id] = puntaje_actual--
+		signal_all(espera[id])
 	}
 }
 ```
