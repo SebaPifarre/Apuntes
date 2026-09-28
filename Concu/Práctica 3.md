@@ -622,7 +622,6 @@ Process Alumno[id:1..50]
 Process JTP
 {
 	Aula.comenzarTarea()
-	Aula.asignar()
 	for int i = 1 to 25
 		Tarea.siguiente()
 }
@@ -644,10 +643,7 @@ Monitor Aula
 	Procedure comenzarTarea()
 	{
 		if(cant<50){wait(todos)}
-	}
-	
-	Procedure asignar(idG:in int)
-	{
+		
 		for i=1 to 50
 		{
 			idGrupo[i]=AsignarNroGrupo()
