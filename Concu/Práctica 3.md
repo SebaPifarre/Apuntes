@@ -649,22 +649,32 @@ Monitor Aula
 	Procedure asignar(idG:in int)
 	{
 		for i=1 to 50
+		{
 			idGrupo[i]=AsignarNroGrupo
 			singal(idgrupo[i])
+		}
 	}
 }
 
-Monitor Tarea[id:1..25]
+Monitor Tarea
 {
-	int cant = 0
-	cond espera
-	int P
+	int entregas[25]=([25], 0)
+	cond espera[25]	
+	cond entrega
+	cola C
 	
-	Process entregar(puntaje:out int)
+	Process entregar(idG:in int)
 	{
-		if(cant==1){Aula.finTarea(P); signal(espera)}
-		else(cant++; wait(espera))
-		puntaje=P
+		entregas[idG]++
+		if(entregas[idG]==1){wait(espera[idG])}
+		else{push(C,idG); signal(espera[idG])}
+		wait(espera[idG])
+		
+	}
+	
+	Process siguiente()
+	{
+		if(empty(C)){wait(entrega)}
 	}
 }
 ```
