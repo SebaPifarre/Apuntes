@@ -337,7 +337,12 @@ Monitor Puente
 		int id
 		
 		pesoActual=pesoActual+peso
-		if(not empty(C)){pop(C,id); signal[id]}
+		
+		while(not empty(C))
+		{
+			pop(id, peso)
+			if(pesoActual-peso < 0){top(C,id,peso); break}
+		}
 	}
 }
 
