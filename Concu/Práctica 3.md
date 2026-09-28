@@ -610,5 +610,13 @@ sucesivamente hasta el último que tendrá nota 1).
 Nota: el JTP no guarda el número de grupo que le asigna a cada alumno.
 
 ```
+Process Alumno[id:1..50]
+{
+	int idT
+	
+	Aula.iniciar(idT)
+	Tarea[idT].comenzar()
+}
 
+Monitor Aula
 ```
