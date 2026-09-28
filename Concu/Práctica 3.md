@@ -328,7 +328,7 @@ Monitor Puente
 
 	Procedure llegada(int in:peso, id)
 	{
-		while((pesoActual - peso) < 0) {push(C,id); wait(espera[id])}
+		while(not empty(C) || (pesoActual - peso < 0)) {push(C,id); wait(espera[id])}
 		pesoActual = pesoActual - peso
 	}
 	
