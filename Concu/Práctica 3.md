@@ -377,31 +377,40 @@ Monitor Corralon
 {
 	cola C
 	cond hayCliente
-	cond espera[N]
-	text comprobante
+	cond espera
+	text comprobante[N]
 
-	Procedure siguiente(out int:id)
+	Procedure siguiente(out int:id; out text:lista)
 	{
 		if(empty(cola)){wait(hayCliente)}
-		pop(C, id)
+		pop(C, id, lista)
 	}
 	
-	Procedure pedido(int in:id; out text:R)
+	Procedure pedido(int in:id; out text:R; in text:lista)
 	{
-		push(C, id)
+		push(C, id, lista)
 		signal(hayCliente)
-		wait(espera[id])
-		R = comprobante
+		wait(espera)
+		R = comprobante[id]
+	}
+	
+	Procedure entrega(int in:com; int in: id)
+	{
+		comprobante[id] = com
+		signal(espera)
 	}
 }
 
 Process Empleado
 {
+	int id
+	text lista, comprobante
+	
 	while(true)
 	{
-		Corralon.siguiente()
-		
-		
+		Corralon.siguiente(id, lista)
+		// armando comprobante
+		Corralon.entrega(comprobante)
 	}
 }
 
