@@ -328,8 +328,8 @@ Monitor Puente
 
 	Procedure llegada(int in:peso, id)
 	{
-		while(not empty(C) || (pesoActual - peso < 0)) {push(C,id); wait(espera[id])}
-		pesoActual = pesoActual - peso
+		if(not empty(C) || (pesoActual - peso < 0)) {push(C,id); wait(espera[id])}
+		else {pesoActual = pesoActual - peso}
 	}
 	
 	Procedure salida(int in:peso)
@@ -342,6 +342,7 @@ Monitor Puente
 		{
 			pop(id, peso)
 			if(pesoActual-peso < 0){top(C,id,peso); break}
+			else {pesoActual=pesoActual + peso; signal[id];}
 		}
 	}
 }
