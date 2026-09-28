@@ -375,7 +375,9 @@ a)
 ```
 Process Cliente[id:1..N]
 {
-	Corralon.pedido()
+	text lista, comprobante
+	
+	Corralon.pedido(id, comprobante, lista)
 	
 }
 
@@ -388,7 +390,7 @@ Monitor Corralon
 
 	Procedure siguiente(out int:id; out text:lista)
 	{
-		if(empty(cola)){wait(hayCliente)}
+		if(empty(C)){wait(hayCliente)}
 		pop(C, id, lista)
 	}
 	
@@ -416,9 +418,30 @@ Process Empleado
 	{
 		Corralon.siguiente(id, lista)
 		// armando comprobante
-		Corralon.entrega(comprobante)
+		Corralon.entrega(comprobante,id)
 	}
 }
 
+```
+
+b)
+
+```
+Process Cliente[id:1..N]
+{
+	text lista, comprobante
+	
+	Corralon.pedido(id,lista,comprobante)
+}
+
+Process Empleado[id:1..E]
+{
+	int idC
+	
+	while(true)
+	{
+		Corralon.siguiente
+	}
+}
 ```
 
