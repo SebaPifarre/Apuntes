@@ -473,6 +473,32 @@ Monitor Corralon
 	}
 }
 
-Monitor Puesto[1..E]
+Monitor Puesto[id:1..E]
+{
+	cond vcEmpleado, vcCliente
+	text datos, resultado	
+	
+	Procedure pedido(lista:in text; comprobante:out text)
+	{
+		datos = lista
+		llego = true
+		signal(vcEmpleado)
+		wait(vcCliente)
+		comprobante = resultado
+		signal(vcEmleado)
+	}
+	Procedure esperarLista(lista:out text)
+	{
+		if(not llego){wait(vcEmpleado)}
+		lista = datos
+	}
+	Procedure enviarComprobante(com:in text)
+	{
+		resultado = com
+		signal(vcCliente)
+		wait(vcEmpleado)
+		llego = false
+	}
+}
 ```
 
