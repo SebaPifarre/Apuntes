@@ -609,3 +609,6 @@ les asigna un puntaje (el primer grupo en terminar tendrá como nota 25, el segu
 sucesivamente hasta el último que tendrá nota 1). 
 Nota: el JTP no guarda el número de grupo que le asigna a cada alumno.
 
+```
+
+```
