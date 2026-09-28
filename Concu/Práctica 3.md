@@ -430,17 +430,38 @@ b)
 Process Cliente[id:1..N]
 {
 	text lista, comprobante
+	int idE
 	
-	Corralon.pedido(id,lista,comprobante)
+	Corralon.llegada(id,idE)
+	Puesto[idE].pedido(lista, comprobante)
 }
 
 Process Empleado[idE:1..E]
 {
-	int idC
 	
 	while(true)
 	{
-		Corralon.siguiente
+		Corralon.siguiente(idE)
+	}
+}
+
+Monitor Corralon
+{
+	cola C
+	cond espera[N]
+	int puestos[N]
+
+	Procedure llegada(id:in int; idE:out int)
+	{
+		push(C, id)
+		signal(hayCliente)
+		wait(espera[id])
+		idE = puestos[id]
+	}
+	
+	Procedure siguiente(idE:in int)
+	{
+		if(e)
 	}
 }
 ```
