@@ -614,7 +614,7 @@ Process Alumno[id:1..50]
 {
 	int idT
 	
-	Aula.iniciar(idT)
+	Aula.iniciar(idT, id)
 	resuleve()
 	Tarea[idT].entregar()
 }
@@ -622,25 +622,35 @@ Process Alumno[id:1..50]
 Process JTP
 {
 	Aula.comenzarTarea()
+	Aula.asignar()
 }
 
 Monitor Aula
 {
 	int cant=0	
 	cond espera
-	int puntuaje_actual = 25
+	cond idGrupo[50]
 	
-	Procedure iniciar(idT:out int)
+	Procedure iniciar(idT:out int; id:in int)
 	{
 		cant++
 		if(cant == 50){signal(todos)}
 		wait(espera)
-		wait(idGrupo[])
+		wait(idGrupo[id])
+		idT = idGrupo[id]
 	}
 	
 	Procedure comenzarTarea()
 	{
 		if(cant<50){wait(todos)}
+		signal_all(espera)
+	}
+	
+	Procedure asignar(idG:in int)
+	{
+		for i=1 to 50
+			idGrupo[i]=AsignarNroGrupo
+			singal(idgrupo[i])
 	}
 }
 
