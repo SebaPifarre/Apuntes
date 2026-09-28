@@ -434,7 +434,7 @@ Process Cliente[id:1..N]
 	Corralon.pedido(id,lista,comprobante)
 }
 
-Process Empleado[id:1..E]
+Process Empleado[idE:1..E]
 {
 	int idC
 	
