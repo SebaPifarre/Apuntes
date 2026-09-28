@@ -322,19 +322,22 @@ propio peso (ningún vehículo supera el peso soportado por el puente).
 ```
 Monitor Puente
 {
-	cond espera
 	int pesoActual=50000
+	cond espera[N]
+	cola C
 
-	Procedure llegada(int in:peso)
+	Procedure llegada(int in:peso, id)
 	{
-		if((pesoActual - peso) < 0){wait(espera)}
+		while((pesoActual - peso) < 0) {push(C,id); wait(espera[id])}
 		pesoActual = pesoActual - peso
 	}
 	
 	Procedure salida(int in:peso)
 	{
+		int id
+		
 		pesoActual=pesoActual+peso
-		signal(espera)
+		if(not empty(C)){pop(C,id); signal[id]}
 	}
 }
 
@@ -342,7 +345,7 @@ Process Auto[id:1..N]
 {
 	int peso
 
-	Puente.llegada(peso)
+	Puente.llegada(peso,id)
 	//cruzando
 	Puente.salida(peso)
 }
