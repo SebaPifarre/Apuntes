@@ -23,3 +23,10 @@
 8) Bot de Telegram
 
 
+## Prototipo
+
+* En el nav bar lateral el cirujano no debe visualizar las opciones de usuario y administrción
+* Para registrar una nueva cirugía, reemplazar los select con buscadores. Filtrando por nombre o dni. (paciente, cirujano, anestesista)
+* Preguntar como modelar La supervisión de enfermería y el servicio de anestesia, como lo confirman???
+* Cuando se selecciona la fecha para la cirugía , mostrar la semana que corresponde a la fecha y mostrar los turnos disponibles para el quirofano correspondiente.
+* 
