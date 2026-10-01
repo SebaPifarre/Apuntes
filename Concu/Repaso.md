@@ -120,4 +120,37 @@ Process Worker[id:1..7]
 }
 ```
 
-¿Puedo usar e
+¿Puedo usar el mismo mutexR para actualizar los valores y para la variable terminados?
+
+## Ejercicio 3
+
+Implemente una solución para el siguiente problema. Se debe simular el uso de una máquina
+expendedora de gaseosas con capacidad para 100 latas por parte de U usuarios. Además, existe un
+repositor encargado de reponer las latas de la máquina. Los usuarios usan la máquina según el orden de llegada. Cuando les toca usarla, sacan una lata y luego se retiran. En el caso de que la máquina se quede sin latas, entonces le debe avisar al repositor para que cargue nuevamente la máquina en forma completa. Luego de la recarga, saca una botella y se retira. Nota: maximizar la concurrencia; mientras se reponen las latas se debe permitir que otros usuarios puedan agregarse a la fila.
+
+```
+sem mutexD = 1
+sem mutexR = 1
+cola C
+sem espera[U]=([U],0)
+bool libre = true
+int cantidad = 100
+
+Process Usuario[id:1..U]
+{
+	P(mutexD)
+	if(not libre){push(C,id); V(mutexD); espera[id]}
+	else
+	{
+		V(mutexD)
+		if(cant == 0){V(notificar)}
+		// usa maquina
+	}
+	P(mutexD)
+	if(empty(C)){libre=false}
+	else{pop(C, aux); V(espera[id])}
+	V(mutexD)
+}
+```
+
+Preguntar lo de el último V(mutexD) comparado con el 1 a
