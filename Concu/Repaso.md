@@ -80,17 +80,44 @@ resultado de la función de validación. Nota: maximizar la concurrencia.
 
 
 ```
-int contador = 0
-sem mutex = 1
+int prox = 0
+transaccion[T] transacciones
+int[10] totales = ([10], 0)
+sem mutexD, mutexR = 1
+int terminados = 0
 
 Process Worker[id:1..7]
 {
-	P(mutex)
-	if(contador < T)
+	transaccion t
+	int puntaje,i
+	int[10] parciales = ([10], 0)
+
+	while(true)
 	{
-	contador++; 
-	V(mutex)
-	Validar(t)
+		P(mutexD)
+		if(prox < T)
+		{
+			t=transaciones[prox]
+			prox++; 
+			V(mutexD)
+			puntaje = Validar(t)
+			parciales[puntaje]++
+		}
+		else
+		{
+			V(mutexD)
+			break
+		}
 	}
+	P(mutexR)
+	for i = 1 to 10
+		totales[i]+=parciales[i]
+	terminados++
+	if(terminados == 7){se informa}
+	V(mutexR)
+	
+	
 }
 ```
+
+¿Puedo usar e
