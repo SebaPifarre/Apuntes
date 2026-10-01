@@ -17,11 +17,12 @@ a)
 
 ```
 sem mutex = 1
-esperando = 0
+bool libre 
 cola C
+sem espera[P] = ([P], 0)
 
 Process Persona[id:1..P]
 {
-	if(esperando)
+	
 }
 ```
