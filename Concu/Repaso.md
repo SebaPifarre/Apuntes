@@ -17,12 +17,31 @@ a)
 
 ```
 sem mutex = 1
-bool libre 
+bool libre = true
 cola C
 sem espera[P] = ([P], 0)
 
 Process Persona[id:1..P]
 {
-	
+	int aux
+
+	P(mutex)
+	if(libre){libre=false; V(mutex)}
+	else
+	{
+		push(C,id)
+		V(mutex)
+		P(espera[id])
+	}
+	UsarTerminal()
+	P(mutex)
+	if(empty(C)){libre=true; V(mutex)}
+	else {pop(C, aux); V(mutex); V(espera[aux])}
 }
+```
+
+b)
+
+```
+
 ```
