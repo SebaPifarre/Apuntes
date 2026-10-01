@@ -130,7 +130,8 @@ repositor encargado de reponer las latas de la máquina. Los usuarios usan la m�
 
 ```
 sem mutexD = 1
-sem mutexR = 1
+sem mutexR = 0
+sem notificar = 0
 cola C
 sem espera[U]=([U],0)
 bool libre = true
@@ -138,19 +139,36 @@ int cantidad = 100
 
 Process Usuario[id:1..U]
 {
+	int aux
+
 	P(mutexD)
-	if(not libre){push(C,id); V(mutexD); espera[id]}
+	if(not libre){push(C,id); V(mutexD); P(espera[id])}
 	else
 	{
+		libre=false
 		V(mutexD)
-		if(cant == 0){V(notificar)}
-		// usa maquina
 	}
+	
+	if(cant == 0){V(notificar); P(mutexR)}
+	cantidad--
+	
 	P(mutexD)
-	if(empty(C)){libre=false}
-	else{pop(C, aux); V(espera[id])}
+	if(empty(C)){libre=true}
+	else{pop(C, aux); V(espera[aux])}
 	V(mutexD)
+}
+
+Process Repositor
+{
+	while(true)
+	{
+		P(notificar)
+		// reposita la maquina
+		cantidad = 100
+		V(mutexR)
+	}
 }
 ```
 
 Preguntar lo de el último V(mutexD) comparado con el 1 a
+Está bien que cantidad no esté dentro de un P-V?
