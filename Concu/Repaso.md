@@ -80,5 +80,17 @@ resultado de la función de validación. Nota: maximizar la concurrencia.
 
 
 ```
+int contador = 0
+sem mutex = 1
 
+Process Worker[id:1..7]
+{
+	P(mutex)
+	if(contador < T)
+	{
+	contador++; 
+	V(mutex)
+	Validar(t)
+	}
+}
 ```
