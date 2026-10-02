@@ -250,36 +250,45 @@ Process Vendedor[id:1..20]
 	int idGrupo
 	int vendidos, total
 	
-	Monitor.llegada(idGrupo)
+	Monitor[idGrupo].llegada()
 	// sale a vender
-	Monitor.finalizar(vendidos,idGrupo, total)
+	Monitor[idGrupo].finalizar(vendidos, total)
 }
 
-Monitor Monitor
+Monitor Monitor[id:1..5]
 {
-	cond espera_grupo[5]
-	int cant_espera[5]
-	int total[5]
+	cond espera_grupo
+	int cant_espera = 0
+	int total = 0
 	
 	Procedure llegada(idGrupo:in int)
 	{
-		if(cantidad_espera[idGrupo]==3)
+		if(cantidad_espera==3)
 		{
-			singal_all(espera_grupo[idGrupo])
-			cantidad_espera[idGrupo]=0
+			singal_all(espera_grupo)
+			cantidad_espera=0
 		}
 		else
 		{
-			cantidad_espera[idGrupo]++; wait(espera_grupo[idGrupo])
+			cantidad_espera++; wait(espera_grupo)
 		}
 	}
 	
 	Procedure finalizar(vendidos:in int, total:out int)
 	{
-		total[idGrupo]+=vendidos
-		if(cantidad_espera[idGrupo]==3){signal_all(espera_grupo[id_grupo])}
-		else{cantidad_espera[idGrupo]++; wait(espera_grupo[idGrupo])}
-		total=total[idGrupo]
+		total+=vendidos
+		if(cantidad_espera==3){signal_all(espera_grupo)}
+		else{cantidad_espera++; wait(espera_grupo)}
+		total=total
 	}
 }
+```
+
+## Ejercicio 3
+
+Resolver el siguiente problema. En una montaña hay 30 escaladores que en una parte de la subida
+deben utilizar un único paso de a uno a la vez y de acuerdo con el orden de llegada al mismo. Nota: sólo se pueden utilizar procesos que representen a los escaladores; cada escalador usa sólo una vez el paso.
+
+```
+
 ```
