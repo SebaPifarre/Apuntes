@@ -250,25 +250,36 @@ Process Vendedor[id:1..20]
 	int idGrupo
 	int vendidos, total
 	
-	Monitor.llegada(id, idGrupo)
+	Monitor.llegada(idGrupo)
 	// sale a vender
-	Monitor.finalizar(vendidos, total)
+	Monitor.finalizar(vendidos,idGrupo, total)
 }
 
 Monitor Monitor
 {
 	cond espera_grupo[5]
 	int cant_espera[5]
+	int total[5]
 	
-	Procedure llegada(id,idGrupo:in int)
+	Procedure llegada(idGrupo:in int)
 	{
-		if(cantidad_espera[idGrupo]==3){singal_all(espera_grupo[idGrupo])}
-		else{cantidad_espera[idGrupo]++; wait(espera_grupo[idGrupo])}
+		if(cantidad_espera[idGrupo]==3)
+		{
+			singal_all(espera_grupo[idGrupo])
+			cantidad_espera[idGrupo]=0
+		}
+		else
+		{
+			cantidad_espera[idGrupo]++; wait(espera_grupo[idGrupo])
+		}
 	}
 	
 	Procedure finalizar(vendidos:in int, total:out int)
 	{
-		
+		total[idGrupo]+=vendidos
+		if(cantidad_espera[idGrupo]==3){signal_all(espera_grupo[id_grupo])}
+		else{cantidad_espera[idGrupo]++; wait(espera_grupo[idGrupo])}
+		total=total[idGrupo]
 	}
 }
 ```
