@@ -238,3 +238,37 @@ Monitor Monitor
 }
 
 ```
+
+## Ejercicio 2
+
+Resolver el siguiente problema. En una empresa trabajan 20 vendedores ambulantes que forman 5
+equipos de 4 personas cada uno (cada vendedor conoce previamente a qué equipo pertenece). Cada equipo se encarga de vender un producto diferente. Las personas de un equipo se deben juntar antes de comenzar a trabajar. Luego cada integrante del equipo trabaja independientemente del resto vendiendo ejemplares del producto correspondiente. Al terminar cada integrante del grupo debe conocer la cantidad de ejemplares vendidos por el grupo. Nota: maximizar la concurrencia.
+
+```
+Process Vendedor[id:1..20]
+{
+	int idGrupo
+	int vendidos, total
+	
+	Monitor.llegada(id, idGrupo)
+	// sale a vender
+	Monitor.finalizar(vendidos, total)
+}
+
+Monitor Monitor
+{
+	cond espera_grupo[5]
+	int cant_espera[5]
+	
+	Procedure llegada(id,idGrupo:in int)
+	{
+		if(cantidad_espera[idGrupo]==3){singal_all(espera_grupo[idGrupo])}
+		else{cantidad_espera[idGrupo]++; wait(espera_grupo[idGrupo])}
+	}
+	
+	Procedure finalizar(vendidos:in int, total:out int)
+	{
+		
+	}
+}
+```
