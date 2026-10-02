@@ -172,3 +172,59 @@ Process Repositor
 
 Preguntar lo de el último V(mutexD) comparado con el 1 a
 Está bien que cantidad no esté dentro de un P-V?
+
+# Monitores
+
+## Ejercicio 1
+
+Resolver el siguiente problema. En una elección estudiantil, se utiliza una máquina para voto
+electrónico. Existen N Personas que votan y una Autoridad de Mesa que les da acceso a la máquina
+de acuerdo con el orden de llegada, aunque ancianos y embarazadas tienen prioridad sobre el resto.
+La máquina de voto sólo puede ser usada por una persona a la vez. Nota: la función Votar() permite usar la máquina.
+
+```
+
+Process Persona[id:1..N]
+{
+	bool prioridad
+	
+	Monitor.llegada(id, prioridad)
+	Votar()
+	Monitor.salida()
+}
+Process Autoridad
+{
+	int i
+	for i = 1 to N
+	{
+		Monitor.sig()
+		
+	}
+}
+
+Monitor Monitor
+{
+	cola C
+	cond espera[N]
+
+	Procedure llegada(id:in int; prioridad:in bool)
+	{
+		if(prioridad)
+		{
+			top(C, id)
+		}
+		else
+		{
+			push(C, id)
+		}
+		wait(espera[id])
+		
+	}
+	
+	Procedure sig()
+	{
+		if(empty(C)){wait()
+	}
+}
+
+```
