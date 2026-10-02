@@ -290,5 +290,29 @@ Resolver el siguiente problema. En una montaña hay 30 escaladores que en una pa
 deben utilizar un único paso de a uno a la vez y de acuerdo con el orden de llegada al mismo. Nota: sólo se pueden utilizar procesos que representen a los escaladores; cada escalador usa sólo una vez el paso.
 
 ```
+Process Escalador[id:1..30]
+{
+	Paso.llegada()
+	// pasa
+	Paso.salir()
+}
 
+Monitor Paso
+{
+	bool libre = true
+	cond espera
+	int esperando = 0
+
+	Procedure llegada()
+	{
+		if(libre){libre=false}
+		else{esperando++; wait(espera)}
+	}
+	
+	Procedure salir()
+	{
+		if(esperando>0){esperando--; signal(espera)}
+		else{libre = true}
+	}
+}
 ```
