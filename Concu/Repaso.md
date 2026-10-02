@@ -194,7 +194,7 @@ Process Persona[id:1..N]
 }
 Process Autoridad
 {
-	int i
+	int i, id
 	for i = 1 to N
 	{
 		Monitor.sig()
@@ -206,6 +206,7 @@ Monitor Monitor
 {
 	cola C
 	cond espera[N]
+	cond hayPersona, termino
 
 	Procedure llegada(id:in int; prioridad:in bool)
 	{
@@ -217,13 +218,22 @@ Monitor Monitor
 		{
 			push(C, id)
 		}
+		signal(hayPersona)
 		wait(espera[id])
 		
 	}
 	
 	Procedure sig()
 	{
-		if(empty(C)){wait()
+		if(empty(C)){wait(hayPersona)}
+		pop(C, id)
+		signal(espera[id])
+		wait(termino)
+	}
+	
+	Procedure salir()
+	{
+		signal(termino)
 	}
 }
 
