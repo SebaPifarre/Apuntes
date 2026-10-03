@@ -54,11 +54,35 @@ Process Auto[id:1..50]
 
 Monitor Circuito[1..3]
 {
-	cola F1, F2
+	cond F1, F2
+	bool libre1=true, libre2=true
 
 	Procedure llegada(categoria: in int; id: in int)
 	{
-		
+		if(categoria == F1)
+		{
+			if(libre1){libre1=false}
+			else{wait(F1)}
+		}
+		else
+		{
+			if(libre2){libre2=false}
+			else{wait(F2)}
+		}
+	}
+	
+	Procedure salida(categoria: in int)
+	{
+		if(categoria==F1)
+		{
+			libre1=true
+			signal(F1)
+		}
+		else
+		{
+			libre2=true
+			signal(F2)
+		}
 	}
 }
 ```
