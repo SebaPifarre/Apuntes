@@ -40,3 +40,25 @@ Process Comisario
 		
 }
 ```
+
+```
+Process Auto[id:1..50]
+{
+	int idC
+	int categoria
+	
+	Cirtuito[idC].llegada(categoria, id)
+	Usar()
+	Circuito[idC].salida()
+}
+
+Monitor Circuito[1..3]
+{
+	cola F1, F2
+
+	Procedure llegada(categoria: in int; id: in int)
+	{
+		
+	}
+}
+```
