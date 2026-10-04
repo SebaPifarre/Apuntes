@@ -177,32 +177,71 @@ Process Persona[id:1..N]
 {
 	int idP
 	
-	Puesto[idP].llegada()
+	Puesto[idP].llegada(id)
 	General.retirar(id)
 }
 
 Process Empleado[id:1..4]
 {
 	int idP
-	
-	Puesto[idP].sig()
-	//procesar
-	General.entregar()
+	while(seguir)
+	{
+		Puesto[idP].sig(seguir)
+		if(not seguir){break}
+		//procesar
+		General.entregar()
+	}
 }
 
 Monitor Puesto[id:1..4]
 {
 	cond hayPersona,espera
+	cola C
+	bool libre
+	bool cortar=false
 	
-	Procedure llegada()
+	Procedure llegada(id:in int)
 	{
+		libre=false
+		push(C,id, tramite)
 		signal(hayPersona)
 		wait(espera)
 	}
 	
-	Procedure sig()
+	Procedure sig(seguir:out bool;tramite:out text)
 	{
-		while()
+		if(libre){wait(hayPersona)}
+		if(cortar){seguir=false}
+		else
+		{
+			pop(C,aux,tramite)
+		}
+	}
+	Procedure cerrar()
+	{
+		cortar=true
+		singal(hayPerona)
+	}
+	
+}
+
+Monitor General
+{
+	int total=0
+	
+	Procedure entregar()
+	{
+		cant++
+		if(cant==N)
+		{
+			for i=1 to 4
+				Puesto[i].cerrar()
+		}
+	}
+	
+	Procedure retirar()
+	{
+		wait(espera[id])
 	}
 }
 ```
