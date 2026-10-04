@@ -695,3 +695,27 @@ para que la profesora lo corrija y le envíe la nota. Nota: maximizar la concurr
 procesos deben terminar su ejecución; suponga que la profesora tiene una función
 corregirExamen que recibe un examen y devuelve un entero con la nota.
 
+```
+Process Alumno[id:1..45]
+{
+	Preceptor.pedir_enunciado(id)
+	resolver()
+	Preceptor.entregar()
+	Nota.recibir()
+}
+
+Process Profesora
+{
+	for 1 to 45
+		Preceptor.siguiente()
+		corregirExamen()
+		Nota.entregar()
+}
+
+Monitor Preceptor
+{
+	cond espera_comienzo
+	
+	Procedure 
+}
+```
