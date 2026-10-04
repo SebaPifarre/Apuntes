@@ -655,27 +655,18 @@ Process Coordinador
 
 inciso b
 ```
-sem total = 7, trigo = 5, maiz=5
-
-Process Trigo[id:1..T]
-{
-	P(trigo)
-	P(total)
-	// realiza descarga
-	V(total)
-	V(trigo)
-	
-}
+int total = 7, maiz=0, triego=0
+sem e = 1, t, m
 
 Process Maiz[id:1..M]
 {
-	P(maiz)
-	P(total)
-	// realiza descarga
-	V(total)
-	V(maiz)
+	
 }
 
+Process Trigo[id:1..T]
+{
+	
+}
 
 ```
 
