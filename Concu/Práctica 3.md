@@ -709,7 +709,9 @@ Process Alumno[id:1..45]
 
 Process Preceptor
 {
-	Barrera.iniciar()
+	text enunciado
+
+	Barrera.iniciar(enunciado)
 }
 
 Process Profesora
@@ -727,13 +729,56 @@ Process Profesora
 
 Monitor Barrera
 {
-	cond espera, 
+	cond espera, vcPreceptor
+	int llegaron=0
+	text examenes
 
 	Procedure llegada(e:out text)
 	{
 		llegaron++
 		if(llegaron==45){signal(vcPreceptor)}
 		wait(espera)
+		e=examen
+	}
+	
+	Procedure iniciar(enunciado:in text)
+	{
+		if(llegaron<45){wait(vcPreceptor)}
+		examen=enunciado
+		signal_all(espera)
 	}
 }
+
+Monitor Parcial
+{
+	cola C(text,int)
+	int enregados=0
+	cond entrega
+	
+	Procedure entregar(examen:in text; id:in int)
+	{
+		push(C, examen, id)
+		entregados++
+		signal(entrega)
+	}
+	
+	Procedure sig(examen: out text; id:out int)
+	{
+		if(entregados==0){wait(entrega)}
+		entregados--
+		pop(C,examen,id)
+	}
+}
+
+Monitor Nota
+{
+	
+	Procedure entregar(nota:in int; id:in int)
+	{
+		notas[id]=nota
+		corregidos++
+		signal(espera_nota)
+	}
+}
+
 ```
