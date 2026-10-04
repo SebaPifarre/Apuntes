@@ -698,39 +698,11 @@ corregirExamen que recibe un examen y devuelve un entero con la nota.
 ```
 Process Alumno[id:1..45]
 {
-	Preceptor.pedir_enunciado(id)
-	resolver()
-	Preceptor.entregar()
-	Nota.recibir()
-}
-
-Process Profesora
-{
-	for 1 to 45
-		Preceptor.siguiente()
-		corregirExamen()
-		Nota.entregar()
-}
-
-Monitor Preceptor
-{
-	cond espera_comienzo
-	int cont=0
+	text examen
 	
-	Procedure pedir_enunciado()
-	{
-		cont++
-		if(cont<45){wait(espera_comienzo)}
-		else{signal_all(espera_comienzo)}
-		
-	}
-	
-	Procedure entregar(id:in int;examen:in text)
-	{
-		push(C, id, examen)
-		cond(espera_correccion)
-	}
-	
+	Barrera.llegada()
+	Parcial.enunciado(examen)
+	//resuelve
 	
 }
 ```
