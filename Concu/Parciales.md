@@ -253,3 +253,63 @@ Monitor General
 	}
 }
 ```
+
+![[concu-par-7-10-24.png]]
+
+Monitores
+
+```
+Process Persona[id:1..N]
+{
+	Lago.llegada()
+	//cruzar
+	Lago.salida()
+}
+
+Monitor Lago
+{
+	int esperando = 0
+	cond espera
+	bool libre=true
+	
+	Procedure llegada()
+	{
+		if(libre){libre=false}
+		else{esperando++; wait(espera)}
+	}
+	
+	Procedure salida()
+	{
+		if(esperando>0){esperando--;signal(espera)}
+		else{libre=true}
+	}
+}
+```
+
+```
+Process Persona[id:1..N]
+{
+	Lago.llegada()
+	//cruzar
+	Lago.salida()
+}
+
+Monitor Lago
+{
+	int esperando = 0
+	cond espera[N]=([N],0)
+	bool libre=true
+	
+	Procedure llegada()
+	{
+		if(libre){libre=false}
+		else{esperando++; wait(espera)}
+	}
+	
+	Procedure salida()
+	{
+		if(esperando>0){esperando--;signal(espera)}
+		else{libre=true}
+	}
+}
+```
