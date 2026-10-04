@@ -173,8 +173,36 @@ Process Repositor
 Monitores
 
 ```
-Process Persona[1..N]
+Process Persona[id:1..N]
 {
+	int idP
 	
+	Puesto[idP].llegada()
+	General.retirar(id)
+}
+
+Process Empleado[id:1..4]
+{
+	int idP
+	
+	Puesto[idP].sig()
+	//procesar
+	General.entregar()
+}
+
+Monitor Puesto[id:1..4]
+{
+	cond hayPersona,espera
+	
+	Procedure llegada()
+	{
+		signal(hayPersona)
+		wait(espera)
+	}
+	
+	Procedure sig()
+	{
+		while()
+	}
 }
 ```
