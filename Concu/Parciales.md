@@ -215,6 +215,7 @@ Monitor Puesto[id:1..4]
 		else
 		{
 			pop(C,aux,tramite)
+			libre=true
 		}
 	}
 	Procedure cerrar()
@@ -228,10 +229,16 @@ Monitor Puesto[id:1..4]
 Monitor General
 {
 	int total=0
+	bool entregado[N]=([N], false)
+	text resultados[N]
+	cond espera[N]
 	
-	Procedure entregar()
+	Procedure entregar(R:in text; id:in int)
 	{
 		cant++
+		resultados[id]=R
+		signal(espera[id])
+		entregado[id]=true
 		if(cant==N)
 		{
 			for i=1 to 4
@@ -239,9 +246,10 @@ Monitor General
 		}
 	}
 	
-	Procedure retirar()
+	Procedure retirar(R:out text)
 	{
-		wait(espera[id])
+		if(entregado[id]==false){wait(espera[id])}
+		R=resultados[id]
 	}
 }
 ```
