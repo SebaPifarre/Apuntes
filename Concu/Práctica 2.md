@@ -658,7 +658,7 @@ inciso b
 int total = 7, nm=0, nt=0
 int dm =0, dt=0
 
-sem e = 1, t, m
+sem e = 1, t=0, m=0
 
 Process Maiz[id:1..M]
 {
