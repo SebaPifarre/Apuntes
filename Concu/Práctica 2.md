@@ -655,17 +655,41 @@ Process Coordinador
 
 inciso b
 ```
-int total = 7, maiz=0, triego=0
+int total = 7, nm=0, nt=0
+int dm =0, dt=0
+
 sem e = 1, t, m
 
 Process Maiz[id:1..M]
 {
-	
+	P(e)
+	if(total == 0 or nm==5){dm++; V(e); P(m)}
+	nm++
+	total--
+	V(e)
+	// descarga
+	P(e)
+	nm--
+	total++
+	if(dm>0){dm--; V(m)}
+	else if(dt>0 and nt<5){dt--; V(t)}
+	else {V(e)}
 }
 
 Process Trigo[id:1..T]
 {
-	
+	P(e)
+	if(total == 0 or nt==5){dt++; V(e); P(t)}
+	nt++
+	total--
+	V(e)
+	// descarga
+	P(e)
+	nt--
+	total++
+	if(dt>0){dt--; V(t)}
+	else if(dm > 0 and nm<5){dm--; V(m)}
+	else {V(e)}
 }
 
 ```
