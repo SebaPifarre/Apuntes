@@ -699,10 +699,41 @@ corregirExamen que recibe un examen y devuelve un entero con la nota.
 Process Alumno[id:1..45]
 {
 	text examen
+	int nota
 	
-	Barrera.llegada()
-	Parcial.enunciado(examen)
+	Barrera.llegada(examen)
 	//resuelve
-	
+	Parcial.entregar(examen,id)
+	Nota.recibir(nota)
+}
+
+Process Preceptor
+{
+	Barrera.iniciar()
+}
+
+Process Profesora
+{
+	text examen
+	int nota, aux
+
+	for 1 to 45
+	{
+		Parcial.sig(examen,aux)
+		nota = corregirExamen(examen)
+		Nota.entregar(nota, aux)
+	}
+}
+
+Monitor Barrera
+{
+	cond espera, 
+
+	Procedure llegada(e:out text)
+	{
+		llegaron++
+		if(llegaron==45){signal(vcPreceptor)}
+		wait(espera)
+	}
 }
 ```
