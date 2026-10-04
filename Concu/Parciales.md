@@ -381,6 +381,7 @@ Process Barco[id:0..B-1]
 ```
 cola C // precargada
 sem mutex = 1
+int total[10] = ([10],0)
 
 Process Worker[id:1..5]
 {
@@ -394,8 +395,14 @@ Process Worker[id:1..5]
 		V(mutex)
 		cant[obtenetDV(cuit)]++
 	
+	P(actualizar)
+	for 0 to 9
+		total[i]+=cant[i]
+	V(actualizar)
 	P(final)
-	
+	finalizados++
+	if(finalizados==5){informar}
+	V(final)
 }
 
 ```
