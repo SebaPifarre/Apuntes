@@ -369,7 +369,33 @@ Process Barco[id:0..B-1]
 	else{push(C,id); V(e); P(espera)}
 	//usa
 	P(e)
-	if(not empty(C)){pop(C,aux); }
+	if(not empty(C)){pop(C,aux); V(espera)}
+	else{libre=true}
+	V(e)
+}
+
+```
+
+![[concu-par-cuit.png]]
+
+```
+cola C // precargada
+sem mutex = 1
+
+Process Worker[id:1..5]
+{
+	int cant[10] = ([10], 0)
+	string cuit
+	
+	while true
+		P(mutex)
+		if(not empty(C)){pop(C,cuit)}
+		else{V(mutex); break}
+		V(mutex)
+		cant[obtenetDV(cuit)]++
+	
+	P(final)
+	
 }
 
 ```
