@@ -159,7 +159,7 @@ Process Maquina
 {
 	while(true)
 	{
-		
+		if(entradas)
 	}
 }
 ```
