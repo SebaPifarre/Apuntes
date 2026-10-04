@@ -560,7 +560,6 @@ Monitor Corralon
 			puestos[id]=idE
 			signal(espera[id])
 			total++
-			seguir=true
 			if(total==N){signal_all(hayCliente)}
 		}
 	}
@@ -684,3 +683,15 @@ Monitor Tarea
 	}
 }
 ```
+
+## Ejercicio 9
+
+En un examen de la secundaria hay un preceptor y una profesora que deben tomar un examen
+escrito a 45 alumnos. El preceptor se encarga de darles el enunciado del examen a los alumnos
+cuando los 45 han llegado (es el mismo enunciado para todos). La profesora se encarga de ir
+corrigiendo los exámenes de acuerdo con el orden en que los alumnos van entregando. Cada
+alumno, al llegar, espera a que le den el enunciado, resuelve el examen y, al terminar, lo deja
+para que la profesora lo corrija y le envíe la nota. Nota: maximizar la concurrencia; todos los
+procesos deben terminar su ejecución; suponga que la profesora tiene una función
+corregirExamen que recibe un examen y devuelve un entero con la nota.
+
