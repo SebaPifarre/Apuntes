@@ -112,15 +112,19 @@ Process Comprador[id:1..N]
 
 	P(e)
 	push(C, id, solicitud)
-	V(hayComprador)
 	V(e)
+	V(hayComprador)
 	P(espera[id])
+	if(seGenero[id]){comprobante=comprobantes[id]}
+	else{"No se pudo"}
 }
 
 Process Cajero[id:1..C]
 {
 	text comprobante
 	int aux
+	bool ok;
+	bool seGenero[N]=([N], true)
 
 	P(horario)
 	while(true)
@@ -130,10 +134,11 @@ Process Cajero[id:1..C]
 		pop(C, aux, solicitud)
 		V(e)
 		P(f)
-		if(entradas>0){entradas--; comprobante=realizarCompra()}
-		else{comprobante = "no hay entradas"}
+		if(entradas>0){ok=true}
+		else{ok=false}
 		V(f)
-		comprobantes[aux]=comprobante
+		if(ok){comprobantes[aux]=generar_comprobante()}
+		else{seGenero[aux]=false}
 		V(espera[aux])
 	}
 }
@@ -289,7 +294,7 @@ Monitor Lago
 ```
 Process Persona[id:1..N]
 {
-	Lago.llegada()
+	Lago.llegada(id)
 	//cruzar
 	Lago.salida()
 }
@@ -299,17 +304,19 @@ Monitor Lago
 	int esperando = 0
 	cond espera[N]=([N],0)
 	bool libre=true
+	cola C
 	
-	Procedure llegada()
+	Procedure llegada(id:in int)
 	{
 		if(libre){libre=false}
-		else{esperando++; wait(espera)}
+		else{esperando++; insertar(C,id); wait(espera[id])}
 	}
 	
 	Procedure salida()
 	{
-		if(esperando>0){esperando--;signal(espera)}
+		if(esperando>0){esperando--;signal(espera[id])}
 		else{libre=true}
 	}
 }
 ```
+
