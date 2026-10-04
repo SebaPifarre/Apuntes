@@ -358,5 +358,18 @@ Process Worker[id:0..3]
 Semáforos 2
 
 ```
+bool libre=true
+sem espera=0
+cola C
+
+Process Barco[id:0..B-1]
+{
+	P(e)
+	if(libre){libre=false; V(e)}
+	else{push(C,id); V(e); P(espera)}
+	//usa
+	P(e)
+	if(not empty(C)){pop(C,aux); }
+}
 
 ```
