@@ -145,4 +145,21 @@ Semáforos
 
 ```
 
+
+Process Asistente[id:1..A]
+{
+	P(mutex)
+	push(C, id)
+	V(mutex)
+	V(hayAsistente)
+	P(espera[id])
+}
+
+Process Maquina
+{
+	while(true)
+	{
+		
+	}
+}
 ```
