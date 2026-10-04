@@ -149,11 +149,14 @@ Semáforos
 Process Asistente[id:1..A]
 {
 	P(mutex)
-	if(not libre){push(C, id)}
-	else{}
+	if(not libre){push(C, id); P(espera[id])}
+	else{libre = false; V(mutex)}
+	if(lentes==0){V(necesitaRecarga); P(finalizoRecarga)}
+	lentes--
+	P(mutex)
+	if(not empty(C)){pop(C,id); V(espera[id])}
+	else{libre=true}
 	V(mutex)
-	V(hayAsistente)
-	P(espera[id])
 }
 
 
