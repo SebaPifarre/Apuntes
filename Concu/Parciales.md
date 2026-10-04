@@ -149,17 +149,20 @@ Semáforos
 Process Asistente[id:1..A]
 {
 	P(mutex)
-	push(C, id)
+	if(not libre){push(C, id)}
+	else{}
 	V(mutex)
 	V(hayAsistente)
 	P(espera[id])
 }
 
-Process Maquina
+
+Process Repositor
 {
 	while(true)
-	{
-		if(entradas)
-	}
+		P(necesitaRecarga)
+		for 1 to num
+			lentes++
+		V(finalizoRecarga)
 }
 ```
