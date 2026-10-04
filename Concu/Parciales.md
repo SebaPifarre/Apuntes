@@ -92,8 +92,24 @@ Monitor Circuito[1..3]
 ![[parcial_semaforos.png]]
 
 ```
+sem hayComprador = 0
+sem e = 1, f = 1
+cola c(int,text)
+sem espera[N] = ([N], 0)
+text comprobantes[N]
+sem horario = 0
+
+Process timer
+{
+	delay()
+	for 1 to C
+		V(horario)
+}
+
 Process Comprador[id:1..N]
 {
+	text solicitud, comprobante
+
 	P(e)
 	push(C, id, solicitud)
 	V(hayComprador)
@@ -103,6 +119,9 @@ Process Comprador[id:1..N]
 
 Process Cajero[id:1..C]
 {
+	text comprobante
+	int aux
+
 	P(horario)
 	while(true)
 	{
@@ -111,8 +130,19 @@ Process Cajero[id:1..C]
 		pop(C, aux, solicitud)
 		V(e)
 		P(f)
-		if(entradas>0){entradas--; realizarCompra()}
-		else{}
+		if(entradas>0){entradas--; comprobante=realizarCompra()}
+		else{comprobante = "no hay entradas"}
+		V(f)
+		comprobantes[aux]=comprobante
+		V(espera[aux])
 	}
 }
+```
+
+![[concu 9-12-34.png]]
+
+Semáforos
+
+```
+
 ```
