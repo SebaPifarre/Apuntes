@@ -715,7 +715,22 @@ Process Profesora
 Monitor Preceptor
 {
 	cond espera_comienzo
+	int cont=0
 	
-	Procedure 
+	Procedure pedir_enunciado()
+	{
+		cont++
+		if(cont<45){wait(espera_comienzo)}
+		else{signal_all(espera_comienzo)}
+		
+	}
+	
+	Procedure entregar(id:in int;examen:in text)
+	{
+		push(C, id, examen)
+		cond(espera_correccion)
+	}
+	
+	
 }
 ```
