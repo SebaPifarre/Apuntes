@@ -169,3 +169,12 @@ Process Repositor
 		V(finalizoRecarga)
 }
 ```
+
+Monitores
+
+```
+Process Persona[1..N]
+{
+	
+}
+```
