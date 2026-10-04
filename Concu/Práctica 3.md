@@ -704,7 +704,7 @@ Process Alumno[id:1..45]
 	Barrera.llegada(examen)
 	//resuelve
 	Parcial.entregar(examen,id)
-	Nota.recibir(nota)
+	Nota.recibir(nota,id)
 }
 
 Process Preceptor
@@ -772,12 +772,23 @@ Monitor Parcial
 
 Monitor Nota
 {
+
+	cond espera_nota
+	int notas[45]
+	int corregidos=0
 	
 	Procedure entregar(nota:in int; id:in int)
 	{
 		notas[id]=nota
 		corregidos++
 		signal(espera_nota)
+	}
+	
+	Procedure recibir(nota:out int;id:in int)
+	{
+		if(corregidos==0){wait(espera_nota)}
+		corregidos--
+		nota=notas[id]
 	}
 }
 
