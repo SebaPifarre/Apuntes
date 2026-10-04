@@ -328,10 +328,35 @@ Semáforos 1
 
 ```
 char caracteres[1000000]
-int f=0,c=0,terminados=0
+int totalf=0,totalc=0,terminados=0
 
 Process Worker[id:0..3]
 {
-	for i=id to 
+	int f=0,c=0
+	int i
+	for i=id*(1000000/4) to (id+1)*(1000000/4)
+		if(caracteres[i]=='c'){c++}
+		else if(caracteres[i]=='f'){f++}
+	P(mutex)
+	totalf+=f
+	totalc+=c
+	V(mutex)
+	
+	P(mutexR)
+	terminados++
+	if(terminados<4){V(mutexR);P(espera)}
+	else
+	{
+		for 1 to 3
+			V(espera)
+	}
+	informar()
+	
 }
+```
+
+Semáforos 2
+
+```
+
 ```
