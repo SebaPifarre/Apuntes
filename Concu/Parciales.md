@@ -406,3 +406,56 @@ Process Worker[id:1..5]
 }
 
 ```
+
+
+![[concu-par-25.png]]
+
+
+```
+Process Cliente[id:0..C-1]
+{
+	Negocio.llegada(id)
+	
+}
+Process Empleado
+{
+	text indicaciones
+	int id
+	Tarjeta tarjeta
+
+	for int i = 0 to C-1
+	{
+		Negocio.sig(id, indicaciones)
+		tarjeta = HacerTarjeta(indicacioes)
+		Negocio.entregar(id, tarjeta)
+	}
+}
+
+Monitor Negocio
+{
+	cond espera, hayCliente
+	cola C
+	Tarjeta tarjetas[C]
+	
+	Procedure llegada(id:in int; indicaciones: in text; tarjeta:out Tarjeta)
+	{
+		push(C,id,indicaciones)
+		signal(hayCliente)
+		wait(espera)
+		tarjeta = tarjetas[id]
+	}
+	
+	Procedure sig(aux:out int; indicaciones:out text)
+	{
+		if(empty(C)){wait(hayCliente)}
+		pop(C,aux,indicaciones)
+	}
+	
+	Procedure entregar(id:in int; tarjeta: in Tarjeta)
+	{
+		tarjetas[id]=tarjeta
+		signal(espera)
+	}
+	
+}
+```
