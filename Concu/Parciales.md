@@ -88,3 +88,31 @@ Monitor Circuito[1..3]
 ```
 
 ```
+
+![[parcial_semaforos.png]]
+
+```
+Process Comprador[id:1..N]
+{
+	P(e)
+	push(C, id, solicitud)
+	V(hayComprador)
+	V(e)
+	P(espera[id])
+}
+
+Process Cajero[id:1..C]
+{
+	P(horario)
+	while(true)
+	{
+		P(hayComprador)
+		P(e)
+		pop(C, aux, solicitud)
+		V(e)
+		P(f)
+		if(entradas>0){entradas--; realizarCompra()}
+		else{}
+	}
+}
+```
