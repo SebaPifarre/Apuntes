@@ -320,3 +320,18 @@ Monitor Lago
 }
 ```
 
+
+
+![[concu-par-14-5-25.png]]
+
+Semáforos 1
+
+```
+char caracteres[1000000]
+int f=0,c=0,terminados=0
+
+Process Worker[id:0..3]
+{
+	for i=id to 
+}
+```
