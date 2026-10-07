@@ -16,11 +16,12 @@ procesos adicionales? ¿Qué consecuencias implicaría?
 
 a)
 ```
+chan llegaCliente
+
 Process Cliente[id:0..N-1]
 {
-	send(llegaCliente)
-	receive(llamado)
-	// se va
+	send llegaCliente()
+	receive 
 }
 
 Process Empleado
@@ -28,7 +29,26 @@ Process Empleado
 	while(true)
 	{
 		recieve(llegaCliente)
-		send(llamado)
+	}
+}
+```
+
+Está bien este nivel de abstración?
+
+b)
+```
+chan llegaCliente
+
+Process Cliente[id:0..N-1]
+{
+	send(llegaCliente)
+}
+
+Process Empleado[id:0..1]
+{
+	while(true)
+	{
+		recieve(llegaCliente)
 	}
 }
 ```
