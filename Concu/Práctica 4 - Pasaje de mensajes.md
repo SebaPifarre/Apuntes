@@ -14,3 +14,21 @@ c. Ídem b) pero considerando que, si no hay clientes para atender, los empleado
 realizan tareas administrativas durante 15 minutos. ¿Se puede resolver sin usar
 procesos adicionales? ¿Qué consecuencias implicaría?
 
+a)
+```
+Process Cliente[id:0..N-1]
+{
+	send(llegaCliente)
+	receive(llamado)
+	// se va
+}
+
+Process Empleado
+{
+	while(true)
+	{
+		recieve(llegaCliente)
+		send(llamado)
+	}
+}
+```
