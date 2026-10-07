@@ -74,3 +74,41 @@ donde hay menos personas esperando; una vez seleccionada, espera a ser atendido.
 caja, los clientes son atendidos por orden de llegada por los cajeros. Luego del pago, se les
 entrega un comprobante. Nota: maximizar la concurrencia.
 
+```
+
+chan llegada(int)
+chan otorgar[P](int)
+chan esperar[5](text)
+chan entrega[P](text)
+
+Process Cliente[id:0..P-1]
+{
+	int nroCola
+	text pago, comprobante
+
+	send llegada(id)
+	recieve otorgar[id](nroCola)
+	send esperar[nroCola](pago)
+	receive entrega[id](comprobante)
+}
+
+Process Coordinador
+{
+	int aux
+	
+	while(true)
+	{
+		recieve llegada(aux)
+		cola = obtenerMenosEsperando()
+		send otorgar[aux](cola)
+	}
+}
+
+Process Caja
+{
+	while(true)
+	{
+		rece
+	}
+}
+```
