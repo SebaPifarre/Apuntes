@@ -17,18 +17,23 @@ procesos adicionales? ¿Qué consecuencias implicaría?
 a)
 ```
 chan llegaCliente
+chan atender[N]
 
 Process Cliente[id:0..N-1]
 {
-	send llegaCliente()
-	receive 
+	send llegaCliente(id)
+	receive atender[id]()
 }
 
 Process Empleado
 {
+	int id
+	
 	while(true)
 	{
-		recieve(llegaCliente)
+		receive llegaCliente(id)
+		send atender[id]())
+		// atiende
 	}
 }
 ```
@@ -38,17 +43,34 @@ Está bien este nivel de abstración?
 b)
 ```
 chan llegaCliente
+chan atender[N]
 
 Process Cliente[id:0..N-1]
 {
-	send(llegaCliente)
+	send llegaCliente(id)
+	receive atender[id]()
 }
 
-Process Empleado[id:0..1]
+Process Empleado[0..1]
 {
+	int id
+	
 	while(true)
 	{
-		recieve(llegaCliente)
+		receive llegaCliente(id)
+		send atender[id]())
+		//atiende
 	}
 }
 ```
+
+c) Como son varios empleados no se puede evitar hacer busy waiting. Se necesita un proceso coordinador
+
+## Ejercicio 2
+
+Se desea modelar el funcionamiento de un banco en el cual existen 5 cajas para realizar
+pagos. Existen P clientes que desean hacer un pago. Para esto, cada uno selecciona la caja
+donde hay menos personas esperando; una vez seleccionada, espera a ser atendido. En cada
+caja, los clientes son atendidos por orden de llegada por los cajeros. Luego del pago, se les
+entrega un comprobante. Nota: maximizar la concurrencia.
+
