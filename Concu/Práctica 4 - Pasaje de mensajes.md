@@ -136,19 +136,22 @@ cocina y se lo entrega directamente al cliente correspondiente.
 Nota: maximizar la concurrencia.
 
 ```
-chan realizarPedido(text)
+chan realizarPedido(text, int)
 chan entregar[C] (text)
 
 Process Cliente[id:0..C]
 {
 	text pedido, comida
-	send realizarPedido(pedido)
+	send realizarPedido(pedido, id)
 	recieve entregar[id] (comida)
 }
 
 Process Vendedor[id:0..2]
 {
-	
+	while(true)
+	{
+		
+	}
 }
 ```
 
