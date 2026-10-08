@@ -141,16 +141,58 @@ chan entregar[C] (text)
 
 Process Cliente[id:0..C]
 {
-	text pedido, comida
-	send realizarPedido(pedido, id)
+	text  comida
+	send realizarPedido(id)
 	recieve entregar[id] (comida)
 }
 
 Process Vendedor[id:0..2]
 {
+	text p
+
 	while(true)
 	{
+		send vendedorDisponible(id)
+		recieve asignarPedido(p, idC)
+		if(p<>'vacio'){
+			//tomar pedido
+			send pedidosTomados(p, id)
+		}
+		else
+		{
+			delay(1-3 min)
+		}
+	}
+}
+
+Process Coordinador
+{
+	int idV
+	text res
+	
+	while(true)
+	{
+		recieve vendedorDisponible(idV)
+		if(empty(realizarPedido))
+		{
+			res = 'vacio'
+		}
+		else
+		{
+			recieve realizarPedido(res)
+		}
+		send asignarPedido[idV](res)
 		
+	}
+}
+
+Process Cocinero[id:1..3]
+{
+	int idC
+	
+	while(true)
+	{
+		recieve pedidosTomados()
 	}
 }
 ```
