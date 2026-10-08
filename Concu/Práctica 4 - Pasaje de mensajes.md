@@ -225,7 +225,13 @@ Process Empleado
 	while(true)
 	{
 		recieve aviso(ok)
-		
+		if(not empty(pedirCabina)) -> {
+			recieve pedirCabina(idC)
+			
+		}
+		 (not empty(pagar)) -> {
+			recieve pagar(monto)
+		}
 	}
 }
 ```
