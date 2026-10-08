@@ -138,6 +138,8 @@ Nota: maximizar la concurrencia.
 ```
 chan realizarPedido(text, int)
 chan entregar[C] (text)
+chan vendedorDisponible(int)
+chan asignarPedido[3](text, int)
 
 Process Cliente[id:0..C]
 {
@@ -167,7 +169,7 @@ Process Vendedor[id:0..2]
 
 Process Coordinador
 {
-	int idV
+	int idV,idC
 	text res
 	
 	while(true)
@@ -179,9 +181,9 @@ Process Coordinador
 		}
 		else
 		{
-			recieve realizarPedido(res)
+			recieve realizarPedido(res,idC)
 		}
-		send asignarPedido[idV](res)
+		send asignarPedido[idV](res,idC)
 		
 	}
 }
@@ -189,11 +191,27 @@ Process Coordinador
 Process Cocinero[id:1..3]
 {
 	int idC
+	text p
 	
 	while(true)
 	{
-		recieve pedidosTomados()
+		recieve pedidosTomados(p, idC)
+		//cocinar pedido(p)
+		send entregar[idC] (p)
 	}
 }
 ```
+
+## Ejercicio 4
+
+Simular la atención en un locutorio con 10 cabinas telefónicas, el cual tiene un empleado
+que se encarga de atender a N clientes. Al llegar, cada cliente espera hasta que el empleado
+le indique a qué cabina ir, la usa y luego se dirige al empleado para pagarle. El empleado
+atiende a los clientes en el orden en que hacen los pedidos. A cada cliente se le entrega un
+ticket factura por la operación.
+a) Implemente una solución para el problema descrito.
+b) Modifique la solución implementada para que el empleado dé prioridad a los que
+terminaron de usar la cabina sobre los que están esperando para usarla.
+Nota: maximizar la concurrencia; suponga que hay una función Cobrar() llamada por el
+empleado que simula que el empleado le cobra al cliente.
 
