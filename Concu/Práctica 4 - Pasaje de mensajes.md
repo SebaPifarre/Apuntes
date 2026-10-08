@@ -216,22 +216,44 @@ Nota: maximizar la concurrencia; suponga que hay una función Cobrar() llamada p
 empleado que simula que el empleado le cobra al cliente.
 
 ```
-chan aviso (int)
+chan pedirCabina (int)
+chan asignar[N] (int)
+chan pagar(int, int, int)
+chan enviarTicket[N](text)
 
 Process Empleado
 {
-	int ok
+	int ok,idCabina
+	cola cabinas
+	text ticket
 
 	while(true)
 	{
-		recieve aviso(ok)
-		if(not empty(pedirCabina)) -> {
+		if(not empty(pedirCabina) && not empty(cabinas)) -> {
 			recieve pedirCabina(idC)
-			
+			pop(Cabinas, idCabina)
+			send asignar[idC](idCabina)
 		}
 		 (not empty(pagar)) -> {
-			recieve pagar(monto)
+			recieve pagar(monto, idC, idCabina)
+			ticket = Cobrar(monto)
+			send enviarTicket[idC](ticket)
+			push(idCabina)
 		}
 	}
+}
+
+Process Cliente[id:0..N-1]
+{
+	int idCabina, monto
+	text ticket
+
+	send pedirCabina(id)
+	recieve asignar[id] (idCabina)
+	
+	monto=usarCabina()
+	
+	send pagar(monto, id, idCabina)
+	recieve enviarTicket(ticket)
 }
 ```
