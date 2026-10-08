@@ -78,7 +78,7 @@ entrega un comprobante. Nota: maximizar la concurrencia.
 
 chan llegada(int)
 chan otorgar[P](int)
-chan esperar[5](text)
+chan esperar[5](int)
 chan entrega[P](text)
 
 Process Cliente[id:0..P-1]
@@ -88,7 +88,7 @@ Process Cliente[id:0..P-1]
 
 	send llegada(id)
 	recieve otorgar[id](nroCola)
-	send esperar[nroCola](pago)
+	send esperar[nroCola](id)
 	receive entrega[id](comprobante)
 }
 
@@ -104,11 +104,16 @@ Process Coordinador
 	}
 }
 
-Process Caja
+Process Caja[id:1..5]
 {
+	int aux
+	text comprobante
+
 	while(true)
 	{
-		rece
+		recieve esperar[id](aux)
+		//realiza el pago
+		send entrega[aux](comprobante)
 	}
 }
 ```
