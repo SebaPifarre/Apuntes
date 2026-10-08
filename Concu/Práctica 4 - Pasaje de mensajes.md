@@ -257,3 +257,4 @@ Process Cliente[id:0..N-1]
 	recieve enviarTicket(ticket)
 }
 ```
+
