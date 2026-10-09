@@ -29,4 +29,8 @@
 * Para registrar una nueva cirugía, reemplazar los select con buscadores. Filtrando por nombre o dni. (paciente, cirujano, anestesista)
 * Preguntar como modelar La supervisión de enfermería y el servicio de anestesia, como lo confirman???
 * Cuando se selecciona la fecha para la cirugía , mostrar la semana que corresponde a la fecha y mostrar los turnos disponibles para el quirofano correspondiente.
-* Está bien que el cirujano cargue la cirugía que se va a realizar y luego reserve el quirófano? 
+* Está bien que el cirujano cargue la cirugía que se va a realizar y luego reserve el quirófano?
+
+## Cosas para cambiar
+
+Tanto las páginas de Epicrisis y seguimiento podrian tener un filtro(semana/mes) para mostrar algo cuando se entra y que no quede pelado.
