@@ -358,6 +358,7 @@ que todos los procesos deben terminar su ejecución.
 d) Modifique la solución (b) considerando que tanto el director como cada administrativo
 imprimen 10 trabajos y que todos los procesos deben terminar su ejecución.
 e) Si la solución al ítem d) implica realizar Busy Waiting, modifíquela para evitarlo.
+
 Nota: ni los administrativos ni el director deben esperar a que se imprima el documento.
 
 a)
@@ -370,17 +371,13 @@ chan liberar(int)
 
 Process Administrativo[id:0..N-1]
 {
-	text documentos, copias
-	int idF
+	text documentos
 	
 	while(true)
 	{
 		//trabaja
-		send solicitar(id)
-		send(aviso)
-		receive asignar[id](idF)
-		send imprimir[idF](documentos, id)
-		receive respuesta[id](copias)
+		send aviso(1)
+		send imprimir(documentos)
 	}
 }
 
@@ -391,18 +388,17 @@ Process Fotocopiadora[id:0..2]
 
 	while(true)
 	{
-		receive imprimir[id] (documentos)
-		copias = copiar(documentos, idA)
-		send respuestas[idA] (copias)
-		send liberada(id)
+		receive imprimir (documentos)
 		send aviso(1)
+		send liberada(1)
 	}
 }
 
 Process Coordinador
 {
 	cola C, copiadoras=(0,1,2)
-	int ok, idF, idA
+	int ok, idF
+	text documentos
 
 	while(true)
 	{
@@ -410,21 +406,21 @@ Process Coordinador
 		
 		if (not empty(liberada))
 		{
-			receive liberada(idF)
+			receive liberada(ok)
 			if (empty(C))
 				push(copiadoras, idF)
 			else
-				pop(C, idA)
-				send asignar[idA] (idF)
+				pop(C, documentos)
+				send imprimir (documentos)
 		}
 		 (not empty(solicitar) && empty(liberada))
 		{
-			receive solicitar(idA)
+			receive solicitar(documentos)
 			if (empty(copiadoras))
 				push(C, idA)
 			else
-				pop(copiadoras, idF)
-				send asignar[idA] (idF)
+				pop(copiadoras)
+				send imprimir (documentos)
 		}
 	}
 }
