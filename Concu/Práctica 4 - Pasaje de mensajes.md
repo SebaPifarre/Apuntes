@@ -419,7 +419,7 @@ Process Director
 	}
 }
 
-Process Fotocopiadora[id:0..2]
+Process Coordinador
 {
 	text documentos
 	int ok
@@ -431,9 +431,11 @@ Process Fotocopiadora[id:0..2]
 		if(not empty(imprimirPrioridad))
 			receive imprimirPrioridad(documentos)
 		
-		 
+		 (not empty(imprimir) && empty(imprimirPrioridad))
+			receive imprimirPrioridad(documentos)
 	}
 }
+
 ```
 
 c)
