@@ -362,5 +362,24 @@ Nota: ni los administrativos ni el director deben esperar a que se imprima el do
 
 a)
 ```
+chan solicitar(int)
+chan asignar[N](int)
+chan imprimir[3](text)
+chan respuesta[N](text)
+
+Process Administrativo[id:0..N-1]
+{
+	text documentos, copias
+	int idF
+	
+	while(true)
+	{
+		//trabaja
+		send solicitar(id)
+		receive asignar[id](idF)
+		send imprimir[idF](documentos, id)
+		receive respuesta[id](copias)
+	}
+}
 
 ```
