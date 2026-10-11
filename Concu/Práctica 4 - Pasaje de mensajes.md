@@ -220,6 +220,7 @@ chan pedirCabina (int)
 chan asignar[N] (int)
 chan pagar(int, int, int)
 chan enviarTicket[N](text)
+chan aviso(int)
 
 Process Empleado
 {
@@ -228,7 +229,7 @@ Process Empleado
 	text ticket
 
 	while(true)
-	{
+		{rec
 		if(not empty(pedirCabina) && not empty(cabinas)) -> {
 			recieve pedirCabina(idC)
 			pop(Cabinas, idCabina)
@@ -249,6 +250,7 @@ Process Cliente[id:0..N-1]
 	text ticket
 
 	send pedirCabina(id)
+	send aviso(1)
 	recieve asignar[id] (idCabina)
 	
 	monto=usarCabina()
