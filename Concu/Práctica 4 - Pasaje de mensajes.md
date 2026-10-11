@@ -280,6 +280,87 @@ Process Cliente[id:0..N-1]
 
 b)
 ```
+chan pedirCabina (int)
+chan asignar[N] (int)
+chan pagar(int, int, int)
+chan enviarTicket[N](text)
+chan aviso(int)
 
+Process Empleado
+{
+	int ok,idCabina,aux
+	cola cabinas = (10)
+	cola C
+	text ticket
+
+	while(true)
+	{
+		receive aviso(ok)
+		
+		if (not empty(pagar)) -> {
+			recieve pagar(monto, idC, idCabina)
+			ticket = Cobrar(monto)
+			send enviarTicket[idC](ticket)
+			if(not empty(C))
+			{
+				pop(C,aux)
+				send asignar[aux](idCabina)
+			}
+			else
+			{
+				push(cabinas, idCabina)
+			}
+		}
+		
+		 (not empty(pedirCabina) && empty(pagar)) -> {
+			recieve pedirCabina(idC)
+			if(empty(cabinas))
+			{
+				push(C, idC)
+			}
+			else{
+				pop(Cabinas, idCabina)
+				send asignar[idC](idCabina)
+			}
+		}
+	}
+}
+
+Process Cliente[id:0..N-1]
+{
+	int idCabina, monto
+	text ticket
+
+	send pedirCabina(id)
+	send aviso(1)
+	recieve asignar[id] (idCabina)
+	
+	monto=usarCabina()
+	
+	send pagar(monto, id, idCabina)
+	send aviso(1)
+	recieve enviarTicket(ticket)
+}
 ```
 
+## Ejercicio 5
+
+Resolver la administración de 3 impresoras de una oficina. Las impresoras son usadas por N
+administrativos, los cuales están continuamente trabajando y cada tanto envían documentos
+a imprimir. Cada impresora, cuando está libre, toma un documento y lo imprime, de
+acuerdo con el orden de llegada.
+a) Implemente una solución para el problema descrito.
+b) Modifique la solución implementada para que considere la presencia de un director de
+oficina que también usa las impresoras, el cual tiene prioridad sobre los
+administrativos.
+c) Modifique la solución (a) considerando que cada administrativo imprime 10 trabajos y
+que todos los procesos deben terminar su ejecución.
+d) Modifique la solución (b) considerando que tanto el director como cada administrativo
+imprimen 10 trabajos y que todos los procesos deben terminar su ejecución.
+e) Si la solución al ítem d) implica realizar Busy Waiting, modifíquela para evitarlo.
+Nota: ni los administrativos ni el director deben esperar a que se imprima el documento.
+
+a)
+```
+
+```
