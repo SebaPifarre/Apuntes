@@ -224,24 +224,39 @@ chan aviso(int)
 
 Process Empleado
 {
-	int ok,idCabina
-	cola cabinas
+	int ok,idCabina,aux
+	cola cabinas = (10)
+	cola C
 	text ticket
 
 	while(true)
 	{
 		receive aviso(ok)
 		
-		if(not empty(pedirCabina) && not empty(cabinas)) -> {
+		if(not empty(pedirCabina)) -> {
 			recieve pedirCabina(idC)
-			pop(Cabinas, idCabina)
-			send asignar[idC](idCabina)
+			if(empty(cabinas))
+			{
+				push(C, idC)
+			}
+			else{
+				pop(Cabinas, idCabina)
+				send asignar[idC](idCabina)
+			}
 		}
 		 (not empty(pagar)) -> {
 			recieve pagar(monto, idC, idCabina)
 			ticket = Cobrar(monto)
 			send enviarTicket[idC](ticket)
-			push(idCabina)
+			if(not empty(C))
+			{
+				pop(C,aux)
+				send asignar[aux](idCabina)
+			}
+			else
+			{
+				push(cabinas, idCabina)
+			}
 		}
 	}
 }
@@ -261,5 +276,10 @@ Process Cliente[id:0..N-1]
 	send aviso(1)
 	recieve enviarTicket(ticket)
 }
+```
+
+b)
+```
+
 ```
 
