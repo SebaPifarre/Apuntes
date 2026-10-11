@@ -363,11 +363,7 @@ Nota: ni los administrativos ni el director deben esperar a que se imprima el do
 
 a)
 ```
-chan solicitar(int)
-chan asignar[N](int)
-chan imprimir[3](text)
-chan respuesta[N](text)
-chan liberar(int)
+chan imprimir(text)
 
 Process Administrativo[id:0..N-1]
 {
@@ -376,58 +372,71 @@ Process Administrativo[id:0..N-1]
 	while(true)
 	{
 		//trabaja
-		send aviso(1)
 		send imprimir(documentos)
 	}
 }
 
 Process Fotocopiadora[id:0..2]
 {
-	text documentos, copias
-	int idA
-
-	while(true)
-	{
-		receive imprimir (documentos)
-		send aviso(1)
-		send liberada(1)
-	}
-}
-
-Process Coordinador
-{
-	cola C, copiadoras=(0,1,2)
-	int ok, idF
 	text documentos
 
 	while(true)
 	{
-		receive aviso(ok)
-		
-		if (not empty(liberada))
-		{
-			receive liberada(ok)
-			if (empty(C))
-				push(copiadoras, idF)
-			else
-				pop(C, documentos)
-				send imprimir (documentos)
-		}
-		 (not empty(solicitar) && empty(liberada))
-		{
-			receive solicitar(documentos)
-			if (empty(copiadoras))
-				push(C, idA)
-			else
-				pop(copiadoras)
-				send imprimir (documentos)
-		}
+		receive imprimir (documentos)
+		// imprime
 	}
 }
 
 ```
 
 b)
+```
+chan imprimir(text)
+chan imprimirPrioridad(text)
+chan aviso(int)
+
+Process Administrativo[id:0..N-1]
+{
+	text documentos
+	
+	while(true)
+	{
+		//trabaja
+		send imprimir(documentos)
+		send aviso(1)
+	}
+}
+
+Process Director
+{
+	text documentos
+	
+	while(true)
+	{
+		//trabaja
+		send imprimirPrioridad(documentos)
+		send aviso(1)
+	}
+}
+
+Process Fotocopiadora[id:0..2]
+{
+	text documentos
+	int ok
+
+	while(true)
+	{
+		receive aviso(ok)
+		
+		if(not empty(imprimirPrioridad))
+			receive imprimirPrioridad(documentos)
+		
+		 
+	}
+}
+```
+
+c)
 ```
 chan solicitar(int)
 chan asignar[N](int)
