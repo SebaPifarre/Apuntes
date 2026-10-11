@@ -366,6 +366,7 @@ chan solicitar(int)
 chan asignar[N](int)
 chan imprimir[3](text)
 chan respuesta[N](text)
+chan liberar(int)
 
 Process Administrativo[id:0..N-1]
 {
@@ -376,9 +377,51 @@ Process Administrativo[id:0..N-1]
 	{
 		//trabaja
 		send solicitar(id)
+		send(aviso)
 		receive asignar[id](idF)
 		send imprimir[idF](documentos, id)
 		receive respuesta[id](copias)
+	}
+}
+
+Process Fotocopiadora[id:0..2]
+{
+	text documentos, copias
+	int idA
+
+	while(true)
+	{
+		receive imprimir[id] (documentos)
+		copias = copiar(documentos, idA)
+		send respuestas[idA] (copias)
+		send liberada(id)
+		send aviso(1)
+	}
+}
+
+Process Coordinador
+{
+	cola C, copiadoras=(0,1,2)
+	int ok, idF, idA
+
+	while(true)
+	{
+		receive aviso(ok)
+		
+		if (not empty(liberada))
+		{
+			receive liberada(idF)
+			if (empty(C))
+				push(copiadoras, idF)
+			else
+				pop(C, idA)
+				send asignar[idA] (idF)
+		}
+		 (not empty(solicitar) && empty(liberada))
+		{
+			receive solicitar(idA)
+			if 
+		}
 	}
 }
 
