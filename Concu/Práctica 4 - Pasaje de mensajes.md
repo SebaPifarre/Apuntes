@@ -229,7 +229,9 @@ Process Empleado
 	text ticket
 
 	while(true)
-		{rec
+	{
+		receive aviso(ok)
+		
 		if(not empty(pedirCabina) && not empty(cabinas)) -> {
 			recieve pedirCabina(idC)
 			pop(Cabinas, idCabina)
@@ -256,6 +258,7 @@ Process Cliente[id:0..N-1]
 	monto=usarCabina()
 	
 	send pagar(monto, id, idCabina)
+	send aviso(1)
 	recieve enviarTicket(ticket)
 }
 ```
