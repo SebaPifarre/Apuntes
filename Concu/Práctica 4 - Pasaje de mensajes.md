@@ -394,6 +394,7 @@ b)
 chan imprimir(text)
 chan imprimirPrioridad(text)
 chan aviso(int)
+chan disponible(text)
 
 Process Administrativo[id:0..N-1]
 {
@@ -430,9 +431,22 @@ Process Coordinador
 		
 		if(not empty(imprimirPrioridad))
 			receive imprimirPrioridad(documentos)
+			send disponible (documentos)
 		
 		 (not empty(imprimir) && empty(imprimirPrioridad))
 			receive imprimirPrioridad(documentos)
+			send disponible (documentos)
+	}
+}
+
+Process Impresora[id:0..2]
+{
+	text docs
+	
+	while(true)
+	{
+		receive disponible(docs)
+		// imprime
 	}
 }
 
