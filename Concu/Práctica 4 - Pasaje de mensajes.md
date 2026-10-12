@@ -391,7 +391,7 @@ Process Fotocopiadora[id:0..2]
 
 b)
 ```
-chan imprimir(text)
+chan imprimir(text, boolean)
 chan imprimirPrioridad(text)
 chan aviso(int)
 chan disponible(text)
@@ -403,7 +403,7 @@ Process Administrativo[id:0..N-1]
 	while(true)
 	{
 		//trabaja
-		send imprimir(documentos)
+		send imprimir(documentos, false)
 		send aviso(1)
 	}
 }
@@ -415,7 +415,7 @@ Process Director
 	while(true)
 	{
 		//trabaja
-		send imprimirPrioridad(documentos)
+		send imprimir(documentos, true)
 		send aviso(1)
 	}
 }
