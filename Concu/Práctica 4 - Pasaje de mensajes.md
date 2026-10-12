@@ -403,7 +403,7 @@ Process Administrativo[id:0..N-1]
 	while(true)
 	{
 		//trabaja
-		send imprimir(documentos, false)
+		send imprimir(documentos)
 		send aviso(1)
 	}
 }
@@ -415,7 +415,7 @@ Process Director
 	while(true)
 	{
 		//trabaja
-		send imprimir(documentos, true)
+		send imprimirPrioridad(documentos)
 		send aviso(1)
 	}
 }
@@ -423,19 +423,20 @@ Process Director
 Process Coordinador
 {
 	text documentos
-	int ok
+	int ok, idI
 
 	while(true)
 	{
+		receive libre(idI)
 		receive aviso(ok)
 		
 		if(not empty(imprimirPrioridad))
 			receive imprimirPrioridad(documentos)
-			send disponible (documentos)
 		
 		 (not empty(imprimir) && empty(imprimirPrioridad))
 			receive imprimirPrioridad(documentos)
-			send disponible (documentos)
+			
+		send documento[idI] (documentos)
 	}
 }
 
@@ -445,14 +446,62 @@ Process Impresora[id:0..2]
 	
 	while(true)
 	{
-		receive disponible(docs)
+		send libre(id)
+		receive documento[id](docs)
 		// imprime
+		
 	}
 }
 
 ```
 
 c)
+```
+chan imprimir(text)
+chan libre(text)
+
+Process Administrativo[id:0..N-1]
+{
+	text documentos
+	int i
+	
+	for i=1 to 10
+	{
+		//trabaja
+		send imprimir(documentos)
+	}
+}
+
+Process Fotocopiadora[id:0..2]
+{
+	text documentos
+	int i
+
+	while(true)
+	{
+		receive libre (documentos)
+		if (documentos=="cortar") break
+		// imprime
+	}
+}
+
+Process Coordinador
+{
+	int i
+	text documentos
+
+	for i=1 to (N+1)*10
+	{
+		receive imprimir (documentos)
+		send libre(documentos)
+	}
+	for i=1 to 3
+		documentos = "cortar"
+		send libre(documentos)
+}
+```
+
+d)
 ```
 chan solicitar(int)
 chan asignar[N](int)
