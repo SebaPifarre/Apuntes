@@ -470,6 +470,7 @@ Process Administrativo[id:0..N-1]
 		//trabaja
 		send imprimir(documentos)
 	}
+	send imprimir("cortar")
 }
 
 Process Fotocopiadora[id:0..2]
