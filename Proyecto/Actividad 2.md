@@ -8,3 +8,9 @@ b) Los dos problemas tienen que ver con
 c) Si el usuario ingresa un email que ya existe y el campo email tiene la restricción de UNIQUE va a ocurrir un error de integridad , la sesión de la base de datos quedará inhabilitada hasta que ocurra un rollback(). Como en este caso no se maneja ese problema en particular, la aplicación va a devolver un error y no va a permitir que siga su ejecución.
 
 a) Está función es una ruta de acceso a la aplicación en bp + /admin/eliminar_usuario/<ind:user_id> que acepta el método post.
+Llega el id a eliminar por la url. Primero se busca el usuario dentro de la base de datos. Luego se entra en un bloque try/except donde se intenta eliminar ese usuario de la base de datos. En caso exitoso se retorna un string con un mensaje exitoso, si se levanta una excepción en el proceso, se retorna un mensaje de error junto con el mensaje de la excepción.
+b) 
+* Un problema de autorización es que no se está verificando si el usuario tiene una sesión activa o si tiene los permisos necesarios.
+* Después hay varios errores con respecto al acceso a la base de datos. Como el id llega por url y no hay verificación previa, db.session.get puede retornar None si el usuario no existe. Si ese es el caso, si intentaria relizar un delete de un usuario que no existe. Por otro lado, si hay algún problema dentro del bloque try, no se está realizando la operación rollback dentro del manejo de la excepción. Si ocurrio algún problema la sesión se flaggeo como inutilizable hasta realizar un rollback, cualquier operación siguiente que se quiera realizar dentro de la sesión no podrá ser ejecutada.
+Como extra, ambos puntos de retorno devuelven strings, en vez de redireccionar o renderizar un template
+c) Ocurrira un error 500 del servidor pero al ser manejado por el except, solo retornará un mensaje de error.
