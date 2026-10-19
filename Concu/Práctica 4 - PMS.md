@@ -272,6 +272,6 @@ Process Admin
 													cant++
 		  not empty(C); Profesor[*]?aviso(idP) -> pop(C, examn, id)
 											 Profesor[idP]!proximo(examn, id)
-		[] cant == N; Profesor
+		[] cant == N; Profesor[*]
 }
 ```
