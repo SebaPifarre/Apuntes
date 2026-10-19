@@ -234,3 +234,44 @@ Process Admin
 											 Profesor!proximo(examn, id)
 }
 ```
+
+b)
+
+```
+Process Alumno[id:0..N-1]
+{
+	text examn, res
+
+	//resuelve examn
+	Admin!entrega(examn, id)
+	Profesor[*]?resultado(res)
+}
+
+Process Profesor[id:0..P-1]
+{
+	text examn, correccion
+	int idN
+
+	for i=1 to N
+	{
+		Admin!aviso(id)
+		Admin?proximo(examn, idN)
+		//corrige
+		Alumno[idN]!resultado(correccion)
+	}
+}
+
+Process Admin
+{
+	text examn
+	int idN, idP, cant=0
+	cola C
+
+
+		do cant<N; Alumno[*]?entrega(examn, id) -> push(C, examn, id)
+													cant++
+		  not empty(C); Profesor[*]?aviso(idP) -> pop(C, examn, id)
+											 Profesor[idP]!proximo(examn, id)
+		[] cant == N; Profesor
+}
+```
