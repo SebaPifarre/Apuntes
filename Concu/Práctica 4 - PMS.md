@@ -17,7 +17,17 @@ d) Si los Examinadores no deben esperar la respuesta del Analizador, ¿cambiarí
 algo de la solución al inciso b)? ¿por qué?
 
 a)
+Voy a tener los R procesos Examinadores y el proceso Analizador.
+Los examinadores van a usar su canal reporte para enviar el sitio web y su id, luego van a esperar en sus canales respuesta.
+Mientras el procesos administrador va a recibir por los canales reporte, tomando cualquiera que llegue, van a procesar la consulta y luego responder al id que les llego por el canal.
 
+b)
 ```
-
+Process Examinador[id:0..R-1]
+{
+	while(true)
+	{
+		
+	}
+}
 ```
