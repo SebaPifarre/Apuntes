@@ -370,17 +370,66 @@ c)
 ```
 Process Persona[id:0..P-1]
 {
-	Empleado!llegue(id)
+	Admin!llegue(id)
 	Empleado?comenzar()
 	//usa el simulador
 	Empleado!termine()
 }
 
-Process Empleado
+Process Admin
 {
 	cola C(int)
-	int cant=0
+	int id, cant=0
 	
-	do cant<P; Persona[*].llegue
+	do cant<P; Persona[*]?llegue(id) -> push(C, id)
+										cant++
+	[] not empty(C); Empleado?aviso() -> pop(C,id)
+										 Empleado!siguiente(id)
+}
+
+Process Empleado
+{
+	int i,id
+	
+	for i=0 to P-1
+	{
+		Admin!aviso()
+		Admin?siguiente(id)
+		Persona[id]!comenzar()
+		Persona[id]?termine()
+	}
+}
+```
+
+## Ejercicio 5
+
+En un estadio de fútbol hay una máquina expendedora de gaseosas que debe ser usada por
+E Espectadores de acuerdo con el orden de llegada. Cuando el espectador accede a la máquina en su turno, usa la máquina y luego se retira para dejar al siguiente. Nota: cada espectador usa la máquina sólo una vez
+
+```
+Process Espectador[id:0..E-1]
+{
+	Admin!llegue(id)
+	Maquina?comenzar()
+	Maquina!finalizar()
+}
+Process Maquina
+{
+	int i,id
+	
+	for i=0 to E-1
+	{
+		Admin!aviso()
+		Admin?proximo(id)
+		// uso de maquina
+		Espectador[id]!finalizar()
+	}
+}
+
+Process Admin
+{
+	int id, cant = 0
+	
+	do (cant<E); Espectador[*]?llegue() 
 }
 ```
