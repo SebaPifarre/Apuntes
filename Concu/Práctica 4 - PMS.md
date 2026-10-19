@@ -195,6 +195,35 @@ que todos hayan llegado al aula.
 Nota: maximizar la concurrencia; no generar demora innecesaria; todos los procesos deben
 terminar su ejecución.
 
-```
+a)
 
+```
+Process Alumno[id:0..N-1]
+{
+	text examn, res
+
+	//resuelve examn
+	Profesor!entrega(examn, id)
+	Profesor[id]?resultado(res)
+}
+
+Process Profesor
+{
+	text examn, correccion
+	int id
+
+	for i=1 to N
+	{
+		Adminentrega(examn, id)
+		//corrige
+		Alumno[id]!resultado(correccion)
+	}
+}
+
+Process Admin
+{
+	do Alumno[*]?entrega(examn, id) -> push(C, examn, id)
+	  not empty(C); Profesor?aviso() -> pop(C, examn, id)
+										 Profesor!proximo(examn, id)
+}
 ```
