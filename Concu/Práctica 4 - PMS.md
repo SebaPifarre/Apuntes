@@ -252,10 +252,11 @@ Process Profesor[id:0..P-1]
 	text examn, correccion
 	int idN
 
-	for i=1 to N
+	while(true)
 	{
 		Admin!aviso(id)
 		Admin?proximo(examn, idN)
+		if(examn=='fin') break
 		//corrige
 		Alumno[idN]!resultado(correccion)
 	}
@@ -264,7 +265,7 @@ Process Profesor[id:0..P-1]
 Process Admin
 {
 	text examn
-	int idN, idP, cant=0
+	int idN, idP, cant=0, fin=0
 	cola C
 
 
@@ -272,6 +273,41 @@ Process Admin
 													cant++
 		  not empty(C); Profesor[*]?aviso(idP) -> pop(C, examn, id)
 											 Profesor[idP]!proximo(examn, id)
-		[] cant == N; Profesor[*]
+		[] ( cant == N and empty(C) and fin<P) ; Profesor[*]?aviso(idP) ->
+												Profesor[idP]!proximo('fin', id)
+												fin++
 }
+```
+
+c)
+```
+Process Aula
+{
+	for i=0 to N-1
+	{
+		Alumno[*]?llegue()
+	}
+	for i=0 to N-1
+	{
+		Alumno[i]!empezar()
+	}
+}
+
+Process Alumno[id:0..N-1]
+{
+	text examn, res
+	
+	Aula!llegue()
+	Aula[id]
+}
+```
+Process Alumno[id:0..N-1]
+{
+	text examn, res
+
+	//resuelve examn
+	Admin!entrega(examn, id)
+	Profesor[*]?resultado(res)
+}
+
 ```
