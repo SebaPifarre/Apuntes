@@ -58,7 +58,7 @@ Process Examinador[id:0..R-1]
 	while(true)
 	{
 		// Buscar sitio infectado
-		Analizador!reporte(sitio, id)
+		Admin!reporte(sitio, id)
 		Analizador?respuesta(res)
 	}
 }
@@ -70,7 +70,8 @@ Process Analizador
 
 	while(true)
 	{
-		Examinador[*]?reporte(pedido,id)
+		Admin!listo()
+		Admin?envio(pedido, id)
 		// resuleve la consulta
 		Examinador[id]!respuesta(res)
 	}
@@ -79,11 +80,45 @@ Process Analizador
 Process Admin
 {
 	cola C
-	
+	text pedido
+	int id
+
+	do Examinador[*]?reporte(pedido, id) -> push(C, pedido, id)
+	  not empty(C); Analizador?listo() -> pop(C, pedido, id)
+											Analizador!envio(pedido, id)
+}
+```
+
+d)
+```
+Process Examinador[id:0..R-1]
+{
+	text sitio, res
+
 	while(true)
 	{
-		do Examinador[*]?reporte(pedido, id) -> push(C, pedido, id)
-		  not empty(C); Analuzador?listo() -> pop(C, )
+		// Buscar sitio infectado
+		Admin!reporte(sitio)
 	}
+}
+
+Process Analizador
+{
+	text pedido, res
+	int id
+
+	while(true)
+	{
+		Admin!aviso()
+		Admin?consulta(pedido)
+		// resuleve la consulta
+	}
+}
+
+Process Admin
+{
+
+
+	do Examinador[*]?reporte(sitio)
 }
 ```
