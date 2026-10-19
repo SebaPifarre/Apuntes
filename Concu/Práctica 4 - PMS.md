@@ -323,4 +323,20 @@ acceso al simulador.
 Nota: cada persona usa sólo una vez el simulador
 
 ```
+Process Persona[id:0..P-1]
+{
+	Empleado!llegue()
+	//usa el simulador
+	Empleado!termine()
+}
+
+Process Empleado
+{
+	int cant = 0
+	bool ocupado = false
+	
+	do (cant<P and ocupado==false); Persona[*]?llegue() -> ocupado = true
+														   cant++
+	[] ocupado==true; Persona[*]?termine() -> ocupado = false
+}
 ```
