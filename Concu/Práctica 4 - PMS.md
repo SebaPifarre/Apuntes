@@ -322,6 +322,8 @@ c) Modifique la solución a) para que el empleado considere el orden de llegada 
 acceso al simulador.
 Nota: cada persona usa sólo una vez el simulador
 
+a)
+
 ```
 Process Persona[id:0..P-1]
 {
@@ -338,5 +340,47 @@ Process Empleado
 	do (cant<P and ocupado==false); Persona[*]?llegue() -> ocupado = true
 														   cant++
 	[] ocupado==true; Persona[*]?termine() -> ocupado = false
+}
+```
+
+b)
+
+```
+Process Persona[id:0..P-1]
+{
+	Empleado!llegue()
+	//usa el simulador
+	Empleado!termine()
+}
+
+Process Empleado
+{
+	int i
+	
+	for i=0 to P-1
+	{
+		Persona[i]?llegue()
+		Persona[i]?termine()
+	}
+}
+```
+
+c)
+
+```
+Process Persona[id:0..P-1]
+{
+	Empleado!llegue(id)
+	Empleado?comenzar()
+	//usa el simulador
+	Empleado!termine()
+}
+
+Process Empleado
+{
+	cola C(int)
+	int cant=0
+	
+	do cant<P; Persona[*].llegue
 }
 ```
