@@ -411,6 +411,7 @@ Process Espectador[id:0..E-1]
 {
 	Admin!llegue(id)
 	Maquina?comenzar()
+	//uso maquina
 	Maquina!finalizar()
 }
 Process Maquina
@@ -421,8 +422,8 @@ Process Maquina
 	{
 		Admin!aviso()
 		Admin?proximo(id)
-		// uso de maquina
-		Espectador[id]!finalizar()
+		Espectador[id]!comenzar()
+		Espectador[id]?finalizar()
 	}
 }
 
@@ -430,6 +431,9 @@ Process Admin
 {
 	int id, cant = 0
 	
-	do (cant<E); Espectador[*]?llegue() 
+	do (cant<E); Espectador[*]?llegue() -> push(C, id)
+										   cant++
+	[] not empty(C); Maquina?aviso() -> pop(C, id)
+										Maquina!proximo(id)
 }
 ```
