@@ -25,9 +25,65 @@ b)
 ```
 Process Examinador[id:0..R-1]
 {
+	text sitio, res
+
 	while(true)
 	{
-		
+		// Buscar sitio infectado
+		Analizador!reporte(sitio, id)
+		Analizador?respuesta(res)
+	}
+}
+
+Process Analizador
+{
+	text pedido, res
+	int id
+
+	while(true)
+	{
+		Examinador[*]?reporte(pedido,id)
+		// resuleve la consulta
+		Examinador[id]!respuesta(res)
+	}
+}
+```
+
+c)
+```
+Process Examinador[id:0..R-1]
+{
+	text sitio, res
+
+	while(true)
+	{
+		// Buscar sitio infectado
+		Analizador!reporte(sitio, id)
+		Analizador?respuesta(res)
+	}
+}
+
+Process Analizador
+{
+	text pedido, res
+	int id
+
+	while(true)
+	{
+		Examinador[*]?reporte(pedido,id)
+		// resuleve la consulta
+		Examinador[id]!respuesta(res)
+	}
+}
+
+Process Admin
+{
+	cola C
+	
+	while(true)
+	{
+		do Examinador[*]?reporte(pedido, id) -> push(C, pedido, id)
+		  not empty(C); Analuzador?listo() -> pop(C, )
 	}
 }
 ```
