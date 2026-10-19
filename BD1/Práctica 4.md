@@ -18,3 +18,16 @@ GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP, INDEX, REFERENCES, CR
 
 ## Ejercicio 2
 
+```sql
+SELECT * FROM patient p
+WHERE p.primary_phone
+= all
+(
+	Select a.contact_phone from appointment a
+	where p.patient_id = a.patient_id
+)
+and exists (select 1 from appointment a 
+	where a.patient_id = a.patient_id)
+```
+
+se agrega el and exists porque si la subconsulta no devuelve filas, all da verdadero.
