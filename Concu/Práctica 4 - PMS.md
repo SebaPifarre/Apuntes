@@ -203,8 +203,8 @@ Process Alumno[id:0..N-1]
 	text examn, res
 
 	//resuelve examn
-	Profesor!entrega(examn, id)
-	Profesor[id]?resultado(res)
+	Admin!entrega(examn, id)
+	Profesor?resultado(res)
 }
 
 Process Profesor
@@ -214,7 +214,8 @@ Process Profesor
 
 	for i=1 to N
 	{
-		Adminentrega(examn, id)
+		Admin!aviso()
+		Admin?proximo(examn, id)
 		//corrige
 		Alumno[id]!resultado(correccion)
 	}
@@ -222,8 +223,14 @@ Process Profesor
 
 Process Admin
 {
-	do Alumno[*]?entrega(examn, id) -> push(C, examn, id)
-	  not empty(C); Profesor?aviso() -> pop(C, examn, id)
-										 Profesor!proximo(examn, id)
+	text examn
+	int id, cant=0
+	cola C
+
+
+		do cant<N; Alumno[*]?entrega(examn, id) -> push(C, examn, id)
+													cant++
+		  not empty(C); Profesor?aviso() -> pop(C, examn, id)
+											 Profesor!proximo(examn, id)
 }
 ```
