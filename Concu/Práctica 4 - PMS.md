@@ -16,6 +16,7 @@ los pedidos de los Examinadores.
 d) Si los Examinadores no deben esperar la respuesta del Analizador, ¿cambiaría
 algo de la solución al inciso b)? ¿por qué?
 
+a)
 
 ```
 
