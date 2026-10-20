@@ -54,6 +54,24 @@ se agrega el and exists porque si la subconsulta no devuelve filas, all da verda
 Crear una vista llamada ‘doctors_per_patients’ que muestre los id de los pacientes y
 los id de doctores de la ciudad donde vive el paciente.
 
+```sql
+create view mi_base.doctors_per_patients
+as (
+	select p.patient_id, d.doctor_id
+	from patient p, doctor d
+	where p.patient_city = d.doctor_city
+	)
+```
+
+## Ejercicio 4
+
+Utiliza la vista generada en el ejercicio anterior para resolver las siguientes
+consultas:
+a. Obtener la cantidad de doctores por cada paciente que tiene disponible en
+su ciudad
+b. Obtener los nombres de los pacientes sin doctores en su ciudad
+c. Obtener los doctores que comparten ciudad con más de cinco pacientes.
+
 ```
 
 ```
