@@ -72,6 +72,24 @@ su ciudad
 b. Obtener los nombres de los pacientes sin doctores en su ciudad
 c. Obtener los doctores que comparten ciudad con más de cinco pacientes.
 
+a)
+
+```mysql
+select dpp.patient_id, count(*)
+from doctors_per_patients dpp
+group by patient_id
+```
+
+b)
+
+```mysql
+select p.patient_name
+from patient p
+where p.patient_id not in (select patient_id from doctors_per_patients)
+```
+
+c)
+
 ```
 
 ```
