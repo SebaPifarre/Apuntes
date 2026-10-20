@@ -111,3 +111,30 @@ count_appointments: int(11)
 last_update: datetime
 user: varchar(16)
 
+```mysql
+create table mi_base.appointments_per_patient
+(
+	idApP integer(11) auto_increment primary key,
+	patient_id integer(11) not null,
+	constraint patient_id FOREIGN key (patient_id)
+	references patient(patient_id),
+	count_appointments integer(11),
+	last_update DATETIME,
+	user varchar(16)
+)
+```
+
+## Ejercicio 6
+
+Crear un Stored Procedure que realice los siguientes pasos dentro de una
+transacción:
+a. Realizar la siguiente consulta: cada pacient (identificado por patient_id),
+calcule la cantidad de appointments que tiene registradas. Registrar la fecha
+en la que se realiza esta carga y además del usuario con el se realiza.
+b. Guardar el resultado de la consulta en un cursor.
+c. Iterar el cursor e insertar los valores correspondientes en la tabla
+APPOINTMENTS_PER_PATIENT. Tenga en cuenta que last_update es la
+fecha en que se realiza esta carga, es decir la fecha actual, mientras que
+user es el usuario logueado actualmente, utilizar las correspondientes
+funciones para esto.
+Para el campo user, guardar únicamente el nombre de usuario, sin el host.
