@@ -90,6 +90,24 @@ where p.patient_id not in (select patient_id from doctors_per_patients)
 
 c)
 
+```mysql
+select *
+from doctor d
+where d.doctor_id IN
+(
+	select dpp.doctor_id from doctors_per_patients dpp
+	group by dpp.doctor_id
+	having count(*) > 5
+)
 ```
 
-```
+## Ejercicio 5
+
+Escribe y ejecute la sentencia correspondiente para crear la siguiente tabla:
+APPOINTMENTS_PER_PATIENT
+idApP: int(11) PK AI
+patient_id: int(11)
+count_appointments: int(11)
+last_update: datetime
+user: varchar(16)
+
