@@ -138,3 +138,7 @@ fecha en que se realiza esta carga, es decir la fecha actual, mientras que
 user es el usuario logueado actualmente, utilizar las correspondientes
 funciones para esto.
 Para el campo user, guardar únicamente el nombre de usuario, sin el host.
+
+```mysql
+
+```
