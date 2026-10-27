@@ -144,11 +144,47 @@ DELIMITER //
 CREATE PROCEDURE actualizar()
 BEGIN
 	DECLARE fin INT DEFAULT 0;
+	DECLARE v_patient INT;
+	DECLARE v_count INT;
+	DECLARE v_date DATETIME;
+	DECLARE v_user VARCHAR(16);
 	DECLARE cursor_ej CURSOR FOR 
 	SELECT * FROM appointments GROUP BY patient_id;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;
+	SET v_date = NOW();
+	SET v_user = SUBSTRING_INDEX(USER(), '@', 1)
 	OPEN cursor_ej;
 	loop_cursor : LOOP
-		FETCH NEXT FROM cursos_ej INTO 
+		FETCH NEXT FROM cursos_ej INTO vPatient, v_count;
+		IF fin = 1
+			LEAVE loop_cursor;
+		END IF;
+		INSERT INTO mi_base.appointments_per_patient
+					(patient_id, count_appointments, last_update, user)
+		VALUES(v_patient, v_count, v_date, v_user)
+		END LOOP;
+	CLOSE cursor_ej;
+	COMMIT; 
 END//
+DELIMITER;
 ```
+
+## Ejercicio 7
+
+Indique si las siguientes afirmaciones sobre triggers son verdaderas o falsas.
+Justifique las falsas.
+a.​ Un trigger se ejecuta únicamente cuando se inserta una fila en una tabla.
+b.​ Un trigger puede ejecutarse antes o después de la operación, esto es
+definido automáticamente según el tipo de la operación (UPDATE, INSERT
+o DELETE)
+c.​ Todo trigger debe asociarse a una tabla en concreto.
+d.​ NEW y OLD son palabras clave que permiten acceder a los valores de las
+filas afectadas y se pueden usar ambos independientemente de la
+operación utilizada.
+e.​ FOR EACH ROW en un trigger se usa para indicar que el trigger se
+ejecutará una vez por cada fila afectada por la operación.
+
+a) Falso. Se ejecuta cuando ocurre un evento en particular.
+b) Falso. Se define explicitamente, no depende de la operación.
+c)
+
