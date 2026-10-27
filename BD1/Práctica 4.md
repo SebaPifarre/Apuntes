@@ -186,5 +186,17 @@ ejecutará una vez por cada fila afectada por la operación.
 
 a) Falso. Se ejecuta cuando ocurre un evento en particular.
 b) Falso. Se define explicitamente, no depende de la operación.
-c)
+c) Verdadero.
+d) El insert solo tiene NEW. Delete solo tiene OLD y update tiene ambos.
+e) Verdadero
+
+## Ejercicio 8
+
+Crear un Trigger de modo que al insertar un dato en la tabla Appointment, se
+actualice la cantidad de appointments del paciente, la fecha de actualización y el
+usuario responsable de la misma (actualiza la tabla
+APPOINTMENTS_PER_PATIENT).​
+Para el campo user, guardar únicamente el nombre de usuario, sin el host.
+
+
 
