@@ -140,5 +140,9 @@ funciones para esto.
 Para el campo user, guardar únicamente el nombre de usuario, sin el host.
 
 ```mysql
-
+DELIMITER //
+CREATE PROCEDURE actualizar()
+BEGIN
+	DECLARE cursor_ej CURSOR FOR SELECT 
+END//
 ```
