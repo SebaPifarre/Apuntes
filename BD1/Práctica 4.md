@@ -143,6 +143,12 @@ Para el campo user, guardar únicamente el nombre de usuario, sin el host.
 DELIMITER //
 CREATE PROCEDURE actualizar()
 BEGIN
-	DECLARE cursor_ej CURSOR FOR SELECT 
+	DECLARE fin INT DEFAULT 0;
+	DECLARE cursor_ej CURSOR FOR 
+	SELECT * FROM appointments GROUP BY patient_id;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;
+	OPEN cursor_ej;
+	loop_cursor : LOOP
+		FETCH NEXT FROM cursos_ej INTO 
 END//
 ```
