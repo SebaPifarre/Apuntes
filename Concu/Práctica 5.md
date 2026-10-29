@@ -33,36 +33,36 @@ Begin
 	peso=5
 	loop 
 		SELECT
-			when(peso>1 & EntrarCamion)  => ACCEPT EntrarAuto() do
-				peso = peso-1
-				//pasa el auto
+			when(peso>=1 and EntrarCamion'count = 0)  => ACCEPT EntrarAuto do
+				peso := peso-1
 		OR
-			when(peso>2) => ACCEPT EntrarCamioneta() do
-				peso = peso-2
-				//pasa camioneta
+			when(peso>=2 and EntrarCamion'count = 0) => ACCEPT EntrarCamioneta do
+				peso := peso-2
 		OR
-			when(peso>3) => ACCEPT EntrarCamion() do
-				peso = peso-3
-				//pasa camion
+			when(peso>=3) => ACCEPT EntrarCamion do
+				peso := peso-3
 		OR
 			ACCEPT Salir(P: IN integer) do
-				peso = peso + P
+				peso := peso + P
 		END SELECT
 	end loop
 end Puente
 
 Task body Auto is
-	Puente.EntrarAuto()
+	Puente.EntrarAuto
 	//cruza
 	Puente.salir(1)
 
 Task body Camioneta is
-	Puente.EntrarCamioneta()
+	Puente.EntrarCamioneta
 	//cruza
 	Puente.Salir(2)
 	
 Task body Camion is
-	Puente.EntrarCamion()
+	Puente.EntrarCamion
 	//cruza
 	Puente.Salir(3)
 ```
+
+## Ejercicio 2
+
