@@ -30,7 +30,7 @@ Task Type Camion
 Task body Puente is
 	peso:integer;
 Begin
-	peso=5
+	peso:=5
 	loop 
 		SELECT
 			when(peso>=1 and EntrarCamion'count = 0)  => ACCEPT EntrarAuto do
@@ -79,6 +79,16 @@ d) Implemente una solución donde los clientes esperan a lo sumo 10 minutos para
 atendidos. Si pasado ese lapso no fueron atendidos, entonces solicitan atención una vez más
 y se retiran si no son atendidos inmediatamente.
 
+a)
 ```ada
+Procedure Banco
+
+Task Empleado is
+	entry Solicitar;
+End Banco
+
+Task Type cliente;
+
+Task body E
 
 ```
