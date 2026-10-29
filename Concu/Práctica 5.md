@@ -233,7 +233,12 @@ Procedure Central
 Task Central is
 	entry Pedido1(D: IN text)
 	entry Pedido2(D: IN text)
+	entry Tiempo
 End Central
+
+Task Timer is
+	entry Iniciar
+End Timer
 
 Task type Perif
 
@@ -244,11 +249,26 @@ Task body Central is
 	datos:text
 Begin
 	ACCEPT Pedido1(D: IN text)
-	SELECT
-		ACCEPT Pedido1(D: IN text) do
-			//resolver señal
-		ACCEPT Pedido2(D: IN text) do
-			//resolver señal
-			
+	loop
+		SELECT
+			ACCEPT Pedido1(D: IN text) do
+				//resolver señal
+			ACCEPT Pedido2(D: IN text) do
+				//resolver señal
+				loop
+					SELECT 
+						ACCEPT Pedido2(D: IN text) do
+							//resolver señal
+						ACCEPT Tiempo
+							break
+					END SELECT
+				end loop
+		END SELECT
+	end loop
 End Central
+
+Task body Timer is
+Begin
+	ACCEP
+End Timer
 ```
