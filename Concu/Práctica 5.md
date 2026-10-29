@@ -255,6 +255,7 @@ Begin
 				//resolver señal
 			ACCEPT Pedido2(D: IN text) do
 				//resolver señal
+				Timer.Iniciar
 				loop
 					SELECT 
 						ACCEPT Pedido2(D: IN text) do
@@ -269,6 +270,8 @@ End Central
 
 Task body Timer is
 Begin
-	ACCEP
+	ACCEPT Iniciar do
+		delay 120
+		Central.Tiempo
 End Timer
 ```
