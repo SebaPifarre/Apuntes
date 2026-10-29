@@ -17,6 +17,18 @@ b. Modifique la solución para que tengan mayor prioridad los camiones que el re
 vehículos.
 
 ```ada
-Task Vehiculo is
-	entry 
+Task Puente is
+	entry EntrarAuto
+	entry EntrarCamioneta
+	entry EntrarCamion
+
+Task Type Auto
+Task Type Camioneta
+Task Type Camion
+
+Task body Puente is
+Begin
+	loop 
+		
+end
 ```
