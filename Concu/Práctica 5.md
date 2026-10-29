@@ -231,6 +231,17 @@ vuelve a mandarla (no se deshecha).
 Procedure Central
 
 Task Central is
+	entry TomarSeñal(D: IN text)
+End Central
+
+Task type Perif
+
+p1: Perif
+p2: Perif
+
+Task body Central is
+	datos:text
+Begin
 	
 End Central
 ```
