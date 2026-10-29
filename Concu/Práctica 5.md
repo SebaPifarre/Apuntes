@@ -16,3 +16,7 @@ a. Realice la solución suponiendo que todos los vehículos tienen la misma prio
 b. Modifique la solución para que tengan mayor prioridad los camiones que el resto de los
 vehículos.
 
+```ada
+Task Vehiculo is
+	entry 
+```
