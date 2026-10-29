@@ -21,14 +21,48 @@ Task Puente is
 	entry EntrarAuto
 	entry EntrarCamioneta
 	entry EntrarCamion
+	entry Salir(P: IN integer)
 
 Task Type Auto
 Task Type Camioneta
 Task Type Camion
 
 Task body Puente is
+	peso:integer;
 Begin
+	peso=5
 	loop 
-		
-end
+		SELECT
+			when(peso>1 & EntrarCamion)  => ACCEPT EntrarAuto() do
+				peso = peso-1
+				//pasa el auto
+		OR
+			when(peso>2) => ACCEPT EntrarCamioneta() do
+				peso = peso-2
+				//pasa camioneta
+		OR
+			when(peso>3) => ACCEPT EntrarCamion() do
+				peso = peso-3
+				//pasa camion
+		OR
+			ACCEPT Salir(P: IN integer) do
+				peso = peso + P
+		END SELECT
+	end loop
+end Puente
+
+Task body Auto is
+	Puente.EntrarAuto()
+	//cruza
+	Puente.salir(1)
+
+Task body Camioneta is
+	Puente.EntrarCamioneta()
+	//cruza
+	Puente.Salir(2)
+	
+Task body Camion is
+	Puente.EntrarCamion()
+	//cruza
+	Puente.Salir(3)
 ```
