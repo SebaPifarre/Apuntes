@@ -231,7 +231,8 @@ vuelve a mandarla (no se deshecha).
 Procedure Central
 
 Task Central is
-	entry TomarSeñal(D: IN text)
+	entry Pedido1(D: IN text)
+	entry Pedido2(D: IN text)
 End Central
 
 Task type Perif
@@ -242,6 +243,11 @@ p2: Perif
 Task body Central is
 	datos:text
 Begin
-	
+	ACCEPT Pedido1(D: IN text)
+	SELECT
+		ACCEPT Pedido1(D: IN text) do
+			//resolver señal
+		ACCEPT Pedido2(D: IN text) do
+			//resolver señal
 End Central
 ```
