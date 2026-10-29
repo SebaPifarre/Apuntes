@@ -228,5 +228,9 @@ señal del proceso 2 no puede ser recibida inmediatamente, entonces espera 1 min
 vuelve a mandarla (no se deshecha).
 
 ```
+Procedure Central
 
+Task Central is
+	
+End Central
 ```
