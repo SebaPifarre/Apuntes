@@ -249,5 +249,6 @@ Begin
 			//resolver señal
 		ACCEPT Pedido2(D: IN text) do
 			//resolver señal
+			
 End Central
 ```
