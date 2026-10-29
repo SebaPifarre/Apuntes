@@ -81,14 +81,58 @@ y se retiran si no son atendidos inmediatamente.
 
 a)
 ```ada
-Procedure Banco
+Procedure Banco is
 
 Task Empleado is
-	entry Solicitar;
+	entry Solicitar(R: OUT text);
 End Banco
 
-Task Type cliente;
+Task Type Cliente;
 
-Task body E
+Task body Empleado is
+Begin
+	loop
+		ACCEPT Solicitar(R: OUT text) do
+			R:=atender
+	end loop
+End Empleado
 
+Task body Cliente is
+	R:text
+Begin
+	Empleado.Solicitar(R)
+End Cliente
+
+End Banco
+```
+
+b)
+
+```
+Procedure Banco is
+
+Task Empleado is
+	entry Solicitar(R: OUT text);
+End Banco
+
+Task Type Cliente;
+
+Task body Empleado is
+Begin
+	loop
+		ACCEPT Solicitar(R: OUT text) do
+			R:=atender
+	end loop
+End Empleado
+
+Task body Cliente is
+	R:text
+Begin
+	SELECT
+		Empleado.Solicitar(R)
+	OR
+		
+End Cliente
+
+End Banco
 ```
