@@ -112,7 +112,7 @@ b)
 Procedure Banco is
 
 Task Empleado is
-	entry Solicitar(R: OUT text);
+	entry Solicitar(datos: IN text; R: OUT text);
 End Banco
 
 Task Type Cliente;
@@ -120,8 +120,8 @@ Task Type Cliente;
 Task body Empleado is
 Begin
 	loop
-		ACCEPT Solicitar(R: OUT text) do
-			R:=atender
+		ACCEPT Solicitar(datos: IN text; R: OUT text) do
+			R:=atender(datos)
 	end loop
 End Empleado
 
@@ -130,9 +130,114 @@ Task body Cliente is
 Begin
 	SELECT
 		Empleado.Solicitar(R)
-	OR
-		
+	OR DELAY 600
+		NULL
+		END SELECT
 End Cliente
 
+Begin
+	null
+End Banco
+```
+
+c)
+
+```
+Procedure Banco is
+
+Task Empleado is
+	entry Solicitar(datos: IN text; R: OUT text);
+End Banco
+
+Task Type Cliente;
+
+Task body Empleado is
+Begin
+	loop
+		ACCEPT Solicitar(datos: IN text; R: OUT text) do
+			R:=atender(datos)
+	end loop
+End Empleado
+
+Task body Cliente is
+	R:text
+Begin
+	SELECT
+		Empleado.Solicitar(R)
+	OR DELAY 0
+		NULL
+		END SELECT
+End Cliente
+
+Begin
+	null
+End Banco
+```
+
+d)
+
+```
+Procedure Banco is
+
+Task Empleado is
+	entry Solicitar(datos: IN text; R: OUT text);
+End Banco
+
+Task Type Cliente;
+
+Task body Empleado is
+Begin
+	loop
+		ACCEPT Solicitar(datos: IN text; R: OUT text) do
+			R:=atender(datos)
+	end loop
+End Empleado
+
+Task body Cliente is
+	R:text
+Begin
+	SELECT
+		Empleado.Solicitar(R)
+	OR DELAY 0
+		NULL
+		END SELECT
+End Cliente
+
+Begin
+	null
+End Banco
+```
+
+d)
+
+```
+Procedure Banco is
+
+Task Empleado is
+	entry Solicitar(datos: IN text; R: OUT text);
+End Banco
+
+Task Type Cliente;
+
+Task body Empleado is
+Begin
+	loop
+		ACCEPT Solicitar(datos: IN text; R: OUT text) do
+			R:=atender(datos)
+	end loop
+End Empleado
+
+Task body Cliente is
+	R:text
+Begin
+	SELECT
+		Empleado.Solicitar(R)
+	OR DELAY 0
+		NULL
+		END SELECT
+End Cliente
+
+Begin
+	null
 End Banco
 ```
