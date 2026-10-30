@@ -40,3 +40,4 @@ Tanto las páginas de Epicrisis y seguimiento podrian tener un filtro(semana/mes
 
 Agregar genero y hacer que dni más genero sea unico
 Mover dao y todo el proyecto a hospital
+Lo de los permisos
