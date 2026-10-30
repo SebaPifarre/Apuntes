@@ -34,3 +34,9 @@
 ## Cosas para cambiar
 
 Tanto las páginas de Epicrisis y seguimiento podrian tener un filtro(semana/mes) para mostrar algo cuando se entra y que no quede pelado.
+
+
+## Notas para entregable 4
+
+Agregar genero y hacer que dni más genero sea unico
+Mover dao y todo el proyecto a hospital
