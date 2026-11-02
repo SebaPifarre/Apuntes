@@ -19,16 +19,20 @@ DF1) idCuidador -> nyAp, cuilCuidador
 DF2) cuilCuidador -> nyAp, idCuidador
 DF3) idVivero -> nombreVivero, mtrCuadradosVivero, tempPromedioVivero, idCuidador
 DF4) idVivero -> nombreVivero, mtrCuadradosVivero, tempPromedioVivero, cuilCuidador
-DF5) idPlanta -> nombrePlanta, idEspecie
-DF6) idEspecia -> nombreEspecie
+DF5) idEspecia -> nombreEspecie
+DF6) idPlanta -> nombrePlanta, idEspecie
 
  CC: {idVivero, idPlanta, quimicoPlanta, consultorVivero, patente_vehiculo}
 
 #### ¿Instalciones, cumple BCNF?
 
-Instalaciones no se encuentra en BCNF ya que existe al menos el determinante de la DF6 
+Instalaciones no se encuentra en BCNF ya que existe al menos el determinante de la DF5 
 {idEspecie} que NO es superclave del esquema Instalaciones. Por lo tanto, particionamos por la DF6, creando dos nuevas relaciones:
 
 I1(<u>idEspecie</u>, nombreEspecie)
 
 I2(idCuidador, nyAp, cuilCuidador, <u>idVivero</u>, nombreVivero, mtrCuadradosVivero, tempPromedioVivero, <u>idPlanta</u>, nombrePlanta, <u>quimicoPlanta</u>, <u>consultorVivero</u>, <u>patente_vehiculo</u>)
+
+#### ¿Se pierden DFs?
+
+No. En I2 valen DF1, DF2, 
