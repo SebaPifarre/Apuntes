@@ -175,4 +175,14 @@ S12 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>,<u>#contennido(sub)</
 No se pierde información ya que S11IntersecciónS12 da {#suscripcion,email_adicional} que es clave del esquema S11
 
 No se pierden dfs ya que DF5 vale para S11
-S11 está en BCNF ya que 
+S11 está en BCNF ya que {#suscripcion,email_adicional} es clave del esquema s11
+
+En S11 todos los atributos forman parte de la clave, cualquier dependencia funcional que detectemos va a ser trivial. S11 cumple con BCNF
+
+S1 (<u>email</u>, nombre_usuario)
+S3 (<u>#plan(sub)</u>, nombre_plan, texto_condiciones, precio)
+S5 (<u>email_adicional(sub)</u>, nombre_adicional)
+S7 (<u>#contenido(sub)</u>,titulo,sinopsis,duracion)
+S9 (<u>#suscripcion(sub)</u>, email,#plan)
+S11 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>, fecha_adicional)
+S12 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>,<u>#contennido(sub)</u>)
