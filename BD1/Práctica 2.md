@@ -256,7 +256,23 @@ M2) (<u>#parametro(sub)</u>, nombre_parameto, valor_ref, <u>#instrumento(sub)</u
 No se pierde información porque M1interM2 da {cuil_operario} que es clave de M1
 
 No se pierden DFs. DF6 vale en M1.
-DF1,DF2,DF3,DF4y DF5 valen en M2
+DF1,DF2,DF3,DF4, DF5 y DF7 valen en M2
 M1 está en BCNF ya que DF6 vale en el esquema y {cuil_operario} es superclave del esquema.
 
-M2 no está en BCNF ya que existe, al menos, {dominio_vehiculo} de la DF3 que no es superclave del esquema. 
+M2 no está en BCNF ya que existe, al menos, {dominio_vehiculo} de la DF3 que no es superclave del esquema. Por lo tanto, perticionamos M2 por la DF3
+
+M3 (<u>dominio_vehiculo(sub)</u>, fecha_adquisicion)
+M4 (<u>#parametro(sub)</u>, nombre_parameto, valor_ref, <u>#instrumento(sub)</u>, marca_instrumento, modelo_instrumento, <u>dominio_vehiculo(sub)</u>, #pozo, descripcion_pozo, fecha_perforacion, <u>#medicion(sub)</u>, cuil_operario, fecha_medicion valor_medicion)
+
+No se pierde información ya que M3interM4 da {dominio_vehiculo} que es clave de M3
+
+No se pierden DFs. DF3 vale en M3. DF1, DF2, DF4, DF5 y DF7 valen en M4.
+M3 está en BCNF ya que {dominio_vehiculo} es superclave del esquema y DF3 vale en el esquema.
+
+M4 no está en BCNF ya que existe, por lo menos, {#pozo} de DF4 que no es superclave del esquema. Por lo tanto, particionemos M4 con DF4
+
+M5 (<u>#pozo(sub)</u>, descripcion_pozo, fecha_perforacion)
+M6 (<u>#parametro(sub)</u>, nombre_parameto, valor_ref, <u>#instrumento(sub)</u>, marca_instrumento, modelo_instrumento, <u>dominio_vehiculo(sub)</u>, #pozo,  <u>#medicion(sub)</u>, cuil_operario, fecha_medicion valor_medicion)
+
+
+
