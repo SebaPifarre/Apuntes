@@ -37,15 +37,25 @@ I2(idCuidador, nyAp, cuilCuidador, <u>idVivero</u>, nombreVivero, mtrCuadradosVi
 
 No. En I2 valen DF1, DF2, DF3, DF4, DF6. I1 está en BCNF ya que DF5 vale en el esquema e {idEspecie} es superclave del esquema.
 
+#### ¿Se pierde información?
+
+No, ya que I1 interseccion I2 es {idEspecie}, clave de I1
+
 I2 no está en BCNF ya que existe, al menos, {idCuidador} de la DF1 que NO es superclave del esquema. Por lo tanto, particionamos I2 por la DF1.
 
 I3 (<u>idCuidador</u>, nyAp, cuilCuidador)
 
 I4 (idCuidador, <u>idVivero</u>, nombreVivero, mtrCuadradosVivero, tempPromedioVivero, <u>idPlanta</u>, nombrePlanta, <u>quimicoPlanta</u>, <u>consultorVivero</u>, <u>patente_vehiculo</u>)
 
-#### ¿Se pierde información?
-
-No. 
 #### ¿Se pierden DFs?
 
-No. En I4 valen DF3, DF4 y DF6. I3 está en BCNF ya que valen tanto DF1 como DF2 y tanto idCuidador como cuilCuidador son superclaves del esquema
+No. En I4 valen DF3, DF4 y DF6. I3 está en BCNF ya que valen tanto DF1 como DF2 y tanto idCuidador como cuilCuidador son superclaves del esquema.
+
+DF4 no se pierde, ya que es posible acceder con su determinante idViviero a todos sus determinados, ya se directa o indirectamente.
+
+**
+
+#### ¿Se pierde info?
+
+No, ya que I3 intersección I4 es idCuidador que es clave en I3
+
