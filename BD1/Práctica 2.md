@@ -239,3 +239,12 @@ adquirido. El dominio (patente) de cada vehículo es único en el sistema.
 
 
 DF1) #paramentro -> nombre_pametro, valor_ref
+DF2) #instrumento -> marca_instrumento, modelo_instumento
+DF3) dominio_vehiculo -> fecha_adquisicion
+DF4) #pozo -> descripción_pozo, fecha_perforación
+DF5) #medicion -> cuil_operario, fecha_medicion, #pozo
+DF6) cuil_operario -> nombre_operario, apellido_operario, fecha_nacimiento
+DF7) #medicion, #parametro  -> valor_medicion
+
+CC {#parametro, #instrumento, dominio_vehiculo, #medicion}
+
