@@ -251,4 +251,12 @@ CC {#parametro, #instrumento, dominio_vehiculo, #medicion}
 Medicion_ambiental no está en BCNF ya que existe por lo menos DF6 donde el determinante {cuil_operario} no es superclave del esquema Medicion_ambiental. Por lo tanto debemos particionar usando DF6, generando dos nuevas relaciones:
 
 M1) (<u>cuil_operario(sub)</u>, nombre_operario, apellido_operario, fecha_nacimiento)
-M2) (<u>#parametro(sub)</u>, nombre_parameto, valor_ref, <u>#instrumento(sub)</u>, marca_instrumento, modelo_instrumento, <u>dominio_vehiculo(sub))
+M2) (<u>#parametro(sub)</u>, nombre_parameto, valor_ref, <u>#instrumento(sub)</u>, marca_instrumento, modelo_instrumento, <u>dominio_vehiculo(sub)</u>, fecha_adquisicion, #pozo, descripcion_pozo, fecha_perforacion, <u>#medicion(sub)</u>, cuil_operario, fecha_medicion valor_medicion)
+
+No se pierde información porque M1interM2 da {cuil_operario} que es clave de M1
+
+No se pierden DFs. DF6 vale en M1.
+DF1,DF2,DF3,DF4y DF5 valen en M2
+M1 está en BCNF ya que DF6 vale en el esquema y {cuil_operario} es superclave del esquema.
+
+M2 no está en BCNF ya que existe, al menos, {dominio_vehiculo} de la DF3 que no es superclave del esquema. 
