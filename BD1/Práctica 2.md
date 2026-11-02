@@ -139,4 +139,12 @@ no ya que S3interseccionS4 da {#plan} que es clave del esquema
 S4 no está en BCNF ya que existe al menos un determinante {email_adicional} de DF4 que no es superclave del esquema. Por lo tanto particionamos por la DF4, creando dos nuevas realciones:
 
 
+S5 (<u>email_adicional(sub)</u>, nombre_adicional)
+S6 (<u>#subscripcion(sub)</u>, email,#plan,fecha_adicional,<u>#contenido(sub)</u>,titulo,sinopsis,duracion)
 
+como S5IntersecciónS6 da {email_adicional} que es clave del esquema S5 no se pierde información
+
+DF4 vale en S5. DF1,DF5 y DF6 valen en S6
+S5 está en BCNF ya que {email_adicional} es superclave del esquema S3
+
+S6 no está en BCNF ya que existe al menos un determinante {#contenido} de DF6 que 
