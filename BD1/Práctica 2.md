@@ -248,3 +248,7 @@ DF7) #medicion, #parametro  -> valor_medicion
 
 CC {#parametro, #instrumento, dominio_vehiculo, #medicion}
 
+Medicion_ambiental no está en BCNF ya que existe por lo menos DF6 donde el determinante {cuil_operario} no es superclave del esquema Medicion_ambiental. Por lo tanto debemos particionar usando DF6, generando dos nuevas relaciones:
+
+M1) (<u>cuil_operario(sub)</u>, nombre_operario, apellido_operario, fecha_nacimiento)
+M2) (<u>#parametro(sub)</u>, nombre_parameto, valor_ref, <u>#instrumento(sub)</u>, marca_instrumento, modelo_instrumento, <u>dominio_vehiculo(sub))
