@@ -106,10 +106,14 @@ DF4) email_adicional -> nombre_adicional
 DF5) email_adicional, # suscripcion -> fecha_adicional
 DF6) # contenido -> titulo, sinopsis, duracion
 
-CC = {#suscipcion,email_adicional,#contenido}
+CC = {#suscripcion,email_adicional,#contenido}
 
 Suscripcion no se encuentra en BCNF ya que existe al menos el determinante {email} de la DF2 que NO es superclave del esquema. Por lo tanto particionamos por la DF2, creando dos nuevas relaciones:
 
-R1) (<u>email</u>, nombre_usuario)
-R2) (<u>#suscripcion</u>,email,#plan,nombre_plan,texto_condiciones,precio,email_adicional,nombre_adicional,fecha_adicional,<u>#contenido</u>,titulo,sinopsis,duracion)
+S1) (<u>email</u>, nombre_usuario)
+S2) (<u>#suscripcion</u>,email,#plan,nombre_plan,texto_condiciones,precio,<u>email_adicional</u>,nombre_adicional,fecha_adicional,<u>#contenido</u>,titulo,sinopsis,duracion)
+
+#### ¿Se perdio DFs?
+
+No, ya que en S1 vale DF2. En S2 valen DF1, DF3, DF4, DF5 y DF6
 
