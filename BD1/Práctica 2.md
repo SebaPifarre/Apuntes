@@ -186,3 +186,31 @@ S7 (<u>#contenido(sub)</u>,titulo,sinopsis,duracion)
 S9 (<u>#suscripcion(sub)</u>, email,#plan)
 S11 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>, fecha_adicional)
 S12 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>,<u>#contennido(sub)</u>)
+
+
+Para S12 valen
+
+DM1) #suscripcion -->>  #contenido 
+DM2) #suscripcion -->> email_adicional
+
+El esquema S12 no está en 4FN porque existen dependencis multivaluadas 1-2 que no son triviales en S12
+Entonces se particiona S12 utilizando una de las dependencias multivaluadas, DM1
+
+S13 (<u>#suscripcion(sub)</u>,<u>#contennido(sub)</u>)
+S14 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>) 
+
+La partición S13 está en 4FN ya que sólo vale la dependencia multivaluada 1 que es trivial en ella.
+La partición S14 está en 4FN ya que sólo vale la dependencia multivaluada 2 que es trivial en ella.
+
+S1 (<u>email</u>, nombre_usuario)
+S3 (<u>#plan(sub)</u>, nombre_plan, texto_condiciones, precio)
+S5 (<u>email_adicional(sub)</u>, nombre_adicional)
+S7 (<u>#contenido(sub)</u>,titulo,sinopsis,duracion)
+S9 (<u>#suscripcion(sub)</u>, email,#plan)
+S11 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>, fecha_adicional)
+S13 (<u>#suscripcion(sub)</u>,<u>#contennido(sub)</u>)
+S14 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>) 
+
+-CP (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>,<u>#contennido(sub)</u>)
+
+S1,S3,S5,S7,S9 y S11 están en 4FN porque no tienen dependencias multivaluadas.
