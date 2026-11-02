@@ -69,3 +69,12 @@ I6 (idCuidador, <u>idVivero</u>, nombreVivero, mtrCuadradoVivero, tempPromedioVi
 
 No, en I5 vale DF6. I5 está en BCNF ya que {idPlanta} es superclave del esquema. 
 No se pierde info ya que I5 interseccion I6 es {idPlanta}, superclave del esquema.
+
+En I6 vale la DF3. I6 no está en BCNF ya que eiste {idVivero} de la DF3 que No es superclave del esquema. Por lo tanto, particionamos I 6 por la DF3
+
+I7 (<u>idVivero</u>, nombreVivero, mtrCuadradoVivero, tempVivero, idCuidador)
+I8 (<u>idVivero</u>, <u>idPlanta</u>, <u>quimicoPlanta</u>, <u>consultorVivero</u>, <u>patente_vehiculo</u>)
+
+No se pierde info ya que I7 intersección I8 es {idVivero} clave de I7. En I7 vale DF3. I7 está en BCNF ya que {idVivero} es supercalve del esquema.
+
+Notar que en I8 quedaron los atributos que conforman la clave. Con lo cual, cualquier DF que exista será trivial. Por eso puedo afirmar que I8 está en BCNF.
