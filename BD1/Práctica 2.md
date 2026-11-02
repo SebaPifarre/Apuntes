@@ -53,9 +53,19 @@ No. En I4 valen DF3, DF4 y DF6. I3 está en BCNF ya que valen tanto DF1 como DF2
 
 DF4 no se pierde, ya que es posible acceder con su determinante idViviero a todos sus determinados, ya se directa o indirectamente.
 
-**
+* nombreVivero, mtrCuadradosVivero y tempPromedioVivero se acceden directamente desde I4
+* cuilCuidador no está en I4 pero no se pierde la df porque ya existe una relación indirecta a través de la dependencia funcional idVivero -> idCuidador y la dependencia idCuidador -> cuilCuidador. Por transitividad, se recupera.
 
 #### ¿Se pierde info?
 
 No, ya que I3 intersección I4 es idCuidador que es clave en I3
 
+I4 no está en BCNF ya que existe idPlanta de la DF6 que no es superclave del esquema. Particionamos I4 por la DF6
+
+I5 (<u>idPlanta</u>, nombrePlanta, idEspecie)
+I6 (idCuidador, <u>idVivero</u>, nombreVivero, mtrCuadradoVivero, tempPromedioVivero, <u>idPlanta</u>, <u>quimicoPlanta</u>, <u>consultorVivero</u>, <u>patente_vehiculo</u>)
+
+#### ¿Se pierden DFs?
+
+No, en I5 vale DF6. I5 está en BCNF ya que {idPlanta} es superclave del esquema. 
+No se pierde info ya que I5 interseccion I6 es {idPlanta}, superclave del esquema.
