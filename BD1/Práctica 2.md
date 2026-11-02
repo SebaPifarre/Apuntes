@@ -283,3 +283,12 @@ M6 no está en BCNF porque existe, al menos, {#parametro} de DF1 que no es super
 M7 (<u>#parametro(sub)</u>, nombre_parametro, valor_ref)
 M8 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, marca_instrumento, modelo_instrumento, <u>dominio_vehiculo(sub)</u>, #pozo,  <u>#medicion(sub)</u>, cuil_operario, fecha_medicion valor_medicion)
 
+No se pierde información porque M7interM8 da {#parametro} que es clave de M7
+No se pierden dfs. DF1 vale en M7. DF2,DF5,DF7 valen en M8
+M7 está en BCNF ya que {#parametro} es superclave del esquema y vale DF1
+
+M8 no está en BCNF ya que existe, al menos, {#instrumento} de DF2 que no es superclave del esquema. Por lo tanto, particionamos M8 en DF2 y obtenemos dos nuevas relaciones:
+
+M9 (<u>#instrumento(sub)</u>, marca_intrumento, modelo_instrumento)
+M10 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)</u>, #pozo,  <u>#medicion(sub)</u>, cuil_operario, fecha_medicion valor_medicion)
+
