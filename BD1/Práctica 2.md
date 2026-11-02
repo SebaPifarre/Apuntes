@@ -78,3 +78,25 @@ I8 (<u>idVivero</u>, <u>idPlanta</u>, <u>quimicoPlanta</u>, <u>consultorVivero</
 No se pierde info ya que I7 intersección I8 es {idVivero} clave de I7. En I7 vale DF3. I7 está en BCNF ya que {idVivero} es supercalve del esquema.
 
 Notar que en I8 quedaron los atributos que conforman la clave. Con lo cual, cualquier DF que exista será trivial. Por eso puedo afirmar que I8 está en BCNF.
+
+
+## Ejercicio 8
+
+SUSCRIPCION (#suscripcion, email, nombre_usuario, # plan, nombre_plan,
+texto_condiciones, precio, email_adicional, nombre_adicional, # contenido, titulo, sinopsis,
+duracion, fecha_adicional)
+Donde:
+●​ Cada suscripción es realizada por un único usuario (identificado por el email) y un plan,
+pero además hay usuarios adicionales que la utilizan (email_adicional). De cada usuario
+adicional que se suma a la suscripción, se guarda la fecha.
+●​ Un plan de suscripción tiene un nombre (que no puede garantizarse que sea único en el
+sistema), condiciones, y un precio mensual.
+●​ Cada contenido tiene un título, sinopsis y duración. El # contenido es único en el
+sistema, pero del título no puede garantizarse que lo sea.
+●​ De cada suscripción se sabe qué contenidos fueron reproducidos, sin distinción sobre
+qué usuario (titular o adicionales) reprodujo cada uno.
+
+
+#### Dependencias funcionales
+
+DF1) # sus
