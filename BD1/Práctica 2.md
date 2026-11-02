@@ -157,4 +157,22 @@ como S7interseccionS8 da {#contenido} que es clave del esquema S7 entonces no se
 DF6 vale para S7. DF1, DF5 valen para S8 entonces no se pierden DFs
 S7 está en BCNF ya que {#contendio} es clave del esquema S7
 
-S8 no está en BCNF ya que existe al menos la DF1, cuyo determinante {#suscripcion} NO es superclase del esquema
+S8 no está en BCNF ya que existe al menos la DF1, cuyo determinante {#suscripcion} NO es superclave del esquema. Por lo tanto particionamos por la DF1, creando dos nuevas relaciones:
+
+S9 (<u>#suscripcion(sub)</u>, email,#plan)
+S10 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>,fecha_adicional,<u>#contennido(sub)</u>)
+
+No se pierde información ya que S9intersecciónS10 da {#suscripcion} que es clave del esquema S9.
+
+No se pierden Dfs ya que DF1 vale para S9 y DF5 vale para S10
+S9 está en BCNF ya que {#suscripcion} es clave del esquema S9
+
+S10 no está en BCNF ya que existe DF5, cuyo determinante {#suscripcion, email_adicional} NO es superclave del esquema. Entonces particionamos por la DF5, creando dos nuevas relaciones:
+
+S11 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>, fecha_adicional)
+S12 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>,<u>#contennido(sub)</u>)
+
+No se pierde información ya que S11IntersecciónS12 da {#suscripcion,email_adicional} que es clave del esquema S11
+
+No se pierden dfs ya que DF5 vale para S11
+S11 está en BCNF ya que 
