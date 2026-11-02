@@ -99,4 +99,9 @@ qué usuario (titular o adicionales) reprodujo cada uno.
 
 #### Dependencias funcionales
 
-DF1) # sus
+DF1) # suscripcion -> email, # plan
+DF2) email -> nombre_usuario
+DF3) # plan -> nombre_plan, texto_condiciones, precio
+DF4) email_adicional -> nombre_adicional
+DF5
+DF4) # contenido -> titulo, sinopsis, duracion
