@@ -129,5 +129,14 @@ S4) (<u>#subscripcion(sub)</u>, email,#plan,<u>email_adicional(sub)</u>,nombre_a
 
 #### ¿Se perdieron DFs?
 
-No ya que en S3 vale DF
+No ya que en S3 vale DF3. En S4 valen DF1,DF4,DF5,DF6
+S3 está en BCNF ya que {#plan} es superclave del esquema
+
+#### ¿Se perdió info?
+
+no ya que S3interseccionS4 da {#plan} que es clave del esquema
+
+S4 no está en BCNF ya que existe al menos un determinante {email_adicional} de DF4 que no es superclave del esquema. Por lo tanto particionamos por la DF4, creando dos nuevas realciones:
+
+
 
