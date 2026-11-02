@@ -116,4 +116,18 @@ S2) (<u>#suscripcion</u>,email,#plan,nombre_plan,texto_condiciones,precio,<u>ema
 #### ¿Se perdio DFs?
 
 No, ya que en S1 vale DF2. En S2 valen DF1, DF3, DF4, DF5 y DF6
+S1 está en BCNF ya que email es superclave del esquema
+
+#### ¿Se perdió info?
+
+No ya que S1 intersección S2 da {email} que es clave del esquema
+
+S2 no se encuentra en BCNF ya que existe al menos el determinante # plan del DF3 que no es superclave del esquema. Por lo tanto particionamos por la DF3, creando dos nuevas relaciones:
+
+S3) (<u>#plan(sub)</u>, nombre_plan, texto_condiciones, precio)
+S4) (<u>#subscripcion(sub)</u>, email,#plan,<u>email_adicional(sub)</u>,nombre_adicional,fecha_adicional,<u>#contenido(sub)</u>,titulo,sinopsis,duracion)
+
+#### ¿Se perdieron DFs?
+
+No ya que en S3 vale DF
 
