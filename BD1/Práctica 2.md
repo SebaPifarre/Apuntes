@@ -278,5 +278,8 @@ No se pierde información ya que M5interM6 da {#pozo} que es clave de M5
 No se pierden dfs. DF4 vale en M5. DF1,DF2,DF5 y DF7 valen en M6
 M5 está en BCNF ya que {#pozo} es superclave del esquema y vale DF4
 
-M6 no está en BCNF porque existe, al menos, {#parametro} de DF1
+M6 no está en BCNF porque existe, al menos, {#parametro} de DF1 que no es superclave del esquema. Por lo tanto particionamos M6, generando dos nuevas relaciones:
+
+M7 (<u>#parametro(sub)</u>, nombre_parametro, valor_ref)
+M8 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, marca_instrumento, modelo_instrumento, <u>dominio_vehiculo(sub)</u>, #pozo,  <u>#medicion(sub)</u>, cuil_operario, fecha_medicion valor_medicion)
 
