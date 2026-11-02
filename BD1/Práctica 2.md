@@ -209,8 +209,32 @@ S7 (<u>#contenido(sub)</u>,titulo,sinopsis,duracion)
 S9 (<u>#suscripcion(sub)</u>, email,#plan)
 S11 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>, fecha_adicional)
 S13 (<u>#suscripcion(sub)</u>,<u>#contennido(sub)</u>)
-S14 (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>) 
+
+S14 se elimina del esquema por ser proyección de S11
 
 -CP (<u>#suscripcion(sub)</u>, <u>email_adicional(sub)</u>,<u>#contennido(sub)</u>)
 
 S1,S3,S5,S7,S9 y S11 están en 4FN porque no tienen dependencias multivaluadas.
+
+
+## Ejercicio 7
+
+MEDICION_AMBIENTAL(#medicion, #pozo, valor_medicion, #parametro, fecha_medicion,
+cuil_operario, #instrumento, nombre_parametro, valor_ref, descripcion_pozo,
+fecha_perforacion, apellido_operario, nombre_operario, fecha_nacimiento, marca_instrumento,
+modelo_instrumento, dominio_vehiculo, fecha_adquisicion)
+Donde:
+
+●​ Cada medición es realizada por un operario en un pozo, en una fecha determinada. En
+ella se miden varios parámetros, y para cada uno se obtiene un valor. Notar que un
+mismo parámetro (#parametro) puede ser medido en diferentes mediciones.
+Independientemente de las mediciones, todo parámetro tiene un nombre y valor de
+referencia, y el #parametro es único en el sistema.
+●​ En cada medición se utilizan varios instrumentos, independientemente de los
+parámetros medidos. De cada instrumento se conoce la marca y modelo.
+●​ De cada operario se conoce su cuit, nombre, apellido y fecha de nacimiento.
+●​ La empresa cuenta con vehículos, y de cada uno se conoce la fecha en la que fue
+adquirido. El dominio (patente) de cada vehículo es único en el sistema.
+●​ Un pozo tiene una descripción y una fecha de perforación. El identificador #pozo es
+único en el sistema.
+
