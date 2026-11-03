@@ -311,4 +311,18 @@ M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
 M14 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)</u>, <u>#medicion(sub)</u>)
 
 No se pierde información ya que M13interM14 da {#medicion,#parametro} que es clave de M13
-No se pierden dfs porq
+No se pierden dfs porque DF7 vale en M13
+M13 está en BCNF porque {#medicion,#parametro} es superclave del esquema y vale DF7.
+
+En M14 todos los atributos son parte de la CC. Cualquier df que encontremos va a ser trivial. M14 está en BCNF.
+
+M1) (<u>cuil_operario(sub)</u>, nombre_operario, apellido_operario, fecha_nacimiento)
+M3 (<u>dominio_vehiculo(sub)</u>, fecha_adquisicion)
+M5 (<u>#pozo(sub)</u>, descripcion_pozo, fecha_perforacion)
+M7 (<u>#parametro(sub)</u>, nombre_parametro, valor_ref)
+M9 (<u>#instrumento(sub)</u>, marca_intrumento, modelo_instrumento)
+M11 (<u>#medicion(sub)</u>, cuil_operario, fecha_medicion, #pozo)
+M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
+M14 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)</u>, <u>#medicion(sub)</u>)
+
+-CP {<u>#parametro,#instrumento,dominio_vehiculo,#medicion</u>}
