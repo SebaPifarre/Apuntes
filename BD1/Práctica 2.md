@@ -327,4 +327,6 @@ M14 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)<
 
 -CP {<u>#parametro,#instrumento,dominio_vehiculo,#medicion</u>}
 
-DM1) #parametro , #medicion -> #instrumento 
+DM1) #medicion -->> #instrumento 
+DM2) #medicion -->> #parametro 
+DM3) { } -->> dominio_vehiculo
