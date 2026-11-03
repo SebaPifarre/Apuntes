@@ -330,3 +330,30 @@ M14 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)<
 DM1) #medicion -->> #instrumento 
 DM2) #medicion -->> #parametro 
 DM3) { } -->> dominio_vehiculo
+
+Teniendo en cuenta DM3
+
+M15 (<u>dominio_vehiculo(sub)</u>)
+M16 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>#medicion(sub)</u>)
+
+M15 está en 4FN porque no vales dms que no sean triviales
+M16 no está en 4Fn porque DM2 vale en ella y no es trivial
+
+Teniendo en cuenta DM2
+
+M17 (<u>#parametro(sub)</u>, <u>#medicion(sub)</u>)
+M18 (<u>#instrumento(sub)</u> <u>#medicion(sub)</u>)
+
+M17 está en 4FN porque no vale dms que no sean triviales
+M18 está en 4FN porque no vale dms que no sean triviales
+
+M1) (<u>cuil_operario(sub)</u>, nombre_operario, apellido_operario, fecha_nacimiento)
+M3 (<u>dominio_vehiculo(sub)</u>, fecha_adquisicion)
+M5 (<u>#pozo(sub)</u>, descripcion_pozo, fecha_perforacion)
+M7 (<u>#parametro(sub)</u>, nombre_parametro, valor_ref)
+M9 (<u>#instrumento(sub)</u>, marca_intrumento, modelo_instrumento)
+M11 (<u>#medicion(sub)</u>, cuil_operario, fecha_medicion, #pozo)
+M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
+M15 (<u>dominio_vehiculo(sub)</u>)
+M17 está en 4FN porque no vale dms que no sean triviales
+M18 está en 4FN porque no vale dms que no sean triviales
