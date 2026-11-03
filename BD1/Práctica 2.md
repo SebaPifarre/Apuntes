@@ -326,3 +326,5 @@ M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
 M14 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)</u>, <u>#medicion(sub)</u>)
 
 -CP {<u>#parametro,#instrumento,dominio_vehiculo,#medicion</u>}
+
+DM1) #parametro , #medicion -> #instrumento 
