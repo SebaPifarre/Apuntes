@@ -292,3 +292,23 @@ M8 no está en BCNF ya que existe, al menos, {#instrumento} de DF2 que no es sup
 M9 (<u>#instrumento(sub)</u>, marca_intrumento, modelo_instrumento)
 M10 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)</u>, #pozo,  <u>#medicion(sub)</u>, cuil_operario, fecha_medicion valor_medicion)
 
+No se pierde info porque M9interM10 da {#instrumento} que es clave de M9
+No se pierden dfs ya DF2 vale en M9 y DF5 y DF7 valen en M10
+M9 está en BCNF ya que {#instrumento} es superclave del esquema y vale DF2
+
+M10 no está en BCNF ya que existe, al menos, {#medicion} de DF5 que No es superclave del esquema. Por lo tanto, particionamos M10 con DF5 obteniendo dos nuevas relaciones:
+
+M11 (<u>#medicion(sub)</u>, cuil_operario, fecha_medicion, #pozo)
+M12 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)</u>, <u>#medicion(sub)</u>, valor_medicion)
+
+No se pierde información ya que M11interM12 da {#medicion} que es clave de M11
+No se pierden dfs porque DF5 vale en M11 y DF7 vale en M12
+M11 está en BCNF ya que {#medicion} es superclave del esquema y vale DF5
+
+M12 no está en BCNF ya que existe, al menos, {#medicion,#parametro} de DF7 que no es superclave del esquema. Entonces particionamos M12 con DF7 generando dos nuevas relaciones:
+
+M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
+M14 (<u>#parametro(sub)</u>, <u>#instrumento(sub)</u>, <u>dominio_vehiculo(sub)</u>, <u>#medicion(sub)</u>)
+
+No se pierde información ya que M13interM14 da {#medicion,#parametro} que es clave de M13
+No se pierden dfs porq
