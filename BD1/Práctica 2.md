@@ -347,6 +347,8 @@ M18 (<u>#instrumento(sub)</u> <u>#medicion(sub)</u>)
 M17 está en 4FN porque no vale dms que no sean triviales
 M18 está en 4FN porque no vale dms que no sean triviales
 
+M15 es proyeccion de M3 y M17 es proyeccion de M13
+
 M1) (<u>cuil_operario(sub)</u>, nombre_operario, apellido_operario, fecha_nacimiento)
 M3 (<u>dominio_vehiculo(sub)</u>, fecha_adquisicion)
 M5 (<u>#pozo(sub)</u>, descripcion_pozo, fecha_perforacion)
@@ -354,6 +356,4 @@ M7 (<u>#parametro(sub)</u>, nombre_parametro, valor_ref)
 M9 (<u>#instrumento(sub)</u>, marca_intrumento, modelo_instrumento)
 M11 (<u>#medicion(sub)</u>, cuil_operario, fecha_medicion, #pozo)
 M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
-M15 (<u>dominio_vehiculo(sub)</u>)
-M17 está en 4FN porque no vale dms que no sean triviales
-M18 está en 4FN porque no vale dms que no sean triviales
+M18 (<u>#instrumento(sub)</u> <u>#medicion(sub)</u>)
