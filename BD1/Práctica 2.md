@@ -380,7 +380,7 @@ CC1 {#conductor , #viaje,#sucursal,#seguro_medico}
 CC2 {#conductor , #viaje,ubicacion_sucursal,#seguro_medico}
 
 
-Viajes no está en BCNF ya que existe, al menos, #conductor de DF2 que no es superclave del esquema. Por lo tanto particionamos sobre DF2, generando dos nuevas relaciones:
+Viajes no está en BCNF ya que existe, al menos, el determinante #conductor de DF2 que no es superclave del esquema. Por lo tanto particionamos sobre DF2, generando dos nuevas relaciones:
 
 V1 (<u>#conductor(sub)</u>, nombre_cond, apellido_con, telefono_cond)
 V2 (<u>#viaje(sub)</u>, origen, destino, <u>#conductor(sub)</u>, #patente, marca,modelo,fecha_alta,monto,telefono_sucursal, <u>ubicacion_sucursal(otro sub)</u>,<u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
@@ -389,4 +389,24 @@ No se pierde info porque V1interV2 da #conductor que es clave de V1
 No se pierden dfs. DF2 vale en V1. DF1, DF3, DF4 y DF5 valen en V2.
 V1 está en BCNF ya que #conductor es superclave del esquema V1
 
-V2 no está en BCNF ya que existe, al menos, 
+V2 no está en BCNF ya que existe, al menos, el determinante #patente del DF1 que no es superclave del esquema. Por lo tanto particionamos usando DF1 generando dos relaciones nuevas:
+
+V3 (<u>#patente(sub)</u>, marca, modelo, fecha_alta)
+V4 (<u>#viaje(sub)</u>, origen, destino, <u>#conductor(sub)</u>, monto,telefono_sucursal, <u>ubicacion_sucursal(otro sub)</u>,<u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
+
+No se pierde info porque V3interV4 da #patente que es clave del esquema V3
+No se pierden dfs. DF1 vale en V3. DF4, DF5 y DF3 valen en V4
+V3 está en BCNF ya que #patente es clave de V3
+
+V4 no está en BCNF ya que existe, al menos, el determinante #sucursal de DF4 que no es superclave del esquema V4. Por lo tanto particiono V4 con DF4 generando dos nuevas relaciones:
+
+V5 (<u>#sucursal(sub)</u>, ubicacion_sucursal, telefono_sucursal)
+V6 (<u>#viaje(sub)</u>, origen, destino, <u>#conductor(sub)</u>, #patente,<u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
+
+DF4 y DF5 son equivalentes ya que #patente y ubicacion_sucursal determinan los mismos atributos. Como se eligió particionar sobre DF4, ubicacion_sucursal sale de V6 pero no se pierden Dfs porque son equivalentes.
+DF4 vale en V5 y DF6 vale en V6
+
+No se pierde info porque V5interV6 da #sucursal que es clave de V5
+V5 está en BCNF porque #sucursal es clave del esquema
+
+V6 no está en BCNF porque existe, al menos, el determinante #viaje,#conductor que no es superclve del esquema V6. Entonces particionamos sobre 
