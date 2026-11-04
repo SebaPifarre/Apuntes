@@ -357,3 +357,4 @@ M9 (<u>#instrumento(sub)</u>, marca_intrumento, modelo_instrumento)
 M11 (<u>#medicion(sub)</u>, cuil_operario, fecha_medicion, #pozo)
 M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
 M18 (<u>#instrumento(sub)</u> <u>#medicion(sub)</u>)
+
