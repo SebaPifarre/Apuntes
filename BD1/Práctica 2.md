@@ -358,3 +358,17 @@ M11 (<u>#medicion(sub)</u>, cuil_operario, fecha_medicion, #pozo)
 M13 (<u>#medicion, #parametro(sub)</u>, valor_medicion)
 M18 (<u>#instrumento(sub)</u> <u>#medicion(sub)</u>)
 
+## Parcial 2025 segunda fecha
+
+VIAJES (#viaje, origen, destino, #conductor, #patente, marca, modelo, fecha_alta, monto,
+        nombre_cond, apellido_cond, telefono_cond, telefono_sucursal, ubicación_sucursal,
+        #sucursal, #seguro_medico)
+- **Vehículos:** de cada uno se conoce la patente, la marca, el modelo y la fecha de alta en la compañía.
+- **Conductores:** #conductor (no se repite), nombre, apellido y un teléfono de contacto (podría repetirse entre conductores).
+- **Viajes:** #viaje es **secuencial por conductor**: cada conductor empieza en el #viaje 1. De cada viaje se conoce el origen, el destino, el monto y el vehículo con el que se hizo.
+- **Sucursales:** #sucursal (no se repite), ubicación (**no se repite**: dos sucursales no pueden estar en la misma ubicación) y teléfono (puede repetirse).
+- **Conductor–sucursal:** cada conductor trabaja para distintas sucursales y cada sucursal tiene un conjunto de conductores. Hay que registrar qué conductores tiene cada sucursal.
+- **Seguros médicos:** la empresa cuenta con diferentes seguros médicos aplicables a los conductores, cada uno identificado con #seguro_medico.
+
+DF1) #vehiculo -> patente, marca, modelo, fecha_alta
+DF2) #conductor 
