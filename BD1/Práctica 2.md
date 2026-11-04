@@ -409,4 +409,24 @@ DF4 vale en V5 y DF6 vale en V6
 No se pierde info porque V5interV6 da #sucursal que es clave de V5
 V5 está en BCNF porque #sucursal es clave del esquema
 
-V6 no está en BCNF porque existe, al menos, el determinante #viaje,#conductor que no es superclve del esquema V6. Entonces particionamos sobre 
+V6 no está en BCNF porque existe, al menos, el determinante #viaje,#conductor de DF3 que no es superclve del esquema V6. Entonces particionamos sobre DF3 creando dos nuevas relaciones:
+
+V7 (<u>#conductor,#viaje(sub)</u>, origen, destino, monto, #patente)
+V8 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
+
+No se pierde info porque V7interV8 da #conductor,#viaje que son clave de V7
+No se pierden dfs. DF3 vale en V7.
+V7 está en BCNF ya que #conducto,#viaje es clave de V7.
+
+En V8 todos los atributos son parte de la CC1, cualquier df que encontremos ahi será trivial.
+V8 está en BCNF
+
+V1 (<u>#conductor(sub)</u>, nombre_cond, apellido_con, telefono_cond)
+V3 (<u>#patente(sub)</u>, marca, modelo, fecha_alta)
+V5 (<u>#sucursal(sub)</u>, ubicacion_sucursal, telefono_sucursal)
+V7 (<u>#conductor,#viaje(sub)</u>, origen, destino, monto, #patente)
+V8 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
+
+CP {<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>}
+
+Ahora continuo con las multivaluadas
