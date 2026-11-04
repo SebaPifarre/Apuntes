@@ -370,5 +370,11 @@ VIAJES (#viaje, origen, destino, #conductor, #patente, marca, modelo, fecha_alta
 - **Conductor–sucursal:** cada conductor trabaja para distintas sucursales y cada sucursal tiene un conjunto de conductores. Hay que registrar qué conductores tiene cada sucursal.
 - **Seguros médicos:** la empresa cuenta con diferentes seguros médicos aplicables a los conductores, cada uno identificado con #seguro_medico.
 
-DF1) #vehiculo -> patente, marca, modelo, fecha_alta
-DF2) #conductor 
+DF1) #patente -> marca, modelo, fecha_alta
+DF2) #conductor -> nombre_cond, apellido_cond, telefono_cond
+DF3) #viaje, #conductor  -> origen, destino, monto, #patente
+DF4) #sucursal -> ubicación_sucursal, telefono_sucursal
+DF5) ubicacion_sucursal -> #sucursal , telefono_sucursal
+
+CC1 {#conductor , #viaje,#sucursal,#seguro_medico}
+CC2 {#conductor , #viaje,ubicacion_sucursal,#seguro_medico}
