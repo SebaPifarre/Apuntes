@@ -378,3 +378,15 @@ DF5) ubicacion_sucursal -> #sucursal , telefono_sucursal
 
 CC1 {#conductor , #viaje,#sucursal,#seguro_medico}
 CC2 {#conductor , #viaje,ubicacion_sucursal,#seguro_medico}
+
+
+Viajes no está en BCNF ya que existe, al menos, #conductor de DF2 que no es superclave del esquema. Por lo tanto particionamos sobre DF2, generando dos nuevas relaciones:
+
+V1 (<u>#conductor(sub)</u>, nombre_cond, apellido_con, telefono_cond)
+V2 (<u>#viaje(sub)</u>, origen, destino, <u>#conductor(sub)</u>, #patente, marca,modelo,fecha_alta,monto,telefono_sucursal, <u>ubicacion_sucursal(otro sub)</u>,<u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
+
+No se pierde info porque V1interV2 da #conductor que es clave de V1
+No se pierden dfs. DF2 vale en V1. DF1, DF3, DF4 y DF5 valen en V2.
+V1 está en BCNF ya que #conductor es superclave del esquema V1
+
+V2 no está en BCNF ya que existe, al menos, 
