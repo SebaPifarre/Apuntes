@@ -438,6 +438,24 @@ DM2) #conductor -->> #seguro_medico
 
 Particionando con DM2
 
-V9 (<u>#seguro_medico(sub)</u>)
+V9 (<u>#conductor, #seguro_medico(sub)</u>)
 V10 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>)
 
+Particionando por DM1
+
+V11 (<u>#conductor,#sucursal(sub</u>))
+V10 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>)
+
+V9,V11 y V10 están en 4FN porque cualquier multivaluada es trivial en ellas.
+V1,v3,v5,v7 y v8 están en 4FN porque no tiene multivaluadas
+
+V1 (<u>#conductor(sub)</u>, nombre_cond, apellido_con, telefono_cond)
+V3 (<u>#patente(sub)</u>, marca, modelo, fecha_alta)
+V5 (<u>#sucursal(sub)</u>, ubicacion_sucursal, telefono_sucursal)
+V7 (<u>#conductor,#viaje(sub)</u>, origen, destino, monto, #patente)
+V8 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
+V9 (<u>#conductor, #seguro_medico(sub)</u>)
+V11 (<u>#conductor,#sucursal(sub</u>))
+V10 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>)
+
+CP {<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>}
