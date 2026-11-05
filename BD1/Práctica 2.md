@@ -403,8 +403,12 @@ V4 no está en BCNF ya que existe, al menos, el determinante #sucursal de DF4 qu
 V5 (<u>#sucursal(sub)</u>, ubicacion_sucursal, telefono_sucursal)
 V6 (<u>#viaje(sub)</u>, origen, destino, <u>#conductor(sub)</u>, #patente,<u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
 
-DF4 y DF5 son equivalentes ya que #patente y ubicacion_sucursal determinan los mismos atributos. Como se eligió particionar sobre DF4, ubicacion_sucursal sale de V6 pero no se pierden Dfs porque son equivalentes.
-DF4 vale en V5 y DF6 vale en V6
+
+DF4 vale en V5 y DF3 vale en V6
+
+DF4 y DF5 son equivalentes ya que producen el mismo conjunto de atributos independientemente de que determinante se use.
+
+DF5 no se pierde ya que es posible acceder con su determinante ubicacion
 
 No se pierde info porque V5interV6 da #sucursal que es clave de V5
 V5 está en BCNF porque #sucursal es clave del esquema
