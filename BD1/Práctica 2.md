@@ -459,3 +459,8 @@ V11 (<u>#conductor,#sucursal(sub</u>))
 V10 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>)
 
 CP {<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>}
+
+
+## 3ra fecha bbdd1 parcial 10/12/2025
+
+DF1) #curso -> nombre_curso, nombre_nivel
