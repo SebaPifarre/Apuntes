@@ -400,15 +400,13 @@ V3 está en BCNF ya que #patente es clave de V3
 
 V4 no está en BCNF ya que existe, al menos, el determinante #sucursal de DF4 que no es superclave del esquema V4. Por lo tanto particiono V4 con DF4 generando dos nuevas relaciones:
 
-V5 (<u>#sucursal(sub)</u>, ubicacion_sucursal, telefono_sucursal)
+V5 (<u>#sucursal(sub)</u>, ubicacion_sucursal(otrosub), telefono_sucursal)
 V6 (<u>#viaje(sub)</u>, origen, destino, <u>#conductor(sub)</u>, #patente,<u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>)
 
 
-DF4 vale en V5 y DF3 vale en V6
+DF4 y DF5 valen en V5 y DF3 vale en V6
 
-DF4 y DF5 son equivalentes ya que producen el mismo conjunto de atributos independientemente de que determinante se use.
-
-DF5 no se pierde ya que es posible acceder con su determinante ubicacion
+DF4 y DF5 son equivalentes ya que producen el mismo conjunto de atributos independientemente de que determinante se use. Por eso queda como segunda clave en V5
 
 No se pierde info porque V5interV6 da #sucursal que es clave de V5
 V5 está en BCNF porque #sucursal es clave del esquema
@@ -434,3 +432,12 @@ V8 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro
 CP {<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro_medico(sub)</u>}
 
 Ahora continuo con las multivaluadas
+
+DM1) #conductor -->> #sucursal 
+DM2) #conductor -->> #seguro_medico 
+
+Particionando con DM2
+
+V9 (<u>#seguro_medico(sub)</u>)
+V10 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>)
+
