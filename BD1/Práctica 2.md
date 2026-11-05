@@ -463,4 +463,22 @@ CP {<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, <u>#sucursal(sub)</u>,<u>#seguro
 
 ## 3ra fecha bbdd1 parcial 10/12/2025
 
-DF1) #curso -> nombre_curso, nombre_nivel
+DF1) #curso -> nombre_curso, #nivel
+DF2) #nivel -> nombre_nivel
+DF3) #docente -> nombre_docente, titulo_docente, email_docente
+DF4) #horario -> dia, franja_horaria
+
+CC {#curso, #docente, #horario, #aux}
+
+Instituto no está en BCNF ya que existe, al menos, el determinante #nivel de la DF2 que no es superclave del esquema. Por lo tanto particiono con DF2 genrando dos relaciones nuevas:
+
+I1 (<u>#nivel(sub)</u>, nombre_nivel)
+I2 (<u>#curso(sub)</u>, nombre_curso, <u>#nivel(sub)</u>, <u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente, <u>#horario(sub)</u>, dia, franja_horaria)
+
+No se perdió información ya que I1interI2 es clave del esquema I1.
+No se pierden dfs. DF2 vale en I1, DF1, DF3, DF4 valen en I2.
+I1 está en BCNF ya que #nivel es clave de I1.
+
+I2 no está en BCNF ya que existe, al menos, el determinante #horario del DF4 que no es superclave del esquema I2. Por lo tanto particionamos usando DF4, obteniendo dos relaciones nuevas:
+
+I3 (<u>#hoa)
