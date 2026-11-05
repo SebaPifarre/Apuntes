@@ -473,7 +473,7 @@ CC {#curso, #docente, #horario, #aux}
 Instituto no está en BCNF ya que existe, al menos, el determinante #nivel de la DF2 que no es superclave del esquema. Por lo tanto particiono con DF2 genrando dos relaciones nuevas:
 
 I1 (<u>#nivel(sub)</u>, nombre_nivel)
-I2 (<u>#curso(sub)</u>, nombre_curso, <u>#nivel(sub)</u>, <u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente, <u>#horario(sub)</u>, dia, franja_horaria)
+I2 (<u>#curso(sub)</u>, nombre_curso, <u>#nivel(sub)</u>, <u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente, <u>#horario(sub)</u>, dia, franja_horaria, <u>#auxiliar(sub)</u>)
 
 No se perdió información ya que I1interI2 es clave del esquema I1.
 No se pierden dfs. DF2 vale en I1, DF1, DF3, DF4 valen en I2.
@@ -482,7 +482,7 @@ I1 está en BCNF ya que #nivel es clave de I1.
 I2 no está en BCNF ya que existe, al menos, el determinante #horario del DF4 que no es superclave del esquema I2. Por lo tanto particionamos usando DF4, obteniendo dos relaciones nuevas:
 
 I3 (<u>#horario(sub)</u>, dia, franja_horaria)
-I4 (<u>#curso(sub)</u>, nombre_curso, <u>#nivel(sub)</u>, <u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente, <u>#horario(sub)</u>)
+I4 (<u>#curso(sub)</u>, nombre_curso, <u>#nivel(sub)</u>, <u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente, <u>#horario(sub)</u>, <u>#auxiliar(sub)</u>)
 
 No se perdió info porque I3interI4 da #horario que es clave de I3
 No se pierden dfs. DF4 vale en I3. DF1, y DF3 valen en I4
@@ -491,7 +491,7 @@ I3 está en BCNF ya que #horario es clave de I3.
 I4 no está en BCNF ya que existe, al menos, el determinante #docente de la DF3 que No es superclave del esquema I4. Entonces particionamos usando DF3, generando dos nuevas relaciones:
 
 I5 (<u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente)
-I6 (<u>#curso(sub)</u>, nombre_curso, <u>#nivel(sub)</u>, <u>#horario(sub)</u>)
+I6 (<u>#curso(sub)</u>, nombre_curso, <u>#nivel(sub)</u>, <u>#horario(sub)</u>, <u>#auxiliar(sub)</u>)
 
 No se perdió info porque I5interI6 da #docente que es clave de I5
 No se perdieron dfs ya que DF3 vale en I5 y DF1 vale en I6.
@@ -500,9 +500,35 @@ I5 está en BCNF ya que #docente es clave del esquema #docente.
 I6 no está en BCNF ya que existe, al menos, el determinante #curso que No es superclave del esquema I6. Particionamos y generamos dos nuevas:
 
 I7 (<u>#curso(sub)</u>, nombre_curso, #nivel)
-I8 (<u>#curso(sub)</u>, <u>#horario(sub)</u>, <u>#docente(sub)</u>)
+I8 (<u>#curso(sub)</u>, <u>#horario(sub)</u>, <u>#docente(sub)</u>, <u>#auxiliar(sub)</u>)
 
 No se perdió info ya que I7interI8 da #nivel que es clave de I7
 No se pierden dfs porque DF1 vale en I7
 I7 está en BCNF ya que #curso es clave del esquema I7
-I8 tiene solo atributos de la CC y cualquier DF es trivial 
+I8 tiene solo atributos de la CC y cualquier DF es trivial en ella.
+
+I1 (<u>#nivel(sub)</u>, nombre_nivel)
+I3 (<u>#horario(sub)</u>, dia, franja_horaria)
+I5 (<u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente)
+I7 (<u>#curso(sub)</u>, nombre_curso, #nivel)
+I8 (<u>#curso(sub)</u>, <u>#horario(sub)</u>, <u>#docente(sub)</u>, <u>#auxiliar(sub)</u>)
+
+CC {#curso, #docente, #horario, #aux}
+
+DM1) {} -->> #auxiliar
+
+usando DM1
+
+I9 (<u>#auxiliar(sub)</u>)
+10 (<u>#curso(sub)</u>, <u>#horario(sub)</u>, <u>#docente(sub)</u>)
+
+ambos están en 4FN ya que DM1 es trivial en ellas. Todas las anteriores estáen en 4FN porque no tienen dms
+
+I1 (<u>#nivel(sub)</u>, nombre_nivel)
+I3 (<u>#horario(sub)</u>, dia, franja_horaria)
+I5 (<u>#docente(sub)</u>, nombre_docente, titulo_docente, email_docente)
+I7 (<u>#curso(sub)</u>, nombre_curso, #nivel)
+I9 (<u>#auxiliar(sub)</u>)
+10 (<u>#curso(sub)</u>, <u>#horario(sub)</u>, <u>#docente(sub)</u>)
+
+no hay proyecciones
