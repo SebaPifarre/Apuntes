@@ -98,3 +98,5 @@ BEGIN
 	WHERE id_bodega = new.id_bodega && id_producto = new.id_producto
 END
 ```
+
+
