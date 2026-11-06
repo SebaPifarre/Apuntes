@@ -100,3 +100,6 @@ END
 ```
 
 
+A <- (lista #usuario, #permiso)(PERMISO_REQUERIDO |X| USUARIO_UTILIZA_SISTEMA)
+B <- A - PERMISO_OBTENIDO
+(lista #usuario) B - USUARIO_UILIZA_SISTEMA
