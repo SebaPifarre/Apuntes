@@ -39,4 +39,36 @@ se perdio info? No ya que E5interE6 da #revista que es clave de E5
 se pierden dfs? En E5 vale DF1 y en E6 vale DF2
 E5 está en BCNF ya que #revista es superclave del esquema
 
-E6 no está en BCNF ya que existe 
+E6 no está en BCNF ya que existe el determinante #revista, #publicacion que no es superclave del esquema. Particiono E6 a partir de DF2, generando dos nuevas relaciones:
+
+E7 (<u>#revista,#publicacion(todo sub)</u>, ejemplares_impresos)
+E8 (<u>#revista(sub), #publicacion(sub), #punto_venta(sub), sponsor(sub)</u>,)
+
+se pierde info? No ya que E7interE8 da #revista,#publicacion que es clave de E7
+se pierden dfs? En E7 vale DF2
+E7 está en BCNF ya que #revista,#publicacion es superclave del esquema
+
+En E8 solo existen valores de la CC, por lo que cualquier df que se encuentre va a ser trivial en E8. E8 está en BCNF.
+
+Me queda
+
+E1 (<u>#contacto(sub)</u>, nombre_apellido, direccion, telefono)
+E3 (<u>#punto_venta(sub)</u>, nombre_punto_venta, ubicacion_punto_venta, #contacto )
+E5 (<u>#revista(sub)</u>, nombre_revista, periodicidad)
+E7 (<u>#revista,#publicacion(todo sub)</u>, ejemplares_impresos)
+E8 (<u>#revista(sub), #publicacion(sub), #punto_venta(sub), sponsor(sub)</u>,)
+
+CP:{#punto_venta,#revista,#publicacion,sponsor}
+
+ahora paso a los DMs
+
+DM1) #publicacion, #revista -->> sponsor
+DM2) #revista -->> #punto_venta 
+
+En base a las DMs encontrados puedo decir que E8 no está en 4FN ya que existen dm1 y dm2 que no son trivales en E8. Pariciono E8 a partir de DM1
+
+E9 (<u>#publicacion(sub), #revista(sub)</u>, sponsor)
+E10 (<u>#revista(sub), #publicacion(sub), #punto_venta(sub)</u>)
+
+E9 está en 4FN porque vale DM1 que es trivial en ella
+E10
