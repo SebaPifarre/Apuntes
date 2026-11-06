@@ -200,3 +200,14 @@ Para el campo user, guardar únicamente el nombre de usuario, sin el host.
 
 
 
+```mysql
+DELIMITER //
+
+CREATE PROCEDURE registrar (IN numP INT; IN cant INT; IN numC INT)
+
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	ROLLBACK;
+
+
+
+```
