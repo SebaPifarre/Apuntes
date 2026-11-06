@@ -205,9 +205,25 @@ DELIMITER //
 
 CREATE PROCEDURE registrar (IN numP INT; IN cant INT; IN numC INT)
 
+DECLARE cupo INT;
+
 DECLARE EXIT HANDLER FOR SQLEXCEPTION
 	ROLLBACK;
 
+select stock_actual into cupo from producto p where p.#producto = numP;
+
+IF cupo >= numP
+	TRANSACTION
+		DECLARE monto_c DOUBLE;
+		set monto_c = cant*(select precio from producto p where p.#producto = numP)
+		
+		INSERT INTO venta(producto,cantidad,monto,#cliente) values (numP,cant,monto_c,numC)
+		
+		Update producto p set (p.stock_actual = p.stock_actual - cant) where p.#producto = numP
+		
+	COMMIT
+END IF	
+		 
 
 
 ```
