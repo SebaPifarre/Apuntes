@@ -83,3 +83,18 @@ E9 (<u>#publicacion(sub), #revista(sub)</u>, sponsor)
 E10 (<u>#revista(sub), #publicacion(sub), #punto_venta(sub)</u>)
 
 CP:{#punto_venta,#revista,#publicacion,sponsor}
+
+
+```mysql
+DECLARE TRIGGER actualizar_stock
+AFTER INSERT
+ON DEVOLUCION
+BEGIN
+	DECLARE cant INT;
+	SET cant = new.cantidad_cajas * (select unidades por caja from PRODUCTO p
+									 where p.id_producto = new.id_producto)
+	
+	UPDATE INVENTARIO SET (stock_unidades=stock_unidades + cant)
+	WHERE id_bodega = 
+END
+```
