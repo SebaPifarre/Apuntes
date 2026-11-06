@@ -95,6 +95,6 @@ BEGIN
 									 where p.id_producto = new.id_producto)
 	
 	UPDATE INVENTARIO SET (stock_unidades=stock_unidades + cant)
-	WHERE id_bodega = 
+	WHERE id_bodega = new.id_bodega && id_producto = new.id_producto
 END
 ```
