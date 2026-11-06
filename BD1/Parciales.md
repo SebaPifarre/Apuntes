@@ -71,4 +71,15 @@ E9 (<u>#publicacion(sub), #revista(sub)</u>, sponsor)
 E10 (<u>#revista(sub), #publicacion(sub), #punto_venta(sub)</u>)
 
 E9 está en 4FN porque vale DM1 que es trivial en ella
-E10
+E10 está en 4FN porque vale DM2 que es trivial en ella
+
+resultado
+
+E1 (<u>#contacto(sub)</u>, nombre_apellido, direccion, telefono)
+E3 (<u>#punto_venta(sub)</u>, nombre_punto_venta, ubicacion_punto_venta, #contacto )
+E5 (<u>#revista(sub)</u>, nombre_revista, periodicidad)
+E7 (<u>#revista,#publicacion(todo sub)</u>, ejemplares_impresos)
+E9 (<u>#publicacion(sub), #revista(sub)</u>, sponsor)
+E10 (<u>#revista(sub), #publicacion(sub), #punto_venta(sub)</u>)
+
+CP:{#punto_venta,#revista,#publicacion,sponsor}
