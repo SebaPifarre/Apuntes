@@ -454,12 +454,16 @@ Procedure ej6
 Task Type Equipo is
 	Entry Llegada;
 	Entry Comenzar;
+end Equipo;
 
-Task Type Persona;
+Task Type Persona is
+	Entry Ganador(g:IN int);
+end Persona;
 
 Task Admin is
 	Entry Submit (v:IN int; e:IN int)
 	Entry Resultado(v:OUT int)
+end Admin;
 
 arrEquipo: array(1..5) of Equipo;
 arrPersona: array(1..20) of Persona;
@@ -468,8 +472,10 @@ Task Body Equipo is
 	i:int
 	total:int:=0
 	quienGano:int
-	
+	miId:int
 Begin
+	accept Ident(id:IN int) do
+		miId:=id
 	for i in 1..4 loop
 		accept llegada
 	end loop;
@@ -482,7 +488,12 @@ Begin
 			total:=total+val
 	end loop;
 	
-	Admin.Submit(total)
+	Admin.Submit(total, miId)
+	accept Resultad(e:OUT int) do
+		quienGano := e
+	for i in 1..4 loop
+		Persona.Ganador(quienGano)
+	end loop;
 end Equipo;
 
 Task Body Persona is
@@ -498,7 +509,13 @@ Begin
 		monto:=monto+v
 		
 	Equipo(miEquipo).depositar(monto)
-	accept Resultado(ganador: IN int)
+	accept Ganador(ganador: IN int) do
 		g:=ganador
 end Persona;
+Task Body Admin is
+	arrRes: array(1..5) of int;
+Begin
+	for i in 1..5 loop
+		accept Submit(num:IN int;)
+end Admin;
 ```
