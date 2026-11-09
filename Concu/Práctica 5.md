@@ -701,7 +701,7 @@ Una empresa de limpieza se encarga de recolectar residuos en una ciudad por medi
 camiones. Hay P personas que hacen reclamos continuamente hasta que uno de los camiones pase por su casa. Cada persona hace un reclamo y espera a lo sumo 15 minutos a que llegue un camión; si no pasa, vuelve a hacer el reclamo y a esperar a lo sumo 15 minutos a que llegue un camión; y así sucesivamente hasta que el camión llegue y recolecte los residuos. Sólo cuando un camión llega, es cuando deja de hacer reclamos y se retira. Cuando un camión está libre la empresa lo envía a la casa de la persona que más reclamos ha hecho sin ser atendido. Nota: maximizar la concurrencia.
 
 ```ada
-Procedure ej9
+Procedure ej9 is
 
 Task Admin is
 	Entry Reclamo(id:IN int);
@@ -724,19 +724,19 @@ Task Body Persona is
 	sucio:boolean:=true;
 Begin
 	accept Ident(id: IN int) do
-		miID=id;
+		miID:=id;
 	end Ident;
 	while(sucio) loop
-		Admin.Reclamo(id);
+		Admin.Reclamo(miID);
 		SELECT
 			accept PasoCamion do
 				sucio:=false;
 			end PasoCamion;
-		OR DELAY 900
-			null
+		OR DELAY 900.0
+			null;
 		end select;
 	end loop;
-	Admin.YaPaso(id);
+	Admin.YaPaso(miID);
 End Persona;
 
 Task Body Camion is
@@ -750,7 +750,7 @@ Begin
 End Camion;
 
 Task Body Admin is
-	reclamos: array (1..P) of int:=(P,0);
+	reclamos: array (1..P) of int:=(1..P => 0);
 	actual:int;
 	cant:int:=0;
 Begin
@@ -763,8 +763,7 @@ Begin
 				if(reclamos(actual)=0) then
 					cant:=cant+1;
 				end if;
-				reclamos(actual)++;
-				cant++;
+				reclamos(actual):=reclamos(actual)+1;
 			end if;
 		OR
 			when(cant>0) => accept Siguiente(id:OUT int) do
@@ -775,7 +774,8 @@ Begin
 			reclamos(actual):=-1;
 		OR
 			accept YaPaso(id:IN int) do
-				reclamos(id):=0
+				reclamos(id):=0 -- Por si la misma persona vuelve a hacer el
+								-- reclamo, está un poco de más.
 			end YaPaso;
 		end select;
 	end loop;
