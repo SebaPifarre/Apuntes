@@ -108,7 +108,7 @@ End Banco
 
 b)
 
-```
+```ada
 Procedure Banco is
 
 Task Empleado is
@@ -142,7 +142,7 @@ End Banco
 
 c)
 
-```
+```ada
 Procedure Banco is
 
 Task Empleado is
@@ -176,7 +176,7 @@ End Banco
 
 d)
 
-```
+```ada
 Procedure Banco is
 
 Task Empleado is
@@ -227,7 +227,7 @@ proceso 1 será considerada vieja (se deshecha) si en 2 minutos no fue recibida.
 señal del proceso 2 no puede ser recibida inmediatamente, entonces espera 1 minuto y
 vuelve a mandarla (no se deshecha).
 
-```
+```ada
 Procedure Central
 
 Task Central is
@@ -293,7 +293,7 @@ El médico atiende los pedidos dándole prioridad a los enfermos que llegan para
 Cuando atiende un pedido, recibe la solicitud y la procesa durante un cierto tiempo. Cuando
 está libre aprovecha a procesar las notas dejadas por las enfermeras.
 
-```
+```ada
 Procedure ej4
 
 Task Medico is
@@ -396,7 +396,7 @@ que está todo bien, el usuario se retira. Cuando un usuario envía un pedido es
 2 minutos a que sea recibido por el servidor, pasado ese tiempo espera un minuto y vuelve a
 intentarlo (usando el mismo documento).
 
-```
+```ada
 Procedure ej5
 
 Task Servidor is
@@ -448,7 +448,7 @@ finalizar cada persona debe conocer el grupo que más dinero junto. Nota: maximi
 concurrencia. Suponga que para simular la búsqueda de una moneda por parte de una
 persona existe una función Moneda() que retorna el valor de la moneda encontrada.
 
-```
+```ada
 Procedure ej6
 
 Task Type Equipo is
@@ -538,7 +538,7 @@ encuentra distribuido entre 10 procesos Worker (es decir, cada Worker tiene un v
 debe realizar el cálculo de este promedio y que, además, se queda con el resultado. Nota:
 maximizar la concurrencia; este cálculo se hace una sola vez.
 
-```
+```ada
 Procedure ej7
 
 Task Coordinador is
@@ -583,7 +583,7 @@ Begin
 End ej7;
 ```
 
-```
+```ada
 Procedure ej7
 
 Task Coordinador is
@@ -596,15 +596,14 @@ Task Type Worker;
 arrWorker : array (1..10) of Worker;
 
 Task Body Worker is
-	miArr: array(1..1M) of int;
+	miArr: array(1..100_000) of int;
 	total:real:=0.0;
 Begin
-	Coordinador.
+	Coordinador.Comienzo;
 	
-	for i in 1..1M loop
+	for i in 1..100_000 loop
 		total:=total+miArr(i);
 	end loop;
-	total:=total/1M
 	Coordinador.Submit(total);
 End Worker;
 
@@ -612,17 +611,39 @@ Task Body Coordinador is
 	total:real:=0.0;
 	p,res:real;
 Begin
-	for i in 1..10 loop
-		accept Comienzo do;
+	for i in 1..20 loop
+		SELECT
+			accept Comienzo;
+			end Comienzo;
+		OR
+			accept Submit(parcial:IN real) do
+				p:=parcial;
+			end Submit;
+			total:=total+p
+		end select;
 	end loop;
-	for i in 1..10 loop
-		accept Submit(parcial:IN real) do
-			p:=parcial;
-		total:=total+p
-	end loop;
-	res := total/10;
+	res := total/1M;
 End Coordinador;
 Begin
 	null
 End ej7;
+```
+
+## Ejercicio 8
+
+Hay un sistema de reconocimiento de huellas dactilares de la policía que tiene 8 Servidores
+para realizar el reconocimiento, cada uno de ellos trabajando con una Base de Datos propia;
+a su vez hay un Especialista que utiliza indefinidamente. El sistema funciona de la siguiente
+manera: el Especialista toma una imagen de una huella (TEST) y se la envía a los servidores
+para que cada uno de ellos le devuelva el código y el valor de similitud de la huella que más
+se asemeja a TEST en su BD; al final del procesamiento, el especialista debe conocer el
+código de la huella con mayor valor de similitud entre las devueltas por los 8 servidores.
+Cuando ha terminado de procesar una huella comienza nuevamente todo el ciclo. Nota:
+suponga que existe una función Buscar(test, código, valor) que utiliza cada Servidor donde
+recibe como parámetro de entrada la huella test, y devuelve como parámetros de salida el
+código y el valor de similitud de la huella más parecida a test en la BD correspondiente.
+Maximizar la concurrencia y no generar demora innecesaria.
+
+```
+
 ```
