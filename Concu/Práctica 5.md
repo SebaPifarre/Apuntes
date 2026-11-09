@@ -744,13 +744,13 @@ Task Body Camion is
 Begin
 	loop
 		Admin.Siguiente(prox);
-		// recoleta la basura
 		arrPersona(prox).PasoCamion;
+		// recoleta la basura
 	end loop;
 End Camion;
 
 Task Body Admin is
-	reclamos: array (1..P) of int;
+	reclamos: array (1..P) of int:=(P,0);
 	actual:int;
 	cant:int:=0;
 Begin
@@ -759,12 +759,32 @@ Begin
 			accept Reclamo(id:IN int) do
 				actual:=id;
 			end Reclamo;
-			reclamos(id)++;
-			cant++;
+			if(reclamos(actual)>-1) then
+				if(reclamos(actual)=0) then
+					cant:=cant+1;
+				end if;
+				reclamos(actual)++;
+				cant++;
+			end if;
 		OR
-			when(cant>0) => accept Seguiente(id:OUT int) do
-				id:= max(reclamos)
-				
+			when(cant>0) => accept Siguiente(id:OUT int) do
+				actual:= posMax(reclamos)
+				id:=actual
+			end Siguiente;	
+			cant:=cant-1;
+			reclamos(actual):=-1;
+		OR
+			accept YaPaso(id:IN int) do
+				reclamos(id):=0
+			end YaPaso;
+		end select;
+	end loop;
 End Admin;
+
+Begin
+	for i in 1..P loop
+		arrPersona(i).Ident(i);
+	end loop
+End ej9;
 
 ```
