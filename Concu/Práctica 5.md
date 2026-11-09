@@ -455,11 +455,10 @@ Task Type Equipo is
 	Entry Llegada;
 	Entry Comenzar;
 	Entry Ident(id:IN int)
+	Entry Ganador(g:OUT int);
 end Equipo;
 
-Task Type Persona is
-	Entry Ganador(g:IN int);
-end Persona;
+Task Type Persona;
 
 Task Admin is
 	Entry Submit (v:IN int; e:IN int)
@@ -493,7 +492,8 @@ Begin
 	accept Resultad(e:OUT int) do
 		quienGano := e
 	for i in 1..4 loop
-		Persona.Ganador(quienGano)
+		accept ganador(g:OUT int) do
+			g:=quienGano;
 	end loop;
 end Equipo;
 
@@ -502,16 +502,15 @@ Task Body Persona is
 	miEquipo,v,i,g:int
 Begin
 	miEquipo:=obtener(miEquipo)
-	Equipo(miEquipo).Llegada;
-	Equipo(miEquipo).Comenzar
+	arrEquipo(miEquipo).Llegada;
+	arrEquipo(miEquipo).Comenzar
 	
 	for i in 1..15 loop
 		Moneda(v)
 		monto:=monto+v
 		
-	Equipo(miEquipo).depositar(monto)
-	accept Ganador(ganador: IN int) do
-		g:=ganador
+	arrEquipo(miEquipo).depositar(monto);
+	arrEquipo(miEquipo).Ganador(g);
 end Persona;
 Task Body Admin is
 	arrRes: array(1..5) of int;
@@ -529,4 +528,31 @@ begin
 		Equipo.Ident(i)
 	end loop;
 end ej6;
+```
+
+## Ejercicio 7
+
+Se debe calcular el valor promedio de un vector de 1 millón de números enteros que se
+encuentra distribuido entre 10 procesos Worker (es decir, cada Worker tiene un vector de
+100 mil números). Para ello, existe un Coordinador que determina el momento en que se
+debe realizar el cálculo de este promedio y que, además, se queda con el resultado. Nota:
+maximizar la concurrencia; este cálculo se hace una sola vez.
+
+```
+Procedure ej7
+
+Task Coordinador is
+	Entry Comienzo
+	Entry Submit(val:IN real)
+end Coordinador;
+
+Task Type Worker;
+
+arrWorker : array (1..10) of Worker;
+
+Task Body Worker is
+	miArr: array(1..1M) of int;
+Begin
+	
+End Worker;
 ```
