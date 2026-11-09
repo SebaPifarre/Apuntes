@@ -706,10 +706,13 @@ Procedure ej9
 Task Admin is
 	Entry Reclamo(id:IN int);
 	Entry Siguiente(id:OUT int);
+	Entry YaPaso(id:IN int);
 End Admin;
 
 Task Type Persona is
 	Entry Ident(id:IN int);
+	Entry PasoCamion;
+End Persona;
 
 Task Type Camion;
 
@@ -717,13 +720,51 @@ arrPersona: array (1..P) of Persona;
 arrCamion: array (1..3) of Camion;
 
 Task Body Persona is
-	miID:int
+	miID:int;
+	sucio:boolean:=true;
 Begin
 	accept Ident(id: IN int) do
 		miID=id;
 	end Ident;
-	while()
+	while(sucio) loop
+		Admin.Reclamo(id);
+		SELECT
+			accept PasoCamion do
+				sucio:=false;
+			end PasoCamion;
+		OR DELAY 900
+			null
+		end select;
+	end loop;
+	Admin.YaPaso(id);
 End Persona;
 
+Task Body Camion is
+	prox:int
+Begin
+	loop
+		Admin.Siguiente(prox);
+		// recoleta la basura
+		arrPersona(prox).PasoCamion;
+	end loop;
+End Camion;
+
+Task Body Admin is
+	reclamos: array (1..P) of int;
+	actual:int;
+	cant:int:=0;
+Begin
+	loop
+		SELECT 
+			accept Reclamo(id:IN int) do
+				actual:=id;
+			end Reclamo;
+			reclamos(id)++;
+			cant++;
+		OR
+			when(cant>0) => accept Seguiente(id:OUT int) do
+				id:= max(reclamos)
+				
+End Admin;
 
 ```
