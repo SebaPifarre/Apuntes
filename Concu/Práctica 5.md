@@ -400,5 +400,31 @@ intentarlo (usando el mismo documento).
 Procedure ej5
 
 Task Servidor is
-	Entry RecibirDocumento(d:IN )
+	Entry Documento(d:IN texto; res:OUT texto; err: OUT text)
+end Servidor;
+
+Task Type Usuario;
+
+arrUsuarios: array (1..U) of Usuario;
+
+Task Body Usuario is
+	doc:texto
+	seguir:boolean:=true
+Begin
+	while(seguir) loop
+		modificar(doc)
+		SELECT
+			Servidor.Documento(doc)
+			seguir:=false
+		OR DELAY 120
+			delay 60
+		end select;
+	end loop;
+end Usuario;
+
+Task Body Servidor is
+	doc:texto
+Begin
+	
+end Servidor;
 ```
