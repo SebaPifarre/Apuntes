@@ -297,5 +297,59 @@ está libre aprovecha a procesar las notas dejadas por las enfermeras.
 Procedure ej4
 
 Task Medico is
-	Entry PeticionE
+	Entry PeticionE()
+	Entry PeticionP()
+END Medico;
+
+Task Type Enfermera;
+Task Type Paciente;
+
+arrEnfermeras: array (1..E) of Enfermera;
+arrPacientes: array(1..P) of Paciente;
+
+Task Body Enfermera is
+Begin
+	loop
+		Select
+			Medico.PeticionE
+		Else
+			//Generar nota
+		end select;
+	end loop;
+end Enfermera;
+
+Task Body Paciente is
+	intentos:int
+	atendido:boolean
+Begin
+	atendido:=false
+	intentos:=0
+	while(not atendido && intendos<3)
+		Select 
+			Medico.PeticionP()
+			atendido=true
+		OR delay 300
+			intentos++
+		end select;
+	end while
+		
+end Paciente;
+
+Task Body medico
+begin
+	loop
+		Select
+			accept PeticionE
+				//resolver peticion
+			end PeticionE
+		OR
+			when (PeticionE`count=0) =>
+				accept PeticionP
+					//resolver peticion
+		else
+			//resolver nota
+end medico;
+begin
+null
+end ej4;
 ```
