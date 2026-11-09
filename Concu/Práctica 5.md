@@ -436,7 +436,8 @@ Begin
 end Servidor;
 ```
 
-## Ejercicio
+## Ejercicio 6
+
 En una playa hay 5 equipos de 4 personas cada uno (en total son 20 personas donde cada
 una conoce previamente a que equipo pertenece). Cuando las personas van llegando
 esperan con los de su equipo hasta que el mismo esté completo (hayan llegado los 4
@@ -446,3 +447,29 @@ de 1, 2 o 5 pesos) y se suman los montos de las 60 monedas conseguidas en el gru
 finalizar cada persona debe conocer el grupo que más dinero junto. Nota: maximizar la
 concurrencia. Suponga que para simular la búsqueda de una moneda por parte de una
 persona existe una función Moneda() que retorna el valor de la moneda encontrada.
+
+```
+Procedure ej6
+
+Task Type Equipo is
+	Entry Llegada;
+	Entry Comenzar;
+
+Task Type Persona;
+
+arrEquipo: array(1..5) of Equipo;
+arrPersona: array(1..20) of Persona;
+
+Task Body Equipo is
+	i:int
+Begin
+	for i in 1..4 loop
+		accept llegada
+	end loop;
+	for i in 1..4 loop
+		accept comenzar
+	end loop;
+	
+	
+end Equipo;
+```
