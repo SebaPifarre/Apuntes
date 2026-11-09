@@ -408,14 +408,17 @@ Task Type Usuario;
 arrUsuarios: array (1..U) of Usuario;
 
 Task Body Usuario is
-	doc:texto
+	doc,res,err:texto
 	seguir:boolean:=true
 Begin
+	trabajar(doc)
 	while(seguir) loop
-		modificar(doc)
 		SELECT
-			Servidor.Documento(doc)
-			seguir:=false
+			Servidor.Documento(doc,res,err)
+			if(err=null)
+				seguir:=false
+			else
+				modificar(doc)
 		OR DELAY 120
 			delay 60
 		end select;
@@ -423,8 +426,23 @@ Begin
 end Usuario;
 
 Task Body Servidor is
-	doc:texto
+	res,err,doc:texto
 Begin
-	
+	loop
+		accept Documento(doc:IN texto;res OUT text;err:OUT text) do
+			err := verificarErrores(err);
+			res:= procesar(doc);
+	end loop;
 end Servidor;
 ```
+
+## Ejercicio
+En una playa hay 5 equipos de 4 personas cada uno (en total son 20 personas donde cada
+una conoce previamente a que equipo pertenece). Cuando las personas van llegando
+esperan con los de su equipo hasta que el mismo esté completo (hayan llegado los 4
+integrantes), a partir de ese momento el equipo comienza a jugar. El juego consiste en que
+cada integrante del grupo junta 15 monedas de a una en una playa (las monedas pueden ser
+de 1, 2 o 5 pesos) y se suman los montos de las 60 monedas conseguidas en el grupo. Al
+finalizar cada persona debe conocer el grupo que más dinero junto. Nota: maximizar la
+concurrencia. Suponga que para simular la búsqueda de una moneda por parte de una
+persona existe una función Moneda() que retorna el valor de la moneda encontrada.
