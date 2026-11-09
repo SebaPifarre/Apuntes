@@ -542,7 +542,52 @@ maximizar la concurrencia; este cálculo se hace una sola vez.
 Procedure ej7
 
 Task Coordinador is
-	Entry Comienzo
+	Entry Submit(val:IN real)
+end Coordinador;
+
+Task Type Worker is
+	Entry Comienzo;
+End Worker;
+
+arrWorker : array (1..10) of Worker;
+
+Task Body Worker is
+	miArr: array(1..1M) of int;
+	total:real:=0.0;
+Begin
+	accept Comienzo do
+	
+	for i in 1..1M loop
+		total:=total+miArr(i);
+	end loop;
+	total:=total/1M
+	Coordinador.Submit(total);
+End Worker;
+
+Task Body Coordinador is
+	total:real:=0.0;
+	p,res:real;
+Begin
+	for i in 1..10 loop
+		arrWorker(i).Comienzo;
+	end loop;
+	for i in 1..10 loop
+		accept Submit(parcial:IN real) do
+			p:=parcial;
+		total:=total+p
+	end loop;
+	res := total/10;
+End Coordinador;
+Begin
+	null
+End ej7;
+```
+
+```
+Procedure ej7
+
+Task Coordinador is
+	Entry Comienzo;
 	Entry Submit(val:IN real)
 end Coordinador;
 
@@ -552,7 +597,32 @@ arrWorker : array (1..10) of Worker;
 
 Task Body Worker is
 	miArr: array(1..1M) of int;
+	total:real:=0.0;
 Begin
+	Coordinador.
 	
+	for i in 1..1M loop
+		total:=total+miArr(i);
+	end loop;
+	total:=total/1M
+	Coordinador.Submit(total);
 End Worker;
+
+Task Body Coordinador is
+	total:real:=0.0;
+	p,res:real;
+Begin
+	for i in 1..10 loop
+		accept Comienzo do;
+	end loop;
+	for i in 1..10 loop
+		accept Submit(parcial:IN real) do
+			p:=parcial;
+		total:=total+p
+	end loop;
+	res := total/10;
+End Coordinador;
+Begin
+	null
+End ej7;
 ```
