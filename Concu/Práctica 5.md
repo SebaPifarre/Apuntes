@@ -701,5 +701,29 @@ Una empresa de limpieza se encarga de recolectar residuos en una ciudad por medi
 camiones. Hay P personas que hacen reclamos continuamente hasta que uno de los camiones pase por su casa. Cada persona hace un reclamo y espera a lo sumo 15 minutos a que llegue un camión; si no pasa, vuelve a hacer el reclamo y a esperar a lo sumo 15 minutos a que llegue un camión; y así sucesivamente hasta que el camión llegue y recolecte los residuos. Sólo cuando un camión llega, es cuando deja de hacer reclamos y se retira. Cuando un camión está libre la empresa lo envía a la casa de la persona que más reclamos ha hecho sin ser atendido. Nota: maximizar la concurrencia.
 
 ```ada
+Procedure ej9
+
+Task Admin is
+	Entry Reclamo(id:IN int);
+	Entry Siguiente(id:OUT int);
+End Admin;
+
+Task Type Persona is
+	Entry Ident(id:IN int);
+
+Task Type Camion;
+
+arrPersona: array (1..P) of Persona;
+arrCamion: array (1..3) of Camion;
+
+Task Body Persona is
+	miID:int
+Begin
+	accept Ident(id: IN int) do
+		miID=id;
+	end Ident;
+	while()
+End Persona;
+
 
 ```
