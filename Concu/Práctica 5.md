@@ -454,6 +454,7 @@ Procedure ej6
 Task Type Equipo is
 	Entry Llegada;
 	Entry Comenzar;
+	Entry Ident(id:IN int)
 end Equipo;
 
 Task Type Persona is
@@ -516,6 +517,16 @@ Task Body Admin is
 	arrRes: array(1..5) of int;
 Begin
 	for i in 1..5 loop
-		accept Submit(num:IN int;)
+		accept Submit(num:IN int; e:IN int) do
+			arrRes(e):=num;
+	g:=obtenerGanador(arrRes)
+	for i in 1..5 loop
+		accept Resultado(gandor: OUT int) do
+			ganador:=g
 end Admin;
+begin
+	for i in 1..5 loop
+		Equipo.Ident(i)
+	end loop;
+end ej6;
 ```
