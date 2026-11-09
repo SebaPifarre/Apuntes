@@ -644,6 +644,41 @@ recibe como parámetro de entrada la huella test, y devuelve como parámetros de
 código y el valor de similitud de la huella más parecida a test en la BD correspondiente.
 Maximizar la concurrencia y no generar demora innecesaria.
 
-```
+```ada
+Procedure ej8
+
+Task Especialista is
+	Entry Siguiente(test:OUT texto);
+	Entry Resultado(cod:IN text; valor:IN int);
+End Especialista;
+
+Task Type Servidor;
+
+arrServidor: array (1..8) of Servidor;
+
+Task Body Servidor is
+	DB:database;
+	huella,codigo:texto;
+	valor:int;
+Begin
+	loop
+		Especialista.Siguiente(huella);
+		Buscar(huella,codigo,valor,DB);
+		Especialista.Resultado(codigo,valor);
+	end loop;
+End Servidor;
+
+Task Body Especialista is
+	test:texto;
+	C:cola;
+Begin
+	loop
+		Obtener(test)
+		reset(C)
+		for i in 1..16 loop
+			SELECT
+				accept Siguiente(test:OUT texto)
+					
+End Especialista;
 
 ```
