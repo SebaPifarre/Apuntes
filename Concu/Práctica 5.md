@@ -292,3 +292,10 @@ trabajando y haciendo más peticiones.
 El médico atiende los pedidos dándole prioridad a los enfermos que llegan para ser atendidos.
 Cuando atiende un pedido, recibe la solicitud y la procesa durante un cierto tiempo. Cuando
 está libre aprovecha a procesar las notas dejadas por las enfermeras.
+
+```
+Procedure ej4
+
+Task Medico is
+	Entry PeticionE
+```
