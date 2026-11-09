@@ -315,17 +315,28 @@ Task Body Escritorio is
 	C: cola;
 Begin
 	loop
-	
+		SELECT
+			accept DejarNota(n: IN TEXT) do
+				push(C,n)
+			end DejarNota;
+		OR
+			when(not empty(C)) =>
+				accept TomarNota(n: OUT TEXT) do
+					pop(C,n)
+			end TomarNota;
+		END SELECT;
 	end loop;
 end escritorio;
 
 Task Body Enfermera is
+	n:text
 Begin
 	loop
 		Select
 			Medico.PeticionE
 		Else
-			//Generar nota
+			n:=generarNota(n)
+			Escritorio.DejarNota(n)
 		end select;
 	end loop;
 end Enfermera;
@@ -342,26 +353,52 @@ Begin
 			atendido=true
 		OR delay 300
 			intentos++
+			delay 600
 		end select;
 	end while
 		
 end Paciente;
 
 Task Body medico
+	p:text
 begin
 	loop
 		Select
-			accept PeticionE
-				//resolver peticion
+			accept PeticionE(pedido:IN TEXT)
+				p:=pedido
 			end PeticionE
+			resolver(p)
 		OR
 			when (PeticionP`count=0) =>
 				accept PeticionP
-					//resolver peticion
+					resolver(p)
+			end PeticionP;
 		else
-			//resolver nota
+			select
+				Escritorio.TomarNota(p)
+				procesarNota(p)
+			else
+				null
 end medico;
 begin
 null
 end ej4;
+```
+
+## Ejercicio 5
+
+En un sistema para acreditar carreras universitarias, hay UN Servidor que atiende pedidos
+de U Usuarios de a uno a la vez y de acuerdo con el orden en que se hacen los pedidos.
+Cada usuario trabaja en el documento a presentar, y luego lo envía al servidor; espera la
+respuesta de este que le indica si está todo bien o hay algún error. Mientras haya algún error,
+vuelve a trabajar con el documento y a enviarlo al servidor. Cuando el servidor le responde
+que está todo bien, el usuario se retira. Cuando un usuario envía un pedido espera a lo sumo
+2 minutos a que sea recibido por el servidor, pasado ese tiempo espera un minuto y vuelve a
+intentarlo (usando el mismo documento).
+
+```
+Procedure ej5
+
+Task Servidor is
+	Entry RecibirDocumento(d:IN )
 ```
