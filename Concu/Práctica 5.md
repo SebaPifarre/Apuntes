@@ -457,11 +457,18 @@ Task Type Equipo is
 
 Task Type Persona;
 
+Task Admin is
+	Entry Submit (v:IN int; e:IN int)
+	Entry Resultado(v:OUT int)
+
 arrEquipo: array(1..5) of Equipo;
 arrPersona: array(1..20) of Persona;
 
 Task Body Equipo is
 	i:int
+	total:int:=0
+	quienGano:int
+	
 Begin
 	for i in 1..4 loop
 		accept llegada
@@ -470,6 +477,28 @@ Begin
 		accept comenzar
 	end loop;
 	
+	for i in 1..4 loop
+		accept depositar(val:IN int)
+			total:=total+val
+	end loop;
 	
+	Admin.Submit(total)
 end Equipo;
+
+Task Body Persona is
+	monto:int:=0
+	miEquipo,v,i,g:int
+Begin
+	miEquipo:=obtener(miEquipo)
+	Equipo(miEquipo).Llegada;
+	Equipo(miEquipo).Comenzar
+	
+	for i in 1..15 loop
+		Moneda(v)
+		monto:=monto+v
+		
+	Equipo(miEquipo).depositar(monto)
+	accept Resultado(ganador: IN int)
+		g:=ganador
+end Persona;
 ```
