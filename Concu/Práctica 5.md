@@ -297,15 +297,27 @@ está libre aprovecha a procesar las notas dejadas por las enfermeras.
 Procedure ej4
 
 Task Medico is
-	Entry PeticionE()
-	Entry PeticionP()
+	Entry PeticionE(p:IN TEXT)
+	Entry PeticionP(p:IN TEXT)
 END Medico;
+
+Task Escritorio is
+	Entry DejarNota(nota:IN TEXT)
+	Entry TomarNota(nota:OUT TEXT)
 
 Task Type Enfermera;
 Task Type Paciente;
 
 arrEnfermeras: array (1..E) of Enfermera;
 arrPacientes: array(1..P) of Paciente;
+
+Task Body Escritorio is
+	C: cola;
+Begin
+	loop
+	
+	end loop;
+end escritorio;
 
 Task Body Enfermera is
 Begin
@@ -343,7 +355,7 @@ begin
 				//resolver peticion
 			end PeticionE
 		OR
-			when (PeticionE`count=0) =>
+			when (PeticionP`count=0) =>
 				accept PeticionP
 					//resolver peticion
 		else
