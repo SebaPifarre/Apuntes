@@ -126,20 +126,21 @@ deben pasar por la única caja de cobros para realizar el pago de sus boletas. L
 atendidas de acuerdo con el orden de llegada, teniendo prioridad aquellos que deben pagar menos de 5 boletas de los que pagan más. Adicionalmente, las personas embarazadas tienen prioridad sobre los dos casos anteriores. Las personas entregan sus boletas al cajero y el dinero de pago; el cajero les devuelve el vuelto y los recibos de pago.
 
 ```
-chan altaPrioridad,mediaPrioridad,bajaPrioridad
-chan resultado[P]
+chan altaPrioridad(int,text,real),mediaPrioridad(int,text,real),bajaPrioridad(int,text,real)
+chan resultado[P](text,real)
 chan aviso
 
 Process Persona[id:1..P]
 {
 	res:texto
-	boleta:texto
+	boletas:texto
+	plata,vuelto:real
 	
 	send aviso()
 
 	if("embrazada")
 	{
-		send altaPrioridad(id)
+		send altaPrioridad(id,boletas,plata)
 	}
 	else if("menos de 5")
 	{
@@ -150,23 +151,29 @@ Process Persona[id:1..P]
 		send bajaPrioridad(id)
 	}
 	
-	receive resultado[id](res)
+	receive resultado[id](res,vuelto)
 }
 
 Process Caja
 {
-	res:text
+	res,boletas:text
 	id:int
+	plata,vuelto:real
 
 	while(true)
 	{
 	
-	do (empty(altaPrioridad) && empty(mediaPrioridad)); receive bajaPrioridad(id)
+	receive aviso()
+	
+	if (empty(altaPrioridad) && empty(mediaPrioridad)); receive bajaPrioridad(id,boletas,plata)
 		=> registraPago(res); send resultado[id](res);
 		
-	[] empty(altaPrioridad); receive mediaPrioridad(id) => registrarPago(res); send resultado[id](res);
+	[] empty(altaPrioridad); receive mediaPrioridad(id,boletas,plata) => registrarPago(res); send resultado[id](res);
 	
-	[] receive altaPrioridad(id) => registrarPago(res); send resultado[id](res);
+	[] receive altaPrioridad(id,boletas,plata) => null;
+	
+	
+	registrarPago(boletas,plata,res,vuelto); send resultado[id](res,vuelto);
 	
 	
 	
