@@ -159,6 +159,6 @@ Process Caja
 		
 	[] empty(altaPrioridad); receive mediaPrioridad(id) => registrarPago(res); send resultado[id](res);
 	
-	[] 
+	[] receive altaPrioridad(id) => registrarPago(res); send resultado[id](res);
 }
 ```
