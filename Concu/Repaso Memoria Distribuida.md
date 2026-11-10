@@ -126,5 +126,39 @@ deben pasar por la única caja de cobros para realizar el pago de sus boletas. L
 atendidas de acuerdo con el orden de llegada, teniendo prioridad aquellos que deben pagar menos de 5 boletas de los que pagan más. Adicionalmente, las personas embarazadas tienen prioridad sobre los dos casos anteriores. Las personas entregan sus boletas al cajero y el dinero de pago; el cajero les devuelve el vuelto y los recibos de pago.
 
 ```
+chan altaPrioridad,mediaPrioridad,bajaPrioridad
+chan resultado[P]
 
+Process Persona[id:1..P]
+{
+	res:texto
+
+	if("embrazada")
+	{
+		send altaPrioridad(id)
+	}
+	else if("menos de 5")
+	{
+		send mediaPrioridad(id)
+	}
+	else
+	{
+		send bajaPrioridad(id)
+	}
+	
+	receive resultado[id](res)
+}
+
+Process Caja
+{
+	res:text
+	id:int
+
+	do (empty(altaPrioridad) && empty(mediaPrioridad)); receive bajaPrioridad(id)
+		=> registraPago(res); send resultado[id](res);
+		
+	[] empty(altaPrioridad); receive mediaPrioridad(id) => registrarPago(res); send resultado[id](res);
+	
+	[] 
+}
 ```
