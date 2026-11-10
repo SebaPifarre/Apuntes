@@ -128,6 +128,7 @@ atendidas de acuerdo con el orden de llegada, teniendo prioridad aquellos que de
 ```
 chan altaPrioridad,mediaPrioridad,bajaPrioridad
 chan resultado[P]
+chan aviso
 
 Process Persona[id:1..P]
 {
@@ -156,7 +157,9 @@ Process Caja
 {
 	res:text
 	id:int
-	
+
+	while(true)
+	{
 	
 	do (empty(altaPrioridad) && empty(mediaPrioridad)); receive bajaPrioridad(id)
 		=> registraPago(res); send resultado[id](res);
@@ -164,5 +167,9 @@ Process Caja
 	[] empty(altaPrioridad); receive mediaPrioridad(id) => registrarPago(res); send resultado[id](res);
 	
 	[] receive altaPrioridad(id) => registrarPago(res); send resultado[id](res);
+	
+	
+	
+	}
 }
 ```
