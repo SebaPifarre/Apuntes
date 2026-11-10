@@ -10,26 +10,41 @@ a) PMA
 
 ```
 chan Reporte(texto)
-chan Empleado[100](texto)
 chan Disponible(int)
+chan Impresora[5](texto)
 
 Process Empleado[id:1..100]
 {
 	texto:R,res
+	while(true)
 	{
 		send Reporte(R)
-		receive Empleado[id] (res)
 	}
 }
 
 Process Coordinador
 {
-	id:int
+	idI:int
+	R:texto
 
 	while(true)
 	{
-		receive Disponible(id)
-		
+		receive Disponible(idI)
+		receive Reporte(R)
+		send Impresora[idI](R)
+	}
+}
+
+Process Impresora[1..5]
+{
+	R:texto
+	idE:int
+	
+	while(true)
+	{
+		send Disponible(id)
+		receive Impresora[id](idE,R)
+		imprime(R)
 	}
 }
 ```
