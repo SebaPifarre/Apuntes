@@ -132,6 +132,9 @@ chan resultado[P]
 Process Persona[id:1..P]
 {
 	res:texto
+	boleta:texto
+	
+	send aviso()
 
 	if("embrazada")
 	{
@@ -153,7 +156,8 @@ Process Caja
 {
 	res:text
 	id:int
-
+	
+	
 	do (empty(altaPrioridad) && empty(mediaPrioridad)); receive bajaPrioridad(id)
 		=> registraPago(res); send resultado[id](res);
 		
