@@ -101,7 +101,7 @@ Process Persona[id:1..P]
 	Terminal!llegue(id)
 	Terminal?turno()
 	//uso terminal
-	Terminal!termine
+	Terminal!termine()
 }
 
 Process Terminal
@@ -111,8 +111,20 @@ Process Terminal
 	libre:bool
 	
 	libre:=true
-	do Persona[*]?llegue(id) -> if(libre) libre:=false
+	do Persona[*]?llegue(id) -> if(libre) libre:=false; Persona[id]!turno();
 								else	   push(C,id)
-	[] Persona[*]?termine() -> Persona[id]!turno
+	
+	[] Persona[*]?termine() -> if(empty(C)) libre:=true
+								else pop(C,id); Persona[id]!turno();
 }
+```
+
+## Ejercicio 3
+
+Resolver el siguiente problema con PMA. En un negocio de cobros digitales hay P personas que
+deben pasar por la única caja de cobros para realizar el pago de sus boletas. Las personas son
+atendidas de acuerdo con el orden de llegada, teniendo prioridad aquellos que deben pagar menos de 5 boletas de los que pagan más. Adicionalmente, las personas embarazadas tienen prioridad sobre los dos casos anteriores. Las personas entregan sus boletas al cajero y el dinero de pago; el cajero les devuelve el vuelto y los recibos de pago.
+
+```
+
 ```
