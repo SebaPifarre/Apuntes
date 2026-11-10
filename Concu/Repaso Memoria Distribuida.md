@@ -48,3 +48,12 @@ Process Impresora[1..5]
 	}
 }
 ```
+
+b)
+
+```
+Process Admin
+{
+	
+}
+```
