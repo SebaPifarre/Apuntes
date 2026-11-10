@@ -96,5 +96,18 @@ terminal, la usa y luego se retira para dejar al siguiente. Nota: cada Persona u
 terminal.
 
 ```
-Process Persona
+Process Persona[id:1..P]
+{
+	Terminal!llegue(id)
+	Terminal?turno()
+	//uso terminal
+	Terminal!termine
+}
+
+Process Terminal
+{
+	id:int
+	
+	do Persona[*]?llegue(id) -> push(C,id)
+}
 ```
