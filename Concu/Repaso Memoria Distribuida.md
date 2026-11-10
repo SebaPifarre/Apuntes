@@ -107,7 +107,12 @@ Process Persona[id:1..P]
 Process Terminal
 {
 	id:int
+	C:cola
+	libre:bool
 	
-	do Persona[*]?llegue(id) -> push(C,id)
+	libre:=true
+	do Persona[*]?llegue(id) -> if(libre) libre:=false
+								else	   push(C,id)
+	[] Persona[*]?termine() -> Persona[id]!turno
 }
 ```
