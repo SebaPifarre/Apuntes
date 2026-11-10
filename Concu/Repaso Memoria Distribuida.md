@@ -49,11 +49,52 @@ Process Impresora[1..5]
 }
 ```
 
-b)
+b) PMS
 
 ```
 Process Admin
 {
+	C:cola(texto)
+	R:texto
+	id:int
 	
+	do Empleado[*]?reporte(R) -> push(C,R)
+	[] (not empty(C)); Impresora[*]?disponible(id) ->
+							pop(C,R)
+							Impresora[id]!copiar(R)
+	od
+		
 }
+
+Process Empleado[id:1..100]
+{
+	R:texto
+	while(true)
+	{
+		generar(R)
+		Admin!reporte(R)
+	}	
+}
+
+Process Impresora[id:1..5]
+{
+	R:texto
+	while(true)
+	{
+		Admin!disponible(id)
+		Admin?copiar(R)
+		copiar(R)
+	}
+}
+```
+
+## Ejercicio 2
+
+Resolver el siguiente problema con PMS. En la estación de trenes hay una terminal de SUBE que
+debe ser usada por P personas de acuerdo con el orden de llegada. Cuando la persona accede a la
+terminal, la usa y luego se retira para dejar al siguiente. Nota: cada Persona usa sólo una vez la
+terminal.
+
+```
+Process Persona
 ```
