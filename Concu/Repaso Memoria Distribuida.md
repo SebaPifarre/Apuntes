@@ -204,7 +204,23 @@ arrBanco : array(1..20) of Banco;
 Task Body Banco is
 	cotiHoy:real
 Begin
-	cotiHoy
+	cotiHoy:=obtenerCoti()
+	accept Consultar(c:OUT real)
+		c:=cotiHoy;
+	end Consultar;
 End Banco;
+
+Task Body BancoCentral is
+	cotis : array(1..20) of real;
+Begin
+	for i in 1..20 loop
+		SELECT
+			arrBanco(i).Consultar(c);
+			cotis(i):=c;
+		OR DELAY 5
+			cotis(i):=null;
+		end select;
+	end loop;
+End BancoCentral;
 
 ```
