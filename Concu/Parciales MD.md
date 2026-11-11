@@ -84,7 +84,7 @@ Procedure ej3 is
 
 Task Coordinador is
 	ENTRY Llegada
-	ENTRY Inicio
+	ENTRY Inicio(e:OUT texto)
 	ENTRY entrega(resolucion:IN texto; resultado:OUT texto; pos:OUT int)
 End Coordinador;
 
@@ -93,20 +93,50 @@ Task Type Participante;
 arrParti:array(1..P) of Participante;
 
 Task Body Coordinador is
+	enunciado,resultado:texto;
+	i:int;
 Begin
+	enunciado:=generarEnunciado();
 	for i in 1..P loop
 		accept Llegada
 		end Llegada;
 	end loop;
 	for i in 1..P loop
-		accept Inicio
+		accept Inicio(e:OUT texto) do
+			e:=enunciado;
 		end Inicio;
 	end loop;
 	for i in 1..P loop
 		accept entregar(resolucion:IN texto; resultado:OUT texto; pos:OUT int) do
-			
+			resultado:=corregir(resolucion);
+			pos:=i;
+		End entregar;
 			
 	end loop;
 End Coordinador;
+
+Task Body Participante is
+	en,resolucion,result:texto;
+	pos:int
+Begin
+	Coordinador.Llegada;
+	Coordinador.Inicio(en);
+	res:=resolver(en);
+	Coordinador.entregar(res,result,pos);
+End Participante;
+Begin
+	null
+End ej3;
+
+```
+
+# Programación Concurrente ATIC/Redictado Programación Concurrente – Primera fecha de MD – 10/06/2026 – Tema 2
+
+## Ejercicio 1
+
+Resolver con **PASAJE DE MENSAJES ASINCRÓNICOS (PMA)** el siguiente problema. Existe _**un servidor**_ que resuelve pedidos de análisis de similitud de secuencias de ADN de _**C clientes**_ diferentes. Cada cliente realiza sucesivos pedidos (enviando 2 strings con las secuencias a analizar) y esperando el resultado, los pedidos pueden ser de diferentes prioridades (ALTA, MEDIA o BAJA). El servidor atiende los pedidos de acuerdo con la prioridad (y entre pedidos de una misma prioridad sigue el orden de llegada), devolviendo el resultado al cliente correspondiente (un número que indica el grado de similitud de las 2 secuencias); cada vez que no hay pedidos para resolver el servidor se duerme por 10 minutos. _**Nota:**_ suponga que existe una función _Analizar(sec1, sec2)_ que retorna un entero con el resultado del análisis; el cliente determina la prioridad de cada pedido.
+
+```
+
 
 ```
