@@ -139,4 +139,37 @@ Resolver con **PASAJE DE MENSAJES ASINCRÓNICOS (PMA)** el siguiente problema. E
 ```
 
 
+Process Cliente[id:1..C]
+{
+	sec1,sec2,prio:texto;
+	grado:int;
+
+	while(true)
+	{
+		generarSecuencias(sec1,sec2,prio)
+		if(prio="ALTA")
+			send altaPrioridad(id,sec1,sec2)
+		else if(prio="MEDIA")
+			send mediaPrioridad(id,sec1,sec2)
+		else
+			send bajaPrioridad(id,sec1,sec2)
+			
+		receive Respuesta[id](grado)
+	}
+}
+
+Process Servidor
+{
+	grado:int
+	
+	do  if(not empty(altaPrioridad)) -> {
+		receive altaPrioridad(id,sec1,sec2)
+		grado:=Analizar(sec1,sec2);
+		send Respuesta[id](grado);
+	}
+	[] if(empty(altaPrioridad) and not empty(mediaPrioridad)) -> {
+		receive mediaPrioridad(id,sec1,sec2)
+	}
+}
+
 ```
