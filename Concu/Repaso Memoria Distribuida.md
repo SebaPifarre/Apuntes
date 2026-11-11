@@ -224,3 +224,31 @@ Begin
 End BancoCentral;
 
 ```
+
+## Ejercicio 2
+
+Resolver el siguiente problema. En un negocio de cobros digitales hay P personas que deben pasar
+por la única caja de cobros para realizar el pago de sus boletas. Las personas son atendidas de acuerdo con el orden de llegada, teniendo prioridad aquellos que deben pagar menos de 5 boletas de los que pagan más. Adicionalmente, las personas ancianas tienen prioridad sobre los dos casos anteriores. Las personas entregan sus boletas al cajero y el dinero de pago; el cajero les devuelve el vuelto y los recibos de pago.
+
+```ada
+Procedure ej2Ada is
+
+Task Cajero is
+	Entry altaPrioridad(id:IN int; b:IN texto; d:IN real)
+	Entry mediaPrioridad(id:IN int; b:IN texto; d:IN real)
+	Entry bajaPrioridad(id:IN int; b:IN texto; d:IN real)
+End Cajero;
+
+Task Type Persona;
+
+arrPersona:array (1..P) of Persona;
+
+Task Body Persona is
+	boletas:texto;
+	dinero:real
+	id:int
+Begin
+	if()
+End Persona;
+
+```
