@@ -234,9 +234,9 @@ por la única caja de cobros para realizar el pago de sus boletas. Las personas 
 Procedure ej2Ada is
 
 Task Cajero is
-	Entry altaPrioridad(id:IN int; b:IN texto; d:IN real)
-	Entry mediaPrioridad(id:IN int; b:IN texto; d:IN real)
-	Entry bajaPrioridad(id:IN int; b:IN texto; d:IN real)
+	Entry altaPrioridad(b:IN texto; d:IN real; r:OUT texto; v:OUT real)
+	Entry mediaPrioridad(b:IN texto; d:IN real; r:OUT texto; v:OUT real)
+	Entry bajaPrioridad(b:IN texto; d:IN real; r:OUT texto; v:OUT real)
 End Cajero;
 
 Task Type Persona;
@@ -261,5 +261,24 @@ End Persona;
 	
 Task Body Cajero is
 
-
+Begin
+	for i in 1..P loop
+		SELECT
+			accept altaPrioridad(b:IN texto; d:IN real; r:OUT texto; v:OUT real)
+				generar(b,d,r,v)
+			end altaPrioridad;
+		OR
+			when(altaPrioridad`count=0)=> accept mediaPrioridad(b:IN texto; d:IN real; r:OUT texto; v:OUT real)
+				generar(b,d,r,v)
+			end mediaPrioridad;
+		OR
+			when(altaPrioridad`count=0 and mediaPrioridad`count=0) =>
+			accept bajaPrioridad(b:IN texto; d:IN real; r:OUT texto; v:OUT real)
+				generar(b,d,r,v)
+			end bajaPrioridad;
+	end loop
+End Cajero;
+Begin
+	null;
+End ej2ada;
 ```
