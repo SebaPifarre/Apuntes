@@ -294,6 +294,7 @@ Procedure ej3ada is
 Task Oficina
 	ENTRY ObtenerId(id:OUT int);
 	ENTRY Resultado(cant:IN int);
+	ENTRY Seguir();
 END Oficina;
 
 Task Type Sucursal;
@@ -304,14 +305,36 @@ Task Body Oficina is
 	arrVentas:array(1..A) of int;
 	prox:int
 Begin
-	for i in 1..A loop
+	for i in 1..A loop  --A es la cantidad de articulos
 		generarArticulo(prox);
+		for j in 1..200 loop
+			SELECT
+				accept ObtenerId(id:OUT int) do
+					id:=prox;
+				end ObtenerId;
+			OR
+				accept Resultado(cant:IN int) do
+					arrVentas(prox):=arrVentas(prox)+cant;
+				end Resultado;
+			END SELECT;
+		end loop;
 		for j in 1..100 loop
-			accept ObtenerId(id:OUT int) do
-				id:=prox;
+			accept Seguir();
 		end loop;
 	end loop;
 End Oficina;
 
-	
+Task Body Sucursal is
+	id.ventas:int;
+Begin
+	for i in 1..A loop
+		Oficina.ObtenerId(id);
+		ventas:=ObtenerVentas(id);
+		Oficina.Resultado(ventas);
+		Oficina.Seguir();
+	end loop;
+End Sucursal;
+Begin
+	null;
+End eje3ada;
 ```
