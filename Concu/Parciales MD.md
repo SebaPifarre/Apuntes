@@ -57,7 +57,8 @@ Process Medico
 	trat:texto
 
 	for i:=1 to 15 do
-		Admin
+		Admin!Siguiente
+		Admin?Proximo(id)
 		atender(trat)
 		Paciente[id]!tratamiento(trat)
 }
@@ -66,9 +67,46 @@ Process Admin
 {
 	C:cola
 	id:int
+	cant:int:=0
 	
-	do Paciente[*]?llegada(id) -> push(C,id)
-	[] not empty(C); Medico?Siguiente -> pop(C,id); Medico!Siguiente(id)
+	do cant<15; Paciente[*]?llegada(id) -> push(C,id); cant++
+	[] not empty(C); Medico?Siguiente -> pop(C,id); Medico!Proximo(id)
 	
 }
+```
+
+## Ejercicio 3
+
+Resolver con **ADA** el siguiente problema. En una competencia de programadores hay _**P participantes**_ y _**UN coordinador**_. El coordinador entrega el problema a resolver a los participantes y recibe las resoluciones para corregir. Cada participante debe conocer el resultado de su trabajo y el orden en que entregó su resolución. _**Nota:**_ maximizar la concurrencia.
+
+```ada
+Procedure ej3 is
+
+Task Coordinador is
+	ENTRY Llegada
+	ENTRY Inicio
+	ENTRY entrega(resolucion:IN texto; resultado:OUT texto; pos:OUT int)
+End Coordinador;
+
+Task Type Participante;
+
+arrParti:array(1..P) of Participante;
+
+Task Body Coordinador is
+Begin
+	for i in 1..P loop
+		accept Llegada
+		end Llegada;
+	end loop;
+	for i in 1..P loop
+		accept Inicio
+		end Inicio;
+	end loop;
+	for i in 1..P loop
+		accept entregar(resolucion:IN texto; resultado:OUT texto; pos:OUT int) do
+			
+			
+	end loop;
+End Coordinador;
+
 ```
