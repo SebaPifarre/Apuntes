@@ -389,8 +389,20 @@ Process Boleteria[1..3]
 Process Entrenador
 {
 	cola:C;
+	ocupado:boolean
 	
-	do Persona[*]?Solicitar(id) -> push(C,id);
-	[] not empty(C); 
+	ocupado:=false
+	
+	do Persona[*]?Solicitar(id) -> if(not ocupado) then push(C,id);
+								   else ocupado:=true; Persona[id]!Turno;fi
+	[] Persona[*]?Termine -> if not empty(C) then pop(C,id); Persona[id]!Turno; else ocupado:=false; fi
+
+}
+
+Process Deportista[id:1..P]
+{
+	Entrador.Solicitar(id);
+	Entrenador[id]?Turno;
+	Entrenador!Termine;
 }
 ```
