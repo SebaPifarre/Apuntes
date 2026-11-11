@@ -190,5 +190,21 @@ del dólar oficial de 20 bancos del país, tanto para la compra como para la ven
 programada que se ocupa de actualizar la página en forma periódica y para ello consulta la cotización de cada uno de los 20 bancos. Cada banco dispone de una API, cuya única función es procesar las solicitudes de aplicaciones externas. La tarea programada consulta de a una API por vez, esperando a lo sumo 5 segundos por su respuesta. Si pasado ese tiempo no respondió, entonces se mostrará vacía la información de ese banco.
 
 ```ada
+Procedure ej1 is
+
+Task BancoCentral is
+end BancoCentral;
+
+Task Type Banco is
+	Entry Consultar(c:OUT real);
+end Banco;
+
+arrBanco : array(1..20) of Banco;
+
+Task Body Banco is
+	cotiHoy:real
+Begin
+	cotiHoy
+End Banco;
 
 ```
