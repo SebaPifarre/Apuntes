@@ -8,7 +8,7 @@ Resolver con **PASAJE DE MENSAJES ASINCRÓNICOS (PMA)** el siguiente problema. H
 ```
 chan llegaEstudiante,entregaEnunciado
 chan entregaParcial(int,texto)
-chan nota(int)
+chan nota[E](int)
 
 Process Estudiante[id:1..E]
 {
@@ -35,5 +35,40 @@ Process Profesor
 		receive entregaParcial(id,res)
 		nota:=corrige(res)
 		send nota[id](nota)
+}
+```
+
+## Ejercicio 2
+
+Resolver con **PASAJE DE MENSAJES SINCRÓNICOS (PMS)** el siguiente problema. En un consultorio hay _**un médico**_ para atender a _**15 pacientes**_ de acuerdo con el orden de llegada. Cada paciente al llegar espera a que el médico lo atiende y le indique su tratamiento. _**Nota:**_ existe la función _atender()_ que simula que el médico está atendiendo a un paciente; todos los procesos deben terminar.
+
+```
+Process Paciente[id:1..15]
+{
+	trat:texto
+
+	Admin!llegada(id)
+	Medico[id]?tratamiento(trat)
+}
+
+Process Medico
+{
+	id:int
+	trat:texto
+
+	for i:=1 to 15 do
+		Admin
+		atender(trat)
+		Paciente[id]!tratamiento(trat)
+}
+
+Process Admin
+{
+	C:cola
+	id:int
+	
+	do Paciente[*]?llegada(id) -> push(C,id)
+	[] not empty(C); Medico?Siguiente -> pop(C,id); Medico!Siguiente(id)
+	
 }
 ```
