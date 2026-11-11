@@ -245,10 +245,21 @@ arrPersona:array (1..P) of Persona;
 
 Task Body Persona is
 	boletas:texto;
-	dinero:real
-	id:int
+	dinero:real;
+	recibos:texto;
+	vuelto:real;
 Begin
-	if()
+	if(alta) then
+		Cajero.altaPrioridad(boletas,dinero,recibos,vuelto)
+	else if(media)
+		Cajero.mediaPrioridad(boletas,dinero,recibos,vuelto)
+	else
+		Cajero.bajaPrioridad(boletas,dinero,recibos,vuelto)
+	
+	
 End Persona;
+	
+Task Body Cajero is
+
 
 ```
