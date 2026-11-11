@@ -307,8 +307,47 @@ Resolver con ADA el siguiente problema. Existe _**un servidor**_ que resuelve pe
 Procedure ej2 is
 
 Task Servidor is
-	ENTRY Urgente(sec1:IN texto;sec2:IN texto;id:IN int);
-	ENTRY Regular(sec1:IN texto;sec2:IN texto;id:IN int);
-	
+	ENTRY Urgente(sec1:IN texto;sec2:IN texto;res:OUT text);
+	ENTRY Regular(sec1:IN texto;sec2:IN texto;res:OUT text);
+End Servidor;
+
+Task Type Cliente;
+
+arrCliente:array(1..C) of Cliente;
+
+Task Body Cliente is
+	sec1,sec2,prio,res:texto
+Begin
+	loop
+		generar(sec1,sec2,prio);
+		if(prio='Urgente') then
+			Servidor.Urgente(sec1,sec2,res);
+		else
+			SELECT
+				Servidor.Regular(sec1,sec2,res);
+			OR DELAY 1800
+				null
+			end select;
+		end if;
+	end loop;
+End Cliente;
+
+Task Body Servidor is
+
+Begin
+	loop
+		SELECT
+			accept Urgente(sec1:IN text; sec2:IN text; res:OUT text) do
+				res:=Analizar(sec1,sec2);
+			end Urgente;
+		OR
+			when(Urgente'count=0) => accept Regular(sec1:IN text; sec2:IN text; res:OUT text) do
+				res:=Analizar(sec1,sec2);
+			end Regular;
+		ELSE
+			delay 300
+		end selec
+	end loop;
+End Servidor;
 	
 ```
