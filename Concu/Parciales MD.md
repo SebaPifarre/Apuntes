@@ -357,10 +357,40 @@ End ej2;
 ![[pc-md-ej1.png]]
 
 ```
+chan AvisoPersona(int,text);
+chan Entrada[P](text);
+
 
 Process Persona[id:1..P]
 {
-	send AvisoPersona(id);
-	receive Entrada[id]()
+	dni,entrada:text;
+
+	send AvisoPersona(id,dni);
+	receive Entrada[id](entrada);
+}
+
+Process Boleteria[1..3]
+{
+	id,dni:int;
+	entrada:text;
+	
+	while(true)
+	{
+		receive AvisoPersona(id,dni);
+		entrada:=obtenerEntrada(dni);
+		send Entrada[id](entrada);
+	}
+}
+```
+
+![[Parciales MD ej2 soluciones.png]]
+
+```
+Process Entrenador
+{
+	cola:C;
+	
+	do Persona[*]?Solicitar(id) -> push(C,id);
+	[] not empty(C); 
 }
 ```
