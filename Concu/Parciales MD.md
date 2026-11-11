@@ -137,7 +137,11 @@ End ej3;
 Resolver con **PASAJE DE MENSAJES ASINCRÓNICOS (PMA)** el siguiente problema. Existe _**un servidor**_ que resuelve pedidos de análisis de similitud de secuencias de ADN de _**C clientes**_ diferentes. Cada cliente realiza sucesivos pedidos (enviando 2 strings con las secuencias a analizar) y esperando el resultado, los pedidos pueden ser de diferentes prioridades (ALTA, MEDIA o BAJA). El servidor atiende los pedidos de acuerdo con la prioridad (y entre pedidos de una misma prioridad sigue el orden de llegada), devolviendo el resultado al cliente correspondiente (un número que indica el grado de similitud de las 2 secuencias); cada vez que no hay pedidos para resolver el servidor se duerme por 10 minutos. _**Nota:**_ suponga que existe una función _Analizar(sec1, sec2)_ que retorna un entero con el resultado del análisis; el cliente determina la prioridad de cada pedido.
 
 ```
+chan altaPrioridad(int,text,text),
+mediaPrioridad(int,text,text),
+bajaPrioridad(int,text,text);
 
+chan Respuesta[C]
 
 Process Cliente[id:1..C]
 {
@@ -168,8 +172,29 @@ Process Servidor
 		send Respuesta[id](grado);
 	}
 	[] if(empty(altaPrioridad) and not empty(mediaPrioridad)) -> {
-		receive mediaPrioridad(id,sec1,sec2)
+		receive mediaPrioridad(id,sec1,sec2);
+		grado:=Analizar(sec1,sec2);
+		send Respuesta[id](grado);
+	}
+	[] if(empty(altaPrioridad) and empty(mediaPrioridad) and not empty(bajaPrioridad)) -> {
+		receive bajaPrioridad(id,sec1,sec2);
+		grado:=Analizar(sec1,sec2);
+		send Respuesta[id](grado);
+	}
+	[] if(empty(altaPrioridad) and empty(mediaPrioridad) and empty(bajaPrioridad)) -> {
+		delay 600
 	}
 }
+
+```
+
+## Ejercicio 2
+
+Resolver con **ADA** el siguiente problema. Existen _**3 docentes**_ que atienden consultas online de _**E estudiantes**_ diferentes. Cada estudiante realiza sucesivos pedidos para ser atendido por algún docente, enviando un texto con la consulta y esperando la respuesta. Los docentes atienden los pedidos de acuerdo con el orden en que se realizaron las consultas, devolviendo la respuesta al estudiante correspondiente. _**Nota:**_ suponga que existe una función _AtenderConsulta(cons)_ que retorna un texto con la respuesta a la consulta; cada consulta cuando le llegue su turno debe ser atendida por el primer docente que esté disponible.
+
+```ada
+Procedure ej2 is
+
+
 
 ```
