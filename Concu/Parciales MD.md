@@ -346,8 +346,21 @@ Begin
 			end Regular;
 		ELSE
 			delay 300
-		end selec
+		end select;
 	end loop;
 End Servidor;
-	
+Begin
+	null;
+End ej2;
+```
+
+![[pc-md-ej1.png]]
+
+```
+
+Process Persona[id:1..P]
+{
+	send AvisoPersona(id);
+	receive Entrada[id]()
+}
 ```
