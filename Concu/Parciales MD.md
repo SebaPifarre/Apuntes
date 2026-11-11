@@ -413,6 +413,38 @@ Process Deportista[id:1..P]
 Procedure ej3 is
 
 Task Ventanilla is
-	ENTRY 
+	ENTRY altaPrio(receta:IN text;med:OUT text);
+	ENTRY mediaPrio(receta:IN text;med:OUT text);
+	ENTRY bajaPrio(receta:IN text;med:OUT text);
+End Ventanilla;
+
+Task Type Paciente;
+
+arrPaciente:array(1..P) of Paciente;
+
+Task Body Paciente is
+	prio:int;
+	receta,med:text;
+Begin
+	prio:=ObtenerPrioridad();
+	receta:=ObtenerReceta();
+	if(prio=0) then
+		Ventanilla.altaPrio(receta,med);
+	elif(prio=1) then
+		Ventanilla.mediaPrio(receta,med);
+	else
+		Ventanilla.bajaPrio(receta,med);
+	end if;
+
+End Paciente;
+
+Task Body Ventanilla is
+Begin
+	SELECT
+		accept altaPrio(receta:IN text;med:OUT text) do
+			med:=dispensarMedicamento(receta);
+		end altaPrio;
+	OR
+		when(altaPrio'count=0)
 End Ventanilla;
 ```
