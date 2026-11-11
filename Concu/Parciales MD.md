@@ -440,11 +440,23 @@ End Paciente;
 
 Task Body Ventanilla is
 Begin
-	SELECT
-		accept altaPrio(receta:IN text;med:OUT text) do
-			med:=dispensarMedicamento(receta);
-		end altaPrio;
-	OR
-		when(altaPrio'count=0)
+	for i in 1..P loop
+		SELECT
+			accept altaPrio(receta:IN text;med:OUT text) do
+				med:=dispensarMedicamento(receta);
+			end altaPrio;
+		OR
+			when(altaPrio'count=0)=> accept mediaPrio(receta:IN text;med:OUT text) do
+				med:=dispensarMedicamento(receta);
+			end mediaPrio;
+		OR
+			when(altaPrio'count=0) and (mediaPrio'count=0)=> accept bajaPrio(receta:IN text;med:OUT text) do
+				med:=dispensarMedicamento(receta);
+			end bajaPrio;
+		end SELECT;
+	end loop;
 End Ventanilla;
+Begin
+	null;
+End ej3;
 ```
