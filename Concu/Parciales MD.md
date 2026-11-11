@@ -306,4 +306,9 @@ Resolver con ADA el siguiente problema. Existe _**un servidor**_ que resuelve pe
 ```ada
 Procedure ej2 is
 
+Task Servidor is
+	ENTRY Urgente(sec1:IN texto;sec2:IN texto;id:IN int);
+	ENTRY Regular(sec1:IN texto;sec2:IN texto;id:IN int);
+	
+	
 ```
