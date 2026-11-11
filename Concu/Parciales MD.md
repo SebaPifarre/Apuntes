@@ -195,6 +195,53 @@ Resolver con **ADA** el siguiente problema. Existen _**3 docentes**_ que atiende
 ```ada
 Procedure ej2 is
 
+Task Admin is
+	ENTRY Siguiente(id:OUT int; c:OUT texto);
+	ENTRY Consulta(id:IN int; c:IN texto);
+End Admin;
 
+Task Type Docente;
+Task Type Estudiante is
+	ENTRY Respuesta(res:IN texto);
+End Estudiante;
+
+arrDocente:array(1..3) of Docente;
+arrEstudiante:array(1..E) of Estudiante;
+
+Task Body Estudiante is
+	c,res:texto;
+	id:int;
+Begin
+	Ident.get(id);
+	Admin.Consulta(id, c);
+	accept Respuesta(res:IN texto);
+End Estudiante;
+
+Task Body Docente is
+	id:int;
+	consulta,res:texto;
+Begin
+	loop
+		Admin.Siguiente(id, consulta);
+		res:=AtenderConsulta(consulta);
+		Estudiante[id].Respuesta(res);
+	end loop;
+End Docente;
+
+Task Body Admin is
+	C:cola(int,texto);
+Begin
+	loop
+		SELECT
+			accept Consulta(id:IN int; c:IN texto) do
+				push(C,id,c);
+			end Consulta;
+		OR
+			when(not empty(C)) => accept Siguiente(id:OUT int; c:OUT texto) do
+				pop(C,id,c);
+				id:=id
+			end Siguiente;
+	end loop;
+End Admin;
 
 ```
