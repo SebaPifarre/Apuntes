@@ -289,6 +289,29 @@ Resolver el siguiente problema. La oficina central de una empresa de venta de in
 calcular cuántas veces fue vendido cada uno de los artículos de su catálogo. La empresa se compone de 100 sucursales y cada una de ellas maneja su propia base de datos de ventas. La oficina central cuenta con una herramienta que funciona de la siguiente manera: ante la consulta realizada para un artículo determinado, la herramienta envía el identificador del artículo a las sucursales, para que cada una calcule cuántas veces fue vendido en ella. Al final del procesamiento, la herramienta debe conocer cuántas veces fue vendido en total, considerando todas las sucursales. Cuando ha terminado de procesar un artículo comienza con el siguiente (suponga que la herramienta tiene una función generarArtículo() que retorna el siguiente ID a consultar). Nota: maximizar la concurrencia. Existe una función ObtenerVentas(ID) que retorna la cantidad de veces que fue vendido el artículo con identificador ID en la base de la sucursal que la llama.
 
 ```ada
+Procedure ej3ada is
 
+Task Oficina
+	ENTRY ObtenerId(id:OUT int);
+	ENTRY Resultado(cant:IN int);
+END Oficina;
 
+Task Type Sucursal;
+
+arrSucursal:array(1..100) of Sucursal;
+
+Task Body Oficina is
+	arrVentas:array(1..A) of int;
+	prox:int
+Begin
+	for i in 1..A loop
+		generarArticulo(prox);
+		for j in 1..100 loop
+			accept ObtenerId(id:OUT int) do
+				id:=prox;
+		end loop;
+	end loop;
+End Oficina;
+
+	
 ```
