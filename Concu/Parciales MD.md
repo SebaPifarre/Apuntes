@@ -406,3 +406,13 @@ Process Deportista[id:1..P]
 	Entrenador!Termine;
 }
 ```
+
+![[Parciales MD.png]]
+
+```ada
+Procedure ej3 is
+
+Task Ventanilla is
+	ENTRY 
+End Ventanilla;
+```
