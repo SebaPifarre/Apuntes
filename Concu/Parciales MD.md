@@ -257,3 +257,26 @@ Begin
 	end loop;
 End ej2;
 ```
+
+# Programación Concurrente ATIC/Redictado Programación Concurrente – Primera fecha de MD – 10/06/2026 – Tema 1
+
+## Ejercicio 1
+
+Resolver con **PASAJE DE MENSAJES SINCRÓNICOS (PMS)** el siguiente problema. En una empresa de telefonía _**hay un empleado**_ para atender por mail a _**C clientes**_ que van a tramitar la compra de una línea telefónica. Cada cliente hace un único trámite enviando sus datos y esperando el número de la línea comprada. El empleado atiende los trámites de los clientes de acuerdo con el orden en que se hicieron. _**Nota:**_ todos los procesos deben terminar; no usar procesos que no sean necesarios.
+
+```
+
+Process Empleado
+{
+	for i:=1 to C do
+		Admin!Siguiente
+		Admin?Datos(id,datos)
+		numero := genera(datos)
+		Cliente[id]!Respuesta(numero)
+}
+
+Process Cliente[id:1..C]
+{
+	
+}
+```
