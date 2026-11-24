@@ -555,3 +555,4 @@ marca de instrumento uso el integrante
 Dependencias funcionales:
 
 df1) idGrupo -> vocalista
+df2) idGrupo, idRecital -> idIntegranteGrupo
