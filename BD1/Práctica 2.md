@@ -560,9 +560,15 @@ df3) idIntegranteGrupo, idRecital, idGrupo -> marcaInstrumento
 
 
 R1 (<u>idGrupo</u>, nombreGrupo, vocalista)
-R2 (idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, vocalista, idOrgranizador, nombreGrupo, nombreOrganizador)
+R2 (idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, idOrgranizador, nombreOrganizador)
 
 R3 (<u>idOrganizador</u>, nombreOrganizador)
-R4 (idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, vocalista, idOrganizador, nombreGrupo)
+R4 (idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, idOrganizador)
 
-R5 (<u>)
+R5 (<u>idIntegranteGrupo, idRecital, idGrupo</u>, marcaInstrumento)
+R6 (<u>idRecital, idGrupo, idIntegranteGrupo, idOrganizador</u>)
+
+DM1) idRecital -->> idGrupo
+DM2) idGrupo -->> idIntegranteGrupo
+DM3) vocalista -->> idGrupo
+DM4) idRecital -->> idOrganizador
