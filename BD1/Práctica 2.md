@@ -532,3 +532,26 @@ I9 (<u>#auxiliar(sub)</u>)
 10 (<u>#curso(sub)</u>, <u>#horario(sub)</u>, <u>#docente(sub)</u>)
 
 no hay proyecciones
+
+## Ejercicio teoría
+
+RECITALES(idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, vocalista,
+idOrganizador, nombreGrupo, nombreOrganizador)
+
+Donde
+• en un recital se presentan diversos grupos y un grupo se presenta en diversos recitales
+• cada grupo tiene diversos integrantes. Los integrantes del grupo pueden variar para diferentes
+recitales
+• cada grupo tiene solamente un vocalista, el vocalista del grupo no varía para los diferentes recitales
+en los que el grupo se presenta
+• de un grupo se conoce el nombre, pero puedo suceder que dos grupos se llamen de igual manera
+• de cada integrante de un grupo y para cada recital en los que el grupo se presenta, se sabe que
+marca de instrumento uso el integrante
+• un integrante de una grupo puede pertenecer a más de un grupo
+• un vocalista de un grupo puede ser vocalista de otros grupos
+• cada recital tiene diversos organizadores y un organizador puede organizar diversos recitales
+• el nombre del organizador se puede repetir para diferentes idOrganizador. El idOrganizador es único
+
+Dependencias funcionales:
+
+df1) idGrupo -> vocalista
