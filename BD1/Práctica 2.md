@@ -554,5 +554,15 @@ marca de instrumento uso el integrante
 
 Dependencias funcionales:
 
-df1) idGrupo -> vocalista
-df2) idGrupo, idRecital -> idIntegranteGrupo
+df1) idGrupo -> nombreGrupo, vocalista
+df2) idOrganizador -> nombreOrganizador
+df3) idIntegranteGrupo, idRecital, idGrupo -> marcaInstrumento
+
+
+R1 (<u>idGrupo</u>, nombreGrupo, vocalista)
+R2 (idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, vocalista, idOrgranizador, nombreGrupo, nombreOrganizador)
+
+R3 (<u>idOrganizador</u>, nombreOrganizador)
+R4 (idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, vocalista, idOrganizador, nombreGrupo)
+
+R5 (<u>)
