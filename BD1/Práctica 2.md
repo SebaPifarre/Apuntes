@@ -568,7 +568,5 @@ R4 (idRecital, idGrupo, idIntegranteGrupo, marcaInstrumento, idOrganizador)
 R5 (<u>idIntegranteGrupo, idRecital, idGrupo</u>, marcaInstrumento)
 R6 (<u>idRecital, idGrupo, idIntegranteGrupo, idOrganizador</u>)
 
-DM1) idRecital -->> idGrupo
-DM2) idGrupo -->> idIntegranteGrupo
-DM3) vocalista -->> idGrupo
-DM4) idRecital -->> idOrganizador
+DM1) idRecital, idGrupo ->> idIntegranteGrupo
+DM2) idRecital ->> idOrganizador
