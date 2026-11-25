@@ -146,4 +146,12 @@ En P1 se cumple que id_atractivo es superclave, entonces P1 está en bcnf.
 
 P2 no está en bcnf ya que existe, al menos, el determinante de df2 {id_categoria_atractivo} que no es superclave del esquema. Por lo tanto, particiono P2 a partir de df2:
 
-P3 (id_categoria_)
+P3 (<u>id_categoria_atractivo(sub)</u>, nombre_categoria)
+P4 (<u>id_atractivo(sub)</u>, <u>id_categoria_atractivo(sub)</u>, <u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub), dia_semana, <u>id_agente_mantenimiento(sub)</u>)
+
+No se pierde información ya que P3interP4 da id_categoria_atracion que es clave de P3
+df3,df4,df5 y df6 valen en P4. df2 vale en P3 entonces no se pierden dfs. Además como id_categoria_atraccion es superclave del esquema, P3 está en bcnf.
+
+P4 no está en bcnf ya que existe, al menos, el determinante {cuil_empleado} de la df 3 que no es superclave del esquema. Por lo tanto, particiono P4 a partir de df3:
+
+P5 ()
