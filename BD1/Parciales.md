@@ -185,3 +185,8 @@ P8 (<u>id_categoria(sub)</u>, <u>id_categoria_atractivo(sub)</u>, <u>cuil_emplea
 
 Clave: {id_atractivo, id_categoria_atractivo, cuil_empleado, id_agente_mantenimiento}
 
+Busco dependencias multivaluadas
+
+DM1) id_atractivo ->> id_categoria_atractivo
+DM2) id_atractivo , dia_semana ->> cuil_empleado
+DM3) vacio ->> id_agente_mantenimiento
