@@ -154,4 +154,5 @@ df3,df4,df5 y df6 valen en P4. df2 vale en P3 entonces no se pierden dfs. Ademá
 
 P4 no está en bcnf ya que existe, al menos, el determinante {cuil_empleado} de la df 3 que no es superclave del esquema. Por lo tanto, particiono P4 a partir de df3:
 
-P5 ()
+P5 (<u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub))
+P6 ()
