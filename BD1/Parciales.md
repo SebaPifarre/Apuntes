@@ -210,6 +210,10 @@ P1 (<u>id_atractivo(sub)</u>, nombre_atractivo, descripcion_atractivo)
 P3 (<u>id_categoria_atractivo(sub)</u>, nombre_categoria)
 P5 (<u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub))
 P7 (<u>cuil_empleado(sub)</u>, <u>id_atractivo(sub)</u>, dia_semana)
-
+P9 (<u>id_agente_mantenimiento</u>)
 P11 (<u>id_atractivo</u>, <u>cuil_empleado</u>)
 P12 (<u>id_atractivo</u>, <u>id_categoria_atractivo</u>)
+
+No hay proyecciones.
+
+P1, P3, P5 y P7 están en 4fn porque no tienen dms.
