@@ -144,4 +144,6 @@ df1 vale en P1. df2,df3,df4,df5y df6 valen en P2. No se pierden dfs.
 
 En P1 se cumple que id_atractivo es superclave, entonces P1 está en bcnf.
 
-P2 no está en bcnf ya que existe, al menos, el determinante de df2 {id_categoria_atractivo} que 
+P2 no está en bcnf ya que existe, al menos, el determinante de df2 {id_categoria_atractivo} que no es superclave del esquema. Por lo tanto, particiono P2 a partir de df2:
+
+P3 (id_categoria_)
