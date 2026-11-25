@@ -130,3 +130,7 @@ df3) cuil_empleado -> nombre_apellido_empleado, nro_legajo_empleado
 df4) nro_legajo_empleado -> nombre_apellido_empleado, cuil_empleado
 df5) cuil_empleado, id_atractivo -> dia_semana
 df6) nro_legajo_empleado, id_atractivo -> dia_semana
+
+CC1 {id_atractivo, id_categoria_atractivo, cuil_empleado, id_agente_mantenimiento}
+CC2 {id_atractivo, id_categoria_atractivo, nro_legajo_empleado, id_agente_mantenimiento}
+
