@@ -159,5 +159,28 @@ P6 (<u>id_categoria(sub</u>), <u>id_categoria_atractivo(sub)</u>, <u>cuil_emplea
 
 No se pierde información ya que P5interP6 da cuil_empleado que es clave de P5
 
-df3 y df4 son equivalentes, entonces se da que ambas valen en P5.
+df3 y df4 son equivalentes ya que producen el mismo conjunto de atributos, entonces se da que ambas valen en P5.
 Que pasa con df6? No se pierde ya que se puede obtener nro_legajo_empleado por transitividad a través de cuil_empleado -> nro_legajo_empleado
+
+df5 vale en P6. No se pierden dfs
+
+P5 está en bcnf ya que cuil_empleado es superclave del esquema
+
+P6 no está en bcnf ya que existe, al menos, el determinante {cuil_empleado, id_atractivo} de la df5 que no es clave del esquema. Por lo tanto, particiono P6 a partir de df5 obteniendo dos relaciones nuevas:
+
+P7 (<u>cuil_empleado(sub)</u>, <u>id_atractivo(sub)</u>, dia_semana)
+P8 (<u>id_categoria(sub)</u>, <u>id_categoria_atractivo(sub)</u>, <u>cuil_empleado(sub)</u>, <u>id_agente_mantenimiento(sub)</u>)
+
+No se pierde información ya que p7interp8 da {cuil_empleado, id_atractivo} que es clave de P7.
+En p7 vale df5 y como cuil_empleado, id_atractivo es superclave del esquema, p7 está en bcnf.
+
+Todos los atributos de P8 son parte de la CC1, entonces cualquier df que se encuentre será trivial en ella. P8 está en bcnf.
+
+
+P1 (<u>id_atractivo(sub)</u>, nombre_atractivo, descripcion_atractivo)
+P3 (<u>id_categoria_atractivo(sub)</u>, nombre_categoria)
+P5 (<u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub))
+P7 (<u>cuil_empleado(sub)</u>, <u>id_atractivo(sub)</u>, dia_semana)
+P8 (<u>id_categoria(sub)</u>, <u>id_categoria_atractivo(sub)</u>, <u>cuil_empleado(sub)</u>, <u>id_agente_mantenimiento(sub)</u>)
+
+Clave: {id_atractivo, id_categoria_atractivo, cuil_empleado, id_agente_mantenimiento}
