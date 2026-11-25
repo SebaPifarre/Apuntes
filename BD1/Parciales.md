@@ -142,4 +142,4 @@ P2 (<u>id_atractivo(sub)</u>, <u>id_categoria_atractivo(sub)</u>, nombre_categor
 no se pierde información ya que P1interP2 da id_atractivo que es clave de P1
 df1 vale en P1. df2,df3,df4,df5y df6 valen en P2. No se pierden dfs.
 
-P1 está en bcnf ya que 
+En P1 se cumple que id_atractivo es superclave, entonces P1 está en bcnf
