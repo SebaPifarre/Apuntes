@@ -103,3 +103,30 @@ END
 A <- (lista #usuario, #permiso)(PERMISO_REQUERIDO |X| USUARIO_UTILIZA_SISTEMA)
 B <- A - PERMISO_OBTENIDO
 (lista #usuario) B - USUARIO_UILIZA_SISTEMA
+
+
+## 2da fecha 27-11-2024
+
+PARQUEDIVERSIONES (id_atractivo, nombre_atractivo, descripcion_atractivo, id_categoria_atractivo,
+                   nombre_categoria, cuil_empleado, nombre_apellido_empleado, nro_legajo_empleado,
+                   dia_semana, id_agente_mantenimiento)
+
+Donde:
+
+- De cada atractivo (identificado por id_atractivo) se conoce su nombre (nombre_atractivo), una descripción (descripción_atractivo) y las categorías a la que pertenece. Uno o más atractivos pueden tener el mismo nombre y/o descripción. Puede haber diferentes atractivos por categoría.
+- El id de la categoría es un valor único (id_categoria_atractivo). De cada categoría se conoce su nombre. Un nombre de categoría puede repetirse para diferentes id de categoría.
+- De cada empleado que trabaja en el parque de diversiones, se conocen además de sus datos personales (cuil_empleado, nombre_apellido_empleado) un número de legajo (nro_legajo_empleado) el cual, al igual que el cuil, es único en el sistema.
+- En cada atractivo hay asignados diversos empleados, pero dado un atractivo y un empleado asignado se conoce el día de la semana que le corresponde.
+- Un atractivo puede ser mantenido por distintos empleados en un día determinado.
+- Un empleado puede tener asignado más de un atractivo por día.
+- El parque de diversiones también dispone de personal de mantenimiento, que están disponibles para atender a los diversos atractivos del parque.
+
+
+Busco dependencias funcionales y claves candidatas:
+
+df1) id_atractivo -> nombre_atractivo, descripcion_atractivo
+df2) id_categoria_atractivo -> nombre_categoria
+df3) cuil_empleado -> nombre_apellido_empleado, nro_legajo_empleado
+df4) nro_legajo_empleado -> nombre_apellido_empleado, cuil_empleado
+df5) cuil_empleado, id_atractivo -> dia_semana
+df6) nro_legajo_empleado, id_atractivo -> dia_semana
