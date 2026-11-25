@@ -184,3 +184,4 @@ P7 (<u>cuil_empleado(sub)</u>, <u>id_atractivo(sub)</u>, dia_semana)
 P8 (<u>id_categoria(sub)</u>, <u>id_categoria_atractivo(sub)</u>, <u>cuil_empleado(sub)</u>, <u>id_agente_mantenimiento(sub)</u>)
 
 Clave: {id_atractivo, id_categoria_atractivo, cuil_empleado, id_agente_mantenimiento}
+
