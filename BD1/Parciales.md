@@ -188,5 +188,28 @@ Clave: {id_atractivo, id_categoria_atractivo, cuil_empleado, id_agente_mantenimi
 Busco dependencias multivaluadas
 
 DM1) id_atractivo ->> id_categoria_atractivo
-DM2) id_atractivo , dia_semana ->> cuil_empleado
+DM2) id_atractivo ->> cuil_empleado
 DM3) vacio ->> id_agente_mantenimiento
+
+P8 no está en 4FN ya que existe la DM3 que no es trivial en ella. Particiono a partir de dm3, obteniendo:
+
+P9 (<u>id_agente_mantenimiento</u>)
+P10 (<u>id_atractivo(sub)</u>, <u>id_categoria_atractivo(sub)</u>, <u>cuil_empleado(sub)</u>)
+
+P9 está en 4FN ya que solo vale dm3 que es trivial en ella.
+
+P10 no está en 4fn ya que existe DM2 que no es trivial en ella. Particino
+
+P11 (<u>id_atractivo</u>, <u>cuil_empleado</u>)
+P12 (<u>id_atractivo</u>, <u>id_categoria_atractivo</u>)
+
+P11 está en 4fn ya que solo vale dm2 que es trivial en ella
+P12 está en 4fb ya que solo vale dm1 que es trivial en ella
+
+P1 (<u>id_atractivo(sub)</u>, nombre_atractivo, descripcion_atractivo)
+P3 (<u>id_categoria_atractivo(sub)</u>, nombre_categoria)
+P5 (<u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub))
+P7 (<u>cuil_empleado(sub)</u>, <u>id_atractivo(sub)</u>, dia_semana)
+
+P11 (<u>id_atractivo</u>, <u>cuil_empleado</u>)
+P12 (<u>id_atractivo</u>, <u>id_categoria_atractivo</u>)
