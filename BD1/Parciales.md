@@ -160,7 +160,7 @@ P6 (<u>id_categoria(sub</u>), <u>id_categoria_atractivo(sub)</u>, <u>cuil_emplea
 No se pierde información ya que P5interP6 da cuil_empleado que es clave de P5
 
 df3 y df4 son equivalentes ya que producen el mismo conjunto de atributos, entonces se da que ambas valen en P5.
-Que pasa con df6? No se pierde ya que se puede obtener nro_legajo_empleado por transitividad a través de cuil_empleado -> nro_legajo_empleado
+Que pasa con df6? No se pierde ya que se puede obtener nro_legajo_empleado por transitividad a través de cuil_empleado -> nombre_apellido_empleado, nro_legajo_empleado
 
 df5 vale en P6. No se pierden dfs
 
