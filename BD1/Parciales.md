@@ -136,4 +136,10 @@ CC2 {id_atractivo, id_categoria_atractivo, nro_legajo_empleado, id_agente_manten
 
 PARQUEDIVERSIONES no está en BCNF ya que existe, al menos, el determinante {id_atractivo} que no es superclave del esquema. Por lo tanto particiono PARQUEDIVERSIONES a partir de df1, generando dos nuevas particiones:
 
-P1 (<u>id_atractivo</u>, nombre_atractivo, descripcion_atractivo)
+P1 (<u>id_atractivo(sub)</u>, nombre_atractivo, descripcion_atractivo)
+P2 (<u>id_atractivo(sub)</u>, <u>id_categoria_atractivo(sub)</u>, nombre_categoria, <u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub), dia_semana, <u>id_agente_mantenimiento</u>)
+
+no se pierde información ya que P1interP2 da id_atractivo que es clave de P1
+df1 vale en P1. df2,df3,df4,df5y df6 valen en P2. No se pierden dfs.
+
+P1 está en bcnf ya que 
