@@ -134,3 +134,6 @@ df6) nro_legajo_empleado, id_atractivo -> dia_semana
 CC1 {id_atractivo, id_categoria_atractivo, cuil_empleado, id_agente_mantenimiento}
 CC2 {id_atractivo, id_categoria_atractivo, nro_legajo_empleado, id_agente_mantenimiento}
 
+PARQUEDIVERSIONES no está en BCNF ya que existe, al menos, el determinante {id_atractivo} que no es superclave del esquema. Por lo tanto particiono PARQUEDIVERSIONES a partir de df1, generando dos nuevas particiones:
+
+P1 (<u>id_atractivo</u>, nombre_atractivo, descripcion_atractivo)
