@@ -155,4 +155,9 @@ df3,df4,df5 y df6 valen en P4. df2 vale en P3 entonces no se pierden dfs. Ademá
 P4 no está en bcnf ya que existe, al menos, el determinante {cuil_empleado} de la df 3 que no es superclave del esquema. Por lo tanto, particiono P4 a partir de df3:
 
 P5 (<u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub))
-P6 ()
+P6 (<u>id_categoria(sub</u>), <u>id_categoria_atractivo(sub)</u>, <u>cuil_empleado(sub)</u>, dia_semana, <u>id_agente_mantenimiento(sub)</u>)
+
+No se pierde información ya que P5interP6 da cuil_empleado que es clave de P5
+
+df3 y df4 son equivalentes, entonces se da que ambas valen en P5.
+Que pasa con df6? No se pierde ya que se puede obtener nro_legajo_empleado por transitividad a través de cuil_empleado -> nro_legajo_empleado
