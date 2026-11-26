@@ -249,4 +249,4 @@ df6) usuario_id -> apyn, direccionUsuario, cuil
 df7) cuil -> apyn, direccionUsuario, usuario_id
 df8) linea_id -> plan_id, fec_alta_linea, fec_baja_linea, equipo_id, usuario_id
 df9) linea_id -> plan_id, fec_alta_linea, fec_baja_linea, equipo_id, cuil
-df10) equipo_id -> equipo_
+df10) equipo_id -> equipo_tipo_id, modelo_id, imei, fec_alta_linea, fec_baja_linea, observaciones
