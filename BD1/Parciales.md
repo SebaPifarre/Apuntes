@@ -286,3 +286,14 @@ T2 no está en bcnf ya que existe, al menos, el determinante #reglamentacion de 
 
 T3 (<u>#reglamento(sub)</u>, descripcion)
 T4 (<u>#torneo(sub)(otro sub)</u>, <u>#equipo(sub)</u>, nombre_equipo, estadio_equipo, <u>año(sub)</u>, puesto(otro sub), <u>#reglamentacion(sub)(otro sub)</u>, <u>#auspiciante(sub)(otro sub)</u>)
+
+No se pierde información ya que T3interT4 da #reglamento que es clave del esquema.
+No se pierden dfs. En T4 valen df2,df3 y df4. En T3 vale df5, y como #reglamento es superclave del esquema puedo decir que T3 está en bcnf.
+
+T4 no está en bcnf ya que existe, al menos, el determinante {#equipo, #torneo, año} de la df3 que no es superclave del esquema. Por lo tanto, particiono T4 a partir de df3 generando dos nuevas relaciones:
+
+T5 (<u>#equipo, #torneo, año</u>, puesto)
+T6 (<u>#torneo(sub)(otro sub)</u>, <u>#equipo(sub)</u>, nombre_equipo, estadio_equipo, <u>año(sub)</u>, <u>#reglamentacion(sub)(otro sub)</u>, <u>#auspiciante(sub)(otro sub)</u>)
+
+No se pierde información ya que T5interT6 da {#equipo,#torneo,año} que es suplerclave del esquema.
+No se pi
