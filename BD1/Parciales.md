@@ -284,4 +284,5 @@ No se pierden dfs. df2, df3, df4 y df5 valen en T2. df1 vale en T1 y como #torno
 
 T2 no está en bcnf ya que existe, al menos, el determinante #reglamentacion de df5 que no es superclave del esquema. Por lo tanto, particiono T2 a partir de df5 generando dos nuevas relaciones:
 
-T3 (<u>#regla)
+T3 (<u>#reglamento(sub)</u>, descripcion)
+T4 (<u>#torneo(sub)(otro sub)</u>, <u>#equipo(sub)</u>, nombre_equipo, estadio_equipo, <u>año(sub)</u>, puesto(otro sub), <u>#reglamentacion(sub)(otro sub)</u>, <u>#auspiciante(sub)(otro sub)</u>)
