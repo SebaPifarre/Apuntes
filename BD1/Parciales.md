@@ -278,3 +278,10 @@ TORNEOS no está en bcnf ya que existe, al menos, el determinante de la df1 #tor
 
 T1 (<u>#torneo(sub)</u>, nombre_torneo)
 T2 (<u>#torneo(sub)(otro sub)</u>, <u>#equipo(sub)</u>, nombre_equipo, estadio_equipo, <u>año(sub)</u>, puesto(otro sub), <u>#reglamentacion(sub)(otro sub)</u>, <u>#auspiciante(sub)(otro sub)</u>, descripcion )
+
+No se pierde información ya que T1interT2 da #torneo que es clave del esquema.
+No se pierden dfs. df2, df3, df4 y df5 valen en T2. df1 vale en T1 y como #torno es superclave del esquema puedo afirmar que T1 está en bcnf.
+
+T2 no está en bcnf ya que existe, al menos, el determinante #reglamentacion de df5 que no es superclave del esquema. Por lo tanto, particiono T2 a partir de df5 generando dos nuevas relaciones:
+
+T3 (<u>#regla)
