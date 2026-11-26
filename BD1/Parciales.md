@@ -250,3 +250,18 @@ df7) cuil -> apyn, direccionUsuario, usuario_id
 df8) linea_id -> plan_id, fec_alta_linea, fec_baja_linea, equipo_id, usuario_id
 df9) linea_id -> plan_id, fec_alta_linea, fec_baja_linea, equipo_id, cuil
 df10) equipo_id -> equipo_tipo_id, modelo_id, imei, fec_alta_linea, fec_baja_linea, observaciones
+
+## 2da Fecha 2023
+
+TORNEOS (#torneo, nombre_torneo, año, #equipo, nombre_equipo, estadio_equipo, puesto,
+         #reglamentacion, descripcion, #auspiciante)
+
+- De cada torneo, se conoce su identificador (#torneo, único en el sistema) y un nombre. Un mismo torneo tiene diferentes ediciones, cada edición se realiza en un año determinado y el mismo torneo no puede repetirse el mismo año. En un año pueden realizarse varios torneos.
+- Cada edición de un torneo tiene diferentes auspiciantes, identificados por #auspiciante (único en el sistema).
+- En cada edición de un torneo participan varios equipos. De cada equipo se conoce su nombre, su estadio y su #equipo, que no se repite para diferentes equipos.
+- Cada equipo finaliza una edición de un torneo en un puesto. Dos o más equipos no pueden finalizar en un mismo puesto.
+- Además, se conoce un conjunto de reglamentaciones, identificadas por #reglamentación, aplicables a estos torneos.
+
+
+Busco las dependencias funcionales:
+
