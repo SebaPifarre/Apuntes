@@ -268,7 +268,13 @@ Busco las dependencias funcionales:
 df1) #torneo -> nombre_torneo
 df2) #equipo -> nombre_equipo, estadio_equipo
 df3) #equipo, #torneo , año -> puesto
-df4) #equipo, puesto, año -> #
-df4) #reglamentacion -> descripcion
+df4)  #torneo, puesto, año -> #equipo
+df5) #reglamentacion -> descripcion
 
-CC {#torneo, #equipo, año, #reglamentacion , #auspiciante }
+CC1 {#torneo, #equipo, año, #reglamentacion , #auspiciante }
+CC2 {#torneo, año, puesto, #reglamentacion , #auspiciante }
+
+TORNEOS no está en bcnf ya que existe, al menos, el determinante de la df1 #torneo que no es superclave del esquema. Por lo tanto particiono TORNEOS a partir de df1, obteniendo dos relaciones:
+
+T1 (<u>#torneo(sub)</u>, nombre_torneo)
+T2 (<u>#torneo(sub)(otro sub)</u>, <u>#equipo(sub)</u>, nombre_equipo, estadio_equipo, <u>año(sub)</u>, puesto(otro sub), <u>#reglamentacion(sub)(otro sub)</u>, <u>#auspiciante(sub)(otro sub)</u>, descripcion )
