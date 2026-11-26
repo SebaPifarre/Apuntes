@@ -268,4 +268,7 @@ Busco las dependencias funcionales:
 df1) #torneo -> nombre_torneo
 df2) #equipo -> nombre_equipo, estadio_equipo
 df3) #equipo, #torneo , año -> puesto
+df4) #equipo, puesto, año -> #
 df4) #reglamentacion -> descripcion
+
+CC {#torneo, #equipo, año, #reglamentacion , #auspiciante }
