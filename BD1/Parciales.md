@@ -296,4 +296,16 @@ T5 (<u>#equipo, #torneo, año</u>, puesto)
 T6 (<u>#torneo(sub)(otro sub)</u>, <u>#equipo(sub)</u>, nombre_equipo, estadio_equipo, <u>año(sub)</u>, <u>#reglamentacion(sub)(otro sub)</u>, <u>#auspiciante(sub)(otro sub)</u>)
 
 No se pierde información ya que T5interT6 da {#equipo,#torneo,año} que es suplerclave del esquema.
-No se pi
+No se pierden dfs. Como df3 y df4 son equivalentes(ambos determinantes determinan el mismo conjunto de atributos) ambas dfs valen en T5. df2 vale en T6.
+Como se eligió particionar sobre df3, se define en este punto la CC1 como clave del esquema.
+Como {#equipo,#torneo,año} puedo decir que T5 está en bcnf
+
+T6 no está en bcnf ya que existe, al menos, el determinante #equipo de la df2 que no es superclave del esquema. Por lo tanto particiono a partir de df2 obteniendo dos relaciones nuevas:
+
+T7 (<u>#equipo(sub)</u>, nombre_equipo, estadio_equipo)
+T8 (<u>#torneo(sub)(otro sub)</u>, <u>#equipo(sub)</u>, <u>año(sub)</u>, <u>#reglamentacion(sub)(otro sub)</u>, <u>#auspiciante(sub)(otro sub)</u>)
+
+No se pierde información ya que T7interT8 da #equipo que es superclave del esquema.
+No se pierden dfs ya que df2 vale en T7 y como #equipo es clave de T7 puedo decir que T7 está en bcnf.
+
+Todos los atributos de T8 forman parte de la CC1 entonces, cualquier df que se encuentre será trivial en T8 -> T8 está en bcnf.
