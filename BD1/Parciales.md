@@ -265,3 +265,7 @@ TORNEOS (#torneo, nombre_torneo, año, #equipo, nombre_equipo, estadio_equipo, p
 
 Busco las dependencias funcionales:
 
+df1) #torneo -> nombre_torneo
+df2) #equipo -> nombre_equipo, estadio_equipo
+df3) #equipo, #torneo , año -> puesto
+df4) #reglamentacion -> descripcion
