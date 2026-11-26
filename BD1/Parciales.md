@@ -217,3 +217,36 @@ P12 (<u>id_atractivo</u>, <u>id_categoria_atractivo</u>)
 Se eliminó P11 por ser un proyección de P7
 
 P1, P3, P5 y P7 están en 4fn porque no tienen dms.
+
+## Ejercicio 11
+
+DISPOSITIVOS (marca_id, descripMarca, modelo_id, descripModelo, equipo_tipo_id,
+descripEquipoTipo, nombreEmpresa, cuit, direcciónEmpresa, usuario_id, apyn,
+direcciónUsuario, cuil, plan_id, descripPlan, importe, equipo_id, imei, fec_alta, fec_baja,
+observaciones, línea_id, fec_alta_linea, fec_baja_linea)
+
+Donde:
+●​ Para cada equipo interesa conocer su tipo, modelo, imei, fecha en que se dio de alta,
+fecha en que se da de baja y las observaciones que sean necesarias.
+●​ De cada marca se conoce su descripción
+●​ De cada modelo se conoce su descripción y a qué marca pertenece.
+●​ Para cada plan, se registra qué empresa lo brinda, descripción e importe del mismo.
+●​ Para cada tipo de equipo se conoce la descripción
+●​ Para cada empresa se registra el nombre, cuit y dirección
+●​ De cada usuario se registra su nombre y apellido, número de documento, dirección y
+CUIL
+●​ Para cada línea se necesita registrar qué plan posee, la fecha de alta de la línea, la
+fecha de baja, el equipo que la posee y el usuario de la misma.
+
+Busco dependencias funcionales
+
+df1) marca_id -> descripMarca
+df2) modelo_id -> descripModelo, marca_id
+df3) equipo_tipo_id -> descripEquipoTipo
+df4) plan_id -> descripPlan, importe, cuit
+df5) cuit -> nombreEmpresa, direccionEmpresa
+df6) usuario_id -> apyn, direccionUsuario, cuil
+df7) cuil -> apyn, direccionUsuario, usuario_id
+df8) linea_id -> plan_id, fec_alta_linea, fec_baja_linea, equipo_id, usuario_id
+df9) linea_id -> plan_id, fec_alta_linea, fec_baja_linea, equipo_id, cuil
+df10) equipo_id -> equipo_
