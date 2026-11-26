@@ -160,7 +160,7 @@ P6 (<u>id_categoria(sub</u>), <u>id_categoria_atractivo(sub)</u>, <u>cuil_emplea
 No se pierde información ya que P5interP6 da cuil_empleado que es clave de P5
 
 df3 y df4 son equivalentes ya que producen el mismo conjunto de atributos, entonces se da que ambas valen en P5.
-Que pasa con df6? No se pierde ya que se puede obtener nro_legajo_empleado por transitividad a través de cuil_empleado -> nombre_apellido_empleado, nro_legajo_empleado
+Que pasa con df6? No se pierde ya que se puede obtener nro_legajo_empleado por transitividad a través de cuil_empleado -> nombre_apellido_emplenro_legajo_empleado
 
 df5 vale en P6. No se pierden dfs
 
@@ -211,9 +211,9 @@ P3 (<u>id_categoria_atractivo(sub)</u>, nombre_categoria)
 P5 (<u>cuil_empleado(sub)</u>, nombre_apellido_empleado, nro_legajo_empleado(otro sub))
 P7 (<u>cuil_empleado(sub)</u>, <u>id_atractivo(sub)</u>, dia_semana)
 P9 (<u>id_agente_mantenimiento</u>)
-P11 (<u>id_atractivo</u>, <u>cuil_empleado</u>)
+<s>P11 (<u>id_atractivo</u>, <u>cuil_empleado</u>)</s>
 P12 (<u>id_atractivo</u>, <u>id_categoria_atractivo</u>)
 
-No hay proyecciones.
+Se eliminó P11 por ser un proyección de P7
 
 P1, P3, P5 y P7 están en 4fn porque no tienen dms.
