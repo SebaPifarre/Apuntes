@@ -357,4 +357,20 @@ Como #sucursal es superclave del esquema, V3 está en BCNF
 
 V4 no está en BCNF ya que existe, al menos, el determinante {#conductor} de la df2 que no es superclave del esquema. Por lo tanto, particiono V4 a partir de la df2 obteniendo dos nuevas relaciones:
 
-V5 ()
+V5 (<u>#conductor(sub)</u>, nombre_cond, apellido_cond, telefono_cond)
+V6 (<u>#patente(sub)</u>, <u>#conductor(sub)</u>, <u>#viaje(sub)</u>, origen, destino, monto, <u>#sucursal(sub)</u>, #seguro_medico )
+
+No se pierde info ya que V5interV6 da #conductor que es clave de V5.
+df2 vale en V5. df3 vale en v6. no se pierden dfs
+Como #conductor es superclave del esquema, V5 está en BCNF
+
+V6 no está en bcnf ya que existe el determinante {#viaje, #conductor} que no es superclave del esquema. Por lo tanto, particiono V6 a partir de df3 generando dos nuevas relaciones:
+
+V7 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, origen, destino monto, #patente )
+V8 (<u>#conductor(sub)</u>, <u>#viaje(sub)</u>, <u>#sucursal(sub)</u>, #seguro_medico )
+
+No se pierde info. A pesar de que #patente ya no aparece como determinante. Se pueden obtener todos los determinados por #patente por transitividad a través del determinante {#viaje, #conductor}.
+No se pierden dfs, df3 vale en V7.
+Como {#viaje, #conductor} es superclave del esquema, entonces V7 está en BCNF.
+
+Todos los atributos de V8 forman parte de la CC1, por lo tanto cualquier df que se encuentre será trivial en V8. V8 está en BCNF. CC1 queda como clave del esquema s
