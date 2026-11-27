@@ -404,4 +404,21 @@ P2 no está en BCNF ya que existe, al menos, el determinante {#siniestro} de la 
 P3 (<u>#siniestro</u>, fecha_denuncia, estado_siniestro)
 P4 (<u>#poliza</u>, tipo_seguro, fecha_inicio, fecha_fin, #cliente, <u>#siniestro</u>, <u>#cuota</u>, <u>detalle_reparacion</u>, <u>#perito</u>)
 
+No se pierde info ya que P3interP4 da #siniestro que es superclave de P3
+No se pierden dfs. df5 vale en P3 y df2 vale en P4.
+Como #sinietro es clave del esquema P3 está en BCNF.
 
+P4 no está en BCNF ya que existe el determinante #poliza de la df2 que no es superclave del esquema. Entonces particiono a partir de df2:
+
+P5 (<u>#poliza</u>, tipo_seguro, fecha_inicio, fecha_fin, #cliente)
+P6 (<u>#poliza</u>, <u>#siniestro</u>, <u>#cuota</u>, <u>detalle_reparacion</u>, <u>#perito</u>)
+
+No se pierde info
+No se pierden dfs
+P5 está en bcnf.
+
+Como todos los atributos de P6 forman parte de la clave y cualquier df que se encuentre será trivial en P6 entonces P6 está en BCNF.
+
+Busco dms:
+
+dm1) 
