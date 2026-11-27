@@ -314,6 +314,9 @@ Todos los atributos de T8 forman parte de la CC1 entonces, cualquier df que se e
 ## 2da fecha 29-11-2025
 
 
+VIAJES (#viaje, origen, destino, #conductor, #patente, marca, modelo, fecha_alta, monto, nombre_cond,
+        apellido_cond, telefono_cond, telefono_sucursal, ubicación_sucursal, #sucursal, #seguro_medico)
+
 Donde:
 
 - De cada vehículo que la empresa registra se conoce su patente, marca, modelo y la fecha de alta del vehículo en la compañía.
@@ -322,3 +325,10 @@ Donde:
 - La empresa cuenta con varias sucursales físicas. De ellas se conoce el #sucursal (no se repite para diferentes sucursales), la ubicación (no se repite; se sabe que dos sucursales no pueden estar en la misma ubicación) y un número de teléfono (podría repetirse para diferentes sucursales).
 - Cada conductor está ligado a distintas sucursales y cada sucursal posee un conjunto de conductores para sus viajes. Es necesario registrar qué conductores tiene cada sucursal y para qué sucursales trabaja un conductor.
 - Además, la empresa cuenta con diferentes seguros médicos aplicables a los conductores, cada uno identificado con #seguro_medico.
+
+Busco las dependencias funcionales:
+
+df1) #patente -> marca, modelo, fecha_alta
+df2) #conductor -> nombre_cond, apellido_cond, telefono_cond
+df3) #viaje, #conductor -> origen, destino, monto #patente 
+df4) #sucursal -> ubicacion_sucursal, telefono_sucursal
