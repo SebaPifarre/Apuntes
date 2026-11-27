@@ -390,9 +390,13 @@ CC = {#poliza, #siniestro, #cuota, detalle_reparacion, #perito}
 POLIZAS no está en BCNF ya que existe, al menos, el determinante #cliente de la df3 que no es superclave del esquema. Por lo tanto, particiono POLIZAS a partir de df3:
 
 P1 (<u>#cliente</u>, cuil, nombre, direccion)
-P2 (<u>#poliza</u>, tipo_seguro, fecha_inicio, fecha_fin, #cliente, cuil, nombre, direccion, <u>#siniestro</u>, fecha_denuncia, estado_siniestro, <u>#cuota</u>, <u>detalle_reparacion</u>, <u>#perito</u>)
+P2 (<u>#poliza</u>, tipo_seguro, fecha_inicio, fecha_fin, #cliente, <u>#siniestro</u>, fecha_denuncia, estado_siniestro, <u>#cuota</u>, <u>detalle_reparacion</u>, <u>#perito</u>)
 
 No se pierde info ya que P1 inter P2 da #cliente que es superclave de P1.
 Como se da que df3 y df4 son equivalentes(determinan el mismo conjunto de atributos, independientemente de cual es el determinante), ambas valen en P1 siendo #cliente y cuil ambas claves del esquema. 
-df1, df2 y df5 valen en P2. No se pierden dfs.
-Como df4 y df
+df5 vale en P2.
+Que pasa con df2?
+Como cuil ya no aparece en P2 podría decise que df2 no vale en P2 pero se puede usar transitividad a partir de df1. Como #poliza -> #cliente -> cuil. Por lo tanto no se pierde df2 y df1 vale en P2. No se pierden dfs.
+Como df4 y df3 valen en P1, no son triviales y #cliente es superclave del esquema. Entonces P1 está en BCNF.
+
+P2 no está en BCNF ya que existe, al menos, 
