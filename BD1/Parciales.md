@@ -369,7 +369,7 @@ V6 no está en bcnf ya que existe el determinante {#viaje, #conductor} que no es
 V7 (<u>#viaje(sub)</u>, <u>#conductor(sub)</u>, origen, destino monto, #patente )
 V8 (<u>#conductor(sub)</u>, <u>#viaje(sub)</u>, <u>#sucursal(sub)</u>, #seguro_medico )
 
-No se pierde info. A pesar de que #patente ya no aparece como determinante. Se pueden obtener todos los determinados por #patente por transitividad a través del determinante {#viaje, #conductor}.
+No se pierde info. A pesar de que #patente ya no aparece como determinante. Se pueden obtener todos los determinados por #patente con transitividad a través del determinante {#viaje, #conductor}.
 No se pierden dfs, df3 vale en V7.
 Como {#viaje, #conductor} es superclave del esquema, entonces V7 está en BCNF.
 
