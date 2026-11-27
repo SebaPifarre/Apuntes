@@ -337,5 +337,8 @@ df5) ubicacion_sucursal -> #sucursal, telefono_sucursal
 CC1 {#conductor, #viaje, #sucursal, #seguro_medico}
 CC2 {#conductor, #viaje, ubicacion_sucursal, #seguro_medico }
 
+VIAJES no está en BCNF ya que existe, al menos, el determinante #patente de la df1 que no es superclave del esquema. Por lo tanto, particiono VIAJES a partir de df1 generando dos nuevas relaciones:
 
+V1 (<u>#patente(sub)</u>, marca, modelo, fecha_alta)
+V2 (<u>#patente(sub)</u>, <u>#conductor(sub)</u>, nombre_cond, apellido_cond, telefono_cond, <u>#viaje(sub)</u>, )
 
