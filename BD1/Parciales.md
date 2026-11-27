@@ -373,4 +373,5 @@ No se pierde info. A pesar de que #patente ya no aparece como determinante. Se p
 No se pierden dfs, df3 vale en V7.
 Como {#viaje, #conductor} es superclave del esquema, entonces V7 está en BCNF.
 
-Todos los atributos de V8 forman parte de la CC1, por lo tanto cualquier df que se encuentre será trivial en V8. V8 está en BCNF. CC1 queda como clave del esquema s
+Todos los atributos de V8 forman parte de la CC1, por lo tanto cualquier df que se encuentre será trivial en V8. V8 está en BCNF. CC1 queda como clave del esquema sobre CC2.
+
