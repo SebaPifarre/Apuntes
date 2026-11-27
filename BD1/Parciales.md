@@ -309,3 +309,16 @@ No se pierde información ya que T7interT8 da #equipo que es superclave del esqu
 No se pierden dfs ya que df2 vale en T7 y como #equipo es clave de T7 puedo decir que T7 está en bcnf.
 
 Todos los atributos de T8 forman parte de la CC1 entonces, cualquier df que se encuentre será trivial en T8 -> T8 está en bcnf.
+
+
+## 2da fecha 29-11-2025
+
+
+Donde:
+
+- De cada vehículo que la empresa registra se conoce su patente, marca, modelo y la fecha de alta del vehículo en la compañía.
+- La empresa contrata a diversos conductores para que hagan uso de estos vehículos. De estos se conoce un #conductor (que no se repite para diferentes conductores), su nombre, apellido y un teléfono de contacto (podría repetirse para diferentes conductores).
+- Cada conductor realiza una serie de viajes identificados con #viaje, el cual es número secuencial para cada conductor. Es decir, cada conductor comienza por el #viaje igual a 1. De cada viaje se conoce el origen y el destino del mismo, el monto (valor del viaje) y el vehículo de la empresa con el que se realizó el mismo.
+- La empresa cuenta con varias sucursales físicas. De ellas se conoce el #sucursal (no se repite para diferentes sucursales), la ubicación (no se repite; se sabe que dos sucursales no pueden estar en la misma ubicación) y un número de teléfono (podría repetirse para diferentes sucursales).
+- Cada conductor está ligado a distintas sucursales y cada sucursal posee un conjunto de conductores para sus viajes. Es necesario registrar qué conductores tiene cada sucursal y para qué sucursales trabaja un conductor.
+- Además, la empresa cuenta con diferentes seguros médicos aplicables a los conductores, cada uno identificado con #seguro_medico.
