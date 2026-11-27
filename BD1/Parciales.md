@@ -332,3 +332,10 @@ df1) #patente -> marca, modelo, fecha_alta
 df2) #conductor -> nombre_cond, apellido_cond, telefono_cond
 df3) #viaje, #conductor -> origen, destino, monto #patente 
 df4) #sucursal -> ubicacion_sucursal, telefono_sucursal
+df5) ubicacion_sucursal -> #sucursal, telefono_sucursal
+
+CC1 {#conductor, #viaje, #sucursal, #seguro_medico}
+CC2 {#conductor, #viaje, ubicacion_sucursal, #seguro_medico }
+
+
+
