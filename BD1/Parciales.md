@@ -375,3 +375,12 @@ Como {#viaje, #conductor} es superclave del esquema, entonces V7 está en BCNF.
 
 Todos los atributos de V8 forman parte de la CC1, por lo tanto cualquier df que se encuentre será trivial en V8. V8 está en BCNF. CC1 queda como clave del esquema sobre CC2.
 
+## Primera fecha 2024
+
+Busco las dfs
+
+df1) #poliza -> tipo_seguro, fecha_inicio, fecha_fin, #cliente
+df2) #poliza -> tipo_seguro, fecha_inicio, fecha_fin, cuil
+df3) #cliente -> cuil, nombre, direccion
+df4) cuil -> #cliente, nombre, direccion
+df5) #siniestro -> fecha_denuncia, estado_siniestro
