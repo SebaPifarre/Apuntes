@@ -426,3 +426,20 @@ dm2) #sinietro  ->> #poliza
 dm3) #sinietro ->> #perito
 dm4) #siniestro, #poliza ->> detalle_reparacion
 
+## Primera fecha 2025
+
+REVISTAS (#revista, #publicación, #punto_venta, #contacto, sponsor, nombre_revista, periodicidad,
+          nombre_punto_venta, ubicación_punto_venta, nombre_apellido, dirección, telefono,
+          ejemplares_impresos)
+
+- De cada revista que la empresa reparte se conoce un #revista (único en el sistema), el nombre de la revista y la periodicidad de publicación (por ejemplo, semanal, quincenal o mensual).
+- Cada revista publica diferentes publicaciones numeradas secuencialmente dentro de cada revista, es decir, cada revista comienza por el #publicación igual a 1. De cada publicación de una revista se conoce la cantidad de ejemplares impresos (ejemplares_impresos).
+- Una publicación de una revista puede tener varios sponsors. Un sponsor es una empresa que paga publicidad en publicaciones de revistas. Notar que un sponsor puede publicitar en varias publicaciones de diversas revistas.
+- Cada revista se ofrece en diversos puntos de venta (#punto_venta) y en un punto de venta pueden venderse diversas revistas.
+- De cada punto de venta, identificado por #punto_venta, se sabe su nombre, ubicación y se conoce un contacto. En una misma ubicación puede haber más de un punto de venta.
+- De cada contacto de un punto de venta se registra un #contacto (único en el sistema), el nombre, dirección y teléfono. Notar que el contacto puede repetirse en diferentes puntos de ventas.
+
+Busco dfs:
+
+df1) #revista -> nombre_revista, periodicidad
+df2) 
