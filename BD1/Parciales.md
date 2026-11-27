@@ -421,4 +421,7 @@ Como todos los atributos de P6 forman parte de la clave y cualquier df que se en
 
 Busco dms:
 
-dm1) 
+dm1) #poliza ->> #cuota 
+dm2) #sinietro  ->> #poliza 
+dm3) #sinietro ->> #perito
+
