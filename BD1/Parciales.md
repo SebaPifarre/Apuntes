@@ -399,4 +399,4 @@ Que pasa con df2?
 Como cuil ya no aparece en P2 podría decise que df2 no vale en P2 pero se puede usar transitividad a partir de df1. Como #poliza -> #cliente -> cuil. Por lo tanto no se pierde df2 y df1 vale en P2. No se pierden dfs.
 Como df4 y df3 valen en P1, no son triviales y #cliente es superclave del esquema. Entonces P1 está en BCNF.
 
-P2 no está en BCNF ya que existe, al menos, 
+P2 no está en BCNF ya que existe, al menos, el determinante {#siniestro} de la df5 que no es superclave del esquema. 
