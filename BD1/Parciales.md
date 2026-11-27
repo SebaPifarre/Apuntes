@@ -384,3 +384,15 @@ df2) #poliza -> tipo_seguro, fecha_inicio, fecha_fin, cuil
 df3) #cliente -> cuil, nombre, direccion
 df4) cuil -> #cliente, nombre, direccion
 df5) #siniestro -> fecha_denuncia, estado_siniestro
+
+CC = {#poliza, #siniestro, #cuota, detalle_reparacion, #perito}
+
+POLIZAS no está en BCNF ya que existe, al menos, el determinante #cliente de la df3 que no es superclave del esquema. Por lo tanto, particiono POLIZAS a partir de df3:
+
+P1 (<u>#cliente</u>, cuil, nombre, direccion)
+P2 (<u>#poliza</u>, tipo_seguro, fecha_inicio, fecha_fin, #cliente, cuil, nombre, direccion, <u>#siniestro</u>, fecha_denuncia, estado_siniestro, <u>#cuota</u>, <u>detalle_reparacion</u>, <u>#perito</u>)
+
+No se pierde info ya que P1 inter P2 da #cliente que es superclave de P1.
+Como se da que df3 y df4 son equivalentes(determinan el mismo conjunto de atributos, independientemente de cual es el determinante), ambas valen en P1 siendo #cliente y cuil ambas claves del esquema. 
+df1, df2 y df5 valen en P2. No se pierden dfs.
+Como df4 y df
