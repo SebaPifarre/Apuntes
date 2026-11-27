@@ -340,5 +340,11 @@ CC2 {#conductor, #viaje, ubicacion_sucursal, #seguro_medico }
 VIAJES no está en BCNF ya que existe, al menos, el determinante #patente de la df1 que no es superclave del esquema. Por lo tanto, particiono VIAJES a partir de df1 generando dos nuevas relaciones:
 
 V1 (<u>#patente(sub)</u>, marca, modelo, fecha_alta)
-V2 (<u>#patente(sub)</u>, <u>#conductor(sub)</u>, nombre_cond, apellido_cond, telefono_cond, <u>#viaje(sub)</u>, )
+V2 (<u>#patente(sub)</u>, <u>#conductor(sub)</u>, nombre_cond, apellido_cond, telefono_cond, <u>#viaje(sub)</u>, origen, destino, monto, <u>#sucursal(sub)</u>, ubicacion_sucursal, telefono_sucursal, #seguro_medico )
+
+No se pierde info ya que V1interV2 da #patente que es clave de V1
+En V1 vale la df1. Df2, df3, df4 y df5 valen en V2.
+Como #patente es superclave del esquema, V1 está en BCNF
+
+V2 no está en BCNF ya que existe, al menos, el determinante {#sucursal} de la df 4 que no es superclave del esquema. Por lo tanto, particiono V2 a par
 
