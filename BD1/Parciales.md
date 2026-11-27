@@ -424,4 +424,5 @@ Busco dms:
 dm1) #poliza ->> #cuota 
 dm2) #sinietro  ->> #poliza 
 dm3) #sinietro ->> #perito
+dm4) #siniestro, #poliza ->> detalle_reparacion
 
