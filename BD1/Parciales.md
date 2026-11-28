@@ -451,7 +451,7 @@ CC = {#revista,#publicacion, #punto_venta , sponsor}
 REVISTAS no está en BCNF ya que existe, al menos, el determinante #revista de la df1 que no es superclave del esquema. Por lo tanto, particiono REVISTAS a partir de la df1:
 
 R1 (<u>#revista</u>, nombre_revista, periodicidad)
-R2 (<u>#revista</u>, <u>#publicacion</u>, <u>#punto_venta</u>, <u>sponsor</u>, #contacto , nombre_punto_venta, ubicacion_punto_venta, nombre_apellido, direccion, telefono )
+R2 (<u>#revista</u>, <u>#publicacion</u>, <u>#punto_venta</u>, <u>sponsor</u>, #contacto , nombre_punto_venta, ubicacion_punto_venta, nombre_apellido, direccion, telefono , ejemplares_impresos)
 
 No se pierde info ya que R1interR2 da #revista que es clave de R1.
 No se pierden dfs. df1 vale en R1. df2,df3 y df4 valen en R2.
@@ -460,10 +460,28 @@ R1 está en bcnf ya que df1 vale en el esquema y #revista es superclave del esqu
 R2 no está en bcnf ya que existe, al menos, el determinante {#contacto} de la df4 que no es superclave del esquema. Por lo tanto, particiono a partir de la df4:
 
 R3 (<u>#contacto</u>, nombre_apellido, direccion, telefono)
-R4 (<u>#revista</u>, <u>#publicacion</u>, <u>#punto_venta</u>, <u>sponsor</u>, #contacto , nombre_punto_venta, ubicacion_punto_venta )
+R4 (<u>#revista</u>, <u>#publicacion</u>, <u>#punto_venta</u>, <u>sponsor</u>, #contacto , nombre_punto_venta, ubicacion_punto_venta , ejemplares_impresos)
 
 No se pierde info ya que R3interR4 da {#contacto} que es superclave del esquema.
 No se pierden dfs. df4 vale en R3 y df2 con df3 valen en R4.
 R3 está en bcnf ya que solo vale la df no trivial df4 y #contacto es superclave de dicho esquema. 
 
-R4 no está en bcnf ya que existe, al menos, el determinante #punto_
+R4 no está en bcnf ya que existe, al menos, el determinante #punto_venta de la df3 que no es superclave del esquema. Por lo tanto, particiono R4 a partir de la df3:
+
+R5 (<u>#punto_venta</u>, nombre_punto_venta, ubicacion_punto_venta, #contacto)
+R6 (<u>#revista</u>, <u>#publicacion</u>, <u>#punto_venta</u>, <u>sponsor</u>, ejemplares_impresos)
+
+No se pierde info ya que R5interR6 da #punto_venta que es clave en R5
+No se pierden dfs. En R5 vale df3 y en R6 vale df2.
+R5 está en bcnf ya que solo vale la df no trivial df3, la cual cumple con que #punto_venta es superclave del esquema.
+
+R6 no está en bcnf ya que existe el determinante {#revista, #publicacion} de la df2 que no es superclave del esquema. Por lo tanto, particiono R6 a partir de df2:
+
+R7 (<u>#revista, #publicacion</u>, ejemplares_impresos)
+R8 (<u>#revista</u>, <u>#publicacion</u>, <u>#punto_venta</u>, <u>sponsor</u>)
+
+No se pierde info prque R7interR8 da {#revista, #publicacion } que es clave de R7.
+No se pierden dfs ya que df2 vale en R7.
+R7 está en bcnf ya que solo vale la df no trivial df2 cuyo determinante #revista ,#publicacion es superclave del esquema.
+
+R8 está en bcnf ya que todos los atributos se encuentrar en la CC y cualquier df que se encuentre sera trivial en R8.
