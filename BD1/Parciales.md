@@ -491,4 +491,17 @@ busco dms
 dm1) #publicacion , #revista ->> sponsor
 dm2) #revista ->> #punto_venta 
 
-R8 no está en 4fn
+R8 no está en 4fn ya que existe la dm2 que vale en r8 y no es trivial en r8
+una dm x->>Y es trivial en R si xUY = R
+
+particiono a partir de la dm2
+
+R9 (<u>#revista,#punto_venta</u>)
+R10 (<u>#revista</u>, <u>#publicacion</u>, <u>sponsor</u>)
+
+R9 está en 4fn ya que solo vale la dm2 que es trivial en ella
+R10 está en 4fn ya que solo vale la dm1 que es trivial en ella.
+
+las particiones anteriores estan en 4fn porqu eestan en bcnf y no tienen dms
+
+
