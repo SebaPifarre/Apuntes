@@ -442,4 +442,16 @@ REVISTAS (#revista, #publicación, #punto_venta, #contacto, sponsor, nombre_revi
 Busco dfs:
 
 df1) #revista -> nombre_revista, periodicidad
-df2) 
+df2) #revista, #publicacion -> ejemplares_impresos
+df3) #punto_venta -> nombre_punto_venta, ubicacion_punto_venta, #contacto 
+df4) #contacto -> nombre_apellido, direccion, telefono
+
+CC = {#revista,#publicacion, #punto_venta , sponsor}
+
+REVISTAS no está en BCNF ya que existe, al menos, el determinante #revista de la df1 que no es superclave del esquema. Por lo tanto, particiono REVISTAS a partir de la df1:
+
+R1 (<u>#revista</u>, nombre_revista, periodicidad)
+R2 (<u>#revista</u>, <u>#publicacion</u>, <u>#punto_venta</u>, <u>sponsor</u>, #contacto , nombre_punto_venta, ubicacion_punto_venta, nombre_apellido, direccion, telefono )
+
+No se pierde info ya que R1interR2 da #revista que es clave de R1.
+No se pierden dfs. df1 vale en R1. df2,df3 y df4 valen en R2.
