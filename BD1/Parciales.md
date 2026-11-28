@@ -485,3 +485,7 @@ No se pierden dfs ya que df2 vale en R7.
 R7 está en bcnf ya que solo vale la df no trivial df2 cuyo determinante #revista ,#publicacion es superclave del esquema.
 
 R8 está en bcnf ya que todos los atributos se encuentrar en la CC y cualquier df que se encuentre sera trivial en R8.
+
+busco dms
+
+dm1) 
