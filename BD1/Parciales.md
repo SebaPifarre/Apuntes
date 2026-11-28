@@ -488,4 +488,7 @@ R8 está en bcnf ya que todos los atributos se encuentrar en la CC y cualquier d
 
 busco dms
 
-dm1) 
+dm1) #publicacion , #revista ->> sponsor
+dm2) #revista ->> #punto_venta 
+
+R8 no está en 4fn
